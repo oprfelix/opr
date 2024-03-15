@@ -1,3 +1,4 @@
+#SUBSCRIBED https://raw.githubusercontent.com/Jetfelix/opr/main/chinaunicom.yaml
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
@@ -7,11 +8,11 @@ external-controller: '127.0.0.1:9090'
 dns:
     enable: true
     ipv6: false
-    default-nameserver: [223.5.5.5, 119.29.29.29, 8.8.8.8, 1.1.1.1]
+    default-nameserver: [8.8.8.8, 1.1.1.1]
     enhanced-mode: fake-ip
     fake-ip-range: 198.18.0.1/16
     use-hosts: true
-    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    nameserver: [8.8.8.8, 1.1.1.1]
     fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
     fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
 proxies:
@@ -24,7 +25,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 8443
-    server: 162.159.138.64
+    server: 162.159.134.24
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -43,7 +44,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 8443
-    server: 162.159.143.240
+    server: 162.159.135.1
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -62,7 +63,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 8443
-    server: 162.159.142.236
+    server: 162.159.153.197
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -81,7 +82,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 8443
-    server: 162.159.137.0
+    server: 162.159.133.111
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -100,7 +101,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 8443
-    server: 162.159.133.175
+    server: 162.159.137.38
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -119,7 +120,7 @@ proxies:
     name: pages - 06
     network: ws
     port: 8443
-    server: 162.159.141.182
+    server: 162.159.143.164
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -138,7 +139,7 @@ proxies:
     name: pages - 07
     network: ws
     port: 8443
-    server: 162.159.135.174
+    server: 162.159.138.121
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -157,7 +158,45 @@ proxies:
     name: pages - 08
     network: ws
     port: 8443
-    server: 162.159.136.38
+    server: 162.159.141.216
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 09
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 09
+    network: ws
+    port: 8443
+    server: 162.159.142.117
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 10
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 10
+    network: ws
+    port: 8443
+    server: 162.159.152.103
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -218,9 +257,9 @@ proxies:
     type: trojan
 proxy-groups:
     - { name: pages, type: select, proxies: [负载均衡, 自动选择, 故障转移] }
-    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08], url: http://www.google.com/generate_204, interval: 3600, strategy: round-robin }
-    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08], url: 'http://www.gstatic.com/generate_204', interval: 3600 }
-    - { name: 故障转移, type: fallback, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
+    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: http://www.google.com/generate_204, interval: 3600, strategy: round-robin }
+    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: 'http://www.gstatic.com/generate_204', interval: 3600 }
+    - { name: 故障转移, type: fallback, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
     - { name: chatgpt, type: select, proxies: [chatgpt - 11, chatgpt - 13], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix, type: select, proxies: [netflix - 12], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
