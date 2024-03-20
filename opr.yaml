@@ -205,13 +205,203 @@ proxies:
       headers:
         host: pages.fotoman.com
       path: /?ed=2048
+  - # Channel 11
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 11
+    network: ws
+    port: 8443
+    server: 104.31.16.109
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 12
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 12
+    network: ws
+    port: 8443
+    server: 162.159.4.181
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 13
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 13
+    network: ws
+    port: 8443
+    server: 173.245.49.73
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 14
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 14
+    network: ws
+    port: 8443
+    server: 162.159.12.55
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 15
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 15
+    network: ws
+    port: 8443
+    server: 141.101.90.218
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 16
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 16
+    network: ws
+    port: 8443
+    server: 162.159.15.15
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 17
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 17
+    network: ws
+    port: 8443
+    server: 141.101.115.145
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 18
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 18
+    network: ws
+    port: 8443
+    server: 162.159.13.32
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 19
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 19
+    network: ws
+    port: 8443
+    server: 162.159.0.220
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
+  - # Channel 20
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 20
+    network: ws
+    port: 8443
+    server: 172.64.231.13
+    servername: pages.fotoman.com
+    sni: pages.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: pages.fotoman.com
+      path: /?ed=2048
   - # Channel
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: chatgpt - 11
+    name: chatgpt - 21
     network: ws
     port: 2085
     server: kvm0303.fotoman.com
@@ -230,7 +420,7 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: netflix - 12
+    name: netflix - 22
     network: tcp
     port: 18595
     password: kRI0kFOuQ7ujJVk
@@ -245,7 +435,7 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: chatgpt - 13
+    name: chatgpt - 23
     network: tcp
     port: 53227
     password: PijCVdRJiw
@@ -256,11 +446,11 @@ proxies:
     type: trojan
 proxy-groups:
     - { name: pages, type: select, proxies: [负载均衡, 自动选择, 故障转移] }
-    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: http://www.google.com/generate_204, interval: 3600, strategy: round-robin }
-    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: 'http://www.gstatic.com/generate_204', interval: 3600 }
-    - { name: 故障转移, type: fallback, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
-    - { name: chatgpt, type: select, proxies: [chatgpt - 11, chatgpt - 13], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
-    - { name: netflix, type: select, proxies: [netflix - 12], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
+    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17，, pages - 18, pages - 19, pages - 20], url: http://www.google.com/generate_204, interval: 3600, strategy: round-robin }
+    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17，, pages - 18, pages - 19, pages - 20], url: 'http://www.gstatic.com/generate_204', interval: 3600 }
+    - { name: 故障转移, type: fallback, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17，, pages - 18, pages - 19, pages - 20], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
+    - { name: chatgpt, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
+    - { name: netflix, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
     - 'DOMAIN-SUFFIX,services.googleapis.cn,pages'
