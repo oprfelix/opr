@@ -445,10 +445,8 @@ proxies:
     tls: true
     type: trojan
 proxy-groups:
-    - { name: pages, type: select, proxies: [负载均衡, 自动选择, 故障转移] }
+    - { name: pages, type: select, proxies: [负载均衡] }
     - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20], url: http://www.google.com/generate_204, interval: 3600, strategy: round-robin }
-    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20], url: 'http://www.gstatic.com/generate_204', interval: 3600 }
-    - { name: 故障转移, type: fallback, proxies: [pages - 21, pages - 22, pages - 23], url: 'http://www.gstatic.com/generate_204', interval: 7200 }
     - { name: chatgpt, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
