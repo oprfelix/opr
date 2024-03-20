@@ -1,3 +1,4 @@
+#针对中国电信宽带网络优化
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
