@@ -635,13 +635,13 @@ proxies:
       headers:
         host: pages.fotoman.com
       path: /?ed=2048
-  - # Channel 40
+  - # visa.com.hk
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: pages - 40
+    name: visa.com.hk
     network: ws
     port: 443
     server: 162.159.152.2
@@ -655,9 +655,9 @@ proxies:
         host: pages.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: pages, type: select, proxies: [自动选择, 负载均衡, 故障转移, chatgpt, netflix] }
-    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, chatgpt - 21, chatgpt - 23, pages - 40], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
-    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, pages - 35, pages - 36, pages - 37, pages - 38, pages - 39, pages - 40], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
+    - { name: pages, type: select, proxies: [自动选择, 负载均衡, 故障转移, visa.com.hk, chatgpt, netflix] }
+    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, chatgpt - 21, chatgpt - 23, visa.com.hk], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
+    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, pages - 35, pages - 36, pages - 37, pages - 38, pages - 39, visa.com.hk], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
     - { name: 故障转移, type: fallback, proxies: [chatgpt - 21, netflix - 22, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: chatgpt, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
