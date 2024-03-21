@@ -674,9 +674,9 @@ proxies:
         host: pages.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Hello World, type: select, proxies: [自动选择, 负载均衡, visa.com.hk, visa.com, openai.com, netflix.com] }
-    - { name: 自动选择, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, chatgpt - 21, chatgpt - 23, visa.com.hk, visa.com], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
-    - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, pages - 35, pages - 36, pages - 37, pages - 38, pages - 39, visa.com.hk, visa.com], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
+    - { name: Hello World, type: select, proxies: [automatic, load balancing, visa.com.hk, visa.com, openai.com, netflix.com] }
+    - { name: automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, chatgpt - 21, chatgpt - 23, visa.com.hk, visa.com], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
+    - { name: load balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, pages - 10, pages - 11, pages - 12, pages - 13, pages - 14, pages - 15, pages - 16, pages - 17, pages - 18, pages - 19, pages - 20, pages - 30, pages - 31, pages - 32, pages - 33, pages - 34, pages - 35, pages - 36, pages - 37, pages - 38, pages - 39, visa.com.hk, visa.com], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
     - { name: openai.com, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix.com, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
