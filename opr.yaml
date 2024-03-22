@@ -169,7 +169,7 @@ proxies:
     name: visa.com.hk
     network: ws
     port: 443
-    server: visa.com.hk
+    server: 162.159.153.2
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -188,7 +188,7 @@ proxies:
     name: hcaptcha.com
     network: ws
     port: 443
-    server: hcaptcha.com
+    server: 104.18.125.91
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -207,7 +207,7 @@ proxies:
     name: arkoselabs.com
     network: ws
     port: 443
-    server: cdn.arkoselabs.com
+    server: 104.18.33.170
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
