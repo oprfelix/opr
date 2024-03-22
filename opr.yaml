@@ -82,7 +82,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 8443
-    server: 104.18.72.109
+    server: 172.64.80.53
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -101,7 +101,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 8443
-    server: 104.16.128.37
+    server: 172.64.48.6
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
