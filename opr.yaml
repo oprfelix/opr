@@ -39,7 +39,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 443
-    server: 114.67.78.173
+    server: 101.52.222.12
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
