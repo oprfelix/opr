@@ -194,7 +194,7 @@ proxies:
         host: pages.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Hello World, type: select, proxies: [automatic, load balancing, visa.com.hk, hcaptcha.com, openai.com, netflix.com] }
+    - { name: Hello World, type: select, proxies: [automatic, load balancing, visa.com.hk, hcaptcha.com, openai.com, netflix.com, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05] }
     - { name: automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
     - { name: load balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
     - { name: openai.com, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
