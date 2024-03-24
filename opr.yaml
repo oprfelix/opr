@@ -200,6 +200,7 @@ proxy-groups:
     - { name: openai.com, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix.com, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
+    - 'DOMAIN-KEYWORD,gemini,openai.com'
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
     - 'DOMAIN-SUFFIX,services.googleapis.cn,Hello World'
     - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Hello World'
@@ -715,6 +716,5 @@ rules:
     - 'DOMAIN-KEYWORD,openai,openai.com'
     - 'DOMAIN-KEYWORD,chatgpt,openai.com'
     - 'DOMAIN-SUFFIX,netflix.com,netflix.com'
-    - 'DOMAIN-KEYWORD,gemini,openai.com'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,Hello World'
