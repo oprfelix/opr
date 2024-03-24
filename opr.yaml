@@ -19,8 +19,8 @@ proxies:
     flow: ""
     name: pages - 01
     network: ws
-    port: 8443
-    server: 104.16.72.81
+    port: 443
+    server: 101.52.222.12
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -38,8 +38,8 @@ proxies:
     flow: ""
     name: pages - 02
     network: ws
-    port: 8443
-    server: 104.17.175.5
+    port: 443
+    server: 114.67.78.173
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -57,8 +57,8 @@ proxies:
     flow: ""
     name: pages - 03
     network: ws
-    port: 8443
-    server: 104.19.183.189
+    port: 443
+    server: 117.160.250.130
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -76,8 +76,8 @@ proxies:
     flow: ""
     name: pages - 04
     network: ws
-    port: 8443
-    server: 172.64.80.53
+    port: 443
+    server: 117.160.250.131
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
@@ -95,8 +95,8 @@ proxies:
     flow: ""
     name: pages - 05
     network: ws
-    port: 8443
-    server: 172.64.48.6
+    port: 443
+    server: 185.238.250.13
     servername: pages.fotoman.com
     sni: pages.fotoman.com
     tls: true
