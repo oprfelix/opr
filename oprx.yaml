@@ -719,5 +719,6 @@ rules:
     - 'DOMAIN-KEYWORD,openai,openai.com'
     - 'DOMAIN-KEYWORD,chatgpt,openai.com'
     - 'DOMAIN-SUFFIX,netflix.com,netflix.com'
+    - 'DOMAIN-KEYWORD,gemini,openai.com'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,Hello World'
