@@ -202,6 +202,9 @@ proxy-groups:
 rules:
     - 'DOMAIN-KEYWORD,gemini,openai.com'
     - 'DOMAIN-KEYWORD,copilot,openai.com'
+    - 'DOMAIN-KEYWORD,openai,openai.com'
+    - 'DOMAIN-KEYWORD,chatgpt,openai.com'
+    - 'DOMAIN-SUFFIX,netflix.com,netflix.com'
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
     - 'DOMAIN-SUFFIX,services.googleapis.cn,Hello World'
     - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Hello World'
@@ -714,8 +717,5 @@ rules:
     - 'IP-CIDR6,fe80::/10,DIRECT'
     - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
-    - 'DOMAIN-KEYWORD,openai,openai.com'
-    - 'DOMAIN-KEYWORD,chatgpt,openai.com'
-    - 'DOMAIN-SUFFIX,netflix.com,netflix.com'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,Hello World'
