@@ -201,6 +201,7 @@ proxy-groups:
     - { name: netflix.com, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
     - 'DOMAIN-KEYWORD,gemini,openai.com'
+    - 'DOMAIN-KEYWORD,copilot,openai.com'
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
     - 'DOMAIN-SUFFIX,services.googleapis.cn,Hello World'
     - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Hello World'
