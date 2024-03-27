@@ -218,7 +218,6 @@ proxy-groups:
     - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
     - { name: usproxy, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
-    - { name: Pre-release v4.03.7, type: fallback}
 rules:
  # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,usproxy'
