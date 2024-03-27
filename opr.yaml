@@ -219,17 +219,17 @@ proxy-groups:
     - { name: openai.com, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
     - { name: netflix.com, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
 rules:
-- # 自定义规则
+ # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,openai.com'
     - 'DOMAIN-KEYWORD,openai,openai.com'
     - 'DOMAIN-KEYWORD,chatgpt,openai.com'
     - 'DOMAIN-SUFFIX,netflix.com,netflix.com'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,openai.com'
     
-- # Google Voice
+ # Google Voice
     - 'IP-CIDR,74.125.0.0/16,Hello World'
     
-- # 通用规则集
+ # 通用规则集
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
     - 'DOMAIN-SUFFIX,services.googleapis.cn,Hello World'
     - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Hello World'
