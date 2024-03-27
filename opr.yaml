@@ -223,6 +223,7 @@ rules:
     - 'DOMAIN-KEYWORD,gemini,usproxy'
     - 'DOMAIN-KEYWORD,openai,usproxy'
     - 'DOMAIN-KEYWORD,chatgpt,usproxy'
+    - 'DOMAIN-KEYWORD,linkedin,usproxy'
     - 'DOMAIN-SUFFIX,netflix.com,hkproxy'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,usproxy'
     - 'DOMAIN-SUFFIX,location.microsoft.com,usproxy'
