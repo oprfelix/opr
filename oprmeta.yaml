@@ -202,7 +202,7 @@ proxies:
     name: premium 02
     network: ws
     port: 443
-    server: 58.152.47.109
+    server: 101.42.10.90
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
