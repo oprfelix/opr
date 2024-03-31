@@ -183,7 +183,7 @@ proxies:
     name: premium 01
     network: ws
     port: 443
-    server: 101.52.222.12
+    server: 103.184.45.118
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -202,7 +202,7 @@ proxies:
     name: premium 02
     network: ws
     port: 443
-    server: 101.42.10.90
+    server: 103.184.45.108
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
