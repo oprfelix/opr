@@ -24,7 +24,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 443
-    server: 103.184.45.108
+    server: 103.184.45.144
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -43,7 +43,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 443
-    server: 103.184.45.118
+    server: 103.184.45.207
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -62,7 +62,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 443
-    server: 103.184.45.12
+    server: 103.184.45.23
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -81,7 +81,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 443
-    server: 103.184.45.63
+    server: 103.160.204.114
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -100,7 +100,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 443
-    server: 103.184.45.59
+    server: 27.50.49.10
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
