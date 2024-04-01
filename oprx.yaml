@@ -212,6 +212,7 @@ rules:
     - 'DOMAIN-SUFFIX,netflix.com,hkproxy'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,usproxy'
     - 'DOMAIN-SUFFIX,location.microsoft.com,usproxy'
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,hkproxy'
     
  # Google Voice
     - 'IP-CIDR,74.125.0.0/16,usproxy'
