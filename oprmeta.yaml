@@ -167,11 +167,11 @@ proxies:
     flow: ""
     name: chatgpt - 23
     network: tcp
-    port: 53227
-    password: PijCVdRJiw
-    server: chatgpt.fotoman.com
-    servername: chatgpt.fotoman.com
-    sni: chatgpt.fotoman.com
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
     tls: true
     type: trojan
   - # premium 01
