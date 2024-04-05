@@ -289,9 +289,9 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03，联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06, usproxy, hkproxy] }
-    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03，联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url: 'http://www.google-analytics.com/generate_204', interval: 43200 }
-    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03，联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 86400, strategy: round-robin }
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06, usproxy, hkproxy] }
+    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url: 'http://www.google-analytics.com/generate_204', interval: 43200 }
+    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 86400, strategy: round-robin }
     - { name: usproxy, type: select, proxies: [chatgpt - 21, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 86400 }
     - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 86400 }
 rules:
