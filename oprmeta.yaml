@@ -159,21 +159,6 @@ proxies:
     sni: partners.fotoman.com
     tls: true
     type: trojan
-  - # Channel
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: premium 03
-    network: tcp
-    port: 48624
-    password: oNUsV2kyUW
-    server: loa01.fotoman.com
-    servername: loa01.fotoman.com
-    sni: loa01.fotoman.com
-    tls: true
-    type: trojan
   - # premium 01
     alpn:
       - h2
@@ -203,6 +188,40 @@ proxies:
     network: ws
     port: 443
     server: 103.184.45.108
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 03
+    network: tcp
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
+    tls: true
+    type: trojan
+  - # premium 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 04
+    network: ws
+    port: 443
+    server: 152.70.183.95
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -289,9 +308,9 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06, usproxy, hkproxy] }
-    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url: 'http://www.google-analytics.com/generate_204', interval: 43200 }
-    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 86400, strategy: round-robin }
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06, usproxy, hkproxy] }
+    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url: 'http://www.google-analytics.com/generate_204', interval: 43200 }
+    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 86400, strategy: round-robin }
     - { name: usproxy, type: select, proxies: [chatgpt - 21, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 86400 }
     - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 86400 }
 rules:
