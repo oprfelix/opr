@@ -1,0 +1,901 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+dns:
+    enable: true
+    ipv6: false
+    default-nameserver: [119.29.29.29, 114.114.114.114, 223.5.5.5, 8.8.8.8]
+    use-hosts: true
+    nameserver: [119.29.29.29, 114.114.114.114, 223.5.5.5, 8.8.8.8]
+proxies:
+  - # Channel 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 01
+    network: ws
+    port: 443
+    server: 27.50.49.160
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 02
+    network: ws
+    port: 443
+    server: 27.50.49.42
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 03
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 03
+    network: ws
+    port: 443
+    server: 27.50.49.160
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 04
+    network: ws
+    port: 443
+    server: 27.50.48.115
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 05
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 05
+    network: ws
+    port: 443
+    server: 27.50.48.248
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 06
+    network: ws
+    port: 443
+    server: 27.50.49.145
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 07
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 07
+    network: ws
+    port: 443
+    server: 103.184.44.66
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 08
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 08
+    network: ws
+    port: 443
+    server: 103.184.45.204
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 09
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 09
+    network: ws
+    port: 443
+    server: 103.160.204.14
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: chatgpt - 21
+    network: ws
+    port: 2085
+    server: kvm0303.fotoman.com
+    servername: kvm0303.fotoman.com
+    sni: kvm0303.fotoman.com
+    tls: true
+    type: vless
+    uuid: 5b792d10-9e20-44be-fc46-415d62cf393f
+    ws-opts:
+      headers:
+        host: kvm0303.fotoman.com
+      path: /?ed=2048
+  - # Channel
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: netflix - 22
+    network: tcp
+    port: 18595
+    password: kRI0kFOuQ7ujJVk
+    server: partners.fotoman.com
+    servername: partners.fotoman.com
+    sni: partners.fotoman.com
+    tls: true
+    type: trojan
+  - # premium 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 01
+    network: ws
+    port: 443
+    server: 103.184.45.118
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 02
+    network: ws
+    port: 443
+    server: 103.184.45.108
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 03
+    network: tcp
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
+    tls: true
+    type: trojan
+  - # premium 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 04
+    network: ws
+    port: 443
+    server: 152.70.183.95
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 联通专线 03
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 联通专线 03
+    network: ws
+    port: 443
+    server: 162.159.43.153
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 联通专线 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 联通专线 04
+    network: ws
+    port: 443
+    server: 162.159.45.0
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 移动专线 05
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 移动专线 05
+    network: ws
+    port: 443
+    server: 103.160.204.119
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 移动专线 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 移动专线 06
+    network: ws
+    port: 443
+    server: 103.160.204.37
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+proxy-groups:
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing] }
+    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: usproxy, type: select, proxies: [chatgpt - 21, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+rules:
+ # 自定义规则
+    - 'DOMAIN-KEYWORD,gemini,usproxy'
+    - 'DOMAIN-KEYWORD,openai,usproxy'
+    - 'DOMAIN-KEYWORD,chatgpt,usproxy'
+    - 'DOMAIN-KEYWORD,linkedin,usproxy'
+    - 'DOMAIN-SUFFIX,netflix.com,hkproxy'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,usproxy'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,usproxy'
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,hkproxy'
+    
+ # Google Voice
+    - 'IP-CIDR,74.125.0.0/16,usproxy'
+    
+ # 通用规则集
+    - 'DOMAIN,v3.dogapi.yachts,DIRECT'
+    - 'DOMAIN-SUFFIX,services.googleapis.cn,Subscription'
+    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Subscription'
+    - 'DOMAIN,safebrowsing.urlsec.qq.com,DIRECT'
+    - 'DOMAIN,safebrowsing.googleapis.com,Subscription'
+    - 'DOMAIN,developer.apple.com,Subscription'
+    - 'DOMAIN-SUFFIX,digicert.com,Subscription'
+    - 'DOMAIN,ocsp.apple.com,Subscription'
+    - 'DOMAIN,ocsp.comodoca.com,Subscription'
+    - 'DOMAIN,ocsp.usertrust.com,Subscription'
+    - 'DOMAIN,ocsp.sectigo.com,Subscription'
+    - 'DOMAIN,ocsp.verisign.net,Subscription'
+    - 'DOMAIN-SUFFIX,apple-dns.net,Subscription'
+    - 'DOMAIN,testflight.apple.com,Subscription'
+    - 'DOMAIN,sandbox.itunes.apple.com,Subscription'
+    - 'DOMAIN,itunes.apple.com,Subscription'
+    - 'DOMAIN-SUFFIX,apps.apple.com,Subscription'
+    - 'DOMAIN-SUFFIX,blobstore.apple.com,Subscription'
+    - 'DOMAIN,cvws.icloud-content.com,Subscription'
+    - 'DOMAIN-SUFFIX,mzstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,itunes.apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud-content.com,DIRECT'
+    - 'DOMAIN-SUFFIX,me.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aaplimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn20.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cdn-apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,akadns.net,DIRECT'
+    - 'DOMAIN-SUFFIX,akamaiedge.net,DIRECT'
+    - 'DOMAIN-SUFFIX,edgekey.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcloudcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mwcname.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-cloudkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple-mapkit.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.com,DIRECT'
+    - 'DOMAIN-SUFFIX,126.net,DIRECT'
+    - 'DOMAIN-SUFFIX,127.net,DIRECT'
+    - 'DOMAIN-SUFFIX,163.com,DIRECT'
+    - 'DOMAIN-SUFFIX,360buyimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,36kr.com,DIRECT'
+    - 'DOMAIN-SUFFIX,acfun.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,air-matters.com,DIRECT'
+    - 'DOMAIN-SUFFIX,aixifan.com,DIRECT'
+    - 'DOMAIN-KEYWORD,alicdn,DIRECT'
+    - 'DOMAIN-KEYWORD,alipay,DIRECT'
+    - 'DOMAIN-KEYWORD,taobao,DIRECT'
+    - 'DOMAIN-SUFFIX,amap.com,DIRECT'
+    - 'DOMAIN-SUFFIX,autonavi.com,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,DIRECT'
+    - 'DOMAIN-SUFFIX,bdimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bdstatic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilibili.com,DIRECT'
+    - 'DOMAIN-SUFFIX,bilivideo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,caiyunapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,clouddn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbeta.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cnbetacdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,cootekservice.com,DIRECT'
+    - 'DOMAIN-SUFFIX,csdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ctrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dgtle.com,DIRECT'
+    - 'DOMAIN-SUFFIX,dianping.com,DIRECT'
+    - 'DOMAIN-SUFFIX,douban.com,DIRECT'
+    - 'DOMAIN-SUFFIX,doubanio.com,DIRECT'
+    - 'DOMAIN-SUFFIX,duokan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,easou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ele.me,DIRECT'
+    - 'DOMAIN-SUFFIX,feng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,fir.im,DIRECT'
+    - 'DOMAIN-SUFFIX,frdic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,g-cores.com,DIRECT'
+    - 'DOMAIN-SUFFIX,godic.net,DIRECT'
+    - 'DOMAIN-SUFFIX,gtimg.com,DIRECT'
+    - 'DOMAIN,cdn.hockeyapp.net,DIRECT'
+    - 'DOMAIN-SUFFIX,hongxiu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,hxcdn.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iciba.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifeng.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ifengimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ipip.net,DIRECT'
+    - 'DOMAIN-SUFFIX,iqiyi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,jianshu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,knewone.com,DIRECT'
+    - 'DOMAIN-SUFFIX,le.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lecloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,lemicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,licdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,luoo.net,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.com,DIRECT'
+    - 'DOMAIN-SUFFIX,meituan.net,DIRECT'
+    - 'DOMAIN-SUFFIX,mi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miaopai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoft.com,DIRECT'
+    - 'DOMAIN-SUFFIX,microsoftonline.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miui.com,DIRECT'
+    - 'DOMAIN-SUFFIX,miwifi.com,DIRECT'
+    - 'DOMAIN-SUFFIX,mob.com,DIRECT'
+    - 'DOMAIN-SUFFIX,netease.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office.com,DIRECT'
+    - 'DOMAIN-SUFFIX,office365.com,DIRECT'
+    - 'DOMAIN-KEYWORD,officecdn,DIRECT'
+    - 'DOMAIN-SUFFIX,oschina.net,DIRECT'
+    - 'DOMAIN-SUFFIX,ppsimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,pstatp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qcloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdaily.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qdmm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qhres.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qidian.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qihucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiniucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qiyipic.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
+    - 'DOMAIN-SUFFIX,qqurl.com,DIRECT'
+    - 'DOMAIN-SUFFIX,rarbg.to,DIRECT'
+    - 'DOMAIN-SUFFIX,ruguoapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,segmentfault.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sinaapp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,smzdm.com,DIRECT'
+    - 'DOMAIN-SUFFIX,snapdrop.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sogou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sogoucdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,sohu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,soku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,speedtest.net,DIRECT'
+    - 'DOMAIN-SUFFIX,sspai.com,DIRECT'
+    - 'DOMAIN-SUFFIX,suning.com,DIRECT'
+    - 'DOMAIN-SUFFIX,taobao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tencent.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tenpay.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tianyancha.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tmall.com,DIRECT'
+    - 'DOMAIN-SUFFIX,tudou.com,DIRECT'
+    - 'DOMAIN-SUFFIX,umetrip.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upaiyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,upyun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,veryzhun.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weather.com,DIRECT'
+    - 'DOMAIN-SUFFIX,weibo.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xiami.net,DIRECT'
+    - 'DOMAIN-SUFFIX,xiaomicp.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ximalaya.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xmcdn.com,DIRECT'
+    - 'DOMAIN-SUFFIX,xunlei.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yhd.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yihaodianimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,yinxiang.com,DIRECT'
+    - 'DOMAIN-SUFFIX,ykimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youdao.com,DIRECT'
+    - 'DOMAIN-SUFFIX,youku.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zealer.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhihu.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zhimg.com,DIRECT'
+    - 'DOMAIN-SUFFIX,zimuzu.tv,DIRECT'
+    - 'DOMAIN-SUFFIX,zoho.com,DIRECT'
+    - 'DOMAIN-KEYWORD,amazon,Subscription'
+    - 'DOMAIN-KEYWORD,google,Subscription'
+    - 'DOMAIN-KEYWORD,gmail,Subscription'
+    - 'DOMAIN-KEYWORD,youtube,Subscription'
+    - 'DOMAIN-KEYWORD,facebook,Subscription'
+    - 'DOMAIN-SUFFIX,fb.me,Subscription'
+    - 'DOMAIN-SUFFIX,fbcdn.net,Subscription'
+    - 'DOMAIN-KEYWORD,twitter,Subscription'
+    - 'DOMAIN-KEYWORD,instagram,Subscription'
+    - 'DOMAIN-KEYWORD,dropbox,Subscription'
+    - 'DOMAIN-SUFFIX,twimg.com,Subscription'
+    - 'DOMAIN-KEYWORD,blogspot,Subscription'
+    - 'DOMAIN-SUFFIX,youtu.be,Subscription'
+    - 'DOMAIN-KEYWORD,whatsapp,Subscription'
+    - 'DOMAIN-KEYWORD,admarvel,REJECT'
+    - 'DOMAIN-KEYWORD,admaster,REJECT'
+    - 'DOMAIN-KEYWORD,adsage,REJECT'
+    - 'DOMAIN-KEYWORD,adsmogo,REJECT'
+    - 'DOMAIN-KEYWORD,adsrvmedia,REJECT'
+    - 'DOMAIN-KEYWORD,adwords,REJECT'
+    - 'DOMAIN-KEYWORD,adservice,REJECT'
+    - 'DOMAIN-SUFFIX,appsflyer.com,REJECT'
+    - 'DOMAIN-KEYWORD,domob,REJECT'
+    - 'DOMAIN-SUFFIX,doubleclick.net,REJECT'
+    - 'DOMAIN-KEYWORD,duomeng,REJECT'
+    - 'DOMAIN-KEYWORD,dwtrack,REJECT'
+    - 'DOMAIN-KEYWORD,guanggao,REJECT'
+    - 'DOMAIN-KEYWORD,lianmeng,REJECT'
+    - 'DOMAIN-SUFFIX,mmstat.com,REJECT'
+    - 'DOMAIN-KEYWORD,mopub,REJECT'
+    - 'DOMAIN-KEYWORD,omgmta,REJECT'
+    - 'DOMAIN-KEYWORD,openx,REJECT'
+    - 'DOMAIN-KEYWORD,partnerad,REJECT'
+    - 'DOMAIN-KEYWORD,pingfore,REJECT'
+    - 'DOMAIN-KEYWORD,supersonicads,REJECT'
+    - 'DOMAIN-KEYWORD,uedas,REJECT'
+    - 'DOMAIN-KEYWORD,umeng,REJECT'
+    - 'DOMAIN-KEYWORD,usage,REJECT'
+    - 'DOMAIN-SUFFIX,vungle.com,REJECT'
+    - 'DOMAIN-KEYWORD,wlmonitor,REJECT'
+    - 'DOMAIN-KEYWORD,zjtoolbar,REJECT'
+    - 'DOMAIN-SUFFIX,9to5mac.com,Subscription'
+    - 'DOMAIN-SUFFIX,abpchina.org,Subscription'
+    - 'DOMAIN-SUFFIX,adblockplus.org,Subscription'
+    - 'DOMAIN-SUFFIX,adobe.com,Subscription'
+    - 'DOMAIN-SUFFIX,akamaized.net,Subscription'
+    - 'DOMAIN-SUFFIX,alfredapp.com,Subscription'
+    - 'DOMAIN-SUFFIX,amplitude.com,Subscription'
+    - 'DOMAIN-SUFFIX,ampproject.org,Subscription'
+    - 'DOMAIN-SUFFIX,android.com,Subscription'
+    - 'DOMAIN-SUFFIX,angularjs.org,Subscription'
+    - 'DOMAIN-SUFFIX,aolcdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,apkpure.com,Subscription'
+    - 'DOMAIN-SUFFIX,appledaily.com,Subscription'
+    - 'DOMAIN-SUFFIX,appshopper.com,Subscription'
+    - 'DOMAIN-SUFFIX,appspot.com,Subscription'
+    - 'DOMAIN-SUFFIX,arcgis.com,Subscription'
+    - 'DOMAIN-SUFFIX,archive.org,Subscription'
+    - 'DOMAIN-SUFFIX,armorgames.com,Subscription'
+    - 'DOMAIN-SUFFIX,aspnetcdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,att.com,Subscription'
+    - 'DOMAIN-SUFFIX,awsstatic.com,Subscription'
+    - 'DOMAIN-SUFFIX,azureedge.net,Subscription'
+    - 'DOMAIN-SUFFIX,azurewebsites.net,Subscription'
+    - 'DOMAIN-SUFFIX,bing.com,Subscription'
+    - 'DOMAIN-SUFFIX,bintray.com,Subscription'
+    - 'DOMAIN-SUFFIX,bit.com,Subscription'
+    - 'DOMAIN-SUFFIX,bit.ly,Subscription'
+    - 'DOMAIN-SUFFIX,bitbucket.org,Subscription'
+    - 'DOMAIN-SUFFIX,bjango.com,Subscription'
+    - 'DOMAIN-SUFFIX,bkrtx.com,Subscription'
+    - 'DOMAIN-SUFFIX,blog.com,Subscription'
+    - 'DOMAIN-SUFFIX,blogcdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,blogger.com,Subscription'
+    - 'DOMAIN-SUFFIX,blogsmithmedia.com,Subscription'
+    - 'DOMAIN-SUFFIX,blogspot.com,Subscription'
+    - 'DOMAIN-SUFFIX,blogspot.hk,Subscription'
+    - 'DOMAIN-SUFFIX,bloomberg.com,Subscription'
+    - 'DOMAIN-SUFFIX,box.com,Subscription'
+    - 'DOMAIN-SUFFIX,box.net,Subscription'
+    - 'DOMAIN-SUFFIX,cachefly.net,Subscription'
+    - 'DOMAIN-SUFFIX,chromium.org,Subscription'
+    - 'DOMAIN-SUFFIX,cl.ly,Subscription'
+    - 'DOMAIN-SUFFIX,cloudflare.com,Subscription'
+    - 'DOMAIN-SUFFIX,cloudfront.net,Subscription'
+    - 'DOMAIN-SUFFIX,cloudmagic.com,Subscription'
+    - 'DOMAIN-SUFFIX,cmail19.com,Subscription'
+    - 'DOMAIN-SUFFIX,cnet.com,Subscription'
+    - 'DOMAIN-SUFFIX,cocoapods.org,Subscription'
+    - 'DOMAIN-SUFFIX,comodoca.com,Subscription'
+    - 'DOMAIN-SUFFIX,crashlytics.com,Subscription'
+    - 'DOMAIN-SUFFIX,culturedcode.com,Subscription'
+    - 'DOMAIN-SUFFIX,d.pr,Subscription'
+    - 'DOMAIN-SUFFIX,danilo.to,Subscription'
+    - 'DOMAIN-SUFFIX,dayone.me,Subscription'
+    - 'DOMAIN-SUFFIX,db.tt,Subscription'
+    - 'DOMAIN-SUFFIX,deskconnect.com,Subscription'
+    - 'DOMAIN-SUFFIX,disq.us,Subscription'
+    - 'DOMAIN-SUFFIX,disqus.com,Subscription'
+    - 'DOMAIN-SUFFIX,disquscdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,dnsimple.com,Subscription'
+    - 'DOMAIN-SUFFIX,docker.com,Subscription'
+    - 'DOMAIN-SUFFIX,dribbble.com,Subscription'
+    - 'DOMAIN-SUFFIX,droplr.com,Subscription'
+    - 'DOMAIN-SUFFIX,duckduckgo.com,Subscription'
+    - 'DOMAIN-SUFFIX,dueapp.com,Subscription'
+    - 'DOMAIN-SUFFIX,dytt8.net,Subscription'
+    - 'DOMAIN-SUFFIX,edgecastcdn.net,Subscription'
+    - 'DOMAIN-SUFFIX,edgekey.net,Subscription'
+    - 'DOMAIN-SUFFIX,edgesuite.net,Subscription'
+    - 'DOMAIN-SUFFIX,engadget.com,Subscription'
+    - 'DOMAIN-SUFFIX,entrust.net,Subscription'
+    - 'DOMAIN-SUFFIX,eurekavpt.com,Subscription'
+    - 'DOMAIN-SUFFIX,evernote.com,Subscription'
+    - 'DOMAIN-SUFFIX,fabric.io,Subscription'
+    - 'DOMAIN-SUFFIX,fast.com,Subscription'
+    - 'DOMAIN-SUFFIX,fastly.net,Subscription'
+    - 'DOMAIN-SUFFIX,fc2.com,Subscription'
+    - 'DOMAIN-SUFFIX,feedburner.com,Subscription'
+    - 'DOMAIN-SUFFIX,feedly.com,Subscription'
+    - 'DOMAIN-SUFFIX,feedsportal.com,Subscription'
+    - 'DOMAIN-SUFFIX,fiftythree.com,Subscription'
+    - 'DOMAIN-SUFFIX,firebaseio.com,Subscription'
+    - 'DOMAIN-SUFFIX,flexibits.com,Subscription'
+    - 'DOMAIN-SUFFIX,flickr.com,Subscription'
+    - 'DOMAIN-SUFFIX,flipboard.com,Subscription'
+    - 'DOMAIN-SUFFIX,g.co,Subscription'
+    - 'DOMAIN-SUFFIX,gabia.net,Subscription'
+    - 'DOMAIN-SUFFIX,geni.us,Subscription'
+    - 'DOMAIN-SUFFIX,gfx.ms,Subscription'
+    - 'DOMAIN-SUFFIX,ggpht.com,Subscription'
+    - 'DOMAIN-SUFFIX,ghostnoteapp.com,Subscription'
+    - 'DOMAIN-SUFFIX,git.io,Subscription'
+    - 'DOMAIN-KEYWORD,github,Subscription'
+    - 'DOMAIN-SUFFIX,globalsign.com,Subscription'
+    - 'DOMAIN-SUFFIX,gmodules.com,Subscription'
+    - 'DOMAIN-SUFFIX,godaddy.com,Subscription'
+    - 'DOMAIN-SUFFIX,golang.org,Subscription'
+    - 'DOMAIN-SUFFIX,gongm.in,Subscription'
+    - 'DOMAIN-SUFFIX,goo.gl,Subscription'
+    - 'DOMAIN-SUFFIX,goodreaders.com,Subscription'
+    - 'DOMAIN-SUFFIX,goodreads.com,Subscription'
+    - 'DOMAIN-SUFFIX,gravatar.com,Subscription'
+    - 'DOMAIN-SUFFIX,gstatic.com,Subscription'
+    - 'DOMAIN-SUFFIX,gvt0.com,Subscription'
+    - 'DOMAIN-SUFFIX,hockeyapp.net,Subscription'
+    - 'DOMAIN-SUFFIX,hotmail.com,Subscription'
+    - 'DOMAIN-SUFFIX,icons8.com,Subscription'
+    - 'DOMAIN-SUFFIX,ifixit.com,Subscription'
+    - 'DOMAIN-SUFFIX,ift.tt,Subscription'
+    - 'DOMAIN-SUFFIX,ifttt.com,Subscription'
+    - 'DOMAIN-SUFFIX,iherb.com,Subscription'
+    - 'DOMAIN-SUFFIX,imageshack.us,Subscription'
+    - 'DOMAIN-SUFFIX,img.ly,Subscription'
+    - 'DOMAIN-SUFFIX,imgur.com,Subscription'
+    - 'DOMAIN-SUFFIX,imore.com,Subscription'
+    - 'DOMAIN-SUFFIX,instapaper.com,Subscription'
+    - 'DOMAIN-SUFFIX,ipn.li,Subscription'
+    - 'DOMAIN-SUFFIX,is.gd,Subscription'
+    - 'DOMAIN-SUFFIX,issuu.com,Subscription'
+    - 'DOMAIN-SUFFIX,itgonglun.com,Subscription'
+    - 'DOMAIN-SUFFIX,itun.es,Subscription'
+    - 'DOMAIN-SUFFIX,ixquick.com,Subscription'
+    - 'DOMAIN-SUFFIX,j.mp,Subscription'
+    - 'DOMAIN-SUFFIX,js.revsci.net,Subscription'
+    - 'DOMAIN-SUFFIX,jshint.com,Subscription'
+    - 'DOMAIN-SUFFIX,jtvnw.net,Subscription'
+    - 'DOMAIN-SUFFIX,justgetflux.com,Subscription'
+    - 'DOMAIN-SUFFIX,kat.cr,Subscription'
+    - 'DOMAIN-SUFFIX,klip.me,Subscription'
+    - 'DOMAIN-SUFFIX,libsyn.com,Subscription'
+    - 'DOMAIN-SUFFIX,linkedin.com,Subscription'
+    - 'DOMAIN-SUFFIX,line-apps.com,Subscription'
+    - 'DOMAIN-SUFFIX,linode.com,Subscription'
+    - 'DOMAIN-SUFFIX,lithium.com,Subscription'
+    - 'DOMAIN-SUFFIX,littlehj.com,Subscription'
+    - 'DOMAIN-SUFFIX,live.com,Subscription'
+    - 'DOMAIN-SUFFIX,live.net,Subscription'
+    - 'DOMAIN-SUFFIX,livefilestore.com,Subscription'
+    - 'DOMAIN-SUFFIX,llnwd.net,Subscription'
+    - 'DOMAIN-SUFFIX,macid.co,Subscription'
+    - 'DOMAIN-SUFFIX,macromedia.com,Subscription'
+    - 'DOMAIN-SUFFIX,macrumors.com,Subscription'
+    - 'DOMAIN-SUFFIX,mashable.com,Subscription'
+    - 'DOMAIN-SUFFIX,mathjax.org,Subscription'
+    - 'DOMAIN-SUFFIX,medium.com,Subscription'
+    - 'DOMAIN-SUFFIX,mega.co.nz,Subscription'
+    - 'DOMAIN-SUFFIX,mega.nz,Subscription'
+    - 'DOMAIN-SUFFIX,megaupload.com,Subscription'
+    - 'DOMAIN-SUFFIX,microsofttranslator.com,Subscription'
+    - 'DOMAIN-SUFFIX,mindnode.com,Subscription'
+    - 'DOMAIN-SUFFIX,mobile01.com,Subscription'
+    - 'DOMAIN-SUFFIX,modmyi.com,Subscription'
+    - 'DOMAIN-SUFFIX,msedge.net,Subscription'
+    - 'DOMAIN-SUFFIX,myfontastic.com,Subscription'
+    - 'DOMAIN-SUFFIX,name.com,Subscription'
+    - 'DOMAIN-SUFFIX,nextmedia.com,Subscription'
+    - 'DOMAIN-SUFFIX,nsstatic.net,Subscription'
+    - 'DOMAIN-SUFFIX,nssurge.com,Subscription'
+    - 'DOMAIN-SUFFIX,nyt.com,Subscription'
+    - 'DOMAIN-SUFFIX,nytimes.com,Subscription'
+    - 'DOMAIN-SUFFIX,omnigroup.com,Subscription'
+    - 'DOMAIN-SUFFIX,onedrive.com,Subscription'
+    - 'DOMAIN-SUFFIX,onenote.com,Subscription'
+    - 'DOMAIN-SUFFIX,ooyala.com,Subscription'
+    - 'DOMAIN-SUFFIX,openvpn.net,Subscription'
+    - 'DOMAIN-SUFFIX,openwrt.org,Subscription'
+    - 'DOMAIN-SUFFIX,orkut.com,Subscription'
+    - 'DOMAIN-SUFFIX,osxdaily.com,Subscription'
+    - 'DOMAIN-SUFFIX,outlook.com,Subscription'
+    - 'DOMAIN-SUFFIX,ow.ly,Subscription'
+    - 'DOMAIN-SUFFIX,paddleapi.com,Subscription'
+    - 'DOMAIN-SUFFIX,parallels.com,Subscription'
+    - 'DOMAIN-SUFFIX,parse.com,Subscription'
+    - 'DOMAIN-SUFFIX,pdfexpert.com,Subscription'
+    - 'DOMAIN-SUFFIX,periscope.tv,Subscription'
+    - 'DOMAIN-SUFFIX,pinboard.in,Subscription'
+    - 'DOMAIN-SUFFIX,pinterest.com,Subscription'
+    - 'DOMAIN-SUFFIX,pixelmator.com,Subscription'
+    - 'DOMAIN-SUFFIX,pixiv.net,Subscription'
+    - 'DOMAIN-SUFFIX,playpcesor.com,Subscription'
+    - 'DOMAIN-SUFFIX,playstation.com,Subscription'
+    - 'DOMAIN-SUFFIX,playstation.com.hk,Subscription'
+    - 'DOMAIN-SUFFIX,playstation.net,Subscription'
+    - 'DOMAIN-SUFFIX,playstationnetwork.com,Subscription'
+    - 'DOMAIN-SUFFIX,pushwoosh.com,Subscription'
+    - 'DOMAIN-SUFFIX,rime.im,Subscription'
+    - 'DOMAIN-SUFFIX,servebom.com,Subscription'
+    - 'DOMAIN-SUFFIX,sfx.ms,Subscription'
+    - 'DOMAIN-SUFFIX,shadowsocks.org,Subscription'
+    - 'DOMAIN-SUFFIX,sharethis.com,Subscription'
+    - 'DOMAIN-SUFFIX,shazam.com,Subscription'
+    - 'DOMAIN-SUFFIX,skype.com,Subscription'
+    - 'DOMAIN-SUFFIX,smartdnspages.com,Subscription'
+    - 'DOMAIN-SUFFIX,smartmailcloud.com,Subscription'
+    - 'DOMAIN-SUFFIX,sndcdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,sony.com,Subscription'
+    - 'DOMAIN-SUFFIX,soundcloud.com,Subscription'
+    - 'DOMAIN-SUFFIX,sourceforge.net,Subscription'
+    - 'DOMAIN-SUFFIX,spotify.com,Subscription'
+    - 'DOMAIN-SUFFIX,squarespace.com,Subscription'
+    - 'DOMAIN-SUFFIX,sstatic.net,Subscription'
+    - 'DOMAIN-SUFFIX,st.luluku.pw,Subscription'
+    - 'DOMAIN-SUFFIX,stackoverflow.com,Subscription'
+    - 'DOMAIN-SUFFIX,startpage.com,Subscription'
+    - 'DOMAIN-SUFFIX,staticflickr.com,Subscription'
+    - 'DOMAIN-SUFFIX,steamcommunity.com,Subscription'
+    - 'DOMAIN-SUFFIX,symauth.com,Subscription'
+    - 'DOMAIN-SUFFIX,symcb.com,Subscription'
+    - 'DOMAIN-SUFFIX,symcd.com,Subscription'
+    - 'DOMAIN-SUFFIX,tapbots.com,Subscription'
+    - 'DOMAIN-SUFFIX,tapbots.net,Subscription'
+    - 'DOMAIN-SUFFIX,tdesktop.com,Subscription'
+    - 'DOMAIN-SUFFIX,techcrunch.com,Subscription'
+    - 'DOMAIN-SUFFIX,techsmith.com,Subscription'
+    - 'DOMAIN-SUFFIX,thepiratebay.org,Subscription'
+    - 'DOMAIN-SUFFIX,theverge.com,Subscription'
+    - 'DOMAIN-SUFFIX,time.com,Subscription'
+    - 'DOMAIN-SUFFIX,timeinc.net,Subscription'
+    - 'DOMAIN-SUFFIX,tiny.cc,Subscription'
+    - 'DOMAIN-SUFFIX,tinypic.com,Subscription'
+    - 'DOMAIN-SUFFIX,tmblr.co,Subscription'
+    - 'DOMAIN-SUFFIX,todoist.com,Subscription'
+    - 'DOMAIN-SUFFIX,trello.com,Subscription'
+    - 'DOMAIN-SUFFIX,trustasiassl.com,Subscription'
+    - 'DOMAIN-SUFFIX,tumblr.co,Subscription'
+    - 'DOMAIN-SUFFIX,tumblr.com,Subscription'
+    - 'DOMAIN-SUFFIX,tweetdeck.com,Subscription'
+    - 'DOMAIN-SUFFIX,tweetmarker.net,Subscription'
+    - 'DOMAIN-SUFFIX,twitch.tv,Subscription'
+    - 'DOMAIN-SUFFIX,txmblr.com,Subscription'
+    - 'DOMAIN-SUFFIX,typekit.net,Subscription'
+    - 'DOMAIN-SUFFIX,ubertags.com,Subscription'
+    - 'DOMAIN-SUFFIX,ublock.org,Subscription'
+    - 'DOMAIN-SUFFIX,ubnt.com,Subscription'
+    - 'DOMAIN-SUFFIX,ulyssesapp.com,Subscription'
+    - 'DOMAIN-SUFFIX,urchin.com,Subscription'
+    - 'DOMAIN-SUFFIX,usertrust.com,Subscription'
+    - 'DOMAIN-SUFFIX,v.gd,Subscription'
+    - 'DOMAIN-SUFFIX,v2ex.com,Subscription'
+    - 'DOMAIN-SUFFIX,vimeo.com,Subscription'
+    - 'DOMAIN-SUFFIX,vimeocdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,vine.co,Subscription'
+    - 'DOMAIN-SUFFIX,vivaldi.com,Subscription'
+    - 'DOMAIN-SUFFIX,vox-cdn.com,Subscription'
+    - 'DOMAIN-SUFFIX,vsco.co,Subscription'
+    - 'DOMAIN-SUFFIX,vultr.com,Subscription'
+    - 'DOMAIN-SUFFIX,w.org,Subscription'
+    - 'DOMAIN-SUFFIX,w3schools.com,Subscription'
+    - 'DOMAIN-SUFFIX,webtype.com,Subscription'
+    - 'DOMAIN-SUFFIX,wikiwand.com,Subscription'
+    - 'DOMAIN-SUFFIX,wikileaks.org,Subscription'
+    - 'DOMAIN-SUFFIX,wikimedia.org,Subscription'
+    - 'DOMAIN-SUFFIX,wikipedia.com,Subscription'
+    - 'DOMAIN-SUFFIX,wikipedia.org,Subscription'
+    - 'DOMAIN-SUFFIX,windows.com,Subscription'
+    - 'DOMAIN-SUFFIX,windows.net,Subscription'
+    - 'DOMAIN-SUFFIX,wire.com,Subscription'
+    - 'DOMAIN-SUFFIX,wordpress.com,Subscription'
+    - 'DOMAIN-SUFFIX,workflowy.com,Subscription'
+    - 'DOMAIN-SUFFIX,wp.com,Subscription'
+    - 'DOMAIN-SUFFIX,wsj.com,Subscription'
+    - 'DOMAIN-SUFFIX,wsj.net,Subscription'
+    - 'DOMAIN-SUFFIX,xda-developers.com,Subscription'
+    - 'DOMAIN-SUFFIX,xeeno.com,Subscription'
+    - 'DOMAIN-SUFFIX,xiti.com,Subscription'
+    - 'DOMAIN-SUFFIX,yahoo.com,Subscription'
+    - 'DOMAIN-SUFFIX,yimg.com,Subscription'
+    - 'DOMAIN-SUFFIX,ying.com,Subscription'
+    - 'DOMAIN-SUFFIX,yoyo.org,Subscription'
+    - 'DOMAIN-SUFFIX,ytimg.com,Subscription'
+    - 'DOMAIN-SUFFIX,telegra.ph,Subscription'
+    - 'DOMAIN-SUFFIX,telegram.org,Subscription'
+    - 'IP-CIDR,91.108.4.0/22,Subscription,no-resolve'
+    - 'IP-CIDR,91.108.8.0/21,Subscription,no-resolve'
+    - 'IP-CIDR,91.108.16.0/22,Subscription,no-resolve'
+    - 'IP-CIDR,91.108.56.0/22,Subscription,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,Subscription,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,Subscription,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,Subscription,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,Subscription,no-resolve'
+    - 'IP-CIDR,120.232.181.162/32,Subscription,no-resolve'
+    - 'IP-CIDR,120.241.147.226/32,Subscription,no-resolve'
+    - 'IP-CIDR,120.253.253.226/32,Subscription,no-resolve'
+    - 'IP-CIDR,120.253.255.162/32,Subscription,no-resolve'
+    - 'IP-CIDR,120.253.255.34/32,Subscription,no-resolve'
+    - 'IP-CIDR,120.253.255.98/32,Subscription,no-resolve'
+    - 'IP-CIDR,180.163.150.162/32,Subscription,no-resolve'
+    - 'IP-CIDR,180.163.150.34/32,Subscription,no-resolve'
+    - 'IP-CIDR,180.163.151.162/32,Subscription,no-resolve'
+    - 'IP-CIDR,180.163.151.34/32,Subscription,no-resolve'
+    - 'IP-CIDR,203.208.39.0/24,Subscription,no-resolve'
+    - 'IP-CIDR,203.208.40.0/24,Subscription,no-resolve'
+    - 'IP-CIDR,203.208.41.0/24,Subscription,no-resolve'
+    - 'IP-CIDR,203.208.43.0/24,Subscription,no-resolve'
+    - 'IP-CIDR,203.208.50.0/24,Subscription,no-resolve'
+    - 'IP-CIDR,220.181.174.162/32,Subscription,no-resolve'
+    - 'IP-CIDR,220.181.174.226/32,Subscription,no-resolve'
+    - 'IP-CIDR,220.181.174.34/32,Subscription,no-resolve'
+    - 'DOMAIN,injections.adguard.org,DIRECT'
+    - 'DOMAIN,local.adguard.org,DIRECT'
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,Subscription'
