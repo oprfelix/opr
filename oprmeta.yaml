@@ -330,13 +330,51 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 联通专线 03
+  - # premium 05
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: 联通专线 03
+    name: premium 05
+    network: ws
+    port: 443
+    server: 103.184.44.66
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 06
+    network: ws
+    port: 443
+    server: 103.184.45.48
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 联通专线 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 联通专线 01
     network: ws
     port: 443
     server: 162.159.43.153
@@ -349,13 +387,13 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 联通专线 04
+  - # 联通专线 02
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: 联通专线 04
+    name: 联通专线 02
     network: ws
     port: 443
     server: 162.159.45.0
@@ -368,13 +406,13 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 移动专线 05
+  - # 移动专线 03
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: 移动专线 05
+    name: 移动专线 03
     network: ws
     port: 443
     server: 103.160.204.119
@@ -387,13 +425,13 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 移动专线 06
+  - # 移动专线 04
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: 移动专线 06
+    name: 移动专线 04
     network: ws
     port: 443
     server: 103.160.204.37
@@ -407,9 +445,10 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing] }
-    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04, 联通专线 03, 联通专线 04, 移动专线 05, 移动专线 06], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, Premium line] }
+    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04, premium 05, premium 06, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: Premium line, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05, premium 06], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: usproxy, type: select, proxies: [chatgpt - 21, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
