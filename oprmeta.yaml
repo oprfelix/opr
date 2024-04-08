@@ -17,7 +17,7 @@ dns:
      - 8.8.8.8
     use-hosts: true
     nameserver:
-     - https://cloudflare-dns.com/dns-query
+     - https://1.1.1.1/dns-query
      - https://dns.google/dns-query
     fallback:
     - https://1.0.0.1/dns-query
