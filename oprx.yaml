@@ -1,19 +1,57 @@
 mixed-port: 7890
 allow-lan: true
+skip-cert-verify: true
 bind-address: '*'
 mode: rule
 log-level: info
+unified-delay: true
+global-client-fingerprint: chrome
 external-controller: '127.0.0.1:9090'
 dns:
     enable: true
     ipv6: false
-    default-nameserver: [223.5.5.5, 119.29.29.29, 8.8.8.8]
     enhanced-mode: fake-ip
     fake-ip-range: 198.18.0.1/16
+    default-nameserver:
+     - 1.1.1.1
+     - 8.8.8.8
     use-hosts: true
-    nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
-    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
-    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+    nameserver:
+     - https://1.1.1.1/dns-query
+     - https://dns.google/dns-query
+     - https://dns.adguard.com/dns-query
+    fallback:
+    - https://1.0.0.1/dns-query
+    - tls://dns.google
+    fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+# 在以下列表的域名将不会被解析为 fake ip，这些域名相关的解析请求将会返回它们真实的 IP 地址
+fake-ip-filter:
+    # Stun Services
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.stun.*.*.*.*'
+    - '+.stun.*.*.*.*.*'
+ 
+    # Google Voices
+    - 'lens.l.google.com'
+ 
+    # Nintendo Switch
+    - '*.n.n.srv.nintendo.net'
+ 
+    # PlayStation
+    - '+.stun.playstation.net'
+ 
+    # XBox
+    - 'xbox.*.*.microsoft.com'
+    - '*.*.xboxlive.com'
+ 
+    # Microsoft
+    - '*.msftncsi.com'
+    - '*.msftconnecttest.com'
 proxies:
   - # Channel 01
     alpn:
@@ -24,7 +62,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 443
-    server: 103.184.45.144
+    server: 18.167.41.237
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -43,7 +81,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 443
-    server: 103.184.45.207
+    server: 18.167.228.4
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -62,7 +100,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 443
-    server: 103.184.45.23
+    server: 18.167.217.60
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -81,7 +119,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 443
-    server: 103.160.204.114
+    server: 18.167.208.181
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -100,7 +138,83 @@ proxies:
     name: pages - 05
     network: ws
     port: 443
-    server: 27.50.49.10
+    server: 18.167.194.154
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 06
+    network: ws
+    port: 443
+    server: 18.167.173.140
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 07
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 07
+    network: ws
+    port: 443
+    server: 18.166.64.65
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 08
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 08
+    network: ws
+    port: 443
+    server: 18.166.60.85
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 09
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 09
+    network: ws
+    port: 443
+    server: 18.166.228.41
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -116,7 +230,7 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: chatgpt - 21
+    name: premium 09
     network: ws
     port: 2085
     server: kvm0303.fotoman.com
@@ -144,65 +258,199 @@ proxies:
     sni: partners.fotoman.com
     tls: true
     type: trojan
+  - # premium 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 01
+    network: ws
+    port: 443
+    server: 18.166.219.97
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 02
+    network: ws
+    port: 443
+    server: 18.163.99.55
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
   - # Channel
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: chatgpt - 23
+    name: premium 03
     network: tcp
-    port: 53227
-    password: PijCVdRJiw
-    server: chatgpt.fotoman.com
-    servername: chatgpt.fotoman.com
-    sni: chatgpt.fotoman.com
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
     tls: true
     type: trojan
-  - # visa.com.hk
+  - # premium 04
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: visa.com.hk
+    name: premium 04
     network: ws
     port: 443
-    server: 162.159.153.2
-    servername: pages.fotoman.com
-    sni: pages.fotoman.com
+    server: 18.163.83.197
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
     tls: true
     type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     ws-opts:
       headers:
-        host: pages.fotoman.com
+        host: warp.fotoman.com
       path: /?ed=2048
-  - # hcaptcha.com
+  - # premium 05
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: hcaptcha.com
+    name: premium 05
     network: ws
     port: 443
-    server: 104.18.124.91
-    servername: pages.fotoman.com
-    sni: pages.fotoman.com
+    server: 18.163.7.213
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
     tls: true
     type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     ws-opts:
       headers:
-        host: pages.fotoman.com
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 06
+    network: ws
+    port: 443
+    server: 18.163.3.148
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 联通专线 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 联通专线 01
+    network: ws
+    port: 443
+    server: 18.163.233.64
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 联通专线 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 联通专线 02
+    network: ws
+    port: 443
+    server: 18.163.193.134
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 移动专线 03
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 移动专线 03
+    network: ws
+    port: 443
+    server: 18.163.16.112
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # 移动专线 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: 移动专线 04
+    network: ws
+    port: 443
+    server: 18.163.156.197
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, visa.com.hk, hcaptcha.com, usproxy, hkproxy, pages - 01, pages - 02, pages - 03, pages - 04, pages - 05] }
-    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.gstatic.com/generate_204', interval: 43200 }
-    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: http://www.google.com/generate_204, interval: 86400, strategy: round-robin }
-    - { name: usproxy, type: select, proxies: [chatgpt - 21, chatgpt - 23], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
-    - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.gstatic.com/generate_204', interval: 86400 }
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, Premium line, usproxy] }
+    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+    - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04, premium 05, premium 06, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: Premium line, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05, premium 06], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: usproxy, type: select, proxies: [premium 09, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
  # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,usproxy'
