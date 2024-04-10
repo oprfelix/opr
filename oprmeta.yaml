@@ -28,30 +28,6 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-# 在以下列表的域名将不会被解析为 fake ip，这些域名相关的解析请求将会返回它们真实的 IP 地址
-fake-ip-filter:
-    # Stun Services
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
- 
-    # Google Voices
-    - 'lens.l.google.com'
- 
-    # Nintendo Switch
-    - '*.n.n.srv.nintendo.net'
- 
-    # PlayStation
-    - '+.stun.playstation.net'
- 
-    # XBox
-    - 'xbox.*.*.microsoft.com'
-    - '*.*.xboxlive.com'
- 
-    # Microsoft
-    - '*.msftncsi.com'
-    - '*.msftconnecttest.com'
 proxies:
   - # Channel 01
     alpn:
