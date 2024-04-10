@@ -230,7 +230,7 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: chatgpt - 21
+    name: premium 09
     network: ws
     port: 2085
     server: kvm0303.fotoman.com
@@ -249,7 +249,7 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: netflix - 22
+    name: netflix.com
     network: tcp
     port: 18595
     password: kRI0kFOuQ7ujJVk
@@ -445,12 +445,12 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, Premium line] }
+    - { name: Subscription, type: select, proxies: [Automatic, Load Balancing, Premium line, usproxy] }
     - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
     - { name: Load Balancing, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02, premium 03, premium 04, premium 05, premium 06, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: Premium line, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05, premium 06], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
-    - { name: usproxy, type: select, proxies: [chatgpt - 21, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: hkproxy, type: select, proxies: [netflix - 22], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: usproxy, type: select, proxies: [premium 09, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: hkproxy, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
  # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,usproxy'
