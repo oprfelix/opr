@@ -256,8 +256,8 @@ proxies:
     flow: ""
     name: 移动专线 03
     network: ws
-    port: 443
-    server: 103.160.204.119
+    port: 8443
+    server: 47.242.174.27
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
