@@ -61,8 +61,8 @@ proxies:
     flow: ""
     name: pages - 01
     network: ws
-    port: 443
-    server: 18.167.41.237
+    port: 8443
+    server: 18.166.180.230
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -80,8 +80,8 @@ proxies:
     flow: ""
     name: pages - 02
     network: ws
-    port: 443
-    server: 18.167.228.4
+    port: 8443
+    server: 47.242.174.27
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -99,8 +99,8 @@ proxies:
     flow: ""
     name: pages - 03
     network: ws
-    port: 443
-    server: 18.167.217.60
+    port: 8443
+    server: 199.247.17.17
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -118,8 +118,8 @@ proxies:
     flow: ""
     name: pages - 04
     network: ws
-    port: 443
-    server: 18.167.208.181
+    port: 8443
+    server: 116.203.120.202
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -137,8 +137,8 @@ proxies:
     flow: ""
     name: pages - 05
     network: ws
-    port: 443
-    server: 18.167.194.154
+    port: 8443
+    server: 157.90.121.158
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -156,8 +156,8 @@ proxies:
     flow: ""
     name: pages - 06
     network: ws
-    port: 443
-    server: 18.167.173.140
+    port: 8443
+    server: 45.63.119.39
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -175,8 +175,8 @@ proxies:
     flow: ""
     name: pages - 07
     network: ws
-    port: 443
-    server: 18.166.64.65
+    port: 8443
+    server: 116.203.3.116
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -194,8 +194,8 @@ proxies:
     flow: ""
     name: pages - 08
     network: ws
-    port: 443
-    server: 18.166.60.85
+    port: 8443
+    server: 49.13.206.95
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -213,8 +213,8 @@ proxies:
     flow: ""
     name: pages - 09
     network: ws
-    port: 443
-    server: 18.166.228.41
+    port: 8443
+    server: 79.137.202.2
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
