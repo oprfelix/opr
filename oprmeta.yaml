@@ -280,7 +280,19 @@ rules:
     - 'DOMAIN-SUFFIX,raw.githubusercontent.com,模式选择'
 #Google Voice
     - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
+    - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
+# New Bing
+    - 'DOMAIN-SUFFIX,bing.com,模式选择'
+# DNS Leak
+    - 'DOMAIN-SUFFIX,dnsleaktest.com,模式选择'
+    - 'DOMAIN-SUFFIX,ipleak.net,模式选择'
+    - 'DOMAIN-SUFFIX,browserleaks.com,模式选择'
+    - 'DOMAIN-SUFFIX,browserleaks.org,模式选择'
+# Mozilla
+    - 'DOMAIN-SUFFIX,mozilla.org,模式选择'
+# GitHub在线编辑器
+    - 'DOMAIN-SUFFIX,github.dev,模式选择'
 # 通用规则集
     - 'DOMAIN-KEYWORD,aws,模式选择'
     - 'DOMAIN-KEYWORD,amazon,模式选择'
