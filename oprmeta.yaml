@@ -243,7 +243,7 @@ proxy-groups:
 rules:
 
  # 自定义规则
-    - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,netflix.com,Netflix & Disney+'
