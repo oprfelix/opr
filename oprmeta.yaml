@@ -243,6 +243,7 @@ proxy-groups:
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
+
  # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,openai,ChatGPT & Gemini'
@@ -252,12 +253,35 @@ rules:
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
-
- # Google Voice
+#Telegram
+    - 'DOMAIN-SUFFIX,t.me,模式选择'
+    - 'DOMAIN-SUFFIX,tdesktop.com,模式选择'
+    - 'DOMAIN-SUFFIX,telegra.ph,模式选择'
+    - 'DOMAIN-SUFFIX,telegram.me,模式选择'
+    - 'DOMAIN-SUFFIX,telesco.pe,模式选择'
+    - 'IP-CIDR,91.108.56.0/22,模式选择'
+    - 'IP-CIDR,91.108.4.0/22,模式选择'
+    - 'IP-CIDR,91.108.8.0/22,模式选择'
+    - 'IP-CIDR,91.108.16.0/22,模式选择'
+    - 'IP-CIDR,91.108.12.0/22,模式选择'
+    - 'IP-CIDR,149.154.160.0/20,模式选择'
+    - 'IP-CIDR,91.105.192.0/23,模式选择'
+    - 'IP-CIDR,91.108.20.0/22,模式选择'
+    - 'IP-CIDR,185.76.151.0/24,模式选择'
+    - 'IP-CIDR,2001:b28:f23d::/48,模式选择'
+    - 'IP-CIDR,2001:b28:f23f::/48,模式选择'
+    - 'IP-CIDR,2001:67c:4e8::/48,模式选择'
+    - 'IP-CIDR,2001:b28:f23c::/48,模式选择'
+    - 'IP-CIDR,2a0a:f280::/32,模式选择'
+#Whatsapp
+    - 'IP-CIDR,18.194.0.0/15,模式选择'
+    - 'IP-CIDR,34.224.0.0/12,模式选择'
+#Github
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,模式选择'
+#Google Voice
     - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
-    
- # 通用规则集
+# 通用规则集
     - 'DOMAIN-KEYWORD,aws,模式选择'
     - 'DOMAIN-KEYWORD,amazon,模式选择'
     - 'DOMAIN-KEYWORD,google,模式选择'
