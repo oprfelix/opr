@@ -1,0 +1,431 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+dns:
+    enable: true
+    ipv6: false
+    default-nameserver:
+     - 119.29.29.29
+     - 1.1.1.1
+     - 8.8.8.8
+     - 9.9.9.9
+    use-hosts: true
+    nameserver:
+     - https://doh.pub/dns-query
+     - https://1.1.1.1/dns-query
+     - https://dns.google/dns-query
+     - https://dns.quad9.net/dns-query
+proxies:
+  - # Channel 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 01
+    network: ws
+    port: 8443
+    server: 162.159.43.153
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 02
+    network: ws
+    port: 8443
+    server: 103.184.44.66
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 03
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 03
+    network: ws
+    port: 8443
+    server: 103.160.204.92
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 04
+    network: ws
+    port: 8443
+    server: 103.184.45.63
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 05
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 05
+    network: ws
+    port: 8443
+    server: 103.184.45.61
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 06
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: pages - 06
+    network: ws
+    port: 8443
+    server: 103.184.45.253
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 01
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 01
+    network: ws
+    port: 443
+    server: 104.19.138.157
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # premium 02
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 02
+    network: ws
+    port: 443
+    server: 104.19.125.88
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 03
+    network: tcp
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
+    tls: true
+    type: trojan
+  - # premium 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 04
+    network: ws
+    port: 443
+    server: 104.19.97.20
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 05
+    network: ws
+    port: 2085
+    server: kvm0303.fotoman.com
+    servername: kvm0303.fotoman.com
+    sni: kvm0303.fotoman.com
+    tls: true
+    type: vless
+    uuid: 5b792d10-9e20-44be-fc46-415d62cf393f
+    ws-opts:
+      headers:
+        host: kvm0303.fotoman.com
+      path: /?ed=2048
+  - # Channel 奈飞会员验证专用线路
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: netflix.com
+    network: tcp
+    port: 18595
+    password: kRI0kFOuQ7ujJVk
+    server: partners.fotoman.com
+    servername: partners.fotoman.com
+    sni: partners.fotoman.com
+    tls: true
+    type: trojan
+proxy-groups:
+    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+   # - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, premium 05, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+rules:
+
+ # 自定义规则
+    - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,openai,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,netflix.com,Netflix & Disney+'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
+#Telegram
+    - 'DOMAIN-SUFFIX,t.me,代理模式'
+    - 'DOMAIN-SUFFIX,tdesktop.com,代理模式'
+    - 'DOMAIN-SUFFIX,telegra.ph,代理模式'
+    - 'DOMAIN-SUFFIX,telegram.me,代理模式'
+    - 'DOMAIN-SUFFIX,telesco.pe,代理模式'
+    - 'IP-CIDR,91.108.56.0/22,代理模式'
+    - 'IP-CIDR,91.108.4.0/22,代理模式'
+    - 'IP-CIDR,91.108.8.0/22,代理模式'
+    - 'IP-CIDR,91.108.16.0/22,代理模式'
+    - 'IP-CIDR,91.108.12.0/22,代理模式'
+    - 'IP-CIDR,149.154.160.0/20,代理模式'
+    - 'IP-CIDR,91.105.192.0/23,代理模式'
+    - 'IP-CIDR,91.108.20.0/22,代理模式'
+    - 'IP-CIDR,185.76.151.0/24,代理模式'
+    - 'IP-CIDR,2001:b28:f23d::/48,代理模式'
+    - 'IP-CIDR,2001:b28:f23f::/48,代理模式'
+    - 'IP-CIDR,2001:67c:4e8::/48,代理模式'
+    - 'IP-CIDR,2001:b28:f23c::/48,代理模式'
+    - 'IP-CIDR,2a0a:f280::/32,代理模式'
+#Whatsapp
+    - 'IP-CIDR,18.194.0.0/15,代理模式'
+    - 'IP-CIDR,34.224.0.0/12,代理模式'
+#Github
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,代理模式'
+#Google Voice
+    - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
+    - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
+# New Bing
+    - 'DOMAIN-SUFFIX,bing.com,代理模式'
+# DNS Leak
+    - 'DOMAIN-SUFFIX,dnsleaktest.com,代理模式'
+    - 'DOMAIN-SUFFIX,ipleak.net,代理模式'
+    - 'DOMAIN-SUFFIX,browserleaks.com,代理模式'
+    - 'DOMAIN-SUFFIX,browserleaks.org,代理模式'
+# Mozilla
+    - 'DOMAIN-SUFFIX,mozilla.org,代理模式'
+# GitHub在线编辑器
+    - 'DOMAIN-SUFFIX,github.dev,代理模式'
+# 通用规则集
+    - 'DOMAIN-KEYWORD,aws,代理模式'
+    - 'DOMAIN-KEYWORD,amazon,代理模式'
+    - 'DOMAIN-KEYWORD,google,代理模式'
+    - 'DOMAIN-KEYWORD,gmail,代理模式'
+    - 'DOMAIN-KEYWORD,youtube,代理模式'
+    - 'DOMAIN-KEYWORD,facebook,代理模式'
+    - 'DOMAIN-KEYWORD,twitter,代理模式'
+    - 'DOMAIN-KEYWORD,instagram,代理模式'
+    - 'DOMAIN-KEYWORD,dropbox,代理模式'
+    - 'DOMAIN-SUFFIX,twimg.com,代理模式'
+    - 'DOMAIN-KEYWORD,blogspot,代理模式'
+    - 'DOMAIN-SUFFIX,youtu.be,代理模式'
+    - 'DOMAIN-KEYWORD,whatsapp,代理模式'
+    - 'DOMAIN-KEYWORD,github,代理模式'
+    - 'DOMAIN-SUFFIX,yimg.com,代理模式'
+    - 'DOMAIN-SUFFIX,ying.com,代理模式'
+    - 'DOMAIN-SUFFIX,yoyo.org,代理模式'
+    - 'DOMAIN-SUFFIX,ytimg.com,代理模式'
+    - 'DOMAIN-SUFFIX,telegra.ph,代理模式'
+    - 'DOMAIN-SUFFIX,telegram.org,代理模式'
+    - 'DOMAIN-SUFFIX,services.googleapis.cn,代理模式'
+    - 'DOMAIN-SUFFIX,apple-dns.net,代理模式'
+    - 'DOMAIN-SUFFIX,apps.apple.com,代理模式'
+    - 'DOMAIN-SUFFIX,blobstore.apple.com,代理模式'
+    - 'DOMAIN-SUFFIX,fb.me,代理模式'
+    - 'DOMAIN-SUFFIX,fbcdn.net,代理模式'
+    - 'DOMAIN-SUFFIX,android.com,代理模式'
+    - 'DOMAIN-SUFFIX,apkpure.com,代理模式'
+    - 'DOMAIN-SUFFIX,archive.org,代理模式'
+    - 'DOMAIN-SUFFIX,bing.com,代理模式'
+    - 'DOMAIN-SUFFIX,blog.com,代理模式'
+    - 'DOMAIN-SUFFIX,blogcdn.com,代理模式'
+    - 'DOMAIN-SUFFIX,blogger.com,代理模式'
+    - 'DOMAIN-SUFFIX,blogsmithmedia.com,代理模式'
+    - 'DOMAIN-SUFFIX,blogspot.com,代理模式'
+    - 'DOMAIN-SUFFIX,blogspot.hk,代理模式'
+    - 'DOMAIN-SUFFIX,bloomberg.com,代理模式'
+    - 'DOMAIN-SUFFIX,box.com,代理模式'
+    - 'DOMAIN-SUFFIX,box.net,代理模式'
+    - 'DOMAIN-SUFFIX,chromium.org,代理模式'
+    - 'DOMAIN-SUFFIX,cloudflare.com,代理模式'
+    - 'DOMAIN-SUFFIX,cloudflare.net,代理模式'
+    - 'DOMAIN-SUFFIX,docker.com,代理模式'
+    - 'DOMAIN-SUFFIX,fast.com,代理模式'
+    - 'DOMAIN-SUFFIX,fastly.net,代理模式'
+    - 'DOMAIN-SUFFIX,git.io,代理模式'
+    - 'DOMAIN-SUFFIX,godaddy.com,代理模式'
+    - 'DOMAIN-SUFFIX,golang.org,代理模式'
+    - 'DOMAIN-SUFFIX,goo.gl,代理模式'
+    - 'DOMAIN-SUFFIX,gstatic.com,代理模式'
+    - 'DOMAIN-SUFFIX,hotmail.com,代理模式'
+    - 'DOMAIN-SUFFIX,linkedin.com,代理模式'
+    - 'DOMAIN-SUFFIX,line-apps.com,代理模式'
+    - 'DOMAIN-SUFFIX,linode.com,代理模式'
+    - 'DOMAIN-SUFFIX,lithium.com,代理模式'
+    - 'DOMAIN-SUFFIX,littlehj.com,代理模式'
+    - 'DOMAIN-SUFFIX,live.com,代理模式'
+    - 'DOMAIN-SUFFIX,live.net,代理模式'
+    - 'DOMAIN-SUFFIX,livefilestore.com,代理模式'
+    - 'DOMAIN-SUFFIX,openwrt.org,代理模式'
+    - 'DOMAIN-SUFFIX,outlook.com,代理模式'
+    - 'DOMAIN-SUFFIX,shadowsocks.org,代理模式'
+    - 'DOMAIN-SUFFIX,spotify.com,代理模式'
+    - 'DOMAIN-SUFFIX,time.com,代理模式'
+    - 'DOMAIN-SUFFIX,timeinc.net,代理模式'
+    - 'DOMAIN-SUFFIX,v2ex.com,代理模式'
+    - 'DOMAIN-SUFFIX,vimeo.com,代理模式'
+    - 'DOMAIN-SUFFIX,vimeocdn.com,代理模式'
+    - 'DOMAIN-SUFFIX,vine.co,代理模式'
+    - 'DOMAIN-SUFFIX,vsco.co,代理模式'
+    - 'DOMAIN-SUFFIX,vultr.com,代理模式'
+    - 'DOMAIN-SUFFIX,w.org,代理模式'
+    - 'DOMAIN-SUFFIX,w3schools.com,代理模式'
+    - 'DOMAIN-SUFFIX,webtype.com,代理模式'
+    - 'DOMAIN-SUFFIX,wikiwand.com,代理模式'
+    - 'DOMAIN-SUFFIX,wikileaks.org,代理模式'
+    - 'DOMAIN-SUFFIX,wikimedia.org,代理模式'
+    - 'DOMAIN-SUFFIX,wikipedia.com,代理模式'
+    - 'DOMAIN-SUFFIX,wikipedia.org,代理模式'
+    - 'DOMAIN-SUFFIX,windows.com,代理模式'
+    - 'DOMAIN-SUFFIX,windows.net,代理模式'
+    - 'DOMAIN-SUFFIX,wire.com,代理模式'
+    - 'DOMAIN-SUFFIX,wordpress.com,代理模式'
+    - 'DOMAIN-SUFFIX,workflowy.com,代理模式'
+    - 'DOMAIN-SUFFIX,wp.com,代理模式'
+    - 'DOMAIN-SUFFIX,wsj.com,代理模式'
+    - 'DOMAIN-SUFFIX,wsj.net,代理模式'
+    - 'DOMAIN-SUFFIX,xda-developers.com,代理模式'
+    - 'DOMAIN-SUFFIX,xeeno.com,代理模式'
+    - 'DOMAIN-SUFFIX,xiti.com,代理模式'
+    - 'DOMAIN-SUFFIX,yahoo.com,代理模式'
+    - 'DOMAIN-SUFFIX,ttsmaker.com,代理模式'
+    - 'IP-CIDR,91.108.4.0/22,代理模式,no-resolve'
+    - 'IP-CIDR,91.108.8.0/21,代理模式,no-resolve'
+    - 'IP-CIDR,91.108.16.0/22,代理模式,no-resolve'
+    - 'IP-CIDR,91.108.56.0/22,代理模式,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,代理模式,no-resolve'
+    - 'IP-CIDR,120.232.181.162/32,代理模式,no-resolve'
+    - 'IP-CIDR,120.241.147.226/32,代理模式,no-resolve'
+    - 'IP-CIDR,120.253.253.226/32,代理模式,no-resolve'
+    - 'IP-CIDR,120.253.255.162/32,代理模式,no-resolve'
+    - 'IP-CIDR,120.253.255.34/32,代理模式,no-resolve'
+    - 'IP-CIDR,120.253.255.98/32,代理模式,no-resolve'
+    - 'IP-CIDR,180.163.150.162/32,代理模式,no-resolve'
+    - 'IP-CIDR,180.163.150.34/32,代理模式,no-resolve'
+    - 'IP-CIDR,180.163.151.162/32,代理模式,no-resolve'
+    - 'IP-CIDR,180.163.151.34/32,代理模式,no-resolve'
+    - 'IP-CIDR,203.208.39.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,203.208.40.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,203.208.41.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,203.208.43.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,203.208.50.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,220.181.174.162/32,代理模式,no-resolve'
+    - 'IP-CIDR,220.181.174.226/32,代理模式,no-resolve'
+    - 'IP-CIDR,220.181.174.34/32,代理模式,no-resolve'
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,代理模式'
