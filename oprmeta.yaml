@@ -10,14 +10,10 @@ dns:
     default-nameserver:
      - 119.29.29.29
      - 1.1.1.1
-     - 8.8.8.8
-     - 9.9.9.9
     use-hosts: true
     nameserver:
      - https://doh.pub/dns-query
      - https://1.1.1.1/dns-query
-     - https://dns.google/dns-query
-     - https://dns.quad9.net/dns-query
 proxies:
   - # Channel 01
     alpn:
