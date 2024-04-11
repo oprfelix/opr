@@ -291,32 +291,36 @@ rules:
     - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
-#Telegram
+# Telegram
+    - 'DOMAIN-KEYWORD,telegram,代理模式'
     - 'DOMAIN-SUFFIX,t.me,代理模式'
+    - 'DOMAIN-SUFFIX,tx.me,代理模式'
     - 'DOMAIN-SUFFIX,tdesktop.com,代理模式'
     - 'DOMAIN-SUFFIX,telegra.ph,代理模式'
     - 'DOMAIN-SUFFIX,telegram.me,代理模式'
+    - 'DOMAIN-SUFFIX,telegram.org,代理模式'
+    - 'IP-CIDR,91.108.0.0/16,代理模式,no-resolve'
+    - 'IP-CIDR,109.239.140.0/24,代理模式,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,代理模式,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,代理模式,no-resolve'
     - 'DOMAIN-SUFFIX,telesco.pe,代理模式'
-    - 'IP-CIDR,91.108.56.0/22,代理模式'
     - 'IP-CIDR,91.108.4.0/22,代理模式'
     - 'IP-CIDR,91.108.8.0/22,代理模式'
-    - 'IP-CIDR,91.108.16.0/22,代理模式'
     - 'IP-CIDR,91.108.12.0/22,代理模式'
-    - 'IP-CIDR,149.154.160.0/20,代理模式'
-    - 'IP-CIDR,91.105.192.0/23,代理模式'
+    - 'IP-CIDR,91.108.16.0/22,代理模式'
     - 'IP-CIDR,91.108.20.0/22,代理模式'
-    - 'IP-CIDR,185.76.151.0/24,代理模式'
-    - 'IP-CIDR,2001:b28:f23d::/48,代理模式'
-    - 'IP-CIDR,2001:b28:f23f::/48,代理模式'
-    - 'IP-CIDR,2001:67c:4e8::/48,代理模式'
-    - 'IP-CIDR,2001:b28:f23c::/48,代理模式'
-    - 'IP-CIDR,2a0a:f280::/32,代理模式'
-#Whatsapp
+    - 'IP-CIDR,91.108.56.0/22,代理模式'
+# Instagram
+    - 'DOMAIN-SUFFIX,instagram.com,代理模式'
+    - 'DOMAIN-SUFFIX,cdninstagram.com,代理模式'
+# Whatsapp
     - 'IP-CIDR,18.194.0.0/15,代理模式'
     - 'IP-CIDR,34.224.0.0/12,代理模式'
-#Github
+# Github
     - 'DOMAIN-SUFFIX,raw.githubusercontent.com,代理模式'
-#Google Voice
+# Google Voice
     - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
     - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
@@ -337,7 +341,6 @@ rules:
     - 'DOMAIN-KEYWORD,google,代理模式'
     - 'DOMAIN-KEYWORD,gmail,代理模式'
     - 'DOMAIN-KEYWORD,twitter,代理模式'
-    - 'DOMAIN-KEYWORD,instagram,代理模式'
     - 'DOMAIN-KEYWORD,dropbox,代理模式'
     - 'DOMAIN-SUFFIX,twimg.com,代理模式'
     - 'DOMAIN-KEYWORD,blogspot,代理模式'
