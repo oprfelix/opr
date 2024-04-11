@@ -8,11 +8,9 @@ dns:
     enable: true
     ipv6: false
     default-nameserver:
-     - 119.29.29.29
      - 1.1.1.1
     use-hosts: true
     nameserver:
-     - https://doh.pub/dns-query
      - https://1.1.1.1/dns-query
 proxies:
   - # Channel 01
