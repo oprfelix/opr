@@ -253,6 +253,11 @@ rules:
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
+# LinkedIn
+    - 'DOMAIN-SUFFIX,bizographics.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
 #Telegram
     - 'DOMAIN-SUFFIX,t.me,代理模式'
     - 'DOMAIN-SUFFIX,tdesktop.com,代理模式'
@@ -345,7 +350,6 @@ rules:
     - 'DOMAIN-SUFFIX,goo.gl,代理模式'
     - 'DOMAIN-SUFFIX,gstatic.com,代理模式'
     - 'DOMAIN-SUFFIX,hotmail.com,代理模式'
-    - 'DOMAIN-SUFFIX,linkedin.com,代理模式'
     - 'DOMAIN-SUFFIX,line-apps.com,代理模式'
     - 'DOMAIN-SUFFIX,linode.com,代理模式'
     - 'DOMAIN-SUFFIX,lithium.com,代理模式'
