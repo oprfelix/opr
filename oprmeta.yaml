@@ -21,7 +21,7 @@ proxies:
     flow: ""
     name: pages - 01
     network: ws
-    port: 8443
+    port: 443
     server: 162.159.43.153
     servername: warp.fotoman.com
     sni: warp.fotoman.com
@@ -40,7 +40,7 @@ proxies:
     flow: ""
     name: pages - 02
     network: ws
-    port: 8443
+    port: 443
     server: 103.184.44.66
     servername: warp.fotoman.com
     sni: warp.fotoman.com
@@ -59,7 +59,7 @@ proxies:
     flow: ""
     name: pages - 03
     network: ws
-    port: 8443
+    port: 443
     server: 103.160.204.92
     servername: warp.fotoman.com
     sni: warp.fotoman.com
@@ -78,7 +78,7 @@ proxies:
     flow: ""
     name: pages - 04
     network: ws
-    port: 8443
+    port: 443
     server: 103.184.45.63
     servername: warp.fotoman.com
     sni: warp.fotoman.com
@@ -97,7 +97,7 @@ proxies:
     flow: ""
     name: pages - 05
     network: ws
-    port: 8443
+    port: 443
     server: 103.184.45.61
     servername: warp.fotoman.com
     sni: warp.fotoman.com
@@ -116,7 +116,7 @@ proxies:
     flow: ""
     name: pages - 06
     network: ws
-    port: 8443
+    port: 443
     server: 103.184.45.253
     servername: warp.fotoman.com
     sni: warp.fotoman.com
