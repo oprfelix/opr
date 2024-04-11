@@ -19,7 +19,6 @@ dns:
     nameserver:
      - https://1.1.1.1/dns-query
      - https://dns.google/dns-query
-     - https://dns.adguard.com/dns-query
     fallback:
     - https://1.0.0.1/dns-query
     - tls://dns.google
@@ -38,7 +37,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 8443
-    server: 18.166.180.230
+    server: 162.159.43.153
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -57,7 +56,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 8443
-    server: 47.242.174.27
+    server: 103.184.44.66
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -76,7 +75,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 8443
-    server: 199.247.17.17
+    server: 103.160.204.92
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -95,7 +94,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 8443
-    server: 116.203.120.202
+    server: 103.184.45.63
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -114,7 +113,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 8443
-    server: 157.90.121.158
+    server: 103.184.45.61
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -133,7 +132,7 @@ proxies:
     name: pages - 06
     network: ws
     port: 8443
-    server: 45.63.119.39
+    server: 103.184.45.253
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -143,16 +142,16 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 07
+  - # premium 01
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: pages - 07
+    name: premium 01
     network: ws
     port: 8443
-    server: 116.203.3.116
+    server: 103.160.204.193
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -162,35 +161,16 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 08
+  - # premium 02
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
-    name: pages - 08
+    name: premium 02
     network: ws
     port: 8443
-    server: 49.13.206.95
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-  - # Channel 09
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 09
-    network: ws
-    port: 8443
-    server: 79.137.202.2
+    server: 18.163.233.64
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -206,7 +186,41 @@ proxies:
     alterId: 0
     cipher: ""
     flow: ""
-    name: premium 01
+    name: premium 03
+    network: tcp
+    port: 48624
+    password: oNUsV2kyUW
+    server: loa01.fotoman.com
+    servername: loa01.fotoman.com
+    sni: loa01.fotoman.com
+    tls: true
+    type: trojan
+  - # premium 04
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 04
+    network: ws
+    port: 8443
+    server: 103.184.45.82
+    servername: warp.fotoman.com
+    sni: warp.fotoman.com
+    tls: true
+    type: vless
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+  - # Channel 
+    alpn:
+      - h2
+    alterId: 0
+    cipher: ""
+    flow: ""
+    name: premium 05
     network: ws
     port: 2085
     server: kvm0303.fotoman.com
@@ -219,22 +233,7 @@ proxies:
       headers:
         host: kvm0303.fotoman.com
       path: /?ed=2048
-  - # Channel
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: premium 02
-    network: tcp
-    port: 48624
-    password: oNUsV2kyUW
-    server: loa01.fotoman.com
-    servername: loa01.fotoman.com
-    sni: loa01.fotoman.com
-    tls: true
-    type: trojan
-  - # Channel
+  - # Channel 奈飞会员验证专用线路
     alpn:
       - h2
     alterId: 0
@@ -250,44 +249,47 @@ proxies:
     tls: true
     type: trojan
 proxy-groups:
-    - { name: Subscription, type: select, proxies: [Automatic, usproxy] }
-    - { name: Automatic, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09, premium 01, premium 02], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-    - { name: usproxy, type: select, proxies: [premium 01, premium 02], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: hkproxy, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: 模式选择, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+   # - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, premium 05, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
  # 自定义规则
-    - 'DOMAIN-KEYWORD,gemini,usproxy'
-    - 'DOMAIN-KEYWORD,openai,usproxy'
-    - 'DOMAIN-KEYWORD,chatgpt,usproxy'
-    - 'DOMAIN-KEYWORD,linkedin,usproxy'
-    - 'DOMAIN-SUFFIX,netflix.com,hkproxy'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,usproxy'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,usproxy'
-    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,hkproxy'
-    
+    - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,openai,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,netflix.com,Netflix & Disney+'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
+
  # Google Voice
-    - 'IP-CIDR,74.125.0.0/16,usproxy'
+    - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
     
  # 通用规则集
     - 'DOMAIN,v3.dogapi.yachts,DIRECT'
-    - 'DOMAIN-SUFFIX,services.googleapis.cn,Subscription'
-    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,Subscription'
+    - 'DOMAIN-SUFFIX,services.googleapis.cn,模式选择'
+    - 'DOMAIN-SUFFIX,xn--ngstr-lra8j.com,模式选择'
     - 'DOMAIN,safebrowsing.urlsec.qq.com,DIRECT'
-    - 'DOMAIN,safebrowsing.googleapis.com,Subscription'
-    - 'DOMAIN,developer.apple.com,Subscription'
-    - 'DOMAIN-SUFFIX,digicert.com,Subscription'
-    - 'DOMAIN,ocsp.apple.com,Subscription'
-    - 'DOMAIN,ocsp.comodoca.com,Subscription'
-    - 'DOMAIN,ocsp.usertrust.com,Subscription'
-    - 'DOMAIN,ocsp.sectigo.com,Subscription'
-    - 'DOMAIN,ocsp.verisign.net,Subscription'
-    - 'DOMAIN-SUFFIX,apple-dns.net,Subscription'
-    - 'DOMAIN,testflight.apple.com,Subscription'
-    - 'DOMAIN,sandbox.itunes.apple.com,Subscription'
-    - 'DOMAIN,itunes.apple.com,Subscription'
-    - 'DOMAIN-SUFFIX,apps.apple.com,Subscription'
-    - 'DOMAIN-SUFFIX,blobstore.apple.com,Subscription'
-    - 'DOMAIN,cvws.icloud-content.com,Subscription'
+    - 'DOMAIN,safebrowsing.googleapis.com,模式选择'
+    - 'DOMAIN,developer.apple.com,模式选择'
+    - 'DOMAIN-SUFFIX,digicert.com,模式选择'
+    - 'DOMAIN,ocsp.apple.com,模式选择'
+    - 'DOMAIN,ocsp.comodoca.com,模式选择'
+    - 'DOMAIN,ocsp.usertrust.com,模式选择'
+    - 'DOMAIN,ocsp.sectigo.com,模式选择'
+    - 'DOMAIN,ocsp.verisign.net,模式选择'
+    - 'DOMAIN-SUFFIX,apple-dns.net,模式选择'
+    - 'DOMAIN,testflight.apple.com,模式选择'
+    - 'DOMAIN,sandbox.itunes.apple.com,模式选择'
+    - 'DOMAIN,itunes.apple.com,模式选择'
+    - 'DOMAIN-SUFFIX,apps.apple.com,模式选择'
+    - 'DOMAIN-SUFFIX,blobstore.apple.com,模式选择'
+    - 'DOMAIN,cvws.icloud-content.com,模式选择'
     - 'DOMAIN-SUFFIX,mzstatic.com,DIRECT'
     - 'DOMAIN-SUFFIX,itunes.apple.com,DIRECT'
     - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
@@ -429,20 +431,20 @@ rules:
     - 'DOMAIN-SUFFIX,zhimg.com,DIRECT'
     - 'DOMAIN-SUFFIX,zimuzu.tv,DIRECT'
     - 'DOMAIN-SUFFIX,zoho.com,DIRECT'
-    - 'DOMAIN-KEYWORD,amazon,Subscription'
-    - 'DOMAIN-KEYWORD,google,Subscription'
-    - 'DOMAIN-KEYWORD,gmail,Subscription'
-    - 'DOMAIN-KEYWORD,youtube,Subscription'
-    - 'DOMAIN-KEYWORD,facebook,Subscription'
-    - 'DOMAIN-SUFFIX,fb.me,Subscription'
-    - 'DOMAIN-SUFFIX,fbcdn.net,Subscription'
-    - 'DOMAIN-KEYWORD,twitter,Subscription'
-    - 'DOMAIN-KEYWORD,instagram,Subscription'
-    - 'DOMAIN-KEYWORD,dropbox,Subscription'
-    - 'DOMAIN-SUFFIX,twimg.com,Subscription'
-    - 'DOMAIN-KEYWORD,blogspot,Subscription'
-    - 'DOMAIN-SUFFIX,youtu.be,Subscription'
-    - 'DOMAIN-KEYWORD,whatsapp,Subscription'
+    - 'DOMAIN-KEYWORD,amazon,模式选择'
+    - 'DOMAIN-KEYWORD,google,模式选择'
+    - 'DOMAIN-KEYWORD,gmail,模式选择'
+    - 'DOMAIN-KEYWORD,youtube,模式选择'
+    - 'DOMAIN-KEYWORD,facebook,模式选择'
+    - 'DOMAIN-SUFFIX,fb.me,模式选择'
+    - 'DOMAIN-SUFFIX,fbcdn.net,模式选择'
+    - 'DOMAIN-KEYWORD,twitter,模式选择'
+    - 'DOMAIN-KEYWORD,instagram,模式选择'
+    - 'DOMAIN-KEYWORD,dropbox,模式选择'
+    - 'DOMAIN-SUFFIX,twimg.com,模式选择'
+    - 'DOMAIN-KEYWORD,blogspot,模式选择'
+    - 'DOMAIN-SUFFIX,youtu.be,模式选择'
+    - 'DOMAIN-KEYWORD,whatsapp,模式选择'
     - 'DOMAIN-KEYWORD,admarvel,REJECT'
     - 'DOMAIN-KEYWORD,admaster,REJECT'
     - 'DOMAIN-KEYWORD,adsage,REJECT'
@@ -470,304 +472,304 @@ rules:
     - 'DOMAIN-SUFFIX,vungle.com,REJECT'
     - 'DOMAIN-KEYWORD,wlmonitor,REJECT'
     - 'DOMAIN-KEYWORD,zjtoolbar,REJECT'
-    - 'DOMAIN-SUFFIX,9to5mac.com,Subscription'
-    - 'DOMAIN-SUFFIX,abpchina.org,Subscription'
-    - 'DOMAIN-SUFFIX,adblockplus.org,Subscription'
-    - 'DOMAIN-SUFFIX,adobe.com,Subscription'
-    - 'DOMAIN-SUFFIX,akamaized.net,Subscription'
-    - 'DOMAIN-SUFFIX,alfredapp.com,Subscription'
-    - 'DOMAIN-SUFFIX,amplitude.com,Subscription'
-    - 'DOMAIN-SUFFIX,ampproject.org,Subscription'
-    - 'DOMAIN-SUFFIX,android.com,Subscription'
-    - 'DOMAIN-SUFFIX,angularjs.org,Subscription'
-    - 'DOMAIN-SUFFIX,aolcdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,apkpure.com,Subscription'
-    - 'DOMAIN-SUFFIX,appledaily.com,Subscription'
-    - 'DOMAIN-SUFFIX,appshopper.com,Subscription'
-    - 'DOMAIN-SUFFIX,appspot.com,Subscription'
-    - 'DOMAIN-SUFFIX,arcgis.com,Subscription'
-    - 'DOMAIN-SUFFIX,archive.org,Subscription'
-    - 'DOMAIN-SUFFIX,armorgames.com,Subscription'
-    - 'DOMAIN-SUFFIX,aspnetcdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,att.com,Subscription'
-    - 'DOMAIN-SUFFIX,awsstatic.com,Subscription'
-    - 'DOMAIN-SUFFIX,azureedge.net,Subscription'
-    - 'DOMAIN-SUFFIX,azurewebsites.net,Subscription'
-    - 'DOMAIN-SUFFIX,bing.com,Subscription'
-    - 'DOMAIN-SUFFIX,bintray.com,Subscription'
-    - 'DOMAIN-SUFFIX,bit.com,Subscription'
-    - 'DOMAIN-SUFFIX,bit.ly,Subscription'
-    - 'DOMAIN-SUFFIX,bitbucket.org,Subscription'
-    - 'DOMAIN-SUFFIX,bjango.com,Subscription'
-    - 'DOMAIN-SUFFIX,bkrtx.com,Subscription'
-    - 'DOMAIN-SUFFIX,blog.com,Subscription'
-    - 'DOMAIN-SUFFIX,blogcdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,blogger.com,Subscription'
-    - 'DOMAIN-SUFFIX,blogsmithmedia.com,Subscription'
-    - 'DOMAIN-SUFFIX,blogspot.com,Subscription'
-    - 'DOMAIN-SUFFIX,blogspot.hk,Subscription'
-    - 'DOMAIN-SUFFIX,bloomberg.com,Subscription'
-    - 'DOMAIN-SUFFIX,box.com,Subscription'
-    - 'DOMAIN-SUFFIX,box.net,Subscription'
-    - 'DOMAIN-SUFFIX,cachefly.net,Subscription'
-    - 'DOMAIN-SUFFIX,chromium.org,Subscription'
-    - 'DOMAIN-SUFFIX,cl.ly,Subscription'
-    - 'DOMAIN-SUFFIX,cloudflare.com,Subscription'
-    - 'DOMAIN-SUFFIX,cloudfront.net,Subscription'
-    - 'DOMAIN-SUFFIX,cloudmagic.com,Subscription'
-    - 'DOMAIN-SUFFIX,cmail19.com,Subscription'
-    - 'DOMAIN-SUFFIX,cnet.com,Subscription'
-    - 'DOMAIN-SUFFIX,cocoapods.org,Subscription'
-    - 'DOMAIN-SUFFIX,comodoca.com,Subscription'
-    - 'DOMAIN-SUFFIX,crashlytics.com,Subscription'
-    - 'DOMAIN-SUFFIX,culturedcode.com,Subscription'
-    - 'DOMAIN-SUFFIX,d.pr,Subscription'
-    - 'DOMAIN-SUFFIX,danilo.to,Subscription'
-    - 'DOMAIN-SUFFIX,dayone.me,Subscription'
-    - 'DOMAIN-SUFFIX,db.tt,Subscription'
-    - 'DOMAIN-SUFFIX,deskconnect.com,Subscription'
-    - 'DOMAIN-SUFFIX,disq.us,Subscription'
-    - 'DOMAIN-SUFFIX,disqus.com,Subscription'
-    - 'DOMAIN-SUFFIX,disquscdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,dnsimple.com,Subscription'
-    - 'DOMAIN-SUFFIX,docker.com,Subscription'
-    - 'DOMAIN-SUFFIX,dribbble.com,Subscription'
-    - 'DOMAIN-SUFFIX,droplr.com,Subscription'
-    - 'DOMAIN-SUFFIX,duckduckgo.com,Subscription'
-    - 'DOMAIN-SUFFIX,dueapp.com,Subscription'
-    - 'DOMAIN-SUFFIX,dytt8.net,Subscription'
-    - 'DOMAIN-SUFFIX,edgecastcdn.net,Subscription'
-    - 'DOMAIN-SUFFIX,edgekey.net,Subscription'
-    - 'DOMAIN-SUFFIX,edgesuite.net,Subscription'
-    - 'DOMAIN-SUFFIX,engadget.com,Subscription'
-    - 'DOMAIN-SUFFIX,entrust.net,Subscription'
-    - 'DOMAIN-SUFFIX,eurekavpt.com,Subscription'
-    - 'DOMAIN-SUFFIX,evernote.com,Subscription'
-    - 'DOMAIN-SUFFIX,fabric.io,Subscription'
-    - 'DOMAIN-SUFFIX,fast.com,Subscription'
-    - 'DOMAIN-SUFFIX,fastly.net,Subscription'
-    - 'DOMAIN-SUFFIX,fc2.com,Subscription'
-    - 'DOMAIN-SUFFIX,feedburner.com,Subscription'
-    - 'DOMAIN-SUFFIX,feedly.com,Subscription'
-    - 'DOMAIN-SUFFIX,feedsportal.com,Subscription'
-    - 'DOMAIN-SUFFIX,fiftythree.com,Subscription'
-    - 'DOMAIN-SUFFIX,firebaseio.com,Subscription'
-    - 'DOMAIN-SUFFIX,flexibits.com,Subscription'
-    - 'DOMAIN-SUFFIX,flickr.com,Subscription'
-    - 'DOMAIN-SUFFIX,flipboard.com,Subscription'
-    - 'DOMAIN-SUFFIX,g.co,Subscription'
-    - 'DOMAIN-SUFFIX,gabia.net,Subscription'
-    - 'DOMAIN-SUFFIX,geni.us,Subscription'
-    - 'DOMAIN-SUFFIX,gfx.ms,Subscription'
-    - 'DOMAIN-SUFFIX,ggpht.com,Subscription'
-    - 'DOMAIN-SUFFIX,ghostnoteapp.com,Subscription'
-    - 'DOMAIN-SUFFIX,git.io,Subscription'
-    - 'DOMAIN-KEYWORD,github,Subscription'
-    - 'DOMAIN-SUFFIX,globalsign.com,Subscription'
-    - 'DOMAIN-SUFFIX,gmodules.com,Subscription'
-    - 'DOMAIN-SUFFIX,godaddy.com,Subscription'
-    - 'DOMAIN-SUFFIX,golang.org,Subscription'
-    - 'DOMAIN-SUFFIX,gongm.in,Subscription'
-    - 'DOMAIN-SUFFIX,goo.gl,Subscription'
-    - 'DOMAIN-SUFFIX,goodreaders.com,Subscription'
-    - 'DOMAIN-SUFFIX,goodreads.com,Subscription'
-    - 'DOMAIN-SUFFIX,gravatar.com,Subscription'
-    - 'DOMAIN-SUFFIX,gstatic.com,Subscription'
-    - 'DOMAIN-SUFFIX,gvt0.com,Subscription'
-    - 'DOMAIN-SUFFIX,hockeyapp.net,Subscription'
-    - 'DOMAIN-SUFFIX,hotmail.com,Subscription'
-    - 'DOMAIN-SUFFIX,icons8.com,Subscription'
-    - 'DOMAIN-SUFFIX,ifixit.com,Subscription'
-    - 'DOMAIN-SUFFIX,ift.tt,Subscription'
-    - 'DOMAIN-SUFFIX,ifttt.com,Subscription'
-    - 'DOMAIN-SUFFIX,iherb.com,Subscription'
-    - 'DOMAIN-SUFFIX,imageshack.us,Subscription'
-    - 'DOMAIN-SUFFIX,img.ly,Subscription'
-    - 'DOMAIN-SUFFIX,imgur.com,Subscription'
-    - 'DOMAIN-SUFFIX,imore.com,Subscription'
-    - 'DOMAIN-SUFFIX,instapaper.com,Subscription'
-    - 'DOMAIN-SUFFIX,ipn.li,Subscription'
-    - 'DOMAIN-SUFFIX,is.gd,Subscription'
-    - 'DOMAIN-SUFFIX,issuu.com,Subscription'
-    - 'DOMAIN-SUFFIX,itgonglun.com,Subscription'
-    - 'DOMAIN-SUFFIX,itun.es,Subscription'
-    - 'DOMAIN-SUFFIX,ixquick.com,Subscription'
-    - 'DOMAIN-SUFFIX,j.mp,Subscription'
-    - 'DOMAIN-SUFFIX,js.revsci.net,Subscription'
-    - 'DOMAIN-SUFFIX,jshint.com,Subscription'
-    - 'DOMAIN-SUFFIX,jtvnw.net,Subscription'
-    - 'DOMAIN-SUFFIX,justgetflux.com,Subscription'
-    - 'DOMAIN-SUFFIX,kat.cr,Subscription'
-    - 'DOMAIN-SUFFIX,klip.me,Subscription'
-    - 'DOMAIN-SUFFIX,libsyn.com,Subscription'
-    - 'DOMAIN-SUFFIX,linkedin.com,Subscription'
-    - 'DOMAIN-SUFFIX,line-apps.com,Subscription'
-    - 'DOMAIN-SUFFIX,linode.com,Subscription'
-    - 'DOMAIN-SUFFIX,lithium.com,Subscription'
-    - 'DOMAIN-SUFFIX,littlehj.com,Subscription'
-    - 'DOMAIN-SUFFIX,live.com,Subscription'
-    - 'DOMAIN-SUFFIX,live.net,Subscription'
-    - 'DOMAIN-SUFFIX,livefilestore.com,Subscription'
-    - 'DOMAIN-SUFFIX,llnwd.net,Subscription'
-    - 'DOMAIN-SUFFIX,macid.co,Subscription'
-    - 'DOMAIN-SUFFIX,macromedia.com,Subscription'
-    - 'DOMAIN-SUFFIX,macrumors.com,Subscription'
-    - 'DOMAIN-SUFFIX,mashable.com,Subscription'
-    - 'DOMAIN-SUFFIX,mathjax.org,Subscription'
-    - 'DOMAIN-SUFFIX,medium.com,Subscription'
-    - 'DOMAIN-SUFFIX,mega.co.nz,Subscription'
-    - 'DOMAIN-SUFFIX,mega.nz,Subscription'
-    - 'DOMAIN-SUFFIX,megaupload.com,Subscription'
-    - 'DOMAIN-SUFFIX,microsofttranslator.com,Subscription'
-    - 'DOMAIN-SUFFIX,mindnode.com,Subscription'
-    - 'DOMAIN-SUFFIX,mobile01.com,Subscription'
-    - 'DOMAIN-SUFFIX,modmyi.com,Subscription'
-    - 'DOMAIN-SUFFIX,msedge.net,Subscription'
-    - 'DOMAIN-SUFFIX,myfontastic.com,Subscription'
-    - 'DOMAIN-SUFFIX,name.com,Subscription'
-    - 'DOMAIN-SUFFIX,nextmedia.com,Subscription'
-    - 'DOMAIN-SUFFIX,nsstatic.net,Subscription'
-    - 'DOMAIN-SUFFIX,nssurge.com,Subscription'
-    - 'DOMAIN-SUFFIX,nyt.com,Subscription'
-    - 'DOMAIN-SUFFIX,nytimes.com,Subscription'
-    - 'DOMAIN-SUFFIX,omnigroup.com,Subscription'
-    - 'DOMAIN-SUFFIX,onedrive.com,Subscription'
-    - 'DOMAIN-SUFFIX,onenote.com,Subscription'
-    - 'DOMAIN-SUFFIX,ooyala.com,Subscription'
-    - 'DOMAIN-SUFFIX,openvpn.net,Subscription'
-    - 'DOMAIN-SUFFIX,openwrt.org,Subscription'
-    - 'DOMAIN-SUFFIX,orkut.com,Subscription'
-    - 'DOMAIN-SUFFIX,osxdaily.com,Subscription'
-    - 'DOMAIN-SUFFIX,outlook.com,Subscription'
-    - 'DOMAIN-SUFFIX,ow.ly,Subscription'
-    - 'DOMAIN-SUFFIX,paddleapi.com,Subscription'
-    - 'DOMAIN-SUFFIX,parallels.com,Subscription'
-    - 'DOMAIN-SUFFIX,parse.com,Subscription'
-    - 'DOMAIN-SUFFIX,pdfexpert.com,Subscription'
-    - 'DOMAIN-SUFFIX,periscope.tv,Subscription'
-    - 'DOMAIN-SUFFIX,pinboard.in,Subscription'
-    - 'DOMAIN-SUFFIX,pinterest.com,Subscription'
-    - 'DOMAIN-SUFFIX,pixelmator.com,Subscription'
-    - 'DOMAIN-SUFFIX,pixiv.net,Subscription'
-    - 'DOMAIN-SUFFIX,playpcesor.com,Subscription'
-    - 'DOMAIN-SUFFIX,playstation.com,Subscription'
-    - 'DOMAIN-SUFFIX,playstation.com.hk,Subscription'
-    - 'DOMAIN-SUFFIX,playstation.net,Subscription'
-    - 'DOMAIN-SUFFIX,playstationnetwork.com,Subscription'
-    - 'DOMAIN-SUFFIX,pushwoosh.com,Subscription'
-    - 'DOMAIN-SUFFIX,rime.im,Subscription'
-    - 'DOMAIN-SUFFIX,servebom.com,Subscription'
-    - 'DOMAIN-SUFFIX,sfx.ms,Subscription'
-    - 'DOMAIN-SUFFIX,shadowsocks.org,Subscription'
-    - 'DOMAIN-SUFFIX,sharethis.com,Subscription'
-    - 'DOMAIN-SUFFIX,shazam.com,Subscription'
-    - 'DOMAIN-SUFFIX,skype.com,Subscription'
-    - 'DOMAIN-SUFFIX,smartdnspages.com,Subscription'
-    - 'DOMAIN-SUFFIX,smartmailcloud.com,Subscription'
-    - 'DOMAIN-SUFFIX,sndcdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,sony.com,Subscription'
-    - 'DOMAIN-SUFFIX,soundcloud.com,Subscription'
-    - 'DOMAIN-SUFFIX,sourceforge.net,Subscription'
-    - 'DOMAIN-SUFFIX,spotify.com,Subscription'
-    - 'DOMAIN-SUFFIX,squarespace.com,Subscription'
-    - 'DOMAIN-SUFFIX,sstatic.net,Subscription'
-    - 'DOMAIN-SUFFIX,st.luluku.pw,Subscription'
-    - 'DOMAIN-SUFFIX,stackoverflow.com,Subscription'
-    - 'DOMAIN-SUFFIX,startpage.com,Subscription'
-    - 'DOMAIN-SUFFIX,staticflickr.com,Subscription'
-    - 'DOMAIN-SUFFIX,steamcommunity.com,Subscription'
-    - 'DOMAIN-SUFFIX,symauth.com,Subscription'
-    - 'DOMAIN-SUFFIX,symcb.com,Subscription'
-    - 'DOMAIN-SUFFIX,symcd.com,Subscription'
-    - 'DOMAIN-SUFFIX,tapbots.com,Subscription'
-    - 'DOMAIN-SUFFIX,tapbots.net,Subscription'
-    - 'DOMAIN-SUFFIX,tdesktop.com,Subscription'
-    - 'DOMAIN-SUFFIX,techcrunch.com,Subscription'
-    - 'DOMAIN-SUFFIX,techsmith.com,Subscription'
-    - 'DOMAIN-SUFFIX,thepiratebay.org,Subscription'
-    - 'DOMAIN-SUFFIX,theverge.com,Subscription'
-    - 'DOMAIN-SUFFIX,time.com,Subscription'
-    - 'DOMAIN-SUFFIX,timeinc.net,Subscription'
-    - 'DOMAIN-SUFFIX,tiny.cc,Subscription'
-    - 'DOMAIN-SUFFIX,tinypic.com,Subscription'
-    - 'DOMAIN-SUFFIX,tmblr.co,Subscription'
-    - 'DOMAIN-SUFFIX,todoist.com,Subscription'
-    - 'DOMAIN-SUFFIX,trello.com,Subscription'
-    - 'DOMAIN-SUFFIX,trustasiassl.com,Subscription'
-    - 'DOMAIN-SUFFIX,tumblr.co,Subscription'
-    - 'DOMAIN-SUFFIX,tumblr.com,Subscription'
-    - 'DOMAIN-SUFFIX,tweetdeck.com,Subscription'
-    - 'DOMAIN-SUFFIX,tweetmarker.net,Subscription'
-    - 'DOMAIN-SUFFIX,twitch.tv,Subscription'
-    - 'DOMAIN-SUFFIX,txmblr.com,Subscription'
-    - 'DOMAIN-SUFFIX,typekit.net,Subscription'
-    - 'DOMAIN-SUFFIX,ubertags.com,Subscription'
-    - 'DOMAIN-SUFFIX,ublock.org,Subscription'
-    - 'DOMAIN-SUFFIX,ubnt.com,Subscription'
-    - 'DOMAIN-SUFFIX,ulyssesapp.com,Subscription'
-    - 'DOMAIN-SUFFIX,urchin.com,Subscription'
-    - 'DOMAIN-SUFFIX,usertrust.com,Subscription'
-    - 'DOMAIN-SUFFIX,v.gd,Subscription'
-    - 'DOMAIN-SUFFIX,v2ex.com,Subscription'
-    - 'DOMAIN-SUFFIX,vimeo.com,Subscription'
-    - 'DOMAIN-SUFFIX,vimeocdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,vine.co,Subscription'
-    - 'DOMAIN-SUFFIX,vivaldi.com,Subscription'
-    - 'DOMAIN-SUFFIX,vox-cdn.com,Subscription'
-    - 'DOMAIN-SUFFIX,vsco.co,Subscription'
-    - 'DOMAIN-SUFFIX,vultr.com,Subscription'
-    - 'DOMAIN-SUFFIX,w.org,Subscription'
-    - 'DOMAIN-SUFFIX,w3schools.com,Subscription'
-    - 'DOMAIN-SUFFIX,webtype.com,Subscription'
-    - 'DOMAIN-SUFFIX,wikiwand.com,Subscription'
-    - 'DOMAIN-SUFFIX,wikileaks.org,Subscription'
-    - 'DOMAIN-SUFFIX,wikimedia.org,Subscription'
-    - 'DOMAIN-SUFFIX,wikipedia.com,Subscription'
-    - 'DOMAIN-SUFFIX,wikipedia.org,Subscription'
-    - 'DOMAIN-SUFFIX,windows.com,Subscription'
-    - 'DOMAIN-SUFFIX,windows.net,Subscription'
-    - 'DOMAIN-SUFFIX,wire.com,Subscription'
-    - 'DOMAIN-SUFFIX,wordpress.com,Subscription'
-    - 'DOMAIN-SUFFIX,workflowy.com,Subscription'
-    - 'DOMAIN-SUFFIX,wp.com,Subscription'
-    - 'DOMAIN-SUFFIX,wsj.com,Subscription'
-    - 'DOMAIN-SUFFIX,wsj.net,Subscription'
-    - 'DOMAIN-SUFFIX,xda-developers.com,Subscription'
-    - 'DOMAIN-SUFFIX,xeeno.com,Subscription'
-    - 'DOMAIN-SUFFIX,xiti.com,Subscription'
-    - 'DOMAIN-SUFFIX,yahoo.com,Subscription'
-    - 'DOMAIN-SUFFIX,yimg.com,Subscription'
-    - 'DOMAIN-SUFFIX,ying.com,Subscription'
-    - 'DOMAIN-SUFFIX,yoyo.org,Subscription'
-    - 'DOMAIN-SUFFIX,ytimg.com,Subscription'
-    - 'DOMAIN-SUFFIX,telegra.ph,Subscription'
-    - 'DOMAIN-SUFFIX,telegram.org,Subscription'
-    - 'IP-CIDR,91.108.4.0/22,Subscription,no-resolve'
-    - 'IP-CIDR,91.108.8.0/21,Subscription,no-resolve'
-    - 'IP-CIDR,91.108.16.0/22,Subscription,no-resolve'
-    - 'IP-CIDR,91.108.56.0/22,Subscription,no-resolve'
-    - 'IP-CIDR,149.154.160.0/20,Subscription,no-resolve'
-    - 'IP-CIDR6,2001:67c:4e8::/48,Subscription,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23d::/48,Subscription,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23f::/48,Subscription,no-resolve'
-    - 'IP-CIDR,120.232.181.162/32,Subscription,no-resolve'
-    - 'IP-CIDR,120.241.147.226/32,Subscription,no-resolve'
-    - 'IP-CIDR,120.253.253.226/32,Subscription,no-resolve'
-    - 'IP-CIDR,120.253.255.162/32,Subscription,no-resolve'
-    - 'IP-CIDR,120.253.255.34/32,Subscription,no-resolve'
-    - 'IP-CIDR,120.253.255.98/32,Subscription,no-resolve'
-    - 'IP-CIDR,180.163.150.162/32,Subscription,no-resolve'
-    - 'IP-CIDR,180.163.150.34/32,Subscription,no-resolve'
-    - 'IP-CIDR,180.163.151.162/32,Subscription,no-resolve'
-    - 'IP-CIDR,180.163.151.34/32,Subscription,no-resolve'
-    - 'IP-CIDR,203.208.39.0/24,Subscription,no-resolve'
-    - 'IP-CIDR,203.208.40.0/24,Subscription,no-resolve'
-    - 'IP-CIDR,203.208.41.0/24,Subscription,no-resolve'
-    - 'IP-CIDR,203.208.43.0/24,Subscription,no-resolve'
-    - 'IP-CIDR,203.208.50.0/24,Subscription,no-resolve'
-    - 'IP-CIDR,220.181.174.162/32,Subscription,no-resolve'
-    - 'IP-CIDR,220.181.174.226/32,Subscription,no-resolve'
-    - 'IP-CIDR,220.181.174.34/32,Subscription,no-resolve'
+    - 'DOMAIN-SUFFIX,9to5mac.com,模式选择'
+    - 'DOMAIN-SUFFIX,abpchina.org,模式选择'
+    - 'DOMAIN-SUFFIX,adblockplus.org,模式选择'
+    - 'DOMAIN-SUFFIX,adobe.com,模式选择'
+    - 'DOMAIN-SUFFIX,akamaized.net,模式选择'
+    - 'DOMAIN-SUFFIX,alfredapp.com,模式选择'
+    - 'DOMAIN-SUFFIX,amplitude.com,模式选择'
+    - 'DOMAIN-SUFFIX,ampproject.org,模式选择'
+    - 'DOMAIN-SUFFIX,android.com,模式选择'
+    - 'DOMAIN-SUFFIX,angularjs.org,模式选择'
+    - 'DOMAIN-SUFFIX,aolcdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,apkpure.com,模式选择'
+    - 'DOMAIN-SUFFIX,appledaily.com,模式选择'
+    - 'DOMAIN-SUFFIX,appshopper.com,模式选择'
+    - 'DOMAIN-SUFFIX,appspot.com,模式选择'
+    - 'DOMAIN-SUFFIX,arcgis.com,模式选择'
+    - 'DOMAIN-SUFFIX,archive.org,模式选择'
+    - 'DOMAIN-SUFFIX,armorgames.com,模式选择'
+    - 'DOMAIN-SUFFIX,aspnetcdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,att.com,模式选择'
+    - 'DOMAIN-SUFFIX,awsstatic.com,模式选择'
+    - 'DOMAIN-SUFFIX,azureedge.net,模式选择'
+    - 'DOMAIN-SUFFIX,azurewebsites.net,模式选择'
+    - 'DOMAIN-SUFFIX,bing.com,模式选择'
+    - 'DOMAIN-SUFFIX,bintray.com,模式选择'
+    - 'DOMAIN-SUFFIX,bit.com,模式选择'
+    - 'DOMAIN-SUFFIX,bit.ly,模式选择'
+    - 'DOMAIN-SUFFIX,bitbucket.org,模式选择'
+    - 'DOMAIN-SUFFIX,bjango.com,模式选择'
+    - 'DOMAIN-SUFFIX,bkrtx.com,模式选择'
+    - 'DOMAIN-SUFFIX,blog.com,模式选择'
+    - 'DOMAIN-SUFFIX,blogcdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,blogger.com,模式选择'
+    - 'DOMAIN-SUFFIX,blogsmithmedia.com,模式选择'
+    - 'DOMAIN-SUFFIX,blogspot.com,模式选择'
+    - 'DOMAIN-SUFFIX,blogspot.hk,模式选择'
+    - 'DOMAIN-SUFFIX,bloomberg.com,模式选择'
+    - 'DOMAIN-SUFFIX,box.com,模式选择'
+    - 'DOMAIN-SUFFIX,box.net,模式选择'
+    - 'DOMAIN-SUFFIX,cachefly.net,模式选择'
+    - 'DOMAIN-SUFFIX,chromium.org,模式选择'
+    - 'DOMAIN-SUFFIX,cl.ly,模式选择'
+    - 'DOMAIN-SUFFIX,cloudflare.com,模式选择'
+    - 'DOMAIN-SUFFIX,cloudfront.net,模式选择'
+    - 'DOMAIN-SUFFIX,cloudmagic.com,模式选择'
+    - 'DOMAIN-SUFFIX,cmail19.com,模式选择'
+    - 'DOMAIN-SUFFIX,cnet.com,模式选择'
+    - 'DOMAIN-SUFFIX,cocoapods.org,模式选择'
+    - 'DOMAIN-SUFFIX,comodoca.com,模式选择'
+    - 'DOMAIN-SUFFIX,crashlytics.com,模式选择'
+    - 'DOMAIN-SUFFIX,culturedcode.com,模式选择'
+    - 'DOMAIN-SUFFIX,d.pr,模式选择'
+    - 'DOMAIN-SUFFIX,danilo.to,模式选择'
+    - 'DOMAIN-SUFFIX,dayone.me,模式选择'
+    - 'DOMAIN-SUFFIX,db.tt,模式选择'
+    - 'DOMAIN-SUFFIX,deskconnect.com,模式选择'
+    - 'DOMAIN-SUFFIX,disq.us,模式选择'
+    - 'DOMAIN-SUFFIX,disqus.com,模式选择'
+    - 'DOMAIN-SUFFIX,disquscdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,dnsimple.com,模式选择'
+    - 'DOMAIN-SUFFIX,docker.com,模式选择'
+    - 'DOMAIN-SUFFIX,dribbble.com,模式选择'
+    - 'DOMAIN-SUFFIX,droplr.com,模式选择'
+    - 'DOMAIN-SUFFIX,duckduckgo.com,模式选择'
+    - 'DOMAIN-SUFFIX,dueapp.com,模式选择'
+    - 'DOMAIN-SUFFIX,dytt8.net,模式选择'
+    - 'DOMAIN-SUFFIX,edgecastcdn.net,模式选择'
+    - 'DOMAIN-SUFFIX,edgekey.net,模式选择'
+    - 'DOMAIN-SUFFIX,edgesuite.net,模式选择'
+    - 'DOMAIN-SUFFIX,engadget.com,模式选择'
+    - 'DOMAIN-SUFFIX,entrust.net,模式选择'
+    - 'DOMAIN-SUFFIX,eurekavpt.com,模式选择'
+    - 'DOMAIN-SUFFIX,evernote.com,模式选择'
+    - 'DOMAIN-SUFFIX,fabric.io,模式选择'
+    - 'DOMAIN-SUFFIX,fast.com,模式选择'
+    - 'DOMAIN-SUFFIX,fastly.net,模式选择'
+    - 'DOMAIN-SUFFIX,fc2.com,模式选择'
+    - 'DOMAIN-SUFFIX,feedburner.com,模式选择'
+    - 'DOMAIN-SUFFIX,feedly.com,模式选择'
+    - 'DOMAIN-SUFFIX,feedsportal.com,模式选择'
+    - 'DOMAIN-SUFFIX,fiftythree.com,模式选择'
+    - 'DOMAIN-SUFFIX,firebaseio.com,模式选择'
+    - 'DOMAIN-SUFFIX,flexibits.com,模式选择'
+    - 'DOMAIN-SUFFIX,flickr.com,模式选择'
+    - 'DOMAIN-SUFFIX,flipboard.com,模式选择'
+    - 'DOMAIN-SUFFIX,g.co,模式选择'
+    - 'DOMAIN-SUFFIX,gabia.net,模式选择'
+    - 'DOMAIN-SUFFIX,geni.us,模式选择'
+    - 'DOMAIN-SUFFIX,gfx.ms,模式选择'
+    - 'DOMAIN-SUFFIX,ggpht.com,模式选择'
+    - 'DOMAIN-SUFFIX,ghostnoteapp.com,模式选择'
+    - 'DOMAIN-SUFFIX,git.io,模式选择'
+    - 'DOMAIN-KEYWORD,github,模式选择'
+    - 'DOMAIN-SUFFIX,globalsign.com,模式选择'
+    - 'DOMAIN-SUFFIX,gmodules.com,模式选择'
+    - 'DOMAIN-SUFFIX,godaddy.com,模式选择'
+    - 'DOMAIN-SUFFIX,golang.org,模式选择'
+    - 'DOMAIN-SUFFIX,gongm.in,模式选择'
+    - 'DOMAIN-SUFFIX,goo.gl,模式选择'
+    - 'DOMAIN-SUFFIX,goodreaders.com,模式选择'
+    - 'DOMAIN-SUFFIX,goodreads.com,模式选择'
+    - 'DOMAIN-SUFFIX,gravatar.com,模式选择'
+    - 'DOMAIN-SUFFIX,gstatic.com,模式选择'
+    - 'DOMAIN-SUFFIX,gvt0.com,模式选择'
+    - 'DOMAIN-SUFFIX,hockeyapp.net,模式选择'
+    - 'DOMAIN-SUFFIX,hotmail.com,模式选择'
+    - 'DOMAIN-SUFFIX,icons8.com,模式选择'
+    - 'DOMAIN-SUFFIX,ifixit.com,模式选择'
+    - 'DOMAIN-SUFFIX,ift.tt,模式选择'
+    - 'DOMAIN-SUFFIX,ifttt.com,模式选择'
+    - 'DOMAIN-SUFFIX,iherb.com,模式选择'
+    - 'DOMAIN-SUFFIX,imageshack.us,模式选择'
+    - 'DOMAIN-SUFFIX,img.ly,模式选择'
+    - 'DOMAIN-SUFFIX,imgur.com,模式选择'
+    - 'DOMAIN-SUFFIX,imore.com,模式选择'
+    - 'DOMAIN-SUFFIX,instapaper.com,模式选择'
+    - 'DOMAIN-SUFFIX,ipn.li,模式选择'
+    - 'DOMAIN-SUFFIX,is.gd,模式选择'
+    - 'DOMAIN-SUFFIX,issuu.com,模式选择'
+    - 'DOMAIN-SUFFIX,itgonglun.com,模式选择'
+    - 'DOMAIN-SUFFIX,itun.es,模式选择'
+    - 'DOMAIN-SUFFIX,ixquick.com,模式选择'
+    - 'DOMAIN-SUFFIX,j.mp,模式选择'
+    - 'DOMAIN-SUFFIX,js.revsci.net,模式选择'
+    - 'DOMAIN-SUFFIX,jshint.com,模式选择'
+    - 'DOMAIN-SUFFIX,jtvnw.net,模式选择'
+    - 'DOMAIN-SUFFIX,justgetflux.com,模式选择'
+    - 'DOMAIN-SUFFIX,kat.cr,模式选择'
+    - 'DOMAIN-SUFFIX,klip.me,模式选择'
+    - 'DOMAIN-SUFFIX,libsyn.com,模式选择'
+    - 'DOMAIN-SUFFIX,linkedin.com,模式选择'
+    - 'DOMAIN-SUFFIX,line-apps.com,模式选择'
+    - 'DOMAIN-SUFFIX,linode.com,模式选择'
+    - 'DOMAIN-SUFFIX,lithium.com,模式选择'
+    - 'DOMAIN-SUFFIX,littlehj.com,模式选择'
+    - 'DOMAIN-SUFFIX,live.com,模式选择'
+    - 'DOMAIN-SUFFIX,live.net,模式选择'
+    - 'DOMAIN-SUFFIX,livefilestore.com,模式选择'
+    - 'DOMAIN-SUFFIX,llnwd.net,模式选择'
+    - 'DOMAIN-SUFFIX,macid.co,模式选择'
+    - 'DOMAIN-SUFFIX,macromedia.com,模式选择'
+    - 'DOMAIN-SUFFIX,macrumors.com,模式选择'
+    - 'DOMAIN-SUFFIX,mashable.com,模式选择'
+    - 'DOMAIN-SUFFIX,mathjax.org,模式选择'
+    - 'DOMAIN-SUFFIX,medium.com,模式选择'
+    - 'DOMAIN-SUFFIX,mega.co.nz,模式选择'
+    - 'DOMAIN-SUFFIX,mega.nz,模式选择'
+    - 'DOMAIN-SUFFIX,megaupload.com,模式选择'
+    - 'DOMAIN-SUFFIX,microsofttranslator.com,模式选择'
+    - 'DOMAIN-SUFFIX,mindnode.com,模式选择'
+    - 'DOMAIN-SUFFIX,mobile01.com,模式选择'
+    - 'DOMAIN-SUFFIX,modmyi.com,模式选择'
+    - 'DOMAIN-SUFFIX,msedge.net,模式选择'
+    - 'DOMAIN-SUFFIX,myfontastic.com,模式选择'
+    - 'DOMAIN-SUFFIX,name.com,模式选择'
+    - 'DOMAIN-SUFFIX,nextmedia.com,模式选择'
+    - 'DOMAIN-SUFFIX,nsstatic.net,模式选择'
+    - 'DOMAIN-SUFFIX,nssurge.com,模式选择'
+    - 'DOMAIN-SUFFIX,nyt.com,模式选择'
+    - 'DOMAIN-SUFFIX,nytimes.com,模式选择'
+    - 'DOMAIN-SUFFIX,omnigroup.com,模式选择'
+    - 'DOMAIN-SUFFIX,onedrive.com,模式选择'
+    - 'DOMAIN-SUFFIX,onenote.com,模式选择'
+    - 'DOMAIN-SUFFIX,ooyala.com,模式选择'
+    - 'DOMAIN-SUFFIX,openvpn.net,模式选择'
+    - 'DOMAIN-SUFFIX,openwrt.org,模式选择'
+    - 'DOMAIN-SUFFIX,orkut.com,模式选择'
+    - 'DOMAIN-SUFFIX,osxdaily.com,模式选择'
+    - 'DOMAIN-SUFFIX,outlook.com,模式选择'
+    - 'DOMAIN-SUFFIX,ow.ly,模式选择'
+    - 'DOMAIN-SUFFIX,paddleapi.com,模式选择'
+    - 'DOMAIN-SUFFIX,parallels.com,模式选择'
+    - 'DOMAIN-SUFFIX,parse.com,模式选择'
+    - 'DOMAIN-SUFFIX,pdfexpert.com,模式选择'
+    - 'DOMAIN-SUFFIX,periscope.tv,模式选择'
+    - 'DOMAIN-SUFFIX,pinboard.in,模式选择'
+    - 'DOMAIN-SUFFIX,pinterest.com,模式选择'
+    - 'DOMAIN-SUFFIX,pixelmator.com,模式选择'
+    - 'DOMAIN-SUFFIX,pixiv.net,模式选择'
+    - 'DOMAIN-SUFFIX,playpcesor.com,模式选择'
+    - 'DOMAIN-SUFFIX,playstation.com,模式选择'
+    - 'DOMAIN-SUFFIX,playstation.com.hk,模式选择'
+    - 'DOMAIN-SUFFIX,playstation.net,模式选择'
+    - 'DOMAIN-SUFFIX,playstationnetwork.com,模式选择'
+    - 'DOMAIN-SUFFIX,pushwoosh.com,模式选择'
+    - 'DOMAIN-SUFFIX,rime.im,模式选择'
+    - 'DOMAIN-SUFFIX,servebom.com,模式选择'
+    - 'DOMAIN-SUFFIX,sfx.ms,模式选择'
+    - 'DOMAIN-SUFFIX,shadowsocks.org,模式选择'
+    - 'DOMAIN-SUFFIX,sharethis.com,模式选择'
+    - 'DOMAIN-SUFFIX,shazam.com,模式选择'
+    - 'DOMAIN-SUFFIX,skype.com,模式选择'
+    - 'DOMAIN-SUFFIX,smartdnspages.com,模式选择'
+    - 'DOMAIN-SUFFIX,smartmailcloud.com,模式选择'
+    - 'DOMAIN-SUFFIX,sndcdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,sony.com,模式选择'
+    - 'DOMAIN-SUFFIX,soundcloud.com,模式选择'
+    - 'DOMAIN-SUFFIX,sourceforge.net,模式选择'
+    - 'DOMAIN-SUFFIX,spotify.com,模式选择'
+    - 'DOMAIN-SUFFIX,squarespace.com,模式选择'
+    - 'DOMAIN-SUFFIX,sstatic.net,模式选择'
+    - 'DOMAIN-SUFFIX,st.luluku.pw,模式选择'
+    - 'DOMAIN-SUFFIX,stackoverflow.com,模式选择'
+    - 'DOMAIN-SUFFIX,startpage.com,模式选择'
+    - 'DOMAIN-SUFFIX,staticflickr.com,模式选择'
+    - 'DOMAIN-SUFFIX,steamcommunity.com,模式选择'
+    - 'DOMAIN-SUFFIX,symauth.com,模式选择'
+    - 'DOMAIN-SUFFIX,symcb.com,模式选择'
+    - 'DOMAIN-SUFFIX,symcd.com,模式选择'
+    - 'DOMAIN-SUFFIX,tapbots.com,模式选择'
+    - 'DOMAIN-SUFFIX,tapbots.net,模式选择'
+    - 'DOMAIN-SUFFIX,tdesktop.com,模式选择'
+    - 'DOMAIN-SUFFIX,techcrunch.com,模式选择'
+    - 'DOMAIN-SUFFIX,techsmith.com,模式选择'
+    - 'DOMAIN-SUFFIX,thepiratebay.org,模式选择'
+    - 'DOMAIN-SUFFIX,theverge.com,模式选择'
+    - 'DOMAIN-SUFFIX,time.com,模式选择'
+    - 'DOMAIN-SUFFIX,timeinc.net,模式选择'
+    - 'DOMAIN-SUFFIX,tiny.cc,模式选择'
+    - 'DOMAIN-SUFFIX,tinypic.com,模式选择'
+    - 'DOMAIN-SUFFIX,tmblr.co,模式选择'
+    - 'DOMAIN-SUFFIX,todoist.com,模式选择'
+    - 'DOMAIN-SUFFIX,trello.com,模式选择'
+    - 'DOMAIN-SUFFIX,trustasiassl.com,模式选择'
+    - 'DOMAIN-SUFFIX,tumblr.co,模式选择'
+    - 'DOMAIN-SUFFIX,tumblr.com,模式选择'
+    - 'DOMAIN-SUFFIX,tweetdeck.com,模式选择'
+    - 'DOMAIN-SUFFIX,tweetmarker.net,模式选择'
+    - 'DOMAIN-SUFFIX,twitch.tv,模式选择'
+    - 'DOMAIN-SUFFIX,txmblr.com,模式选择'
+    - 'DOMAIN-SUFFIX,typekit.net,模式选择'
+    - 'DOMAIN-SUFFIX,ubertags.com,模式选择'
+    - 'DOMAIN-SUFFIX,ublock.org,模式选择'
+    - 'DOMAIN-SUFFIX,ubnt.com,模式选择'
+    - 'DOMAIN-SUFFIX,ulyssesapp.com,模式选择'
+    - 'DOMAIN-SUFFIX,urchin.com,模式选择'
+    - 'DOMAIN-SUFFIX,usertrust.com,模式选择'
+    - 'DOMAIN-SUFFIX,v.gd,模式选择'
+    - 'DOMAIN-SUFFIX,v2ex.com,模式选择'
+    - 'DOMAIN-SUFFIX,vimeo.com,模式选择'
+    - 'DOMAIN-SUFFIX,vimeocdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,vine.co,模式选择'
+    - 'DOMAIN-SUFFIX,vivaldi.com,模式选择'
+    - 'DOMAIN-SUFFIX,vox-cdn.com,模式选择'
+    - 'DOMAIN-SUFFIX,vsco.co,模式选择'
+    - 'DOMAIN-SUFFIX,vultr.com,模式选择'
+    - 'DOMAIN-SUFFIX,w.org,模式选择'
+    - 'DOMAIN-SUFFIX,w3schools.com,模式选择'
+    - 'DOMAIN-SUFFIX,webtype.com,模式选择'
+    - 'DOMAIN-SUFFIX,wikiwand.com,模式选择'
+    - 'DOMAIN-SUFFIX,wikileaks.org,模式选择'
+    - 'DOMAIN-SUFFIX,wikimedia.org,模式选择'
+    - 'DOMAIN-SUFFIX,wikipedia.com,模式选择'
+    - 'DOMAIN-SUFFIX,wikipedia.org,模式选择'
+    - 'DOMAIN-SUFFIX,windows.com,模式选择'
+    - 'DOMAIN-SUFFIX,windows.net,模式选择'
+    - 'DOMAIN-SUFFIX,wire.com,模式选择'
+    - 'DOMAIN-SUFFIX,wordpress.com,模式选择'
+    - 'DOMAIN-SUFFIX,workflowy.com,模式选择'
+    - 'DOMAIN-SUFFIX,wp.com,模式选择'
+    - 'DOMAIN-SUFFIX,wsj.com,模式选择'
+    - 'DOMAIN-SUFFIX,wsj.net,模式选择'
+    - 'DOMAIN-SUFFIX,xda-developers.com,模式选择'
+    - 'DOMAIN-SUFFIX,xeeno.com,模式选择'
+    - 'DOMAIN-SUFFIX,xiti.com,模式选择'
+    - 'DOMAIN-SUFFIX,yahoo.com,模式选择'
+    - 'DOMAIN-SUFFIX,yimg.com,模式选择'
+    - 'DOMAIN-SUFFIX,ying.com,模式选择'
+    - 'DOMAIN-SUFFIX,yoyo.org,模式选择'
+    - 'DOMAIN-SUFFIX,ytimg.com,模式选择'
+    - 'DOMAIN-SUFFIX,telegra.ph,模式选择'
+    - 'DOMAIN-SUFFIX,telegram.org,模式选择'
+    - 'IP-CIDR,91.108.4.0/22,模式选择,no-resolve'
+    - 'IP-CIDR,91.108.8.0/21,模式选择,no-resolve'
+    - 'IP-CIDR,91.108.16.0/22,模式选择,no-resolve'
+    - 'IP-CIDR,91.108.56.0/22,模式选择,no-resolve'
+    - 'IP-CIDR,149.154.160.0/20,模式选择,no-resolve'
+    - 'IP-CIDR6,2001:67c:4e8::/48,模式选择,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23d::/48,模式选择,no-resolve'
+    - 'IP-CIDR6,2001:b28:f23f::/48,模式选择,no-resolve'
+    - 'IP-CIDR,120.232.181.162/32,模式选择,no-resolve'
+    - 'IP-CIDR,120.241.147.226/32,模式选择,no-resolve'
+    - 'IP-CIDR,120.253.253.226/32,模式选择,no-resolve'
+    - 'IP-CIDR,120.253.255.162/32,模式选择,no-resolve'
+    - 'IP-CIDR,120.253.255.34/32,模式选择,no-resolve'
+    - 'IP-CIDR,120.253.255.98/32,模式选择,no-resolve'
+    - 'IP-CIDR,180.163.150.162/32,模式选择,no-resolve'
+    - 'IP-CIDR,180.163.150.34/32,模式选择,no-resolve'
+    - 'IP-CIDR,180.163.151.162/32,模式选择,no-resolve'
+    - 'IP-CIDR,180.163.151.34/32,模式选择,no-resolve'
+    - 'IP-CIDR,203.208.39.0/24,模式选择,no-resolve'
+    - 'IP-CIDR,203.208.40.0/24,模式选择,no-resolve'
+    - 'IP-CIDR,203.208.41.0/24,模式选择,no-resolve'
+    - 'IP-CIDR,203.208.43.0/24,模式选择,no-resolve'
+    - 'IP-CIDR,203.208.50.0/24,模式选择,no-resolve'
+    - 'IP-CIDR,220.181.174.162/32,模式选择,no-resolve'
+    - 'IP-CIDR,220.181.174.226/32,模式选择,no-resolve'
+    - 'IP-CIDR,220.181.174.34/32,模式选择,no-resolve'
     - 'DOMAIN,injections.adguard.org,DIRECT'
     - 'DOMAIN,local.adguard.org,DIRECT'
     - 'DOMAIN-SUFFIX,local,DIRECT'
@@ -782,4 +784,4 @@ rules:
     - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Subscription'
+    - 'MATCH,模式选择'
