@@ -479,4 +479,5 @@ rules:
     - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,代理模式'
+    - 'MATCH,DIRECT'
+  #  - 'MATCH,代理模式'
