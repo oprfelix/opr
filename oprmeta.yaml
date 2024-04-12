@@ -309,6 +309,10 @@ rules:
     - 'DOMAIN-SUFFIX,fbsbx.com,代理模式'
     - 'DOMAIN-SUFFIX,fbwat.ch,代理模式'
     - 'DOMAIN-SUFFIX,parse.com,代理模式'
+# Facebook-Messenger
+    - 'DOMAIN-SUFFIX,messenger.com,代理模式'
+    - 'DOMAIN-SUFFIX,m.me,代理模式'
+    - 'DOMAIN-SUFFIX,msngr.com,代理模式'
 # Spotify
     - 'DOMAIN-SUFFIX,pscdn.co,代理模式'
     - 'DOMAIN-SUFFIX,scdn.co,代理模式'
