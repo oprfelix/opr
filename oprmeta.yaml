@@ -479,6 +479,8 @@ rules:
     - 'DOMAIN-SUFFIX,instagram.com,代理模式'
     - 'DOMAIN-SUFFIX,cdninstagram.com,代理模式'
 # Whatsapp
+    - 'DOMAIN-SUFFIX,whatsapp.com,代理模式'
+    - 'DOMAIN-SUFFIX,whatsapp.net,代理模式'
     - 'IP-CIDR,18.194.0.0/15,代理模式'
     - 'IP-CIDR,34.224.0.0/12,代理模式'
 # Github
