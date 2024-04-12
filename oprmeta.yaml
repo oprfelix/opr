@@ -527,6 +527,7 @@ rules:
     - 'DOMAIN-KEYWORD,wsj,代理模式'
     - 'DOMAIN-SUFFIX,twitter.com,代理模式'
     - 'DOMAIN-SUFFIX,x.com,代理模式'
+    - 'DOMAIN-SUFFIX,apollo.io,代理模式'
     - 'DOMAIN-SUFFIX,live.com,代理模式'
     - 'DOMAIN-SUFFIX,time.com,代理模式'
     - 'DOMAIN-SUFFIX,tvb.com,代理模式'
