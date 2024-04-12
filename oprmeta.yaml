@@ -530,6 +530,11 @@ rules:
     - 'DOMAIN-SUFFIX,githubapp.com,代理模式'
     - 'DOMAIN-SUFFIX,raw.githubusercontent.com,代理模式'
     - 'DOMAIN-SUFFIX,github.dev,代理模式'
+# Gitlab
+    - 'DOMAIN-SUFFIX,gitlab-static.net,代理模式'
+    - 'DOMAIN-SUFFIX,gitlab.com,代理模式'
+    - 'DOMAIN-SUFFIX,gitlab.io,代理模式'
+    - 'DOMAIN-SUFFIX,gitlab.net,代理模式'
 # Google Voice
     - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
     - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
@@ -554,7 +559,6 @@ rules:
     - 'DOMAIN-SUFFIX,services.googleapis.cn,代理模式'
     - 'DOMAIN-SUFFIX,apple-dns.net,代理模式'
     - 'DOMAIN-SUFFIX,apps.apple.com,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab.com,代理模式'
     - 'DOMAIN-SUFFIX,blobstore.apple.com,代理模式'
     - 'DOMAIN-SUFFIX,fb.me,代理模式'
     - 'DOMAIN-SUFFIX,fbcdn.net,代理模式'
