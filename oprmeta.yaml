@@ -498,4 +498,3 @@ rules:
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,DIRECT'
-  #  - 'MATCH,代理模式'
