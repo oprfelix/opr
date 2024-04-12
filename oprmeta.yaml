@@ -484,7 +484,12 @@ rules:
     - 'IP-CIDR,18.194.0.0/15,代理模式'
     - 'IP-CIDR,34.224.0.0/12,代理模式'
 # Github
-    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,代理模式'
+    - 'DOMAIN-SUFFIX,github.com,代理模式'
+    - 'DOMAIN-SUFFIX,githubassets.com,代理模式'
+    - 'DOMAIN-SUFFIX,githubusercontent.com,代理模式'
+    - 'DOMAIN-SUFFIX,ghcr.io,代理模式'
+    - 'DOMAIN-SUFFIX,github.io,代理模式'
+    - 'DOMAIN-SUFFIX,githubapp.com,代理模式'
 # Google Voice
     - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
     - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
