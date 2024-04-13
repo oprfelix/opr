@@ -487,7 +487,6 @@ rules:
     - 'DOMAIN-SUFFIX,github.dev,代理模式'
 # 通用规则集
     - 'DOMAIN-KEYWORD,aws,代理模式'
-    - 'DOMAIN-KEYWORD,netflix,代理模式'
     - 'DOMAIN-KEYWORD,amazon,代理模式'
     - 'DOMAIN-KEYWORD,gmail,代理模式'
     - 'DOMAIN-KEYWORD,twitter,代理模式'
