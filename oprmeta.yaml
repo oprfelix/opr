@@ -511,6 +511,7 @@ rules:
     - 'DOMAIN-SUFFIX,github.dev,代理模式'
 # 通用规则集
     - 'DOMAIN-KEYWORD,aws,代理模式'
+    - 'DOMAIN-KEYWORD,reddit,代理模式'
     - 'DOMAIN-KEYWORD,replit,代理模式'
     - 'DOMAIN-KEYWORD,amazon,代理模式'
     - 'DOMAIN-KEYWORD,spotify,代理模式'
