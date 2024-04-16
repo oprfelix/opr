@@ -148,8 +148,8 @@ proxies:
     flow: ""
     name: premium 01
     network: ws
-    port: 443
-    server: 104.19.138.157
+    port: 8443
+    server: 27.50.49.143
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -167,8 +167,8 @@ proxies:
     flow: ""
     name: premium 02
     network: ws
-    port: 443
-    server: 104.19.125.88
+    port: 8443
+    server: 27.50.48.188
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -201,8 +201,8 @@ proxies:
     flow: ""
     name: premium 04
     network: ws
-    port: 443
-    server: 104.19.97.20
+    port: 8443
+    server: 103.184.44.96
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
