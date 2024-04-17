@@ -5,10 +5,10 @@ always-real-ip = stun.l.google.com
 
 [Proxy]
 # trojan proxy
-Trojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
+Wg01 = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
 
 # wireguard proxy
-Wg01 = wireguard, section-name = HomeServer
+Wg02 = wireguard, section-name = HomeServer
 [WireGuard HomeServer]
 private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
 self-ip = 172.16.0.2
@@ -16,19 +16,11 @@ dns-server = 8.8.8.8
 mtu = 1280
 peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.35:2408)
 
-Wg02 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.92:2408)
-
 [Proxy Group]
 代理模式 = select, 自动模式, 手动切换, 负载均衡
-自动模式 = url-test, Trojan, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
-手动切换 = select, Trojan, Wg01, Wg02
-负载均衡 = load-balance, Trojan, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300
+自动模式 = url-test, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
+手动切换 = select, Wg01, Wg02
+负载均衡 = load-balance, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300
 
 [Rule]
 # Apple
