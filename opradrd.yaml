@@ -16,11 +16,19 @@ dns-server = 8.8.8.8
 mtu = 1280
 peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.35:2408)
 
+Warplus = wireguard, section-name = HomeServer
+[WireGuard HomeServer]
+private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
+self-ip = 172.16.0.3
+dns-server = 8.8.8.8
+mtu = 1280
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.76:4500)
+
 [Proxy Group]
 代理模式 = select, 自动模式, 手动切换, 负载均衡
-自动模式 = url-test, Trojan, Wireguard, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
-手动切换 = select, Trojan, Wireguard
-负载均衡 = load-balance, Trojan, Wireguard, url=http://www.apple.com/library/test/success.html,interval=300
+自动模式 = url-test, Trojan, Wireguard, Warplus, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
+手动切换 = select, Trojan, Wireguard, Warplus
+负载均衡 = load-balance, Trojan, Wireguard, Warplus, url=http://www.apple.com/library/test/success.html,interval=300
 
 [Rule]
 # Apple
