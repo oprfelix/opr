@@ -509,14 +509,18 @@ rules:
     - 'DOMAIN-SUFFIX,mozilla.org,代理模式'
 # GitHub在线编辑器
     - 'DOMAIN-SUFFIX,github.dev,代理模式'
+# Reddit
+    - 'DOMAIN-SUFFIX,redd.it,代理模式'
+    - 'DOMAIN-SUFFIX,reddit.com,代理模式'
+    - 'DOMAIN-SUFFIX,redditinc.com,代理模式'
+    - 'DOMAIN-SUFFIX,redditmail.com,代理模式'
+    - 'DOMAIN-SUFFIX,redditmedia.com,代理模式'
+    - 'DOMAIN-SUFFIX,redditstatic.com,代理模式'
+    - 'DOMAIN-SUFFIX,redditstaus.com,代理模式'
 # 通用规则集
     - 'DOMAIN-KEYWORD,aws,代理模式'
-    - 'DOMAIN-KEYWORD,reddit,代理模式'
-    - 'DOMAIN-KEYWORD,reddit,代理模式'
-    - 'DOMAIN-KEYWORD,redd,代理模式'
     - 'DOMAIN-KEYWORD,amazon,代理模式'
     - 'DOMAIN-KEYWORD,spotify,代理模式'
-    - 'DOMAIN-KEYWORD,reddit,代理模式'
     - 'DOMAIN-KEYWORD,zoom,代理模式'
     - 'DOMAIN-KEYWORD,medium,代理模式'
     - 'DOMAIN-KEYWORD,bbc,代理模式'
