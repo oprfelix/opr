@@ -1,16 +1,13 @@
 [General]
 skip-proxy = 127.0.0.1, 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, 100.64.0.0/10, localhost, *.local
-dns-server = 114.114.114.114, 223.5.5.5, system
+dns-server = 119.29.29.29, 223.5.5.5, system
 always-real-ip = stun.l.google.com
 
 [Proxy]
-ProxyHTTPS = https, 1.2.3.4, 443, username, password, skip-cert-verify=true, sni=www.google.com
-ProxySS = ss, 1.2.3.4, 8000, encrypt-method=chacha20-ietf-poly1305, password=abcd1234, udp-relay=false, obfs=http, obfs-host=www.google.com, obfs-uri=/
-ProxyVMess = vmess, 1.2.3.4, 8000, username=0233d11c-15a4-47d3-ade3-48ffca0ce119, udp-relay=false, ws=true, tls=true, ws-path=/v2, ws-headers=X-Header-1:value|X-Header-2:value, skip-cert-verify=true, sni=www.google.com, vmess-aead=true
-ProxyTrojan = trojan, 192.168.20.6, 443, password=password1, udp-relay=false, skip-cert-verify=true, sni=www.google.com
+ProxyTrojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
 
 [Proxy Group]
-SelectGroup = select, ProxyHTTPS, ProxySS, ProxyVMess, ProxyTrojan
+SelectGroup = select, ProxyTrojan
 
 [Rule]
 # Apple
