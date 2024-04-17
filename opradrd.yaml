@@ -8,7 +8,7 @@ always-real-ip = stun.l.google.com
 Trojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
 
 # wireguard proxy
-Wireguard1 = wireguard, section-name = HomeServer
+Wg01 = wireguard, section-name = HomeServer
 [WireGuard HomeServer]
 private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
 self-ip = 172.16.0.2
@@ -16,63 +16,7 @@ dns-server = 8.8.8.8
 mtu = 1280
 peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.35:2408)
 
-Wireguard2 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.76:4500)
-
-Wireguard3 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.76:4500)
-
-Wireguard4 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.28:2408)
-
-Wireguard5 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.34:1701)
-
-Wireguard6 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.58:2408)
-
-Wireguard7 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.28:1701)
-
-Wireguard8 = wireguard, section-name = HomeServer
-[WireGuard HomeServer]
-private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
-self-ip = 172.16.0.2
-dns-server = 8.8.8.8
-mtu = 1280
-peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.75:2408)
-
-Wireguard9 = wireguard, section-name = HomeServer
+Wg02 = wireguard, section-name = HomeServer
 [WireGuard HomeServer]
 private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
 self-ip = 172.16.0.2
@@ -82,9 +26,9 @@ peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips =
 
 [Proxy Group]
 代理模式 = select, 自动模式, 手动切换, 负载均衡
-自动模式 = url-test, Trojan, Wireguard1, Wireguard2, Wireguard3, Wireguard4, Wireguard5, Wireguard6, Wireguard7, Wireguard8, Wireguard9, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
-手动切换 = select, Trojan, Wireguard1, Wireguard2, Wireguard3, Wireguard4, Wireguard5, Wireguard6, Wireguard7, Wireguard8, Wireguard9
-负载均衡 = load-balance, Trojan, Wireguard1, Wireguard2, Wireguard3, Wireguard4, Wireguard5, Wireguard6, Wireguard7, Wireguard8, Wireguard9, url=http://www.apple.com/library/test/success.html,interval=300
+自动模式 = url-test, Trojan, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300,tolerance=100
+手动切换 = select, Trojan, Wg01, Wg02
+负载均衡 = load-balance, Trojan, Wg01, Wg02, url=http://www.apple.com/library/test/success.html,interval=300
 
 [Rule]
 # Apple
