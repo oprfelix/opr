@@ -4,10 +4,20 @@ dns-server = 119.29.29.29, 223.5.5.5, system
 always-real-ip = stun.l.google.com
 
 [Proxy]
-ProxyTrojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
+# trojan proxy
+Trojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false, skip-cert-verify=true, sni=www.bing.com
+
+# wireguard proxy
+Wireguard = wireguard, section-name = HomeServer
+[WireGuard HomeServer]
+private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
+self-ip = 172.16.0.2
+dns-server = 8.8.8.8
+mtu = 1280
+peer = (public-key = bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=, allowed-ips = 0.0.0.0/0, endpoint = 162.159.192.35:2408)
 
 [Proxy Group]
-SelectGroup = select, ProxyTrojan
+SelectGroup = select, Trojan, Wireguard
 
 [Rule]
 # Apple
