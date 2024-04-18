@@ -9,6 +9,7 @@ Trojan = trojan, loa01.fotoman.com, 48624, password=oNUsV2kyUW, udp-relay=false,
 
 # wireguard proxy
 Wireguard = wireguard, section-name = HomeServer
+
 [WireGuard HomeServer]
 private-key = +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q=
 self-ip = 172.16.0.2
