@@ -26,6 +26,9 @@ dns:
      ipcidr:
       - 240.0.0.0/4
 proxies:
+
+# premium 自动模式
+
   - # Channel 01
     alpn:
       - h2
@@ -140,6 +143,9 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
+
+# premium 优选模式
+      
   - # premium 01
     alpn:
       - h2
@@ -246,11 +252,30 @@ proxies:
     sni: partners.fotoman.com
     tls: true
     type: trojan
+
+# WireGuard 隧道模式
+  - name: "wg 01"
+    type: "wireguard"
+    server: "162.159.192.58"
+    port: 2408
+    public-key: "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
+    private-key: "2Is+4TvP6dxpIpdvDHZNvKZ1znxNhg8rJLwgn+WvBXE="
+    dns: "1.1.1.1"
+    mtu: 1280
+    addresses:
+      - "172.16.0.2"
+    allowed-ips:
+      - "0.0.0.0/0"
+    endpoint-host: "162.159.192.58"
+    persistent-keepalive: "25"
+
+    
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, WireGuard隧道模式, ChatGPT & Gemini, Netflix & Disney+] }
     - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
    # - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, premium 05, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: WireGuard隧道模式, type: load-balance, proxies: [wg 01], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 rules:
@@ -664,5 +689,4 @@ rules:
     - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'RULE-SET,https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt,代理模式'
     - 'MATCH,DIRECT'
