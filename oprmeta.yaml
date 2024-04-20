@@ -260,7 +260,7 @@ proxies:
     peers:
       - server: 162.159.192.35
         port: 2408
-        ip: 172.16.0.2/32
+        ip: 172.16.0.2
         public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
         allowed-ips: ['0.0.0.0/0']
     udp: true
