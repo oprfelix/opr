@@ -256,8 +256,8 @@ proxies:
 # WireGuard 隧道模式
   - name: wg 01
     type: wireguard
-    public_key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
-    private_key: s42ntpYkrzCRuV/XOxw3bwijBIN9jLJprpqWh+bg0VQ=
+    public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=
+    private-key: s42ntpYkrzCRuV/XOxw3bwijBIN9jLJprpqWh+bg0VQ=
     addresses:
       - 172.16.0.2/32
     port: 2408
