@@ -253,8 +253,17 @@ proxies:
     tls: true
     type: trojan
 
+  - name: Wireguard
+    type: wireguard
+    server: 162.159.192.35 # domain is supported
+    port: 2408
+    ip: 172.16.0.2
+    private-key: +GvdxtsLiLFF5KMVuwo+drnSRtM4KbnCLxNcyKthX0Q= # client private key
+    public-key: bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo= # peer public key
+    dns: [1.0.0.1, 223.6.6.6]
+
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+, Wireguard] }
     - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
    # - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, premium 05, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
