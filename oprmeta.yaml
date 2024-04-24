@@ -4,6 +4,15 @@ bind-address: '*'
 mode: rule
 log-level: info
 external-controller: '127.0.0.1:9090'
+
+tun:                                  # Tun 配置
+  enable: true
+  stack: system                       # 可选： system/gvisor/mixed, tun模式堆栈,如无使用问题,建议使用 system 栈;
+  dns-hijack: [any:53]                # dns劫持,一般设置为 any:53 即可, 即劫持所有53端口的udp流量
+  strict-route: true                  # 将所有连接路由到tun来防止泄漏，但你的设备将无法被其他设备访问
+  auto-route: true                    # 自动设置全局路由，可以自动将全局流量路由进入tun网卡。
+  auto-detect-interface: true         # 自动识别出口网卡
+
 dns:
    enable: true
    ipv6: false
@@ -25,9 +34,8 @@ dns:
      geoip-code: CN
      ipcidr:
       - 240.0.0.0/4
+      
 proxies:
-
-# premium 自动模式
 
   - # Channel 01
     alpn:
