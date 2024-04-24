@@ -300,6 +300,18 @@ rule-providers: # 在线广告集
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
       path: ./rules/ProgramAD.yaml
       interval: 86400
+    BanAD:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanAD.yaml"
+      path: ./ruleset/BanAD.yaml
+      interval: 86400
+    BanEasyListChina:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanEasyListChina.yaml"
+      path: ./ruleset/BanEasyListChina.yaml
+      interval: 86400
 
 rules:
 # 去广告规则
@@ -308,7 +320,8 @@ rules:
     - 'RULE-SET,EasyListChina,REJECT'
     - 'RULE-SET,EasyPrivacy,REJECT'
     - 'RULE-SET,ProgramAD,REJECT'
-
+    - 'RULE-SET,BanAD,REJECT'
+    - 'RULE-SET,BanEasyListChina,REJECT'
  # 自定义规则
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
