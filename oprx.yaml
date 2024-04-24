@@ -177,28 +177,13 @@ proxies:                               # 线路配置
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel
+  - # premium 03
     alpn:
       - h2
     alterId: 0
     cipher: ""
     flow: ""
     name: premium 03
-    network: tcp
-    port: 48624
-    password: oNUsV2kyUW
-    server: loa01.fotoman.com
-    servername: loa01.fotoman.com
-    sni: loa01.fotoman.com
-    tls: true
-    type: trojan
-  - # premium 04
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: premium 04
     network: ws
     port: 443
     server: 104.18.186.227
@@ -211,30 +196,8 @@ proxies:                               # 线路配置
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: premium 05
-    network: ws
-    port: 2085
-    server: kvm0303.fotoman.com
-    servername: kvm0303.fotoman.com
-    sni: kvm0303.fotoman.com
-    tls: true
-    type: vless
-    uuid: 5b792d10-9e20-44be-fc46-415d62cf393f
-    ws-opts:
-      headers:
-        host: kvm0303.fotoman.com
-      path: /?ed=2048
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini] }
-    - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-    - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
-    - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: 代理模式, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
     
 rule-providers: # 在线广告集
     AD:
@@ -300,29 +263,6 @@ rules:
     - 'DOMAIN-SUFFIX,ads.youtube.com,REJECT'
     - 'DOMAIN-SUFFIX,youtube.local,REJECT'
     - 'DOMAIN-SUFFIX,youtubecenter.net,REJECT'
- # 自定义规则
-    - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
-    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
-    - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
-# OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,chat.openai.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,openai.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,ChatGPT & Gemini'
-# LinkedIn
-    - 'DOMAIN-SUFFIX,bizographics.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
-# Google Voice
-    - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
-    - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
 # 通用匹配规则
     - 'DOMAIN-KEYWORD,mi,DIRECT'
     - 'DOMAIN-KEYWORD,baidu,DIRECT'
