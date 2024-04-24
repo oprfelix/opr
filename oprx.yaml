@@ -235,3 +235,66 @@ proxies:
     sni: partners.fotoman.com
     tls: true
     type: trojan
+proxy-groups:
+    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+    - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
+    - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    
+rules:
+
+ # 自定义规则
+    - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
+    - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,netflix.com,Netflix & Disney+'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
+# OpenAI (ChatGPT)
+    - 'DOMAIN-SUFFIX,chat.openai.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,openai.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,ChatGPT & Gemini'
+# LinkedIn
+    - 'DOMAIN-SUFFIX,bizographics.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
+# Google Voice
+    - 'IP-CIDR,74.125.0.0/16,ChatGPT & Gemini'
+    - 'IP-CIDR,74.125.23.127/32,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,ChatGPT & Gemini'
+# 通用匹配规则
+    - 'DOMAIN-KEYWORD,mi,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,DIRECT'
+    - 'DOMAIN-KEYWORD,jd,DIRECT'
+    - 'DOMAIN-KEYWORD,weixin,DIRECT'
+    - 'DOMAIN-KEYWORD,qq,DIRECT'
+    - 'DOMAIN-KEYWORD,dingding,DIRECT'
+    - 'DOMAIN-KEYWORD,taobao,DIRECT'
+    - 'DOMAIN-KEYWORD,tmall,DIRECT'
+    - 'DOMAIN-KEYWORD,alipay,DIRECT'
+    - 'DOMAIN-KEYWORD,aliyun,DIRECT'
+    - 'DOMAIN-KEYWORD,1688,DIRECT'
+    - 'DOMAIN-KEYWORD,12306,DIRECT'
+ # 本地局域网匹配   
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+# CN国内网站匹配
+    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+# 漏网之鱼
+    - 'MATCH,代理模式'
