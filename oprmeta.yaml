@@ -269,44 +269,40 @@ proxy-groups:
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 
-rule-providers:
+rule-providers: # 在线广告集
     AD:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
       path: ./rules/AD.yaml
       interval: 86400
-    
     EasyList:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
       path: ./rules/EasyList.yaml
       interval: 86400
-    
     EasyListChina:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
       path: ./rules/EasyListChina.yaml
       interval: 86400
-
     EasyPrivacy:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
       path: ./rules/EasyPrivacy.yaml
       interval: 86400
-
     ProgramAD:
       type: http
       behavior: domain
       url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
       path: ./rules/ProgramAD.yaml
       interval: 86400
-    
+
 rules:
-# 去广告规则集
+# 去广告规则
     - 'RULE-SET,AD,REJECT'
     - 'RULE-SET,EasyList,REJECT'
     - 'RULE-SET,EasyListChina,REJECT'
