@@ -241,9 +241,71 @@ proxy-groups:
     - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    
-rules:
+     
+rule-providers: # 在线广告集
+    AD:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/AD.yaml"
+      path: ./rules/AD.yaml
+      interval: 86400
+    EasyList:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyList.yaml"
+      path: ./rules/EasyList.yaml
+      interval: 86400
+    EasyListChina:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyListChina.yaml"
+      path: ./rules/EasyListChina.yaml
+      interval: 86400
+    EasyPrivacy:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/EasyPrivacy.yaml"
+      path: ./rules/EasyPrivacy.yaml
+      interval: 86400
+    ProgramAD:
+      type: http
+      behavior: domain
+      url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
+      path: ./rules/ProgramAD.yaml
+      interval: 86400
+    BanAD:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanAD.yaml"
+      path: ./ruleset/BanAD.yaml
+      interval: 86400
+    BanEasyListChina:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanEasyListChina.yaml"
+      path: ./ruleset/BanEasyListChina.yaml
+      interval: 86400
 
+rules:
+# 去广告规则
+    - 'RULE-SET,AD,REJECT'
+    - 'RULE-SET,EasyList,REJECT'
+    - 'RULE-SET,EasyListChina,REJECT'
+    - 'RULE-SET,EasyPrivacy,REJECT'
+    - 'RULE-SET,ProgramAD,REJECT'
+    - 'RULE-SET,BanAD,REJECT'
+    - 'RULE-SET,BanEasyListChina,REJECT'
+# Youtube去广告
+    - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
+    - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
+    - 'DOMAIN-SUFFIX,delivery.dmkt-sp.jp,REJECT'
+    - 'DOMAIN-SUFFIX,ehg-youtube.hitbox.com,REJECT'
+    - 'DOMAIN-SUFFIX,m-78.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nichibenren.or.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nicorette.co.kr,REJECT'
+    - 'DOMAIN-SUFFIX,ads.youtube.com,REJECT'
+    - 'DOMAIN-SUFFIX,youtube.local,REJECT'
+    - 'DOMAIN-SUFFIX,youtubecenter.net,REJECT'
  # 自定义规则
     - 'DOMAIN-KEYWORD,gemini,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
