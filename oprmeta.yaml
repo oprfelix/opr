@@ -322,6 +322,17 @@ rules:
     - 'RULE-SET,ProgramAD,REJECT'
     - 'RULE-SET,BanAD,REJECT'
     - 'RULE-SET,BanEasyListChina,REJECT'
+# Youtube去广告
+    - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
+    - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
+    - 'DOMAIN-SUFFIX,delivery.dmkt-sp.jp,REJECT'
+    - 'DOMAIN-SUFFIX,ehg-youtube.hitbox.com,REJECT'
+    - 'DOMAIN-SUFFIX,m-78.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nichibenren.or.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nicorette.co.kr,REJECT'
+    - 'DOMAIN-SUFFIX,ads.youtube.com,REJECT'
+    - 'DOMAIN-SUFFIX,youtube.local,REJECT'
+    - 'DOMAIN-SUFFIX,youtubecenter.net,REJECT'
  # 自定义规则
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
