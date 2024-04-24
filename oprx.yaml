@@ -23,7 +23,8 @@ dns:
    nameserver:
      - https://1.1.1.1/dns-query
      - https://dns.google/dns-query
-proxies:
+
+proxies:                               # 线路配置
   - # Channel 01
     alpn:
       - h2
