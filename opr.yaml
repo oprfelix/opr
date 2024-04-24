@@ -220,27 +220,11 @@ proxies:
       headers:
         host: kvm0303.fotoman.com
       path: /?ed=2048
-  - # Channel 奈飞会员验证专用线路
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: netflix.com
-    network: tcp
-    port: 18595
-    password: kRI0kFOuQ7ujJVk
-    server: partners.fotoman.com
-    servername: partners.fotoman.com
-    sni: partners.fotoman.com
-    tls: true
-    type: trojan
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
+    - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini] }
     - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
     - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
      
 rule-providers: # 在线广告集
     AD:
@@ -311,10 +295,8 @@ rules:
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,linkedin,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,netflix.com,Netflix & Disney+'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,location.microsoft.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,Netflix & Disney+'
 # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,chat.openai.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,auth0.openai.com,ChatGPT & Gemini'
