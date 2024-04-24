@@ -187,7 +187,7 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 proxy-groups:
-    - { name: 代理模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
+    - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
      
 rule-providers: # 在线广告集
     AD:
@@ -281,4 +281,4 @@ rules:
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
 # 漏网之鱼
-    - 'MATCH,代理模式'
+    - 'MATCH,PROXY'
