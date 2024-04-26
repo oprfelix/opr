@@ -319,35 +319,30 @@ rule-providers:
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaCloudServiceProvider.yaml"
       path: ./ruleset/ChinaCloudServiceProvider.yaml
       interval: 1800
-    
     ChinaDomain: # 常见域名
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
       path: ./ruleset/ChinaDomain.yaml
       interval: 1800
-    
     ChinaIP: # 中国IP
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaIP.yaml"
       path: ./ruleset/ChinaIP.yaml
       interval: 1800
-    
     ChinaVideo: # 中国媒体列表
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaVideo.yaml"
       path: ./ruleset/ChinaVideo.yaml
       interval: 1800
-    
     DownloadClient: # 中国常用下载客户端
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/DownloadClient.yaml"
       path: ./ruleset/DownloadClient.yaml
       interval: 1800
-    
     GoogleCN: # 中国可以直连的Google地址
       type: http
       behavior: classical
@@ -367,28 +362,24 @@ rule-providers:
      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/Netflix.yaml"
      path: ./ruleset/Netflix.yaml
      interval: 1800
-    
    OneDrive:   # OneDrive.
      type: http
      behavior: classical
      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/OneDrive.yaml"
      path: ./ruleset/OneDrive.yaml
      interval: 1800
-    
    ProxyGWFList:   # GWFList.
      type: http
      behavior: classical
      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
      path: ./ruleset/ProxyGWFList.yaml
      interval: 1800
-    
    ProxyVideo:   # 国外媒体列表.
      type: http
      behavior: classical
      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyVideo.yaml"
      path: ./ruleset/ProxyVideo.yaml
      interval: 1800
-    
    Telegram:   # Telegram.
      type: http
      behavior: classical
@@ -396,7 +387,6 @@ rule-providers:
      path: ./ruleset/Telegram.yaml
      interval: 1800
 rules:
-
  # 去广告规则
     - 'RULE-SET,AD,REJECT'
     - 'RULE-SET,EasyList,REJECT'
@@ -405,7 +395,6 @@ rules:
     - 'RULE-SET,ProgramAD,REJECT'
     - 'RULE-SET,BanAD,REJECT'
     - 'RULE-SET,BanEasyListChina,REJECT'
-    
  # 自定义规则
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
@@ -426,7 +415,6 @@ rules:
     - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
-    
 # 国内直连
     - 'RULE-SET,ChinaDomain,DIRECT'
     - 'RULE-SET,ChinaCloudServiceProvider,DIRECT'
@@ -441,7 +429,6 @@ rules:
     - 'RULE-SET,ProxyGWFList,代理模式'
     - 'RULE-SET,ProxyVideo,代理模式'
     - 'RULE-SET,Telegram,代理模式'
-    
 # Youtube去广告
     - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
     - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
