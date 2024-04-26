@@ -46,7 +46,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 443
-    server: 103.184.44.96
+    server: 27.50.48.46
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -65,7 +65,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 443
-    server: 27.50.49.41
+    server: 103.184.45.121
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -84,7 +84,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 443
-    server: 27.50.49.220
+    server: 27.50.49.48
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -103,7 +103,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 443
-    server: 27.50.49.129
+    server: 103.160.204.46
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -122,7 +122,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 443
-    server: 27.50.49.133
+    server: 27.50.49.37
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -141,7 +141,7 @@ proxies:
     name: pages - 06
     network: ws
     port: 443
-    server: 104.17.222.25
+    server: 103.160.204.124
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -163,7 +163,7 @@ proxies:
     name: premium 01
     network: ws
     port: 8443
-    server: 104.19.163.205
+    server: 27.50.48.5
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -182,7 +182,7 @@ proxies:
     name: premium 02
     network: ws
     port: 8443
-    server: 104.17.98.222
+    server: 104.16.46.65
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -216,7 +216,7 @@ proxies:
     name: premium 04
     network: ws
     port: 8443
-    server: 104.19.168.59
+    server: 104.16.11.63
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -264,7 +264,6 @@ proxies:
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [自动模式, 优选模式, ChatGPT & Gemini, Netflix & Disney+] }
     - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-   # - { name: 负载均衡, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, premium 01, premium 02, premium 03, premium 04, premium 05, 联通专线 01, 联通专线 02, 移动专线 03, 移动专线 04], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: 优选模式, type: load-balance, proxies: [premium 01, premium 02, premium 03, premium 04, premium 05], url:  'http://www.apple.com/library/test/success.html', interval: 600, strategy: consistent-hashing }
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
@@ -312,7 +311,54 @@ rule-providers: # 在线广告集
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanEasyListChina.yaml"
       path: ./ruleset/BanEasyListChina.yaml
       interval: 86400
-
+      
+    ChinaCloudServiceProvider:   # 直连-中国各类云服务商IP.
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaCloudServiceProvider.yaml"
+      path: ./ruleset/ChinaCloudServiceProvider.yaml
+      interval: 1800
+    
+    ChinaDomain: # 直连-中国常见域名
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
+      path: ./ruleset/ChinaDomain.yaml
+      interval: 1800
+    
+    ChinaIP: # 直连-中国IP
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaIP.yaml"
+      path: ./ruleset/ChinaIP.yaml
+      interval: 1800
+    
+    ChinaVideo: # 直连-中国媒体列表
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaVideo.yaml"
+      path: ./ruleset/ChinaVideo.yaml
+      interval: 1800
+    
+    DownloadClient: # 直连-中国常用下载客户端
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/DownloadClient.yaml"
+      path: ./ruleset/DownloadClient.yaml
+      interval: 1800
+    
+    GoogleCN: # 直连-中国可以直连的Google地址
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/GoogleCN.yaml"
+      path: ./ruleset/GoogleCN.yaml
+      interval: 1800
+    ChinaApp: # 需要直连的常见软件列表
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaApp.yaml"
+      path: ./ruleset/ChinaApp.yaml
+      interval: 1800
 rules:
 # 去广告规则
     - 'RULE-SET,AD,REJECT'
@@ -322,6 +368,14 @@ rules:
     - 'RULE-SET,ProgramAD,REJECT'
     - 'RULE-SET,BanAD,REJECT'
     - 'RULE-SET,BanEasyListChina,REJECT'
+# 国内直连
+    - 'RULE-SET,ChinaDomain,DIRECT'
+    - 'RULE-SET,ChinaCloudServiceProvider,DIRECT'
+    - 'RULE-SET,ChinaIP,DIRECT'
+    - 'RULE-SET,ChinaVideo,DIRECT'
+    - 'RULE-SET,DownloadClient,DIRECT'
+    - 'RULE-SET,GoogleCN,DIRECT'
+    - 'RULE-SET,ChinaApp,DIRECT'
 # Youtube去广告
     - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
     - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
