@@ -268,7 +268,8 @@ proxy-groups:
     - { name: ChatGPT & Gemini, type: select, proxies: [premium 05, premium 03], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Netflix & Disney+, type: select, proxies: [netflix.com], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 
-rule-providers: # 在线广告集
+rule-providers: 
+# 在线广告集
     AD:
       type: http
       behavior: domain
@@ -311,56 +312,92 @@ rule-providers: # 在线广告集
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/REJECT/BanEasyListChina.yaml"
       path: ./ruleset/BanEasyListChina.yaml
       interval: 86400
-      
-    ChinaCloudServiceProvider:   # 直连-中国各类云服务商IP.
+# 国内直联列表
+    ChinaCloudServiceProvider:   # 云服务商IP.
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaCloudServiceProvider.yaml"
       path: ./ruleset/ChinaCloudServiceProvider.yaml
       interval: 1800
     
-    ChinaDomain: # 直连-中国常见域名
+    ChinaDomain: # 常见域名
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
       path: ./ruleset/ChinaDomain.yaml
       interval: 1800
     
-    ChinaIP: # 直连-中国IP
+    ChinaIP: # 中国IP
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaIP.yaml"
       path: ./ruleset/ChinaIP.yaml
       interval: 1800
     
-    ChinaVideo: # 直连-中国媒体列表
+    ChinaVideo: # 中国媒体列表
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaVideo.yaml"
       path: ./ruleset/ChinaVideo.yaml
       interval: 1800
     
-    DownloadClient: # 直连-中国常用下载客户端
+    DownloadClient: # 中国常用下载客户端
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/DownloadClient.yaml"
       path: ./ruleset/DownloadClient.yaml
       interval: 1800
     
-    GoogleCN: # 直连-中国可以直连的Google地址
+    GoogleCN: # 中国可以直连的Google地址
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/GoogleCN.yaml"
       path: ./ruleset/GoogleCN.yaml
       interval: 1800
-    ChinaApp: # 需要直连的常见软件列表
+    ChinaApp: # 常见软件列表
       type: http
       behavior: classical
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaApp.yaml"
       path: ./ruleset/ChinaApp.yaml
       interval: 1800
+# 国外代理列表
+    Netflix:   # 奈菲.
+     type: http
+     behavior: classical
+     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/Netflix.yaml"
+     path: ./ruleset/Netflix.yaml
+     interval: 1800
+    
+   OneDrive:   # OneDrive.
+     type: http
+     behavior: classical
+     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/OneDrive.yaml"
+     path: ./ruleset/OneDrive.yaml
+     interval: 1800
+    
+   ProxyGWFList:   # GWFList.
+     type: http
+     behavior: classical
+     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
+     path: ./ruleset/ProxyGWFList.yaml
+     interval: 1800
+    
+   ProxyVideo:   # 国外媒体列表.
+     type: http
+     behavior: classical
+     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyVideo.yaml"
+     path: ./ruleset/ProxyVideo.yaml
+     interval: 1800
+    
+   Telegram:   # Telegram.
+     type: http
+     behavior: classical
+     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/Telegram.yaml"
+     path: ./ruleset/Telegram.yaml
+     interval: 1800
 rules:
-# 去广告规则
+
+ # 去广告规则
     - 'RULE-SET,AD,REJECT'
     - 'RULE-SET,EasyList,REJECT'
     - 'RULE-SET,EasyListChina,REJECT'
@@ -368,25 +405,7 @@ rules:
     - 'RULE-SET,ProgramAD,REJECT'
     - 'RULE-SET,BanAD,REJECT'
     - 'RULE-SET,BanEasyListChina,REJECT'
-# 国内直连
-    - 'RULE-SET,ChinaDomain,DIRECT'
-    - 'RULE-SET,ChinaCloudServiceProvider,DIRECT'
-    - 'RULE-SET,ChinaIP,DIRECT'
-    - 'RULE-SET,ChinaVideo,DIRECT'
-    - 'RULE-SET,DownloadClient,DIRECT'
-    - 'RULE-SET,GoogleCN,DIRECT'
-    - 'RULE-SET,ChinaApp,DIRECT'
-# Youtube去广告
-    - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
-    - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
-    - 'DOMAIN-SUFFIX,delivery.dmkt-sp.jp,REJECT'
-    - 'DOMAIN-SUFFIX,ehg-youtube.hitbox.com,REJECT'
-    - 'DOMAIN-SUFFIX,m-78.jp,REJECT'
-    - 'DOMAIN-SUFFIX,nichibenren.or.jp,REJECT'
-    - 'DOMAIN-SUFFIX,nicorette.co.kr,REJECT'
-    - 'DOMAIN-SUFFIX,ads.youtube.com,REJECT'
-    - 'DOMAIN-SUFFIX,youtube.local,REJECT'
-    - 'DOMAIN-SUFFIX,youtubecenter.net,REJECT'
+    
  # 自定义规则
     - 'DOMAIN-SUFFIX,gemini.google.com,ChatGPT & Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,ChatGPT & Gemini'
@@ -402,6 +421,38 @@ rules:
     - 'DOMAIN-SUFFIX,openai.com,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,ingest.sentry.io,ChatGPT & Gemini'
     - 'DOMAIN-SUFFIX,client.crisp.chat,ChatGPT & Gemini'
+# LinkedIn
+    - 'DOMAIN-SUFFIX,bizographics.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
+    - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
+    
+# 国内直连
+    - 'RULE-SET,ChinaDomain,DIRECT'
+    - 'RULE-SET,ChinaCloudServiceProvider,DIRECT'
+    - 'RULE-SET,ChinaIP,DIRECT'
+    - 'RULE-SET,ChinaVideo,DIRECT'
+    - 'RULE-SET,DownloadClient,DIRECT'
+    - 'RULE-SET,GoogleCN,DIRECT'
+    - 'RULE-SET,ChinaApp,DIRECT'
+# 国外代理
+    - 'RULE-SET,Netflix,代理模式'
+    - 'RULE-SET,OneDrive,代理模式'
+    - 'RULE-SET,ProxyGWFList,代理模式'
+    - 'RULE-SET,ProxyVideo,代理模式'
+    - 'RULE-SET,Telegram,代理模式'
+    
+# Youtube去广告
+    - 'DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT'
+    - 'DOMAIN-SUFFIX,couchcoaster.jp,REJECT'
+    - 'DOMAIN-SUFFIX,delivery.dmkt-sp.jp,REJECT'
+    - 'DOMAIN-SUFFIX,ehg-youtube.hitbox.com,REJECT'
+    - 'DOMAIN-SUFFIX,m-78.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nichibenren.or.jp,REJECT'
+    - 'DOMAIN-SUFFIX,nicorette.co.kr,REJECT'
+    - 'DOMAIN-SUFFIX,ads.youtube.com,REJECT'
+    - 'DOMAIN-SUFFIX,youtube.local,REJECT'
+    - 'DOMAIN-SUFFIX,youtubecenter.net,REJECT'
 # Google
     - 'DOMAIN-SUFFIX,1e100.net,代理模式'
     - 'DOMAIN-SUFFIX,g.co,代理模式'
@@ -464,11 +515,7 @@ rules:
     - 'DOMAIN-SUFFIX,ytimg.com,代理模式'
     - 'DOMAIN-SUFFIX,music.youtube.com,代理模式'
     - 'DOMAIN-SUFFIX,youtubeeducation.com,代理模式'
-# LinkedIn
-    - 'DOMAIN-SUFFIX,bizographics.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,licdn.com,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,linkedin.at,ChatGPT & Gemini'
-    - 'DOMAIN-SUFFIX,linkedin.com,ChatGPT & Gemini'
+
 # Telegram
     - 'DOMAIN-KEYWORD,telegram,代理模式'
     - 'DOMAIN-SUFFIX,t.me,代理模式'
