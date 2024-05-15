@@ -34,7 +34,7 @@ proxies:                               # 线路配置
     name: pages - 01
     network: ws
     port: 443
-    server: 172.67.150.253
+    server: 172.67.149.135
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -53,7 +53,7 @@ proxies:                               # 线路配置
     name: pages - 02
     network: ws
     port: 443
-    server: 172.67.186.6
+    server: 172.67.83.101
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -72,7 +72,7 @@ proxies:                               # 线路配置
     name: pages - 03
     network: ws
     port: 443
-    server: 172.67.11.115
+    server: 172.67.78.203
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -91,7 +91,7 @@ proxies:                               # 线路配置
     name: pages - 04
     network: ws
     port: 443
-    server: 172.67.48.174
+    server: 172.67.141.123
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -110,7 +110,7 @@ proxies:                               # 线路配置
     name: pages - 05
     network: ws
     port: 443
-    server: 172.64.165.160
+    server: 162.159.250.55
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -129,7 +129,7 @@ proxies:                               # 线路配置
     name: pages - 06
     network: ws
     port: 443
-    server: 172.64.91.22
+    server: 172.67.44.182
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -148,7 +148,7 @@ proxies:                               # 线路配置
     name: premium 01
     network: ws
     port: 443
-    server: 104.19.81.91
+    server: 104.19.36.210
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -167,7 +167,7 @@ proxies:                               # 线路配置
     name: premium 02
     network: ws
     port: 443
-    server: 104.19.56.175
+    server: 104.17.52.134
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -186,7 +186,7 @@ proxies:                               # 线路配置
     name: premium 03
     network: ws
     port: 443
-    server: 104.19.117.152
+    server: 172.64.172.207
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
