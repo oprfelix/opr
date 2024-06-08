@@ -210,17 +210,20 @@ proxies:
       path: /?ed=2048
 
   - # openai 人工智能专线
-    name: chatgpt
-    type: vmess
-    server: loa01.fotoman.com
-    port: 16163
-    uuid: ba665c0c-08de-441d-fc3f-9db397dd3201
+    alpn:
+      - h2
     alterId: 0
-    cipher: auto
-    udp: true
-    tls: false
+    cipher: ""
+    flow: ""
+    name: chatgpt
     network: ws
-    servername: loa01.fotoman.com 
+    port: 37391
+    server: loa01.fotoman.com
+    sni: loa01.fotoman.com
+    tls: true
+    type: vless
+    uuid: cf038cb8-f6c3-4ff9-d266-9dbd08d4e9f2
+    servername: loa01.fotoman.com
     ws-opts:
       headers:
         host: loa01.fotoman.com
