@@ -37,7 +37,7 @@ dns:
       
 proxies:
 
-  - # Channel 01
+  - # 专线 01
     alpn:
       - h2
     alterId: 0
@@ -56,7 +56,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 02
+  - # 专线 02
     alpn:
       - h2
     alterId: 0
@@ -75,7 +75,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 03
+  - # 专线 03
     alpn:
       - h2
     alterId: 0
@@ -94,7 +94,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 04
+  - # 专线 04
     alpn:
       - h2
     alterId: 0
@@ -113,7 +113,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 05
+  - # 专线 05
     alpn:
       - h2
     alterId: 0
@@ -132,7 +132,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 06
+  - # 专线 06
     alpn:
       - h2
     alterId: 0
@@ -151,7 +151,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 07
+  - # 专线 07
     alpn:
       - h2
     alterId: 0
@@ -170,7 +170,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 08
+  - # 专线 08
     alpn:
       - h2
     alterId: 0
@@ -189,7 +189,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # Channel 09
+  - # 专线 09
     alpn:
       - h2
     alterId: 0
@@ -208,25 +208,25 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-# premium 优选模式
 
-  - # Channel
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
+  - # openai 人工智能专线
     name: chatgpt
-    network: tcp
-    port: 48624
-    password: oNUsV2kyUW
+    type: vmess
     server: loa01.fotoman.com
-    servername: loa01.fotoman.com
-    sni: loa01.fotoman.com
-    tls: true
-    type: trojan
+    port: 54699
+    uuid: fc346521-56b5-4e62-9b48-79956bb224ec
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: false
+    network: ws
+    servername: loa01.fotoman.com 
+    ws-opts:
+      headers:
+        host: loa01.fotoman.com
+      path: /?ed=2048
 
-  - # Channel 
+  - # google gemini 人工智能专线
     alpn:
       - h2
     alterId: 0
@@ -246,7 +246,7 @@ proxies:
         host: kvm0303.fotoman.com
       path: /?ed=2048
       
-  - # Channel 香港线路
+  - # Channel 香港线路可用于应急或netflix登陆验证
     name: hkvip1
     type: vmess
     server: partners.fotoman.com
@@ -262,8 +262,6 @@ proxies:
       headers:
         host: partners.fotoman.com
       path: /?ed=2048
-
-
 
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [自动模式, AI+, HongKong] }
