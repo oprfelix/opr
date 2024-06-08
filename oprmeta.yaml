@@ -227,20 +227,17 @@ proxies:
       path: /?ed=2048
 
   - # google gemini 人工智能专线
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
     name: gemini
-    network: ws
-    port: 2085
+    type: vmess
     server: kvm0303.fotoman.com
-    servername: kvm0303.fotoman.com
-    sni: kvm0303.fotoman.com
-    tls: true
-    type: vless
-    uuid: 5b792d10-9e20-44be-fc46-415d62cf393f
+    port: 27319
+    uuid: 9f8b0cb0-aafd-4d12-fbe4-8f80af3443e0
+    alterId: 0
+    cipher: auto
+    udp: true
+    tls: false
+    network: ws
+    servername: kvm0303.fotoman.com 
     ws-opts:
       headers:
         host: kvm0303.fotoman.com
