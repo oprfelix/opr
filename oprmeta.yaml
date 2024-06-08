@@ -213,8 +213,8 @@ proxies:
     name: chatgpt
     type: vmess
     server: loa01.fotoman.com
-    port: 54699
-    uuid: fc346521-56b5-4e62-9b48-79956bb224ec
+    port: 16163
+    uuid: ba665c0c-08de-441d-fc3f-9db397dd3201
     alterId: 0
     cipher: auto
     udp: true
