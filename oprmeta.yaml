@@ -257,7 +257,7 @@ proxies:
     udp: true
     tls: false
     flow: ""
-    password: tZBiOrfBbp
+    password: bXNH2NadFP
 
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [自动模式, AI+, HongKong] }
