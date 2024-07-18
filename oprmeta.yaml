@@ -248,17 +248,16 @@ proxies:
       
   - # Channel 香港线路可用于应急或netflix登陆验证
     name: hkvip1
-    type: http
+    type: ss
     server: 154.221.22.49
-    port: 30565
+    port: 56671
     uuid: da9f66dc-8906-4242-c237-30aa7288750e
     alterId: 0
-    cipher: auto
+    cipher: aes-256-gcm
     udp: true
     tls: false
     flow: ""
-    password: ofHSVaV7fL
-    username: 8rzaSZxOv8
+    password: tZBiOrfBbp
 
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [自动模式, AI+, HongKong] }
