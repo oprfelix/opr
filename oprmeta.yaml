@@ -248,20 +248,17 @@ proxies:
       
   - # Channel 香港线路可用于应急或netflix登陆验证
     name: hkvip1
-    type: vmess
-    server: partners.fotoman.com
-    port: 34559
+    type: http
+    server: 154.221.22.49
+    port: 30565
     uuid: da9f66dc-8906-4242-c237-30aa7288750e
     alterId: 0
     cipher: auto
     udp: true
     tls: false
-    network: ws
-    servername: partners.fotoman.com 
-    ws-opts:
-      headers:
-        host: partners.fotoman.com
-      path: /?ed=2048
+    flow: ""
+    password: ofHSVaV7fL
+    username: 8rzaSZxOv8
 
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [自动模式, AI+, HongKong] }
