@@ -210,53 +210,25 @@ proxies:
       path: /?ed=2048
 
   - # openai 人工智能专线
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
     name: chatgpt
-    network: ws
-    port: 37391
-    server: loa01.fotoman.com
-    sni: loa01.fotoman.com
-    tls: true
-    type: vless
-    uuid: cf038cb8-f6c3-4ff9-d266-9dbd08d4e9f2
-    servername: loa01.fotoman.com
-    ws-opts:
-      headers:
-        host: loa01.fotoman.com
-      path: /?ed=2048
-
+    type: ss
+    server: 149.28.215.154
+    port: 56671
+    cipher: aes-256-gcm
+    password: bXNH2NadFP
   - # google gemini 人工智能专线
     name: gemini
-    type: vmess
-    server: kvm0303.fotoman.com
-    port: 27319
-    uuid: 9f8b0cb0-aafd-4d12-fbe4-8f80af3443e0
-    alterId: 0
-    cipher: auto
-    udp: true
-    tls: false
-    network: ws
-    servername: kvm0303.fotoman.com 
-    ws-opts:
-      headers:
-        host: kvm0303.fotoman.com
-      path: /?ed=2048
-      
+    type: ss
+    server: 107.173.140.111
+    port: 56671
+    cipher: aes-256-gcm
+    password: bXNH2NadFP
   - # Channel 香港线路可用于应急或netflix登陆验证
     name: hkvip1
     type: ss
     server: 154.221.22.49
     port: 56671
-    uuid: da9f66dc-8906-4242-c237-30aa7288750e
-    alterId: 0
     cipher: aes-256-gcm
-    udp: true
-    tls: false
-    flow: ""
     password: bXNH2NadFP
 
 proxy-groups:
