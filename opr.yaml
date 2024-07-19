@@ -34,11 +34,11 @@ dns:
       - 240.0.0.0/4
 
 proxies:
-  - { name: pages - 01, type: vless, server: 172.64.173.126, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com }, path: /?ed=2048 } }
-  - { name: pages - 02, type: vless, server: 172.64.160.201, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com }, path: /?ed=2048 } }
-  - { name: pages - 03, type: vless, server: 172.64.206.16, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com }, path: /?ed=2048 } }
-  - { name: pages - 04, type: vless, server: 172.64.193.182, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com }, path: /?ed=2048 } }
-  - { name: pages - 05, type: vless, server: 172.64.99.140, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com }, path: /?ed=2048 } }
+  - { name: pages - 01, type: vless, server: 172.64.173.126, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com, path: /?ed=2048 } } }
+  - { name: pages - 02, type: vless, server: 172.64.160.201, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com, path: /?ed=2048 } } }
+  - { name: pages - 03, type: vless, server: 172.64.206.16, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com, path: /?ed=2048 } } }
+  - { name: pages - 04, type: vless, server: 172.64.193.182, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com, path: /?ed=2048 } } }
+  - { name: pages - 05, type: vless, server: 172.64.99.140, servername: warp.fotoman.com, uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243, port: 443, tls: true, network: ws, sni: warp.fotoman.com, path: /?ed=2048, ws-opts: { headers: { host: warp.fotoman.com, path: /?ed=2048 } } }
   - { name: openai, type: ss, server: 149.28.215.154, port: 56671, cipher: aes-256-gcm, password: bXNH2NadFP }
   - { name: Google, type: ss, server: 107.173.140.111, port: 56671, cipher: aes-256-gcm, password: bXNH2NadFP }
 
