@@ -20,12 +20,10 @@ dns:
    fake-ip-range: 198.18.0.1/16
    default-nameserver:
      - 223.5.5.5
-     - 119.29.29.29
      - 1.1.1.1
    use-hosts: true
    nameserver:
      - https://dns.alidns.com/dns-query
-     - https://doh.pub/dns-query
    fallback:
      - https://1.1.1.1/dns-query
      - https://dns.google/dns-query
@@ -37,7 +35,7 @@ dns:
       
 proxies:
 
-  - # 专线 01
+  - # A1
     alpn:
       - h2
     alterId: 0
@@ -46,7 +44,7 @@ proxies:
     name: pages - 01
     network: ws
     port: 443
-    server: 104.17.108.32
+    server: 172.64.173.126
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -56,7 +54,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 02
+  - # A2
     alpn:
       - h2
     alterId: 0
@@ -65,7 +63,7 @@ proxies:
     name: pages - 02
     network: ws
     port: 443
-    server: 104.18.245.36
+    server: 172.64.160.201
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -75,7 +73,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 03
+  - # A3
     alpn:
       - h2
     alterId: 0
@@ -84,7 +82,7 @@ proxies:
     name: pages - 03
     network: ws
     port: 443
-    server: 162.159.41.200
+    server: 172.64.206.16
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -94,7 +92,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 04
+  - # A4
     alpn:
       - h2
     alterId: 0
@@ -103,7 +101,7 @@ proxies:
     name: pages - 04
     network: ws
     port: 443
-    server: 104.17.40.162
+    server: 172.64.193.182
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -113,7 +111,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 05
+  - # A5
     alpn:
       - h2
     alterId: 0
@@ -122,83 +120,7 @@ proxies:
     name: pages - 05
     network: ws
     port: 443
-    server: 104.16.87.72
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-  - # 专线 06
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 06
-    network: ws
-    port: 443
-    server: 104.17.153.217
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-  - # 专线 07
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 07
-    network: ws
-    port: 443
-    server: 104.17.8.57
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-  - # 专线 08
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 08
-    network: ws
-    port: 443
-    server: 104.16.8.1
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-  - # 专线 09
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 09
-    network: ws
-    port: 443
-    server: 104.17.158.154
+    server: 172.64.99.140
     servername: warp.fotoman.com
     sni: warp.fotoman.com
     tls: true
@@ -209,522 +131,45 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 
-  - # openai 人工智能专线
-    name: chatgpt
+  - # B1
+    name: openai
     type: ss
     server: 149.28.215.154
     port: 56671
     cipher: aes-256-gcm
     password: bXNH2NadFP
-  - # google gemini 人工智能专线
-    name: gemini
+  - # B2
+    name: Google
     type: ss
     server: 107.173.140.111
     port: 56671
     cipher: aes-256-gcm
     password: bXNH2NadFP
-  - # Channel 香港线路可用于应急或netflix登陆验证
-    name: hkvip1
-    type: ss
-    server: 154.221.22.49
-    port: 56671
-    cipher: aes-256-gcm
-    password: bXNH2NadFP
 
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [自动模式, AI+, HongKong] }
-    - { name: 自动模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06, pages - 07, pages - 08, pages - 09], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-    - { name: AI+, type: select, proxies: [gemini, chatgpt], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: HongKong, type: select, proxies: [hkvip1], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Proxy, type: select, proxies: [Auto, GPT] }
+    - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 
-rule-providers: 
-
-# 国内直联列表
-    ChinaCloudServiceProvider:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaCloudServiceProvider.yaml"
-      path: ./ruleset/ChinaCloudServiceProvider.yaml
-      interval: 1800
-    ChinaDomain:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
-      path: ./ruleset/ChinaDomain.yaml
-      interval: 1800
-    ChinaIP:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaIP.yaml"
-      path: ./ruleset/ChinaIP.yaml
-      interval: 1800
-    ChinaVideo:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaVideo.yaml"
-      path: ./ruleset/ChinaVideo.yaml
-      interval: 1800
-    DownloadClient:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/DownloadClient.yaml"
-      path: ./ruleset/DownloadClient.yaml
-      interval: 1800
-    GoogleCN:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/GoogleCN.yaml"
-      path: ./ruleset/GoogleCN.yaml
-      interval: 1800
-    ChinaApp:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaApp.yaml"
-      path: ./ruleset/ChinaApp.yaml
-      interval: 1800
-# 国外代理列表
-    Netflix:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/Netflix.yaml"
-      path: ./ruleset/Netflix.yaml
-      interval: 1800
-    OneDrive:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/OneDrive.yaml"
-      path: ./ruleset/OneDrive.yaml
-      interval: 1800
-    ProxyGWFList:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
-      path: ./ruleset/ProxyGWFList.yaml
-      interval: 1800
-    ProxyVideo:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyVideo.yaml"
-      path: ./ruleset/ProxyVideo.yaml
-      interval: 1800
-    Telegram:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/Telegram.yaml"
-      path: ./ruleset/Telegram.yaml
-      interval: 1800
 rules:
- # 自定义规则
-    - 'DOMAIN-SUFFIX,gemini.google.com,AI+'
-    - 'DOMAIN-KEYWORD,chatgpt,AI+'
-    - 'DOMAIN-KEYWORD,linkedin,AI+'
-    - 'DOMAIN-SUFFIX,netflix.com,HongKong'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,AI+'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,AI+'
-    - 'DOMAIN-SUFFIX,raw.githubusercontent.com,HongKong'
 # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,chat.openai.com,AI+'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,AI+'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,AI+'
-    - 'DOMAIN-SUFFIX,openai.com,AI+'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI+'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,AI+'
-# LinkedIn
-    - 'DOMAIN-SUFFIX,bizographics.com,AI+'
-    - 'DOMAIN-SUFFIX,licdn.com,AI+'
-    - 'DOMAIN-SUFFIX,linkedin.at,AI+'
-    - 'DOMAIN-SUFFIX,linkedin.com,AI+'
-# 国内直连
-    - 'RULE-SET,ChinaDomain,DIRECT'
-    - 'RULE-SET,ChinaCloudServiceProvider,DIRECT'
-    - 'RULE-SET,ChinaIP,DIRECT'
-    - 'RULE-SET,ChinaVideo,DIRECT'
-    - 'RULE-SET,DownloadClient,DIRECT'
-    - 'RULE-SET,GoogleCN,DIRECT'
-    - 'RULE-SET,ChinaApp,DIRECT'
-# 国外代理
-    - 'RULE-SET,Netflix,代理模式'
-    - 'RULE-SET,OneDrive,代理模式'
-    - 'RULE-SET,ProxyGWFList,代理模式'
-    - 'RULE-SET,ProxyVideo,代理模式'
-    - 'RULE-SET,Telegram,代理模式'
-# Google
-    - 'DOMAIN-SUFFIX,1e100.net,代理模式'
-    - 'DOMAIN-SUFFIX,g.co,代理模式'
-    - 'DOMAIN-SUFFIX,google.com,代理模式'
-    - 'DOMAIN-SUFFIX,googleapis.com,代理模式'
-    - 'DOMAIN-SUFFIX,gstatic.com,代理模式'
-    - 'DOMAIN-SUFFIX,gv2.com,代理模式'
-    - 'DOMAIN-SUFFIX,gv3.com,代理模式'
-    - 'DOMAIN-SUFFIX,android.com,代理模式'
-    - 'DOMAIN-SUFFIX,withgoogle.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogger.com,代理模式'
-    - 'DOMAIN-SUFFIX,waze.com,代理模式'
-    - 'DOMAIN-SUFFIX,gmail.com,代理模式'
-    - 'DOMAIN-KEYWORD,google,代理模式'
-    - 'DOMAIN-KEYWORD,businessmessages,代理模式'
-    - 'DOMAIN-KEYWORD,chrome,代理模式'
-    - 'DOMAIN-SUFFIX,www-google-analytics.l.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,ssl-google-analytics.l.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,partnerad.l.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,pagead.l.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,pagead.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,pagead-tpc.l.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,mobileads.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,ads.google.com,代理模式'
-    - 'DOMAIN-SUFFIX,afd.l.google.com,代理模式'
-# Facebook
-    - 'DOMAIN-SUFFIX,acconunkit.com,代理模式'
-    - 'DOMAIN-SUFFIX,atdmt.com,代理模式'
-    - 'DOMAIN-SUFFIX,atlassolutions.com,代理模式'
-    - 'DOMAIN-SUFFIX,facebook.com,代理模式'
-    - 'DOMAIN-SUFFIX,facebook.net,代理模式'
-    - 'DOMAIN-SUFFIX,facebookmail.com,代理模式'
-    - 'DOMAIN-SUFFIX,fb.com,代理模式'
-    - 'DOMAIN-SUFFIX,fb.gg,代理模式'
-    - 'DOMAIN-SUFFIX,fbcdn.net,代理模式'
-    - 'DOMAIN-SUFFIX,fb.watch,代理模式'
-    - 'DOMAIN-SUFFIX,fbsbx.com,代理模式'
-    - 'DOMAIN-SUFFIX,fbwat.ch,代理模式'
-    - 'DOMAIN-SUFFIX,parse.com,代理模式'
-# Facebook-Messenger
-    - 'DOMAIN-SUFFIX,messenger.com,代理模式'
-    - 'DOMAIN-SUFFIX,m.me,代理模式'
-    - 'DOMAIN-SUFFIX,msngr.com,代理模式'
-# Spotify
-    - 'DOMAIN-SUFFIX,pscdn.co,代理模式'
-    - 'DOMAIN-SUFFIX,scdn.co,代理模式'
-    - 'DOMAIN-SUFFIX,spoti.fi,代理模式'
-    - 'DOMAIN-SUFFIX,spotify.com,代理模式'
-    - 'DOMAIN-SUFFIX,spotifycdn.net,代理模式'
-    - 'DOMAIN-KEYWORD,spotify,代理模式'
-# YouTube
-    - 'DOMAIN-KEYWORD,youtube,代理模式'
-    - 'DOMAIN,yt3.ggpht.com,代理模式'
-    - 'DOMAIN-SUFFIX,youtube-nocookie.com,代理模式'
-    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式'
-    - 'DOMAIN-SUFFIX,ggpht.com,代理模式'
-    - 'DOMAIN-SUFFIX,gvt1.com,代理模式'
-    - 'DOMAIN-SUFFIX,gvt2.com,代理模式'
-    - 'DOMAIN-SUFFIX,youtu.be,代理模式'
-    - 'DOMAIN-SUFFIX,ytimg.com,代理模式'
-    - 'DOMAIN-SUFFIX,music.youtube.com,代理模式'
-    - 'DOMAIN-SUFFIX,youtubeeducation.com,代理模式'
-# Telegram
-    - 'DOMAIN-KEYWORD,telegram,代理模式'
-    - 'DOMAIN-SUFFIX,t.me,代理模式'
-    - 'DOMAIN-SUFFIX,tx.me,代理模式'
-    - 'DOMAIN-SUFFIX,tdesktop.com,代理模式'
-    - 'DOMAIN-SUFFIX,telegra.ph,代理模式'
-    - 'DOMAIN-SUFFIX,telegram.me,代理模式'
-    - 'DOMAIN-SUFFIX,telegram.org,代理模式'
-    - 'IP-CIDR,91.108.0.0/16,代理模式,no-resolve'
-    - 'IP-CIDR,109.239.140.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,149.154.160.0/20,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:67c:4e8::/48,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23d::/48,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23f::/48,代理模式,no-resolve'
-    - 'DOMAIN-SUFFIX,telesco.pe,代理模式'
-    - 'IP-CIDR,91.108.4.0/22,代理模式'
-    - 'IP-CIDR,91.108.8.0/22,代理模式'
-    - 'IP-CIDR,91.108.12.0/22,代理模式'
-    - 'IP-CIDR,91.108.16.0/22,代理模式'
-    - 'IP-CIDR,91.108.20.0/22,代理模式'
-    - 'IP-CIDR,91.108.56.0/22,代理模式'
-# DisneyPlus
-    - 'DOMAIN-SUFFIX,disney.asia,代理模式'
-    - 'DOMAIN-SUFFIX,disney.be,代理模式'
-    - 'DOMAIN-SUFFIX,disney.bg,代理模式'
-    - 'DOMAIN-SUFFIX,disney.ca,代理模式'
-    - 'DOMAIN-SUFFIX,disney.ch,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.il,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.jp,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.kr,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.th,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.uk,代理模式'
-    - 'DOMAIN-SUFFIX,disney.co.za,代理模式'
-    - 'DOMAIN-SUFFIX,disney.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney.com.au,代理模式'
-    - 'DOMAIN-SUFFIX,disney.com.br,代理模式'
-    - 'DOMAIN-SUFFIX,disney.com.hk,代理模式'
-    - 'DOMAIN-SUFFIX,disney.com.tw,代理模式'
-    - 'DOMAIN-SUFFIX,disney.cz,代理模式'
-    - 'DOMAIN-SUFFIX,disney.de,代理模式'
-    - 'DOMAIN-SUFFIX,disney.dk,代理模式'
-    - 'DOMAIN-SUFFIX,disney.es,代理模式'
-    - 'DOMAIN-SUFFIX,disney.fi,代理模式'
-    - 'DOMAIN-SUFFIX,disney.fr,代理模式'
-    - 'DOMAIN-SUFFIX,disney.gr,代理模式'
-    - 'DOMAIN-SUFFIX,disney.hu,代理模式'
-    - 'DOMAIN-SUFFIX,disney.id,代理模式'
-    - 'DOMAIN-SUFFIX,disney.in,代理模式'
-    - 'DOMAIN-SUFFIX,disney.io,代理模式'
-    - 'DOMAIN-SUFFIX,disney.it,代理模式'
-    - 'DOMAIN-SUFFIX,disney.my,代理模式'
-    - 'DOMAIN-SUFFIX,disney.nl,代理模式'
-    - 'DOMAIN-SUFFIX,disney.no,代理模式'
-    - 'DOMAIN-SUFFIX,disney.ph,代理模式'
-    - 'DOMAIN-SUFFIX,disney.pl,代理模式'
-    - 'DOMAIN-SUFFIX,disney.pt,代理模式'
-    - 'DOMAIN-SUFFIX,disney.ro,代理模式'
-    - 'DOMAIN-SUFFIX,disney.ru,代理模式'
-    - 'DOMAIN-SUFFIX,disney.se,代理模式'
-    - 'DOMAIN-SUFFIX,disney.sg,代理模式'
-    - 'DOMAIN-SUFFIX,20thcenturystudios.com.au,代理模式'
-    - 'DOMAIN-SUFFIX,20thcenturystudios.com.br,代理模式'
-    - 'DOMAIN-SUFFIX,20thcenturystudios.jp,代理模式'
-    - 'DOMAIN-SUFFIX,adventuresbydisney.com,代理模式'
-    - 'DOMAIN-SUFFIX,babble.com,代理模式'
-    - 'DOMAIN-SUFFIX,babyzone.com,代理模式'
-    - 'DOMAIN-SUFFIX,bamgrid.com,代理模式'
-    - 'DOMAIN-SUFFIX,beautyandthebeastmusical.co.uk,代理模式'
-    - 'DOMAIN-SUFFIX,dilcdn.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney-asia.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney-discount.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney-plus.net,代理模式'
-    - 'DOMAIN-SUFFIX,disney-portal.my.onetrust.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney-studio.com,代理模式'
-    - 'DOMAIN-SUFFIX,disney-studio.net,代理模式'
-    - 'DOMAIN-SUFFIX,disney.my.sentry.io,代理模式'
-    - 'DOMAIN-SUFFIX,disneyadsales.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyarena.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyaulani.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneybaby.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneycareers.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneychannelonstage.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneychannelroadtrip.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneycruisebrasil.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyenconcert.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyiejobs.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyinflight.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyinternational.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyinternationalhd.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyjunior.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyjuniortreataday.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneylatino.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.co.il,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.co.uk,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.co.za,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.de,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.es,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.fr,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.gen.tr,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.gr,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.it,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmoments.pl,代理模式'
-    - 'DOMAIN-SUFFIX,disneymagicmomentsme.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyme.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneymeetingsandevents.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneymovieinsiders.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneymusicpromotion.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneynewseries.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneynow.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneypeoplesurveys.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyplus.bn5x.net,代理模式'
-    - 'DOMAIN-SUFFIX,disneyplus.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyplus.com.ssl.sc.omtrdc.net,代理模式'
-    - 'DOMAIN-SUFFIX,disneyredirects.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneysrivieraresort.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneystore.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneystreaming.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneysubscription.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneytickets.co.uk,代理模式'
-    - 'DOMAIN-SUFFIX,disneyturkiye.com.tr,代理模式'
-    - 'DOMAIN-SUFFIX,disneytvajobs.com,代理模式'
-    - 'DOMAIN-SUFFIX,disneyworld-go.com,代理模式'
-    - 'DOMAIN-SUFFIX,dssott.com,代理模式'
-    - 'DOMAIN-SUFFIX,go-disneyworldgo.com,代理模式'
-    - 'DOMAIN-SUFFIX,go.com,代理模式'
-    - 'DOMAIN-SUFFIX,mickey.tv,代理模式'
-    - 'DOMAIN-SUFFIX,moviesanywhere.com,代理模式'
-    - 'DOMAIN-SUFFIX,nomadlandmovie.ch,代理模式'
-    - 'DOMAIN-SUFFIX,playmation.com,代理模式'
-    - 'DOMAIN-SUFFIX,shopdisney.com,代理模式'
-    - 'DOMAIN-SUFFIX,shops-disney.com,代理模式'
-    - 'DOMAIN-SUFFIX,sorcerersarena.com,代理模式'
-    - 'DOMAIN-SUFFIX,spaindisney.com,代理模式'
-    - 'DOMAIN-SUFFIX,star-brasil.com,代理模式'
-    - 'DOMAIN-SUFFIX,star-latam.com,代理模式'
-    - 'DOMAIN-SUFFIX,starwars.com,代理模式'
-    - 'DOMAIN-SUFFIX,starwarsgalacticstarcruiser.com,代理模式'
-    - 'DOMAIN-SUFFIX,starwarskids.com,代理模式'
-    - 'DOMAIN-SUFFIX,streamingdisney.net,代理模式'
-    - 'DOMAIN-SUFFIX,thestationbymaker.com,代理模式'
-    - 'DOMAIN-SUFFIX,thisispolaris.com,代理模式'
-    - 'DOMAIN-SUFFIX,watchdisneyfe.com,代理模式'
-# Instagram
-    - 'DOMAIN-SUFFIX,instagram.com,代理模式'
-    - 'DOMAIN-SUFFIX,cdninstagram.com,代理模式'
-# Whatsapp
-    - 'DOMAIN-SUFFIX,whatsapp.com,代理模式'
-    - 'DOMAIN-SUFFIX,whatsapp.net,代理模式'
-    - 'IP-CIDR,18.194.0.0/15,代理模式'
-    - 'IP-CIDR,34.224.0.0/12,代理模式'
-# Github
-    - 'DOMAIN-SUFFIX,github.com,代理模式'
-    - 'DOMAIN-SUFFIX,githubassets.com,代理模式'
-    - 'DOMAIN-SUFFIX,githubusercontent.com,代理模式'
-    - 'DOMAIN-SUFFIX,ghcr.io,代理模式'
-    - 'DOMAIN-SUFFIX,github.io,代理模式'
-    - 'DOMAIN-SUFFIX,githubapp.com,代理模式'
+    - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,openai.com,GPT'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
 # Google Voice
-    - 'IP-CIDR,74.125.0.0/16,AI+'
-    - 'IP-CIDR,74.125.23.127/32,AI+'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,AI+'
+    - 'IP-CIDR,74.125.0.0/16,GPT'
+    - 'IP-CIDR,74.125.23.127/32,GPT'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT'
 # New Bing
-    - 'DOMAIN-SUFFIX,bing.com,代理模式'
-# DNS Leak
-    - 'DOMAIN-SUFFIX,dnsleaktest.com,代理模式'
-    - 'DOMAIN-SUFFIX,ipleak.net,代理模式'
-    - 'DOMAIN-SUFFIX,browserleaks.com,代理模式'
-    - 'DOMAIN-SUFFIX,browserleaks.org,代理模式'
-# Mozilla
-    - 'DOMAIN-SUFFIX,mozilla.org,代理模式'
-# GitHub在线编辑器
-    - 'DOMAIN-SUFFIX,github.dev,代理模式'
-# Reddit
-    - 'DOMAIN-SUFFIX,redd.it,代理模式'
-    - 'DOMAIN-SUFFIX,reddit.com,代理模式'
-    - 'DOMAIN-SUFFIX,redditinc.com,代理模式'
-    - 'DOMAIN-SUFFIX,redditmail.com,代理模式'
-    - 'DOMAIN-SUFFIX,redditmedia.com,代理模式'
-    - 'DOMAIN-SUFFIX,redditstatic.com,代理模式'
-    - 'DOMAIN-SUFFIX,redditstaus.com,代理模式'
-# 通用规则集
-    - 'DOMAIN-KEYWORD,aws,代理模式'
-    - 'DOMAIN-KEYWORD,amazon,代理模式'
-    - 'DOMAIN-KEYWORD,spotify,代理模式'
-    - 'DOMAIN-KEYWORD,zoom,代理模式'
-    - 'DOMAIN-KEYWORD,medium,代理模式'
-    - 'DOMAIN-KEYWORD,bbc,代理模式'
-    - 'DOMAIN-KEYWORD,gmail,代理模式'
-    - 'DOMAIN-KEYWORD,vimeo,代理模式'
-    - 'DOMAIN-KEYWORD,archive,代理模式'
-    - 'DOMAIN-KEYWORD,line,代理模式'
-    - 'DOMAIN-KEYWORD,twitter,代理模式'
-    - 'DOMAIN-KEYWORD,flickr,代理模式'
-    - 'DOMAIN-KEYWORD,wsj,代理模式'
-    - 'DOMAIN-SUFFIX,twitter.com,代理模式'
-    - 'DOMAIN-SUFFIX,x.com,代理模式'
-    - 'DOMAIN-SUFFIX,live.com,代理模式'
-    - 'DOMAIN-SUFFIX,time.com,代理模式'
-    - 'DOMAIN-SUFFIX,tvb.com,代理模式'
-    - 'DOMAIN-SUFFIX,ads-twitter.com,代理模式'
-    - 'DOMAIN-SUFFIX,t.co,代理模式'
-    - 'DOMAIN-SUFFIX,twimg.com,代理模式'
-    - 'DOMAIN-SUFFIX,twittr.com,代理模式'
-    - 'DOMAIN-KEYWORD,dropbox,代理模式'
-    - 'DOMAIN-SUFFIX,twimg.com,代理模式'
-    - 'DOMAIN-KEYWORD,blogspot,代理模式'
-    - 'DOMAIN-KEYWORD,whatsapp,代理模式'
-    - 'DOMAIN-KEYWORD,github,代理模式'
-    - 'DOMAIN-SUFFIX,yimg.com,代理模式'
-    - 'DOMAIN-SUFFIX,ying.com,代理模式'
-    - 'DOMAIN-SUFFIX,yoyo.org,代理模式'
-    - 'DOMAIN-SUFFIX,ytimg.com,代理模式'
-    - 'DOMAIN-SUFFIX,telegra.ph,代理模式'
-    - 'DOMAIN-SUFFIX,telegram.org,代理模式'
-    - 'DOMAIN-SUFFIX,services.googleapis.cn,代理模式'
-    - 'DOMAIN-SUFFIX,apple-dns.net,代理模式'
-    - 'DOMAIN-SUFFIX,apps.apple.com,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab.com,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab-static.net,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab.com,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab.io,代理模式'
-    - 'DOMAIN-SUFFIX,gitlab.net,代理模式'
-    - 'DOMAIN-SUFFIX,blobstore.apple.com,代理模式'
-    - 'DOMAIN-SUFFIX,fb.me,代理模式'
-    - 'DOMAIN-SUFFIX,fbcdn.net,代理模式'
-    - 'DOMAIN-SUFFIX,android.com,代理模式'
-    - 'DOMAIN-SUFFIX,apkpure.com,代理模式'
-    - 'DOMAIN-SUFFIX,archive.org,代理模式'
-    - 'DOMAIN-SUFFIX,bing.com,代理模式'
-    - 'DOMAIN-SUFFIX,blog.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogcdn.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogger.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogsmithmedia.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogspot.com,代理模式'
-    - 'DOMAIN-SUFFIX,blogspot.hk,代理模式'
-    - 'DOMAIN-SUFFIX,bloomberg.com,代理模式'
-    - 'DOMAIN-SUFFIX,box.com,代理模式'
-    - 'DOMAIN-SUFFIX,box.net,代理模式'
-    - 'DOMAIN-SUFFIX,chromium.org,代理模式'
-    - 'DOMAIN-SUFFIX,cloudflare.com,代理模式'
-    - 'DOMAIN-SUFFIX,cloudflare.net,代理模式'
-    - 'DOMAIN-SUFFIX,docker.com,代理模式'
-    - 'DOMAIN-SUFFIX,fast.com,代理模式'
-    - 'DOMAIN-SUFFIX,fastly.net,代理模式'
-    - 'DOMAIN-SUFFIX,git.io,代理模式'
-    - 'DOMAIN-SUFFIX,godaddy.com,代理模式'
-    - 'DOMAIN-SUFFIX,golang.org,代理模式'
-    - 'DOMAIN-SUFFIX,goo.gl,代理模式'
-    - 'DOMAIN-SUFFIX,gstatic.com,代理模式'
-    - 'DOMAIN-SUFFIX,hotmail.com,代理模式'
-    - 'DOMAIN-SUFFIX,line-apps.com,代理模式'
-    - 'DOMAIN-SUFFIX,linode.com,代理模式'
-    - 'DOMAIN-SUFFIX,lithium.com,代理模式'
-    - 'DOMAIN-SUFFIX,littlehj.com,代理模式'
-    - 'DOMAIN-SUFFIX,live.com,代理模式'
-    - 'DOMAIN-SUFFIX,live.net,代理模式'
-    - 'DOMAIN-SUFFIX,livefilestore.com,代理模式'
-    - 'DOMAIN-SUFFIX,openwrt.org,代理模式'
-    - 'DOMAIN-SUFFIX,outlook.com,代理模式'
-    - 'DOMAIN-SUFFIX,shadowsocks.org,代理模式'
-    - 'DOMAIN-SUFFIX,time.com,代理模式'
-    - 'DOMAIN-SUFFIX,timeinc.net,代理模式'
-    - 'DOMAIN-SUFFIX,v2ex.com,代理模式'
-    - 'DOMAIN-SUFFIX,vimeo.com,代理模式'
-    - 'DOMAIN-SUFFIX,vimeocdn.com,代理模式'
-    - 'DOMAIN-SUFFIX,vine.co,代理模式'
-    - 'DOMAIN-SUFFIX,vsco.co,代理模式'
-    - 'DOMAIN-SUFFIX,vultr.com,代理模式'
-    - 'DOMAIN-SUFFIX,w.org,代理模式'
-    - 'DOMAIN-SUFFIX,w3schools.com,代理模式'
-    - 'DOMAIN-SUFFIX,webtype.com,代理模式'
-    - 'DOMAIN-SUFFIX,wikiwand.com,代理模式'
-    - 'DOMAIN-SUFFIX,wikileaks.org,代理模式'
-    - 'DOMAIN-SUFFIX,wikimedia.org,代理模式'
-    - 'DOMAIN-SUFFIX,wikipedia.com,代理模式'
-    - 'DOMAIN-SUFFIX,wikipedia.org,代理模式'
-    - 'DOMAIN-SUFFIX,windows.com,代理模式'
-    - 'DOMAIN-SUFFIX,windows.net,代理模式'
-    - 'DOMAIN-SUFFIX,wire.com,代理模式'
-    - 'DOMAIN-SUFFIX,wordpress.com,代理模式'
-    - 'DOMAIN-SUFFIX,workflowy.com,代理模式'
-    - 'DOMAIN-SUFFIX,wp.com,代理模式'
-    - 'DOMAIN-SUFFIX,wsj.com,代理模式'
-    - 'DOMAIN-SUFFIX,wsj.net,代理模式'
-    - 'DOMAIN-SUFFIX,xda-developers.com,代理模式'
-    - 'DOMAIN-SUFFIX,xeeno.com,代理模式'
-    - 'DOMAIN-SUFFIX,xiti.com,代理模式'
-    - 'DOMAIN-SUFFIX,yahoo.com,代理模式'
-    - 'DOMAIN-SUFFIX,ttsmaker.com,代理模式'
-    - 'IP-CIDR,91.108.4.0/22,代理模式,no-resolve'
-    - 'IP-CIDR,91.108.8.0/21,代理模式,no-resolve'
-    - 'IP-CIDR,91.108.16.0/22,代理模式,no-resolve'
-    - 'IP-CIDR,91.108.56.0/22,代理模式,no-resolve'
-    - 'IP-CIDR,149.154.160.0/20,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:67c:4e8::/48,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23d::/48,代理模式,no-resolve'
-    - 'IP-CIDR6,2001:b28:f23f::/48,代理模式,no-resolve'
-    - 'IP-CIDR,120.232.181.162/32,代理模式,no-resolve'
-    - 'IP-CIDR,120.241.147.226/32,代理模式,no-resolve'
-    - 'IP-CIDR,120.253.253.226/32,代理模式,no-resolve'
-    - 'IP-CIDR,120.253.255.162/32,代理模式,no-resolve'
-    - 'IP-CIDR,120.253.255.34/32,代理模式,no-resolve'
-    - 'IP-CIDR,120.253.255.98/32,代理模式,no-resolve'
-    - 'IP-CIDR,180.163.150.162/32,代理模式,no-resolve'
-    - 'IP-CIDR,180.163.150.34/32,代理模式,no-resolve'
-    - 'IP-CIDR,180.163.151.162/32,代理模式,no-resolve'
-    - 'IP-CIDR,180.163.151.34/32,代理模式,no-resolve'
-    - 'IP-CIDR,203.208.39.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,203.208.40.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,203.208.41.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,203.208.43.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,203.208.50.0/24,代理模式,no-resolve'
-    - 'IP-CIDR,220.181.174.162/32,代理模式,no-resolve'
-    - 'IP-CIDR,220.181.174.226/32,代理模式,no-resolve'
-    - 'IP-CIDR,220.181.174.34/32,代理模式,no-resolve'
+    - 'DOMAIN-SUFFIX,bing.com,Proxy'
+ # 自定义规则
+    - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
+    - 'DOMAIN-KEYWORD,chatgpt,GPT'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
@@ -738,4 +183,4 @@ rules:
     - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,DIRECT'
+    - 'MATCH,Proxy'
