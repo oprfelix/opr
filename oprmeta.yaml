@@ -159,11 +159,6 @@ rules:
     - 'DOMAIN-SUFFIX,openai.com,GPT'
     - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
     - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
-# LinkedIn
-    - 'DOMAIN-SUFFIX,bizographics.com,GPT'
-    - 'DOMAIN-SUFFIX,licdn.com,GPT'
-    - 'DOMAIN-SUFFIX,linkedin.at,GPT'
-    - 'DOMAIN-SUFFIX,linkedin.com,GPT'
 # Google Voice
     - 'IP-CIDR,74.125.0.0/16,GPT'
     - 'IP-CIDR,74.125.23.127/32,GPT'
@@ -173,7 +168,6 @@ rules:
  # 自定义规则
     - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
     - 'DOMAIN-KEYWORD,chatgpt,GPT'
-    - 'DOMAIN-KEYWORD,linkedin,GPT'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
     - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
     - 'DOMAIN-SUFFIX,local,DIRECT'
