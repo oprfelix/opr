@@ -35,7 +35,7 @@ dns:
       
 proxies:
 
-  - # 专线 01
+  - # A1
     alpn:
       - h2
     alterId: 0
@@ -54,7 +54,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 02
+  - # A2
     alpn:
       - h2
     alterId: 0
@@ -73,7 +73,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 03
+  - # A3
     alpn:
       - h2
     alterId: 0
@@ -92,7 +92,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 04
+  - # A4
     alpn:
       - h2
     alterId: 0
@@ -111,7 +111,7 @@ proxies:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # 专线 05
+  - # A5
     alpn:
       - h2
     alterId: 0
@@ -131,15 +131,15 @@ proxies:
         host: warp.fotoman.com
       path: /?ed=2048
 
-  - # chatGPT
-    name: chatgpt
+  - # B1
+    name: openai
     type: ss
     server: 149.28.215.154
     port: 56671
     cipher: aes-256-gcm
     password: bXNH2NadFP
-  - # gemini
-    name: gemini
+  - # B2
+    name: Google
     type: ss
     server: 107.173.140.111
     port: 56671
@@ -149,7 +149,7 @@ proxies:
 proxy-groups:
     - { name: Proxy, type: select, proxies: [Auto, GPT] }
     - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.google-analytics.com/generate_204', interval: 600 }
-    - { name: GPT, type: select, proxies: [gemini, chatgpt], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
 
 rules:
 # OpenAI (ChatGPT)
