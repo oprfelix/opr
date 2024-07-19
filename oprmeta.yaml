@@ -42,6 +42,7 @@ proxies:
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
+    flow: xtls-rprx-vision
     port: 443
     tls: true
     network: ws
@@ -59,6 +60,7 @@ proxies:
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
+    flow: xtls-rprx-vision
     port: 443
     tls: true
     network: ws
@@ -76,6 +78,7 @@ proxies:
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
+    flow: xtls-rprx-vision
     port: 443
     tls: true
     network: ws
@@ -93,6 +96,7 @@ proxies:
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
+    flow: xtls-rprx-vision
     port: 443
     tls: true
     network: ws
@@ -110,6 +114,7 @@ proxies:
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
+    flow: xtls-rprx-vision
     port: 443
     tls: true
     network: ws
