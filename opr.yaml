@@ -35,86 +35,6 @@ dns:
       
 proxies:
 
-  - # A1
-    type: vless
-    name: pages - 01
-    server: 172.64.173.126
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    port: 443
-    tls: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A2
-    type: vless
-    name: pages - 02
-    server: 172.64.160.201
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    port: 443
-    tls: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A3
-    type: vless
-    name: pages - 03
-    server: 172.64.206.16
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    port: 443
-    tls: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A4
-    type: vless
-    name: pages - 04
-    server: 172.64.193.182
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    port: 443
-    tls: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A5
-    type: vless
-    name: pages - 05
-    server: 172.64.99.140
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    port: 443
-    tls: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # B1
     type: ss
     name: openai
@@ -131,30 +51,42 @@ proxies:
     password: bXNH2NadFP
 
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Auto, GPT, Balance] }
-    - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [Balance, Google, openai] }
+    - { name: Balance, type: load-balance, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rules:
-# OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,openai.com,GPT'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
+# normal
+    - 'DOMAIN-KEYWORD,weibo,Proxy'
+    - 'DOMAIN-KEYWORD,sina,Proxy'
+    - 'DOMAIN-KEYWORD,wikipedia,Proxy'
+    - 'DOMAIN-KEYWORD,x,Proxy'
+    - 'DOMAIN-KEYWORD,live,Proxy'
+    - 'DOMAIN-KEYWORD,netflix,Proxy'
+    - 'DOMAIN-KEYWORD,zoom,Proxy'
+    - 'DOMAIN-KEYWORD,amazon,Proxy'
+    - 'DOMAIN-KEYWORD,spotify,Proxy'
+    - 'DOMAIN-KEYWORD,flickr,Proxy'
+    - 'DOMAIN-KEYWORD,bbc,Proxy'
+# linkedin
+    - 'DOMAIN-KEYWORD,linkedin,Proxy'
+# OpenAI
+    - 'DOMAIN-SUFFIX,chat.openai.com,Proxy'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,Proxy'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,Proxy'
+    - 'DOMAIN-SUFFIX,openai.com,Proxy'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,Proxy'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,Proxy'
 # Google Voice
-    - 'IP-CIDR,74.125.0.0/16,GPT'
-    - 'IP-CIDR,74.125.23.127/32,GPT'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT'
+    - 'IP-CIDR,74.125.0.0/16,Proxy'
+    - 'IP-CIDR,74.125.23.127/32,Proxy'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Proxy'
 # New Bing
     - 'DOMAIN-SUFFIX,bing.com,Proxy'
  # 自定义规则
-    - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
-    - 'DOMAIN-KEYWORD,chatgpt,GPT'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
+    - 'DOMAIN-SUFFIX,gemini.google.com,Proxy'
+    - 'DOMAIN-KEYWORD,chatProxy,Proxy'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,Proxy'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,Proxy'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
@@ -164,8 +96,10 @@ rules:
     - 'IP-CIDR,100.64.0.0/10,DIRECT'
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-SUFFIX,drcbank,DIRECT'
-    - 'DOMAIN-SUFFIX,cn,DIRECT'
+    - 'DOMAIN-KEYWORD,drcbank,DIRECT'
+    - 'DOMAIN-KEYWORD,weixin,DIRECT'
+    - 'DOMAIN-KEYWORD,qq,DIRECT'
+    - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
     - 'MATCH,Proxy'
