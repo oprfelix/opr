@@ -152,6 +152,18 @@ proxy-groups:
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rules:
+# normal
+    - 'DOMAIN-KEYWORD,weibo,Proxy'
+    - 'DOMAIN-KEYWORD,sina,Proxy'
+    - 'DOMAIN-KEYWORD,wikipedia,Proxy'
+    - 'DOMAIN-KEYWORD,x,Proxy'
+    - 'DOMAIN-KEYWORD,live,Proxy'
+    - 'DOMAIN-KEYWORD,netflix,Proxy'
+    - 'DOMAIN-KEYWORD,zoom,Proxy'
+    - 'DOMAIN-KEYWORD,amazon,Proxy'
+    - 'DOMAIN-KEYWORD,spotify,Proxy'
+    - 'DOMAIN-KEYWORD,flickr,Proxy'
+    - 'DOMAIN-KEYWORD,bbc,Proxy'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
