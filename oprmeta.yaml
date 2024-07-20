@@ -152,6 +152,8 @@ proxy-groups:
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rules:
+# linkedin
+    - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
     - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
