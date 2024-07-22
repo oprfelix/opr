@@ -166,7 +166,7 @@ proxies:
       - h2
   - # V1
     type: vless
-    name: work - 01
+    name: amz1
     server: 39.109.112.244
     uuid: 53180646-c814-47d9-dd50-d8934a17bb8e
     client-fingerprint: chrome
@@ -183,7 +183,7 @@ proxies:
       - h2
   - # V2
     type: vless
-    name: work - 02
+    name: amz2
     server: 39.109.117.113
     uuid: b88ff86b-fdb8-478f-c1cb-756a74eb1404
     client-fingerprint: chrome
@@ -203,6 +203,7 @@ proxy-groups:
     - { name: Proxy, type: select, proxies: [Auto, GPT, Balance] }
     - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: GPT, type: select, proxies: [ama1, amz2], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
