@@ -132,7 +132,7 @@ proxies:
       - h2
   - # B1
     type: vless
-    name: chatGPT
+    name: GPT
     server: 107.173.140.91
     uuid: adc37398-c85b-401d-b966-fb92ca500c84
     client-fingerprint: chrome
@@ -202,8 +202,8 @@ proxies:
 proxy-groups:
     - { name: Proxy, type: select, proxies: [Auto, Intelligence, Balance, HongKong] }
     - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: Intelligence, type: select, proxies: [Gemini, chatGPT], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, chatGPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Intelligence, type: select, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: HongKong, type: load-balance, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
