@@ -37,7 +37,7 @@ proxies:
 
   - # B1
     type: vless
-    name: openai
+    name: GPT
     server: 107.173.140.91
     uuid: adc37398-c85b-401d-b966-fb92ca500c84
     client-fingerprint: chrome
@@ -54,7 +54,7 @@ proxies:
       - h2
   - # B2
     type: vless
-    name: Google
+    name: Gemini
     server: 137.220.49.212
     uuid: 608cb8eb-a18c-4451-ad62-b7ef5a36818b
     client-fingerprint: chrome
@@ -71,8 +71,8 @@ proxies:
       - h2
 
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Balance, Google, openai] }
-    - { name: Balance, type: load-balance, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [Balance, Gemini, GPT] }
+    - { name: Balance, type: load-balance, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rules:
 # normal
@@ -122,4 +122,4 @@ rules:
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Proxy'
+    - 'MATCH,DIRECT'
