@@ -170,20 +170,17 @@ proxy-groups:
     - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-
+rule-providers:
+# GWFList
+    ProxyGWFList:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
+      path: ./ruleset/ProxyGWFList.yaml
+      interval: 1800
 rules:
-# normal
-    - 'DOMAIN-KEYWORD,weibo,DIRECT'
-    - 'DOMAIN-KEYWORD,sina,DIRECT'
-    - 'DOMAIN-KEYWORD,wikipedia,Proxy'
-    - 'DOMAIN-KEYWORD,x,Proxy'
-    - 'DOMAIN-KEYWORD,live,Proxy'
-    - 'DOMAIN-KEYWORD,netflix,Proxy'
-    - 'DOMAIN-KEYWORD,zoom,Proxy'
-    - 'DOMAIN-KEYWORD,amazon,Proxy'
-    - 'DOMAIN-KEYWORD,spotify,Proxy'
-    - 'DOMAIN-KEYWORD,flickr,Proxy'
-    - 'DOMAIN-KEYWORD,bbc,Proxy'
+# GWFList
+    - 'RULE-SET,ProxyGWFList,Proxy'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
@@ -219,4 +216,4 @@ rules:
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Proxy'
+    - 'MATCH,DIRECT'
