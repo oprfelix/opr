@@ -173,8 +173,8 @@ proxy-groups:
 
 rules:
 # normal
-    - 'DOMAIN-KEYWORD,weibo,Proxy'
-    - 'DOMAIN-KEYWORD,sina,Proxy'
+    - 'DOMAIN-KEYWORD,weibo,DIRECT'
+    - 'DOMAIN-KEYWORD,sina,DIRECT'
     - 'DOMAIN-KEYWORD,wikipedia,Proxy'
     - 'DOMAIN-KEYWORD,x,Proxy'
     - 'DOMAIN-KEYWORD,live,Proxy'
