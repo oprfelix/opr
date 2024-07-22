@@ -200,10 +200,9 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Auto, Intelligence, Balance, HongKong] }
-    - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: Intelligence, type: select, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: Proxy, type: select, proxies: [Balance, Intelligence, HongKong] }
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Intelligence, type: select, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: HongKong, type: load-balance, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
