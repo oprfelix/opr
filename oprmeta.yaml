@@ -222,7 +222,7 @@ rules:
 # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ingest.sentry.io,Intelligence'
     - 'DOMAIN-SUFFIX,client.crisp.chat,Intelligence'
-    - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
+    - 'DOMAIN-SUFFIX,gemini.google.com,Intelligence'
     - 'DOMAIN-KEYWORD,chatgpt,Intelligence'
     - 'DOMAIN-KEYWORD,openai,Intelligence'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,Intelligence'
