@@ -187,23 +187,23 @@ rules:
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
-  #  - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
-  #  - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
-  #  - 'DOMAIN-SUFFIX,cdn.openai.com,GPT'
-  #  - 'DOMAIN-SUFFIX,openai.com,GPT'
-  #  - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
-  #  - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
+    - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,GPT'
+    - 'DOMAIN-SUFFIX,openai.com,GPT'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
 # Google Voice
-  #  - 'IP-CIDR,74.125.0.0/16,GPT'
-  #  - 'IP-CIDR,74.125.23.127/32,GPT'
-  #  - 'DOMAIN-SUFFIX,lens.l.google.com,GPT'
+    - 'IP-CIDR,74.125.0.0/16,GPT'
+    - 'IP-CIDR,74.125.23.127/32,GPT'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT'
 # New Bing
     - 'DOMAIN-SUFFIX,bing.com,Proxy'
- # 自定义规则
-  #  - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
-  #  - 'DOMAIN-KEYWORD,chatgpt,GPT'
-  #  - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
-  #  - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
+# 自定义规则
+    - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
+    - 'DOMAIN-KEYWORD,chatgpt,GPT'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
