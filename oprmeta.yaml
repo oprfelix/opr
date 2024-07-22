@@ -216,6 +216,7 @@ rule-providers:
 rules:
 # GWFList
     - 'RULE-SET,ProxyGWFList,Proxy'
+    - 'DOMAIN-KEYWORD,shopify,Proxy'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
