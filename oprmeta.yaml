@@ -200,10 +200,10 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Auto, GPT, Balance] }
+    - { name: Proxy, type: select, proxies: [Auto, GPT, Balance, AMZ] }
     - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: GPT, type: select, proxies: [ama1, amz2], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: AMZ, type: select, proxies: [ama1, amz2], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
     - { name: Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
