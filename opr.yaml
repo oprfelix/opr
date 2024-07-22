@@ -74,7 +74,17 @@ proxy-groups:
     - { name: Proxy, type: select, proxies: [Balance, Gemini, GPT] }
     - { name: Balance, type: load-balance, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
+rule-providers:
+# GWFList
+    ProxyGWFList:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
+      path: ./ruleset/ProxyGWFList.yaml
+      interval: 1800
 rules:
+# GWFList
+    - 'RULE-SET,ProxyGWFList,Proxy'
 # normal
     - 'DOMAIN-KEYWORD,weibo,Proxy'
     - 'DOMAIN-KEYWORD,sina,Proxy'
