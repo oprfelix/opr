@@ -71,8 +71,7 @@ proxies:
       - h2
 
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Balance, Gemini, GPT] }
-    - { name: Balance, type: load-balance, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: load-balance, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rule-providers:
 # GWFList
