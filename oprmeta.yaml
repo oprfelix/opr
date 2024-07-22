@@ -137,7 +137,7 @@ proxies:
     uuid: adc37398-c85b-401d-b966-fb92ca500c84
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 443
+    port: 57916
     udp: true
     network: ws
     sni: bing.com
