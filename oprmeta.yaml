@@ -208,15 +208,15 @@ proxy-groups:
     
 rule-providers:
 # GWFList
-    ProxyGWFList:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
-      path: ./ruleset/ProxyGWFList.yaml
-      interval: 1800
+ #   ProxyGWFList:
+ #     type: http
+ #     behavior: classical
+ #     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
+ #     path: ./ruleset/ProxyGWFList.yaml
+ #     interval: 1800
 rules:
 # GWFList
-    - 'RULE-SET,ProxyGWFList,Proxy'
+   # - 'RULE-SET,ProxyGWFList,Proxy'
     - 'DOMAIN-KEYWORD,shopify,Proxy'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
