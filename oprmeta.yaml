@@ -201,10 +201,9 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Balance, Intelligence, HongKong] }
-    - { name: Balance, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, GPT, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: Intelligence, type: select, proxies: [GPT, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: HongKong, type: load-balance, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [Load-Balance, HongKong] }
+    - { name: Load-Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, GPT, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: HongKong, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
 # GWFList
@@ -221,18 +220,20 @@ rules:
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,Intelligence'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,Intelligence'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
     - 'DOMAIN-SUFFIX,gemini.google.com,Gemini'
     - 'DOMAIN-KEYWORD,gemini,Gemini'
     - 'DOMAIN-KEYWORD,chatgpt,GPT'
+    - 'DOMAIN-KEYWORD,gpt,GPT'
+    - 'DOMAIN-KEYWORD,ai,GPT'
     - 'DOMAIN-KEYWORD,openai,GPT'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,Intelligence'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,Intelligence'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,Gemini'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,Gemini'
 # Google Voice
-    - 'IP-CIDR,74.125.0.0/16,Intelligence'
-    - 'IP-CIDR,74.125.23.127/32,Intelligence'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,Intelligence'
+    - 'IP-CIDR,74.125.0.0/16,Gemini'
+    - 'IP-CIDR,74.125.23.127/32,Gemini'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Gemini'
 # New Bing
     - 'DOMAIN-SUFFIX,bing.com,Proxy'
 # 自定义规则
