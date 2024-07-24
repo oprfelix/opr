@@ -224,8 +224,8 @@ rules:
     - 'DOMAIN-SUFFIX,ingest.sentry.io,Intelligence'
     - 'DOMAIN-SUFFIX,client.crisp.chat,Intelligence'
     - 'DOMAIN-SUFFIX,gemini.google.com,Intelligence'
-    - 'DOMAIN-KEYWORD,chatgpt,Intelligence'
-    - 'DOMAIN-KEYWORD,openai,Intelligence'
+    - 'DOMAIN-KEYWORD,chatgpt,GPT'
+    - 'DOMAIN-KEYWORD,openai,GPT'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,Intelligence'
     - 'DOMAIN-SUFFIX,location.microsoft.com,Intelligence'
 # Google Voice
