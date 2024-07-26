@@ -201,8 +201,8 @@ proxies:
       - h2
   - # V3
     type: vless
-    name: vip3
-    server: 103.144.28.152
+    name: GPT2
+    server: 156.232.10.183
     uuid: b88ff86b-fdb8-478f-c1cb-756a74eb1404
     client-fingerprint: chrome
     flow: xtls-rprx-vision
@@ -218,9 +218,10 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Load-Balance, HongKong, GPT] }
-    - { name: Load-Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, GPT, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: HongKong, type: url-test, proxies: [vip1, vip2, vip3], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [Load-Balance, HongKong, GPT, GPT2] }
+    - { name: Load-Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, GPT, GPT2, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: GPTx, type: url-test, proxies: [GPT, GPT2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: HongKong, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
 # GWFList
@@ -237,14 +238,14 @@ rules:
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPTx'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,GPTx'
     - 'DOMAIN-SUFFIX,gemini.google.com,Gemini'
     - 'DOMAIN-KEYWORD,gemini,Gemini'
-    - 'DOMAIN-KEYWORD,chatgpt,GPT'
-    - 'DOMAIN-KEYWORD,gpt,GPT'
-    - 'DOMAIN-KEYWORD,ai,GPT'
-    - 'DOMAIN-KEYWORD,openai,GPT'
+    - 'DOMAIN-KEYWORD,chatgpt,GPTx'
+    - 'DOMAIN-KEYWORD,gpt,GPTx'
+    - 'DOMAIN-KEYWORD,ai,GPTx'
+    - 'DOMAIN-KEYWORD,openai,GPTx'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,Gemini'
     - 'DOMAIN-SUFFIX,location.microsoft.com,Gemini'
 # Google Voice
