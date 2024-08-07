@@ -58,7 +58,7 @@ proxies:
   - # A2
     type: vless
     name: pages - 02
-    server: 172.67.194.150
+    server: 104.18.52.148
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -77,7 +77,7 @@ proxies:
   - # A3
     type: vless
     name: pages - 03
-    server: 172.64.108.217
+    server: 104.16.112.223
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -96,7 +96,7 @@ proxies:
   - # A4
     type: vless
     name: pages - 04
-    server: 172.64.205.190
+    server: 104.16.118.17
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -115,7 +115,7 @@ proxies:
   - # A5
     type: vless
     name: pages - 05
-    server: 141.101.121.126
+    server: 104.21.225.216
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -225,15 +225,15 @@ proxy-groups:
     
 rule-providers:
 # GWFList
- #   ProxyGWFList:
- #     type: http
- #     behavior: classical
- #     url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
- #     path: ./ruleset/ProxyGWFList.yaml
- #     interval: 1800
+    ProxyGWFList:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
+      path: ./ruleset/ProxyGWFList.yaml
+      interval: 1800
 rules:
 # GWFList
-   # - 'RULE-SET,ProxyGWFList,Proxy'
+    - 'RULE-SET,ProxyGWFList,Proxy'
     - 'DOMAIN-KEYWORD,shopify,Proxy'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
@@ -270,4 +270,4 @@ rules:
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Proxy'
+    - 'MATCH,DIRECT'
