@@ -231,10 +231,17 @@ rule-providers:
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
       path: ./ruleset/ProxyGWFList.yaml
       interval: 1800
+# CHINA DIRECT
+    Chinadomain:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
+      path: ./ruleset/ChinaDomain.yaml
+      interval: 1800
 rules:
-# GWFList
+# Proxy rules
     - 'RULE-SET,ProxyGWFList,Proxy'
-    - 'DOMAIN-KEYWORD,shopify,Proxy'
+    - 'RULE-SET,Chinadomain,DIRECT'
 # linkedin
     - 'DOMAIN-KEYWORD,linkedin,Proxy'
 # OpenAI (ChatGPT)
@@ -264,6 +271,7 @@ rules:
     - 'IP-CIDR,100.64.0.0/10,DIRECT'
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-KEYWORD,shopify,Proxy'
     - 'DOMAIN-KEYWORD,drcbank,DIRECT'
     - 'DOMAIN-KEYWORD,weixin,DIRECT'
     - 'DOMAIN-KEYWORD,qq,DIRECT'
