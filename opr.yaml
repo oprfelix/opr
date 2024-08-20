@@ -19,11 +19,14 @@ dns:
    enhanced-mode: fake-ip
    fake-ip-range: 198.18.0.1/16
    default-nameserver:
-     - 223.5.5.5
+   #  - 223.5.5.5
      - 1.1.1.1
+     - 8.8.8.8
    use-hosts: true
    nameserver:
-     - https://dns.alidns.com/dns-query
+   #  - https://dns.alidns.com/dns-query
+     - https://1.1.1.1/dns-query
+     - https://dns.google/dns-query
    fallback:
      - https://1.1.1.1/dns-query
      - https://dns.google/dns-query
@@ -35,87 +38,431 @@ dns:
       
 proxies:
 
-  - # B1
+  - #
     type: vless
-    name: GPT
-    server: 107.173.140.91
-    uuid: adc37398-c85b-401d-b966-fb92ca500c84
+    name: GBK
+    server: 104.18.52.82
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 57916
+    port: 443
+    tls: true
     udp: true
     network: ws
-    sni: bing.com
+    sni: warp.fotoman.com
     ws-opts:
       headers:
-        host: bing.com
+        host: warp.fotoman.com
       path: /?ed=2048
     alpn:
       - h2
-  - # B2
+  - #
     type: vless
-    name: Gemini
-    server: 137.220.49.212
-    uuid: 608cb8eb-a18c-4451-ad62-b7ef5a36818b
+    name: GBK1
+    server: 104.18.51.138
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 34660
+    port: 443
+    tls: true
     udp: true
     network: ws
-    sni: bing.com
+    sni: warp.fotoman.com
     ws-opts:
       headers:
-        host: bing.com
+        host: warp.fotoman.com
       path: /?ed=2048
     alpn:
       - h2
+  - #
+    type: vless
+    name: GBK2
+    server: 104.18.48.236
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - #
+    type: vless
+    name: GBK3
+    server: 104.19.114.106
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2   
+  - #
+    type: vless
+    name: GBK4
+    server: 104.18.59.221
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK5
+    server: 104.19.240.167
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK6
+    server: 104.18.57.230
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK7
+    server: 104.18.49.183
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK8
+    server: 172.64.131.45
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK9
+    server: 104.18.53.215
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK10
+    server: 103.148.146.81
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK11
+    server: 103.148.146.23
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK12
+    server: 118.26.39.145
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK13
+    server: 152.32.239.228
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK14
+    server: 152.32.211.127
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK15
+    server: 46.8.199.240
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK16
+    server: 46.8.199.97
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK17
+    server: 46.8.199.63
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2 
+  - #
+    type: vless
+    name: GBK18
+    server: 46.8.199.49
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2      
+  - #
+    type: vless
+    name: GBK19
+    server: 172.64.195.217
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2    
+  - #
+    type: vless
+    name: GBK20
+    server: 172.67.13.94
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2  
+  - #
+    type: vless
+    name: GBK21
+    server: 172.67.247.135
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2  
 
+      
 proxy-groups:
-    - { name: Proxy, type: load-balance, proxies: [Gemini, GPT], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [GBK, GBK2, GBK3, GBK4, GBK5, GBK6, GBK7, GBK8, GBK9, GBK10, GBK11, GBK12, GBK13, GBK14, GBK15, GBK16, GBK17, GBK18, GBK19, GBK20, GBK21] }
 
-rule-providers:
-# GWFList
-    ProxyGWFList:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
-      path: ./ruleset/ProxyGWFList.yaml
-      interval: 1800
 rules:
-# GWFList
-    - 'RULE-SET,ProxyGWFList,Proxy'
-# normal
-    - 'DOMAIN-KEYWORD,weibo,Proxy'
-    - 'DOMAIN-KEYWORD,sina,Proxy'
-    - 'DOMAIN-KEYWORD,wikipedia,Proxy'
-    - 'DOMAIN-KEYWORD,x,Proxy'
-    - 'DOMAIN-KEYWORD,live,Proxy'
-    - 'DOMAIN-KEYWORD,netflix,Proxy'
-    - 'DOMAIN-KEYWORD,zoom,Proxy'
-    - 'DOMAIN-KEYWORD,amazon,Proxy'
-    - 'DOMAIN-KEYWORD,spotify,Proxy'
-    - 'DOMAIN-KEYWORD,flickr,Proxy'
-    - 'DOMAIN-KEYWORD,bbc,Proxy'
-# linkedin
-    - 'DOMAIN-KEYWORD,linkedin,Proxy'
-# OpenAI
-    - 'DOMAIN-SUFFIX,chat.openai.com,Proxy'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,Proxy'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,Proxy'
-    - 'DOMAIN-SUFFIX,openai.com,Proxy'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,Proxy'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,Proxy'
-# Google Voice
-    - 'IP-CIDR,74.125.0.0/16,Proxy'
-    - 'IP-CIDR,74.125.23.127/32,Proxy'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,Proxy'
-# New Bing
-    - 'DOMAIN-SUFFIX,bing.com,Proxy'
- # 自定义规则
-    - 'DOMAIN-SUFFIX,gemini.google.com,Proxy'
-    - 'DOMAIN-KEYWORD,chatProxy,Proxy'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,Proxy'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,Proxy'
+# 自定义规则
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
@@ -125,10 +472,7 @@ rules:
     - 'IP-CIDR,100.64.0.0/10,DIRECT'
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-KEYWORD,drcbank,DIRECT'
-    - 'DOMAIN-KEYWORD,weixin,DIRECT'
-    - 'DOMAIN-KEYWORD,qq,DIRECT'
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,DIRECT'
+    - 'MATCH,Proxy'
