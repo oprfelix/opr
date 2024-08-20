@@ -218,7 +218,7 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-   - # V4
+  - # V4
     type: vless
     name: GPT3
     server: 23.247.130.30
