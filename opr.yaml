@@ -459,7 +459,7 @@ proxies:
 
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [GBK, GBK2, GBK3, GBK4, GBK5, GBK6, GBK7, GBK8, GBK9, GBK10, GBK11, GBK12, GBK13, GBK14, GBK15, GBK16, GBK17, GBK18, GBK19, GBK20, GBK21] }
+    - { name: Proxy, type: select, proxies: [GBK, GBK2, GBK3, GBK4, GBK5, GBK6, GBK7, GBK8, GBK9, GBK10, GBK11, GBK12, GBK13, GBK14, GBK15, GBK16, GBK17, GBK18, GBK19, GBK20, GBK21], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 
 rules:
 # 自定义规则
