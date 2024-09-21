@@ -20,13 +20,9 @@ dns:
    fake-ip-range: 198.18.0.1/16
    default-nameserver:
      - 223.5.5.5
-   #  - 1.1.1.1
-   #  - 8.8.8.8
    use-hosts: true
    nameserver:
      - https://dns.alidns.com/dns-query
-   #  - https://1.1.1.1/dns-query
-   #  - https://dns.google/dns-query
    fallback:
      - https://1.1.1.1/dns-query
    #  - https://dns.google/dns-query
