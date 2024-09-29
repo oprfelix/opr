@@ -287,6 +287,7 @@ rules:
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
     - 'DOMAIN-KEYWORD,shopify,Proxy'
+    - 'DOMAIN-KEYWORD,cilixiong,Proxy'
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
