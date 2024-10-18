@@ -129,7 +129,7 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-    - # A6
+  - # A6
     type: vless
     name: pages - 06
     server: 104.19.67.208
