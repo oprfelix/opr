@@ -150,7 +150,7 @@ proxies:
       - h2
   - # B1
     type: vless
-    name: GPT
+    name: GPT专线
     server: 107.173.140.91
     uuid: adc37398-c85b-401d-b966-fb92ca500c84
     client-fingerprint: chrome
@@ -252,7 +252,7 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [美国专线, 香港专线, GPT] }
+    - { name: Proxy, type: select, proxies: [美国专线, 香港专线, GPT专线] }
     - { name: 美国专线, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 #    - { name: GPTx, type: url-test, proxies: [GPT, GPT2, GPT3, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: 香港专线, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
