@@ -37,7 +37,7 @@ proxies:
   - # A1
     type: vless
     name: pages - 01
-    server: 104.18.60.136
+    server: 104.18.51.90
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -56,7 +56,7 @@ proxies:
   - # A2
     type: vless
     name: pages - 02
-    server: 104.18.48.115
+    server: 104.18.53.134
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -75,7 +75,7 @@ proxies:
   - # A3
     type: vless
     name: pages - 03
-    server: 104.18.58.251
+    server: 104.18.49.241
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -94,7 +94,7 @@ proxies:
   - # A4
     type: vless
     name: pages - 04
-    server: 104.18.63.243
+    server: 104.18.62.74
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -113,7 +113,26 @@ proxies:
   - # A5
     type: vless
     name: pages - 05
-    server: 172.64.170.8
+    server: 104.18.63.216
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+    - # A6
+    type: vless
+    name: pages - 06
+    server: 104.19.67.208
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -233,10 +252,10 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Load-Balance, HongKong, GPTx, GPT, GPT2, GPT3] }
-    - { name: Load-Balance, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: Proxy, type: select, proxies: [美国专线, 香港专线, GPT] }
+    - { name: 美国专线, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: GPTx, type: url-test, proxies: [GPT, GPT2, GPT3, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: HongKong, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: 香港专线, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
 # GWFList
