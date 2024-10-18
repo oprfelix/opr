@@ -267,12 +267,69 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-      
+  - # 中国移动
+    type: vless
+    name: 中国移动
+    server: 172.64.198.99
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2   
+  - # 中国联通
+    type: vless
+    name: 中国联通
+    server: 104.26.11.229
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # 中国电信
+    type: vless
+    name: 中国电信
+    server: 172.67.144.172
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, GPT备用专线] }
+    - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, GPT备用专线, 运营商优化] }
     - { name: 美国专线 -200 Mbps, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 #    - { name: GPTx, type: url-test, proxies: [GPT, GPT2, GPT3, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: 香港专线 -2Mbps, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: 运营商优化, type: url-test, proxies: [中国移动, 中国联通, 中国电信], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
 # GWFList
