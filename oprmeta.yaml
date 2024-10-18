@@ -252,7 +252,7 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [美国专线, 香港专线, GPT专线] }
+    - { name: 代理模式, type: select, proxies: [美国专线, 香港专线, GPT专线] }
     - { name: 美国专线, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
 #    - { name: GPTx, type: url-test, proxies: [GPT, GPT2, GPT3, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: 香港专线, type: url-test, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
@@ -274,27 +274,27 @@ rule-providers:
       interval: 1800
 rules:
 # Proxy rules
-    - 'RULE-SET,ProxyGWFList,Proxy'
+    - 'RULE-SET,ProxyGWFList,代理模式'
     - 'RULE-SET,Chinadomain,DIRECT'
 # linkedin
-    - 'DOMAIN-KEYWORD,linkedin,Proxy'
+    - 'DOMAIN-KEYWORD,linkedin,代理模式'
 # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPTx'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPTx'
-    - 'DOMAIN-SUFFIX,gemini.google.com,Gemini'
-    - 'DOMAIN-KEYWORD,gemini,Gemini'
-    - 'DOMAIN-KEYWORD,chatgpt,GPTx'
-    - 'DOMAIN-KEYWORD,gpt,GPTx'
-    - 'DOMAIN-KEYWORD,ai,GPTx'
-    - 'DOMAIN-KEYWORD,openai,GPTx'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,Gemini'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,Gemini'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT专线'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT专线'
+    - 'DOMAIN-SUFFIX,gemini.google.com,GPT专线'
+    - 'DOMAIN-KEYWORD,gemini,GPT专线'
+    - 'DOMAIN-KEYWORD,chatgpt,GPT专线'
+    - 'DOMAIN-KEYWORD,gpt,GPT专线'
+    - 'DOMAIN-KEYWORD,ai,GPT专线'
+    - 'DOMAIN-KEYWORD,openai,GPT专线'
+    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT专线'
+    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT专线'
 # Google Voice
-    - 'IP-CIDR,74.125.0.0/16,Gemini'
-    - 'IP-CIDR,74.125.23.127/32,Gemini'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,Gemini'
+    - 'IP-CIDR,74.125.0.0/16,GPT专线'
+    - 'IP-CIDR,74.125.23.127/32,GPT专线'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT专线'
 # New Bing
-    - 'DOMAIN-SUFFIX,bing.com,Proxy'
+    - 'DOMAIN-SUFFIX,bing.com,代理模式'
 # 自定义规则
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
@@ -305,8 +305,8 @@ rules:
     - 'IP-CIDR,100.64.0.0/10,DIRECT'
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-KEYWORD,shopify,Proxy'
-    - 'DOMAIN-KEYWORD,cilixiong,Proxy'
+    - 'DOMAIN-KEYWORD,shopify,代理模式'
+    - 'DOMAIN-KEYWORD,cilixiong,代理模式'
     - 'DOMAIN-KEYWORD,ist,DIRECT'
     - 'DOMAIN-KEYWORD,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
