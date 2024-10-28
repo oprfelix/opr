@@ -270,7 +270,7 @@ proxies:
   - # 中国移动
     type: vless
     name: 中国移动
-    server: 172.64.198.99
+    server: 172.67.96.13
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -289,7 +289,7 @@ proxies:
   - # 中国联通
     type: vless
     name: 中国联通
-    server: 104.26.11.229
+    server: 162.159.137.210
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -308,7 +308,7 @@ proxies:
   - # 中国电信
     type: vless
     name: 中国电信
-    server: 172.67.144.172
+    server: 172.67.167.50
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
