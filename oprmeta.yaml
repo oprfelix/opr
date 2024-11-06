@@ -37,7 +37,7 @@ proxies:
   - # A1
     type: vless
     name: pages - 01
-    server: 104.18.51.162
+    server: 104.18.119.31
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -56,7 +56,7 @@ proxies:
   - # A2
     type: vless
     name: pages - 02
-    server: 104.18.56.67
+    server: 162.159.245.106
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -75,7 +75,7 @@ proxies:
   - # A3
     type: vless
     name: pages - 03
-    server: 104.18.57.66
+    server: 162.159.241.6
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -94,7 +94,7 @@ proxies:
   - # A4
     type: vless
     name: pages - 04
-    server: 104.18.61.175
+    server: 104.18.56.130
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -113,7 +113,7 @@ proxies:
   - # A5
     type: vless
     name: pages - 05
-    server: 104.18.63.156
+    server: 104.18.51.118
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -132,7 +132,7 @@ proxies:
   - # A6
     type: vless
     name: pages - 06
-    server: 104.19.113.225
+    server: 104.19.64.218
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
