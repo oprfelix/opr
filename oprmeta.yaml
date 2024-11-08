@@ -37,7 +37,7 @@ proxies:
   - # A1
     type: vless
     name: pages - 01
-    server: 104.18.119.31
+    server: 172.64.206.23
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -56,7 +56,7 @@ proxies:
   - # A2
     type: vless
     name: pages - 02
-    server: 162.159.245.106
+    server: 104.19.78.196
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -75,7 +75,7 @@ proxies:
   - # A3
     type: vless
     name: pages - 03
-    server: 172.67.73.139
+    server: 104.19.68.104
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -94,7 +94,7 @@ proxies:
   - # A4
     type: vless
     name: pages - 04
-    server: 104.18.56.130
+    server: 104.19.37.199
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -113,7 +113,7 @@ proxies:
   - # A5
     type: vless
     name: pages - 05
-    server: 104.18.51.118
+    server: 104.19.58.95
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -132,7 +132,7 @@ proxies:
   - # A6
     type: vless
     name: pages - 06
-    server: 104.18.26.89
+    server: 104.16.105.12
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -270,7 +270,7 @@ proxies:
   - # 中国移动
     type: vless
     name: 中国移动
-    server: 172.67.77.104
+    server: 172.67.68.90
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -289,7 +289,7 @@ proxies:
   - # 中国联通
     type: vless
     name: 中国联通
-    server: 172.67.198.59
+    server: 172.67.50.199
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -308,7 +308,7 @@ proxies:
   - # 中国电信
     type: vless
     name: 中国电信
-    server: 172.64.200.45
+    server: 172.67.155.121
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
