@@ -347,11 +347,6 @@ rule-providers:
       path: ./ruleset/ChinaDomain.yaml
       interval: 1800
 rules:
-# Proxy rules
-    - 'RULE-SET,ProxyGWFList,代理模式'
-    - 'RULE-SET,Chinadomain,DIRECT'
-# linkedin
-    - 'DOMAIN-KEYWORD,linkedin,代理模式'
 # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT专线'
     - 'DOMAIN-SUFFIX,client.crisp.chat,GPT专线'
@@ -363,6 +358,11 @@ rules:
     - 'DOMAIN-KEYWORD,openai,GPT专线'
     - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT专线'
     - 'DOMAIN-SUFFIX,location.microsoft.com,GPT专线'
+# Proxy rules
+    - 'RULE-SET,ProxyGWFList,代理模式'
+    - 'RULE-SET,Chinadomain,DIRECT'
+# linkedin
+    - 'DOMAIN-KEYWORD,linkedin,代理模式'
 # Google Voice
     - 'IP-CIDR,74.125.0.0/16,GPT专线'
     - 'IP-CIDR,74.125.23.127/32,GPT专线'
