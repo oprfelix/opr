@@ -112,44 +112,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # A5
-    type: vless
-    name: pages - 05
-    server: 104.19.103.219
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A6
-    type: vless
-    name: pages - 06
-    server: 104.19.6.179
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # B1
     type: vless
     name: GPT线路1
@@ -184,26 +146,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # B2
-    type: vless
-    name: Gemini
-    server: 137.220.49.212
-    uuid: 608cb8eb-a18c-4451-ad62-b7ef5a36818b
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 34660
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # V1
     type: vless
-    name: vip1
+    name: 香港专线1
     server: 39.109.112.244
     uuid: 53180646-c814-47d9-dd50-d8934a17bb8e
     client-fingerprint: chrome
@@ -220,7 +165,7 @@ proxies:
       - h2
   - # V2
     type: vless
-    name: vip2
+    name: 香港专线2
     server: 39.109.117.113
     uuid: b88ff86b-fdb8-478f-c1cb-756a74eb1404
     client-fingerprint: chrome
@@ -294,9 +239,9 @@ proxies:
       - h2
 proxy-groups:
     - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, 运营商] }
-    - { name: 美国专线 -200 Mbps, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: 美国专线 -200 Mbps, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: GPT专线, type: url-test, proxies: [GPT线路1, GPT线路2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: 香港专线 -2Mbps, type: select, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: 香港专线 -2Mbps, type: select, proxies: [香港专线1, 香港专线2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: 运营商, type: select, proxies: [中国移动, 中国联通, 中国电信], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
