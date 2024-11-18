@@ -238,7 +238,7 @@ proxies:
   - # 测试线路1
     type: vless
     name: 测试线路1
-    server: time.is
+    server: www.visa.com
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -257,7 +257,7 @@ proxies:
   - # 测试线路2
     type: vless
     name: 测试线路2
-    server: fbi.gov
+    server: www.visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
