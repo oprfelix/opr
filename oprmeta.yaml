@@ -152,7 +152,7 @@ proxies:
       - h2
   - # B1
     type: vless
-    name: GPT专线
+    name: GPT线路1
     server: 107.173.140.91
     uuid: adc37398-c85b-401d-b966-fb92ca500c84
     client-fingerprint: chrome
@@ -169,7 +169,7 @@ proxies:
       - h2
   - # B1x
     type: vless
-    name: GPT备用专线
+    name: GPT线路2
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
@@ -235,44 +235,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # 测试线路1
-    type: vless
-    name: 测试线路1
-    server: www.visa.com
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 测试线路2
-    type: vless
-    name: 测试线路2
-    server: www.visa.com.hk
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # 中国移动
     type: vless
     name: 中国移动
@@ -331,11 +293,11 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, GPT备用专线, 运营商优化, 测试线路1, 测试线路2] }
+    - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, 运营商] }
     - { name: 美国专线 -200 Mbps, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05, pages - 06], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-#    - { name: GPTx, type: url-test, proxies: [GPT, GPT2, GPT3, Gemini], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: GPT专线, type: url-test, proxies: [GPT线路1, GPT线路2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     - { name: 香港专线 -2Mbps, type: select, proxies: [vip1, vip2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: 运营商优化, type: select, proxies: [中国移动, 中国联通, 中国电信], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
+    - { name: 运营商, type: select, proxies: [中国移动, 中国联通, 中国电信], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
     
 rule-providers:
 # GWFList
