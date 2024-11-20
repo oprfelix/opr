@@ -19,15 +19,15 @@ dns:
    enhanced-mode: fake-ip
    fake-ip-range: 198.18.0.1/16
    default-nameserver:
-     - 1.1.1.1
-   #  - 223.5.5.5
+   #  - 1.1.1.1
+     - 223.5.5.5
    use-hosts: true
    nameserver:
-     - https://1.1.1.1/dns-quer
-   #  - https://dns.alidns.com/dns-query
+   #  - https://1.1.1.1/dns-quer
+     - https://dns.alidns.com/dns-query
    fallback:
-     - https://1.1.1.1/dns-query
-   #  - https://dns.google/dns-query
+   #  - https://1.1.1.1/dns-query
+     - https://dns.google/dns-query
    fallback-filter:
      geoip: true
      geoip-code: CN
