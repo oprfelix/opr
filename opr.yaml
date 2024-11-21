@@ -217,15 +217,39 @@ proxy-groups:
     - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, GPT专用线路, GPT备用线路, 香港应急线路 - 1, 香港应急线路 - 2] }
     
 rule-providers:
-    Chinadomain:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
-      path: ./ruleset/ChinaDomain.yaml
-      interval: 1800
-      
+    direct:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
+
+    cncidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
+    interval: 86400
+    
+    apple:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt"
+    path: ./ruleset/apple.yaml
+    interval: 86400
+    
+    reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
 rules:
-    - 'RULE-SET,Chinadomain,DIRECT'
+    - 'RULE-SET,direct,DIRECT'
+    - 'RULE-SET,cncidr,DIRECT'
+    - 'RULE-SET,apple,DIRECT'
+    - 'RULE-SET,reject,REJECT'
+    
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
