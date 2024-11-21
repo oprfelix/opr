@@ -109,40 +109,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # B1
-    type: vless
-    name: GPT线路1
-    server: 107.173.140.91
-    uuid: adc37398-c85b-401d-b966-fb92ca500c84
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 57916
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # B1x
-    type: vless
-    name: GPT线路2
-    server: 154.12.41.247
-    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 25218
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # 中国移动
     type: vless
     name: 中国移动
