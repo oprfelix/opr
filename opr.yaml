@@ -201,7 +201,7 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: 代理模式, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, GPT线路1, GPT线路2, 中国移动, 中国联通, 中国电信] }
+    - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, GPT线路1, GPT线路2, 中国移动, 中国联通, 中国电信] }
     
 rule-providers:
 
