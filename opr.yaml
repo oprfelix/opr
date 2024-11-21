@@ -147,7 +147,7 @@ proxies:
       - h2
       
 proxy-groups:
-    - { name: ClashX, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信] }
+    - { name: 手动切换延迟最小的线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信] }
     
 rule-providers:
     Chinadomain:
