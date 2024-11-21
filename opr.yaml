@@ -145,9 +145,26 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # Chatgpt专用线路
+    type: vless
+    name: GPT专用线路
+    server: 154.12.41.247
+    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 25218
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
       
 proxy-groups:
-    - { name: 手动切换延迟最小的线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信] }
+    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, GPT专用线路] }
     
 rule-providers:
     Chinadomain:
