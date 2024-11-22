@@ -192,10 +192,7 @@ rule-providers:
 rules:
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,wechat,DIRECT'
-    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT专用'
-    - 'DOMAIN-KEYWORD,gpt,ChatGPT专用'
-    - 'DOMAIN-KEYWORD,ai,ChatGPT专用'
-    - 'DOMAIN-KEYWORD,openai,ChatGPT专用'
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT专用'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
