@@ -20,7 +20,6 @@ dns:
       - 240.0.0.0/4
       
 proxies:
-
   - # A1
     type: vless
     name: pages - 01
@@ -156,7 +155,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ChatGPT - 人工智能大模型
+    name: ChatGPT
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
@@ -173,7 +172,6 @@ proxies:
       - h2
       
 rules:
-
     # 腾讯业务
     - 'DOMAIN-SUFFIX,qq.com,DIRECT'
     - 'DOMAIN-SUFFIX,wechat.com,DIRECT'
@@ -184,9 +182,15 @@ rules:
     - 'DOMAIN-KEYWORD,tencent,DIRECT'
     - 'DOMAIN-KEYWORD,qtimg,DIRECT'
     - 'DOMAIN-KEYWORD,tenpay,DIRECT'
-    
+    # openAI语言大模型
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
+    - 'DOMAIN,openaiapi-site.azureedge.net,ChatGPT'
+    - 'DOMAIN,chat.openai.com.cdn.cloudflare.net,ChatGPT'
+    - 'DOMAIN-SUFFIX,openai.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,oaistatic.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
     # 其它
-    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT - 人工智能大模型'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
