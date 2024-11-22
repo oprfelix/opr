@@ -223,8 +223,22 @@ rule-providers:
       url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
       path: ./ruleset/ChinaDomain.yaml
       interval: 1800
+    wechat:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml"
+      path: ./ruleset/wechat.yaml
+      interval: 3600
+    openai:
+      type: http
+      behavior: classical
+      url: "https://raw.githubusercontent.com/zzcabc/Rules/master/Rules_Provider/Complete/Other/OpenAI.yaml"
+      path: ./ruleset/openai.yaml
+      interval: 3600
 rules:
     - 'RULE-SET,direct,DIRECT'
+    - 'RULE-SET,wechat,DIRECT'
+    - 'RULE-SET,openai,GPT专用线路'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
