@@ -190,7 +190,7 @@ rule-providers:
 rules:
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,wechat,DIRECT'
-    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT - 人工智能大模型'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
