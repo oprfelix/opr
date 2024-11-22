@@ -100,7 +100,7 @@ proxies:
   - # 中国移动
     type: vless
     name: 中国移动
-    server: 172.64.194.58
+    server: 172.64.160.213
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -119,7 +119,7 @@ proxies:
   - # 中国联通
     type: vless
     name: 中国联通
-    server: 172.64.141.107
+    server: 172.67.40.134
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -156,7 +156,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ChatGPT
+    name: ChatGPT专用 - 人工智能大模型
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
