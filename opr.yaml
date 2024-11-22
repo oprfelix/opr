@@ -171,8 +171,8 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-proxy-groups:
-    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, ChatGPT] }
+# proxy-groups:
+#    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, ChatGPT] }
     
 rule-providers:
     direct:
