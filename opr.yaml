@@ -187,8 +187,27 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # visa.com.hk
+    type: vless
+    name: 香港CN2线路
+    server: visa.com.hk
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
-    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信] }
+    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, 香港CN2线路] }
  #   - { name: PROXY, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
  #   - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
 
