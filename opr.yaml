@@ -171,7 +171,8 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: PROXY, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04] }
+    - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04] }
+ #   - { name: PROXY, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04] }
     
 rules:
     # 腾讯业务
