@@ -190,42 +190,8 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # 香港应急线路
-    type: vless
-    name: 香港应急线路 - 1
-    server: 39.109.112.244
-    uuid: 53180646-c814-47d9-dd50-d8934a17bb8e
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 34000
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 香港应急线路
-    type: vless
-    name: 香港应急线路 - 2
-    server: 39.109.117.113
-    uuid: b88ff86b-fdb8-478f-c1cb-756a74eb1404
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 58389
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
 proxy-groups:
-    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, GPT专用线路, GPT备用线路, 香港应急线路 - 1, 香港应急线路 - 2] }
+    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, GPT专用线路, GPT备用线路] }
     
 rule-providers:
     direct:
