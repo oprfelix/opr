@@ -1,7 +1,7 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: global              #规则模式 rule 全局模式 global
+mode: rule              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
