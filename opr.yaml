@@ -7,8 +7,19 @@ external-controller: '127.0.0.1:9090'
 
 dns:
    enable: true
+   default-nameserver:
+     - 1.1.1.1
    nameserver:
      - https://1.1.1.1/dns-quer
+   fallback:
+     - https://1.1.1.1/dns-query
+   enhanced-mode: fake-ip
+   fake-ip-range: 198.18.0.1/16
+   fallback-filter:
+     geoip: true
+     geoip-code: CN
+     ipcidr:
+      - 240.0.0.0/4
       
 proxies:
 
