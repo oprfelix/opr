@@ -176,12 +176,14 @@ rules:
 
     # 腾讯业务
     - 'DOMAIN-SUFFIX,qq.com,DIRECT'
+    - 'DOMAIN-SUFFIX,wechat.com,DIRECT'
     - 'DOMAIN-KEYWORD,qq,DIRECT'
     - 'DOMAIN-KEYWORD,wx,DIRECT'
     - 'DOMAIN-KEYWORD,wechat,DIRECT'
     - 'DOMAIN-KEYWORD,weixin,DIRECT'
     - 'DOMAIN-KEYWORD,tencent,DIRECT'
     - 'DOMAIN-KEYWORD,qtimg,DIRECT'
+    - 'DOMAIN-KEYWORD,tenpay,DIRECT'
     
     # 其它
     - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT - 人工智能大模型'
