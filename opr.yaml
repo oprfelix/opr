@@ -158,7 +158,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: GPT专用线路
+    name: ChatGPT专用
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
@@ -173,25 +173,8 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # Chatgpt专用线路
-    type: vless
-    name: GPT备用线路
-    server: 107.173.140.91
-    uuid: adc37398-c85b-401d-b966-fb92ca500c84
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 57916
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
 proxy-groups:
-    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, GPT专用线路, GPT备用线路] }
+    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, ChatGPT专用] }
     
 rule-providers:
     direct:
@@ -206,24 +189,13 @@ rule-providers:
       url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat_No_Resolve.yaml"
       path: ./ruleset/wechat.yaml
       interval: 3600
-    openai:
-      type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/zzcabc/Rules/master/Rules_Provider/Complete/Other/OpenAI.yaml"
-      path: ./ruleset/openai.yaml
-      interval: 3600
 rules:
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,wechat,DIRECT'
-    - 'RULE-SET,openai,GPT专用线路'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT专用线路'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT专用线路'
-    - 'DOMAIN-SUFFIX,gemini.google.com,GPT专用线路'
-    - 'DOMAIN-KEYWORD,gemini,GPT专用线路'
-    - 'DOMAIN-KEYWORD,chatgpt,GPT专用线路'
-    - 'DOMAIN-KEYWORD,gpt,GPT专用线路'
-    - 'DOMAIN-KEYWORD,ai,GPT专用线路'
-    - 'DOMAIN-KEYWORD,openai,GPT专用线路'
+    - 'DOMAIN-KEYWORD,chatgpt,ChatGPT专用'
+    - 'DOMAIN-KEYWORD,gpt,ChatGPT专用'
+    - 'DOMAIN-KEYWORD,ai,ChatGPT专用'
+    - 'DOMAIN-KEYWORD,openai,ChatGPT专用'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
