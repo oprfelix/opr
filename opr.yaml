@@ -13,8 +13,6 @@ dns:
      - https://1.1.1.1/dns-quer
    fallback:
      - https://1.1.1.1/dns-query
-   enhanced-mode: fake-ip
-   fake-ip-range: 198.18.0.1/16
    fallback-filter:
      geoip: true
      geoip-code: CN
@@ -158,7 +156,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ChatGPT专用
+    name: ChatGPT
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
@@ -174,7 +172,7 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, ChatGPT专用] }
+    - { name: 展开 - 选取低延迟线路, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, ChatGPT] }
     
 rule-providers:
     direct:
@@ -192,7 +190,7 @@ rule-providers:
 rules:
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,wechat,DIRECT'
-    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT专用'
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
