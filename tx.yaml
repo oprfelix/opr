@@ -13,11 +13,6 @@ dns:
      - https://1.1.1.1/dns-quer
    fallback:
      - https://1.1.1.1/dns-query
-   fallback-filter:
-     geoip: true
-     geoip-code: CN
-     ipcidr:
-      - 240.0.0.0/4
       
 proxies:
   - # A1
