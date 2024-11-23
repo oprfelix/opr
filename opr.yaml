@@ -192,13 +192,6 @@ proxies:
 proxy-groups:
     - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, ChatGPT, 中国移动, 中国联通, 中国电信, 香港CN2线路] }
 rule-providers:
-    # 广告屏蔽
-    reject:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-      path: ./ruleset/reject.yaml
-      interval: 86400
     # 国内域名
     direct:
       type: http
@@ -221,7 +214,6 @@ rule-providers:
       path: ./ruleset/cncidr.yaml
       interval: 86400
 rules:
-    - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
