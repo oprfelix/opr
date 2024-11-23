@@ -39,7 +39,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
   - # A2
     type: vless
     name: 🇺🇸 pages - 02
@@ -190,6 +189,63 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -01
+    server: 2606:4700:13e:54e:75c6:ea58:7adc:9c3b
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -02
+    server: 2606:4700:13e:54e:75c6:ea58:7adc:9c3b
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -03
+    server: 2606:4700:8396:9b9a:d385:a8bf:1371:f2c5
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
   - name: PROXY
     type: select
@@ -203,6 +259,9 @@ proxy-groups:
       - 📶 中国移动
       - 📶 中国联通
       - 📶 中国电信
+      - 🌎 IPv6备用 -01
+      - 🌎 IPv6备用 -02
+      - 🌎 IPv6备用 -03
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
 rule-providers:
     # 广告屏蔽
