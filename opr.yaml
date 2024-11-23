@@ -190,7 +190,7 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, ChatGPT, 中国移动, 中国联通, 中国电信, 香港CN2线路] }
+    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, ChatGPT, 中国移动, 中国联通, 中国电信, 香港CN2线路], icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg }
 rule-providers:
     # 广告屏蔽
     reject:
