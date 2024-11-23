@@ -1,0 +1,77 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule              #规则模式 rule 全局模式 global
+log-level: info
+external-controller: '127.0.0.1:9090'
+
+dns:
+   enable: true
+   default-nameserver:
+     - 1.1.1.1
+   nameserver:
+     - https://1.1.1.1/dns-quer
+   fallback:
+     - https://1.1.1.1/dns-query
+   fallback-filter:
+     geoip: true
+     geoip-code: CN
+     ipcidr:
+      - 240.0.0.0/4
+      
+proxies:
+  - # A1
+    type: vless
+    name: pages - 01
+    server: 104.19.197.79
+    servername: warp.bing.com
+    uuid: aA123
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.bing.com
+    ws-opts:
+      headers:
+        host: warp.bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # A2
+    type: vless
+    name: pages - 02
+    server: 104.18.81.12
+    servername: warp.bing.com
+    uuid: aA123
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.bing.com
+    ws-opts:
+      headers:
+        host: warp.bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+proxy-groups:
+    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02] }
+
+rules:
+    - 'DOMAIN-KEYWORD,github,Github'
+    - 'DOMAIN-SUFFIX,local,DIRECT'
+    - 'IP-CIDR,127.0.0.0/8,DIRECT'
+    - 'IP-CIDR,172.16.0.0/12,DIRECT'
+    - 'IP-CIDR,192.168.0.0/16,DIRECT'
+    - 'IP-CIDR,10.0.0.0/8,DIRECT'
+    - 'IP-CIDR,17.0.0.0/8,DIRECT'
+    - 'IP-CIDR,100.64.0.0/10,DIRECT'
+    - 'IP-CIDR,224.0.0.0/4,DIRECT'
+    - 'IP-CIDR6,fe80::/10,DIRECT'
+    - 'DOMAIN-KEYWORD,-cn,DIRECT'
+    - 'GEOIP,CN,DIRECT'
+    - 'MATCH,DIRECT'
