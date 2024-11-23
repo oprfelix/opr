@@ -1,7 +1,7 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: rule              #规则模式 rule 全局模式 global
+mode: global              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
@@ -206,53 +206,3 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-proxy-groups:
-    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, 香港CN2线路] }
- #   - { name: PROXY, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
- #   - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
-
-rules:
-    # Github业务相关
-    - 'DOMAIN-SUFFIX,github.com,Github'
-    - 'DOMAIN-SUFFIX,githubusercontent.com,Github'
-    - 'DOMAIN-KEYWORD,github,Github'
-    # 腾讯业务
-    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
-    - 'DOMAIN-SUFFIX,wechat.com,DIRECT'
-    - 'DOMAIN-KEYWORD,qq,DIRECT'
-    - 'DOMAIN-KEYWORD,wx,DIRECT'
-    - 'DOMAIN-KEYWORD,wechat,DIRECT'
-    - 'DOMAIN-KEYWORD,weixin,DIRECT'
-    - 'DOMAIN-KEYWORD,tencent,DIRECT'
-    - 'DOMAIN-KEYWORD,qtimg,DIRECT'
-    - 'DOMAIN-KEYWORD,tenpay,DIRECT'
-    # openAI语言大模型
-    - 'DOMAIN-KEYWORD,openai,ChatGPT'
-    - 'DOMAIN-SUFFIX,auth0.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,ChatGPT'
-    - 'DOMAIN-SUFFIX,featuregates.org,ChatGPT'
-    - 'DOMAIN-SUFFIX,identrust.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,intercom.io,ChatGPT'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,oaistatic.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,openai.com,ChatGPT'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,ChatGPT'
-    - 'DOMAIN-SUFFIX,sentry.io,ChatGPT'
-    - 'DOMAIN-SUFFIX,stripe.com,ChatGPT'
-    # 其它
-    - 'DOMAIN-SUFFIX,local,DIRECT'
-    - 'IP-CIDR,127.0.0.0/8,DIRECT'
-    - 'IP-CIDR,172.16.0.0/12,DIRECT'
-    - 'IP-CIDR,192.168.0.0/16,DIRECT'
-    - 'IP-CIDR,10.0.0.0/8,DIRECT'
-    - 'IP-CIDR,17.0.0.0/8,DIRECT'
-    - 'IP-CIDR,100.64.0.0/10,DIRECT'
-    - 'IP-CIDR,224.0.0.0/4,DIRECT'
-    - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-KEYWORD,-cn,DIRECT'
-    - 'GEOIP,CN,DIRECT'
-    - 'MATCH,PROXY'
