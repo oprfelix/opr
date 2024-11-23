@@ -202,7 +202,7 @@ proxy-groups:
       - 中国联通
       - 中国电信
       - 香港CN2线路
-    icon: https://www.clashverge.dev/assets/icons/link.svg
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
 rule-providers:
     # 广告屏蔽
     reject:
