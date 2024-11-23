@@ -170,23 +170,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # Github更新配置文件
-    type: vless
-    name: Github
-    server: 154.83.13.98
-    uuid: f9e3b4f5-ebcd-45e7-d85f-5421613995c1
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 21269
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # visa.com.hk
     type: vless
     name: 香港CN2线路
