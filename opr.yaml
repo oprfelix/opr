@@ -22,7 +22,7 @@ dns:
 proxies:
   - # A1
     type: vless
-    name: pages - 01
+    name: 🇺🇸 pages - 01
     server: 104.19.197.79
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -42,7 +42,7 @@ proxies:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
   - # A2
     type: vless
-    name: pages - 02
+    name: 🇺🇸 pages - 02
     server: 104.18.81.12
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -61,7 +61,7 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: pages - 03
+    name: 🇺🇸 pages - 03
     server: 104.19.56.73
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -80,7 +80,7 @@ proxies:
       - h2
   - # A4
     type: vless
-    name: pages - 04
+    name: 🇺🇸 pages - 04
     server: 104.19.125.73
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -99,7 +99,7 @@ proxies:
       - h2
   - # 中国移动
     type: vless
-    name: 中国移动
+    name: 📶 中国移动
     server: 172.64.160.213
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -118,7 +118,7 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 中国联通
+    name: 📶 中国联通
     server: 172.67.40.134
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -137,7 +137,7 @@ proxies:
       - h2
   - # 中国电信
     type: vless
-    name: 中国电信
+    name: 📶 中国电信
     server: 172.64.89.196
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -156,7 +156,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ChatGPT
+    name: ⚛️ ChatGPT
     server: 154.12.41.247
     uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
     client-fingerprint: chrome
@@ -173,7 +173,7 @@ proxies:
       - h2
   - # visa.com.hk
     type: vless
-    name: 香港CN2线路
+    name: 🇭🇰 香港CN2线路
     server: visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -194,15 +194,15 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - pages - 01
-      - pages - 02
-      - pages - 03
-      - pages - 04
-      - ChatGPT
-      - 中国移动
-      - 中国联通
-      - 中国电信
-      - 香港CN2线路
+      - 🇺🇸 pages - 01
+      - 🇺🇸 pages - 02
+      - 🇺🇸 pages - 03
+      - 🇺🇸 pages - 04
+      - 🇭🇰 香港CN2线路
+      - ⚛️ ChatGPT
+      - 📶 中国移动
+      - 📶 中国联通
+      - 📶 中国电信
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
 rule-providers:
     # 广告屏蔽
