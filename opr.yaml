@@ -199,22 +199,6 @@ rule-providers:
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
       path: ./ruleset/direct.yaml
       interval: 86400
-   # 局域网
-    lancidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./ruleset/lancidr.yaml
-      interval: 86400
-   # 国内IP段
-    cncidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-      path: ./ruleset/cncidr.yaml
-      interval: 86400
 rules:
     - 'RULE-SET,direct,DIRECT'
-    - 'RULE-SET,lancidr,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT'
     - 'MATCH,PROXY'
