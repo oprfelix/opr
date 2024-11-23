@@ -1,32 +1,18 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: rule
+mode: rule              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
-tun:                                  # Tun 配置
-  enable: true
-  stack: system                       # 可选： system/gvisor/mixed, tun模式堆栈,如无使用问题,建议使用 system 栈;
-  dns-hijack: [any:53]                # dns劫持,一般设置为 any:53 即可, 即劫持所有53端口的udp流量
-  strict-route: true                  # 将所有连接路由到tun来防止泄漏，但你的设备将无法被其他设备访问
-  auto-route: true                    # 自动设置全局路由，可以自动将全局流量路由进入tun网卡。
-  auto-detect-interface: true         # 自动识别出口网卡
-
 dns:
    enable: true
-   ipv6: false
-   enhanced-mode: fake-ip
-   fake-ip-range: 198.18.0.1/16
    default-nameserver:
-     - 223.5.5.5
      - 1.1.1.1
-   use-hosts: true
    nameserver:
-     - https://dns.alidns.com/dns-query
+     - https://1.1.1.1/dns-quer
    fallback:
      - https://1.1.1.1/dns-query
-     - https://dns.google/dns-query
    fallback-filter:
      geoip: true
      geoip-code: CN
@@ -34,142 +20,231 @@ dns:
       - 240.0.0.0/4
       
 proxies:
-
   - # A1
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
+    type: vless
     name: pages - 01
-    network: ws
-    port: 443
-    server: 172.64.173.126
+    server: 104.19.197.79
     servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
     ws-opts:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
+    alpn:
+      - h2
   - # A2
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
+    type: vless
     name: pages - 02
-    network: ws
-    port: 443
-    server: 172.64.160.201
+    server: 104.18.81.12
     servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
     ws-opts:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
+    alpn:
+      - h2
   - # A3
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
+    type: vless
     name: pages - 03
-    network: ws
-    port: 443
-    server: 172.64.206.16
+    server: 104.19.56.73
     servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
     ws-opts:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
+    alpn:
+      - h2
   - # A4
-    alpn:
-      - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
+    type: vless
     name: pages - 04
-    network: ws
-    port: 443
-    server: 172.64.193.182
+    server: 104.19.125.73
     servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
-    type: vless
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
     ws-opts:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-  - # A5
     alpn:
       - h2
-    alterId: 0
-    cipher: ""
-    flow: ""
-    name: pages - 05
-    network: ws
-    port: 443
-    server: 172.64.99.140
-    servername: warp.fotoman.com
-    sni: warp.fotoman.com
-    tls: true
+  - # 中国移动
     type: vless
+    name: 中国移动
+    server: 172.64.160.213
+    servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
     ws-opts:
       headers:
         host: warp.fotoman.com
       path: /?ed=2048
-
-  - # B1
-    name: openai
-    type: ss
-    server: 149.28.215.154
-    port: 56671
-    cipher: aes-256-gcm
-    password: bXNH2NadFP
-  - # B2
-    name: Google
-    type: ss
-    server: 107.173.140.111
-    port: 56671
-    cipher: aes-256-gcm
-    password: bXNH2NadFP
+    alpn:
+      - h2   
+  - # 中国联通
+    type: vless
+    name: 中国联通
+    server: 172.67.40.134
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # 中国电信
+    type: vless
+    name: 中国电信
+    server: 172.64.89.196
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # Chatgpt专用线路
+    type: vless
+    name: ChatGPT
+    server: 154.12.41.247
+    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 25218
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # Github更新配置文件
+    type: vless
+    name: Github
+    server: 154.83.13.98
+    uuid: f9e3b4f5-ebcd-45e7-d85f-5421613995c1
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 21269
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # visa.com.hk
+    type: vless
+    name: 香港CN2线路
+    server: visa.com.hk
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
 
 proxy-groups:
-    - { name: Proxy, type: select, proxies: [Auto, GPT] }
-    - { name: Auto, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, pages - 05], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
-    - { name: GPT, type: select, proxies: [Google, openai], url: 'http://www.apple.com/library/test/success.html', interval: 600 }
+    - { name: PROXY, type: select, proxies: [pages - 01, pages - 02, pages - 03, pages - 04, 中国移动, 中国联通, 中国电信, 香港CN2线路] }
+ #   - { name: PROXY, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
+ #   - { name: PROXY, type: url-test, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300  }
 
 rules:
-# OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,chat.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,GPT'
-    - 'DOMAIN-SUFFIX,openai.com,GPT'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT'
-# Google Voice
-    - 'IP-CIDR,74.125.0.0/16,GPT'
-    - 'IP-CIDR,74.125.23.127/32,GPT'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT'
-# New Bing
-    - 'DOMAIN-SUFFIX,bing.com,Proxy'
- # 自定义规则
-    - 'DOMAIN-SUFFIX,gemini.google.com,GPT'
-    - 'DOMAIN-KEYWORD,chatgpt,GPT'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT'
+    # Github业务相关
+    - 'DOMAIN-SUFFIX,github.com,Github'
+    - 'DOMAIN-SUFFIX,githubusercontent.com,Github'
+    - 'DOMAIN-KEYWORD,github,Github'
+    # 腾讯业务
+    - 'DOMAIN-SUFFIX,qq.com,DIRECT'
+    - 'DOMAIN-SUFFIX,wechat.com,DIRECT'
+    - 'DOMAIN-KEYWORD,qq,DIRECT'
+    - 'DOMAIN-KEYWORD,wx,DIRECT'
+    - 'DOMAIN-KEYWORD,wechat,DIRECT'
+    - 'DOMAIN-KEYWORD,weixin,DIRECT'
+    - 'DOMAIN-KEYWORD,tencent,DIRECT'
+    - 'DOMAIN-KEYWORD,qtimg,DIRECT'
+    - 'DOMAIN-KEYWORD,tenpay,DIRECT'
+    # openAI语言大模型
+    - 'DOMAIN-KEYWORD,openai,ChatGPT'
+    - 'DOMAIN-SUFFIX,auth0.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,chatgpt.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,ChatGPT'
+    - 'DOMAIN-SUFFIX,featuregates.org,ChatGPT'
+    - 'DOMAIN-SUFFIX,identrust.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,intercom.io,ChatGPT'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,oaistatic.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,openai.com,ChatGPT'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,ChatGPT'
+    - 'DOMAIN-SUFFIX,sentry.io,ChatGPT'
+    - 'DOMAIN-SUFFIX,stripe.com,ChatGPT'
+    # 其它
     - 'DOMAIN-SUFFIX,local,DIRECT'
     - 'IP-CIDR,127.0.0.0/8,DIRECT'
     - 'IP-CIDR,172.16.0.0/12,DIRECT'
@@ -179,8 +254,6 @@ rules:
     - 'IP-CIDR,100.64.0.0/10,DIRECT'
     - 'IP-CIDR,224.0.0.0/4,DIRECT'
     - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-SUFFIX,drcbank,DIRECT'
-    - 'DOMAIN-SUFFIX,cn,DIRECT'
     - 'DOMAIN-KEYWORD,-cn,DIRECT'
     - 'GEOIP,CN,DIRECT'
-    - 'MATCH,Proxy'
+    - 'MATCH,DIRECT'
