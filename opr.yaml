@@ -203,7 +203,7 @@ proxy-groups:
       - 📶 中国移动
       - 📶 中国联通
       - 📶 中国电信
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
 rule-providers:
     # 广告屏蔽
     reject:
