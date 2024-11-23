@@ -39,6 +39,7 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Area.png
   - # A2
     type: vless
     name: pages - 02
