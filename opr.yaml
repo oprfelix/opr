@@ -293,6 +293,8 @@ rule-providers:
       path: ./ruleset/lancidr.yaml
       interval: 86400
 rules:
+    - 'DOMAIN-KEYWORD,linkwsin,PROXY'
+    - 'DOMAIN-KEYWORD,apolli,PROXY'
     # openAI语言大模型
     - 'DOMAIN-KEYWORD,openai,⚛️ ChatGPT - 人工智能'
     - 'DOMAIN-SUFFIX,auth0.com,⚛️ ChatGPT - 人工智能'
