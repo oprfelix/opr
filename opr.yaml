@@ -295,6 +295,7 @@ rule-providers:
 rules:
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
     - 'DOMAIN-KEYWORD,apollo,PROXY'
+    - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     # openAI语言大模型
     - 'DOMAIN-KEYWORD,openai,⚛️ ChatGPT - 人工智能'
     - 'DOMAIN-SUFFIX,auth0.com,⚛️ ChatGPT - 人工智能'
