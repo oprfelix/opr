@@ -293,12 +293,13 @@ rule-providers:
       path: ./ruleset/lancidr.yaml
       interval: 86400
 rules:
-    # 自定义规则
+    # 自定义
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
     - 'DOMAIN-KEYWORD,apollo,PROXY'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁止访问垃圾百度
     # openAI语言大模型
     - 'DOMAIN-KEYWORD,openai,⚛️ ChatGPT - 人工智能'
     - 'DOMAIN-SUFFIX,auth0.com,⚛️ ChatGPT - 人工智能'
@@ -316,10 +317,10 @@ rules:
     - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,⚛️ ChatGPT - 人工智能'
     - 'DOMAIN-SUFFIX,sentry.io,⚛️ ChatGPT - 人工智能'
     - 'DOMAIN-SUFFIX,stripe.com,⚛️ ChatGPT - 人工智能'
-    # 其它规则集
+    # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
-    # 规则外的
+    # 通配值
     - 'MATCH,PROXY'
