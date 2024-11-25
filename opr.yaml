@@ -192,7 +192,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -01
-    server: 2606:4700:13e:54e:75c6:ea58:7adc:9c3b
+    server: 2606:4700:133:3104:c7d4:77b9:27fc:43ee
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -211,7 +211,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -02
-    server: 2606:4700:13e:54e:75c6:ea58:7adc:9c3b
+    server: 2606:4700:133:3104:c7d4:77b9:27fc:43ee
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -230,7 +230,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -03
-    server: 2606:4700:8396:9b9a:d385:a8bf:1371:f2c5
+    server: 2606:4700:9ae4:cdf6:a2d4:d0e2:feaa:a97a
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
