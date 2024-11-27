@@ -98,7 +98,7 @@ proxies:
       - h2
   - # A5
     type: vless
-    name: 🇺🇸 pages - 04
+    name: 🇺🇸 pages - 05
     server: 104.19.214.164
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
