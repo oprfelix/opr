@@ -172,23 +172,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # Chatgpt专用线路
-    type: vless
-    name: ⚛️ ChatGPT - 人工智能
-    server: 154.12.41.247
-    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 25218
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # visa.com.hk
     type: vless
     name: 🇭🇰 香港CN2线路
@@ -275,7 +258,6 @@ proxy-groups:
       - 🇺🇸 pages - 04
       - 🇺🇸 pages - 05
       - 🇭🇰 香港CN2线路
-      - ⚛️ ChatGPT - 人工智能
       - 📶 中国移动
       - 📶 中国联通
       - 📶 中国电信
@@ -313,30 +295,6 @@ rule-providers:
       path: ./ruleset/lancidr.yaml
       interval: 86400
 rules:
-    # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,PROXY'
-    - 'DOMAIN-KEYWORD,yupoo,DIRECT'
-    - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
-    - 'DOMAIN-KEYWORD,wps,DIRECT'
-    - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
-    # openAI语言大模型
-    - 'DOMAIN-KEYWORD,openai,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,auth0.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,chatgpt.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,featuregates.org,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,identrust.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,intercom.io,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,oaistatic.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,openai.com,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,sentry.io,⚛️ ChatGPT - 人工智能'
-    - 'DOMAIN-SUFFIX,stripe.com,⚛️ ChatGPT - 人工智能'
     # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
