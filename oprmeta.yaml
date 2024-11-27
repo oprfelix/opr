@@ -1,33 +1,18 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: rule
+mode: global              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
-tun:                                  # Tun 配置
-  enable: true
-  stack: system                       # 可选： system/gvisor/mixed, tun模式堆栈,如无使用问题,建议使用 system 栈;
-  dns-hijack: [any:53]                # dns劫持,一般设置为 any:53 即可, 即劫持所有53端口的udp流量
-  strict-route: true                  # 将所有连接路由到tun来防止泄漏，但你的设备将无法被其他设备访问
-  auto-route: true                    # 自动设置全局路由，可以自动将全局流量路由进入tun网卡。
-  auto-detect-interface: true         # 自动识别出口网卡
-
 dns:
    enable: true
-   ipv6: false
-   enhanced-mode: fake-ip
-   fake-ip-range: 198.18.0.1/16
    default-nameserver:
-   #  - 1.1.1.1
      - 223.5.5.5
-   use-hosts: true
    nameserver:
-   #  - https://1.1.1.1/dns-quer
      - https://dns.alidns.com/dns-query
    fallback:
-     - https://1.1.1.1/dns-query
-   #  - https://dns.google/dns-query
+     - https://dns.alidns.com/dns-query
    fallback-filter:
      geoip: true
      geoip-code: CN
@@ -35,11 +20,10 @@ dns:
       - 240.0.0.0/4
       
 proxies:
-
   - # A1
     type: vless
-    name: pages - 01
-    server: 104.19.2.11
+    name: 🇺🇸 pages - 01
+    server: 104.16.30.20
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -57,8 +41,8 @@ proxies:
       - h2
   - # A2
     type: vless
-    name: pages - 02
-    server: 104.19.115.222
+    name: 🇺🇸 pages - 02
+    server: 104.19.154.47
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -76,8 +60,8 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: pages - 03
-    server: 104.19.56.73
+    name: 🇺🇸 pages - 03
+    server: 104.17.202.119
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -95,8 +79,8 @@ proxies:
       - h2
   - # A4
     type: vless
-    name: pages - 04
-    server: 104.19.125.73
+    name: 🇺🇸 pages - 04
+    server: 104.19.9.122
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -112,78 +96,29 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # B1
+  - # A5
     type: vless
-    name: GPT线路1
-    server: 107.173.140.91
-    uuid: adc37398-c85b-401d-b966-fb92ca500c84
+    name: 🇺🇸 pages - 04
+    server: 104.19.214.164
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 57916
+    port: 443
+    tls: true
     udp: true
     network: ws
-    sni: bing.com
+    sni: warp.fotoman.com
     ws-opts:
       headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # B1x
-    type: vless
-    name: GPT线路2
-    server: 154.12.41.247
-    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 25218
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # V1
-    type: vless
-    name: 香港专线1
-    server: 39.109.112.244
-    uuid: 53180646-c814-47d9-dd50-d8934a17bb8e
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 34000
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # V2
-    type: vless
-    name: 香港专线2
-    server: 39.109.117.113
-    uuid: b88ff86b-fdb8-478f-c1cb-756a74eb1404
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 58389
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
+        host: warp.fotoman.com
       path: /?ed=2048
     alpn:
       - h2
   - # 中国移动
     type: vless
-    name: 中国移动
-    server: 172.64.194.58
+    name: 📶 中国移动
+    server: 172.67.23.166
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -201,8 +136,8 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 中国联通
-    server: 172.64.141.107
+    name: 📶 中国联通
+    server: 172.64.110.145
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -220,8 +155,101 @@ proxies:
       - h2
   - # 中国电信
     type: vless
-    name: 中国电信
-    server: 172.64.89.196
+    name: 📶 中国电信
+    server: 172.67.55.132
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # Chatgpt专用线路
+    type: vless
+    name: ⚛️ ChatGPT - 人工智能
+    server: 154.12.41.247
+    uuid: 80ad6fcc-c1e6-43af-97c0-ffd777faf297
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 25218
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # visa.com.hk
+    type: vless
+    name: 🇭🇰 香港CN2线路
+    server: visa.com.hk
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -01
+    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -02
+    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # IP6备用
+    type: vless
+    name: 🌎 IPv6备用 -03
+    server: 2606:4700:99ed:4c3a:f89:3ace:de45:4d48
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -238,65 +266,81 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-    - { name: 代理模式, type: select, proxies: [美国专线 -200 Mbps, 香港专线 -2Mbps, GPT专线, 运营商] }
-    - { name: 美国专线 -200 Mbps, type: load-balance, proxies: [pages - 01, pages - 02, pages - 03, pages - 04], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: GPT专线, type: url-test, proxies: [GPT线路1, GPT线路2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: 香港专线 -2Mbps, type: select, proxies: [香港专线1, 香港专线2], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    - { name: 运营商, type: select, proxies: [中国移动, 中国联通, 中国电信], url: 'http://www.apple.com/library/test/success.html', interval: 300 }
-    
+  - name: PROXY
+    type: select
+    proxies:
+      - 🇺🇸 pages - 01
+      - 🇺🇸 pages - 02
+      - 🇺🇸 pages - 03
+      - 🇺🇸 pages - 04
+      - 🇺🇸 pages - 05
+      - 🇭🇰 香港CN2线路
+      - ⚛️ ChatGPT - 人工智能
+      - 📶 中国移动
+      - 📶 中国联通
+      - 📶 中国电信
+      - 🌎 IPv6备用 -01
+      - 🌎 IPv6备用 -02
+      - 🌎 IPv6备用 -03
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
 rule-providers:
-# GWFList
-    ProxyGWFList:
+    # 广告屏蔽
+    reject:
       type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/PROXY/ProxyGWFList.yaml"
-      path: ./ruleset/ProxyGWFList.yaml
-      interval: 1800
-# CHINA DIRECT
-    Chinadomain:
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+      path: ./ruleset/reject.yaml
+      interval: 86400
+    # 国内域名
+    direct:
       type: http
-      behavior: classical
-      url: "https://raw.githubusercontent.com/RealSeek/Clash_Rule_DIY/master/DIRECT/ChinaDomain.yaml"
-      path: ./ruleset/ChinaDomain.yaml
-      interval: 1800
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+      path: ./ruleset/direct.yaml
+      interval: 86400
+    # 国内IP
+    cncidr:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+      path: ./ruleset/cncidr.yaml
+      interval: 86400
+    # 局域网
+    lancidr:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+      path: ./ruleset/lancidr.yaml
+      interval: 86400
 rules:
-# OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,GPT专线'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,GPT专线'
-    - 'DOMAIN-SUFFIX,gemini.google.com,GPT专线'
-    - 'DOMAIN-KEYWORD,gemini,GPT专线'
-    - 'DOMAIN-KEYWORD,chatgpt,GPT专线'
-    - 'DOMAIN-KEYWORD,gpt,GPT专线'
-    - 'DOMAIN-KEYWORD,ai,GPT专线'
-    - 'DOMAIN-KEYWORD,openai,GPT专线'
-    - 'DOMAIN-SUFFIX,copilot.microsoft.com,GPT专线'
-    - 'DOMAIN-SUFFIX,location.microsoft.com,GPT专线'
-# Proxy rules
-    - 'RULE-SET,ProxyGWFList,代理模式'
-    - 'RULE-SET,Chinadomain,DIRECT'
-# linkedin
-    - 'DOMAIN-KEYWORD,linkedin,代理模式'
-# Google Voice
-    - 'IP-CIDR,74.125.0.0/16,GPT专线'
-    - 'IP-CIDR,74.125.23.127/32,GPT专线'
-    - 'DOMAIN-SUFFIX,lens.l.google.com,GPT专线'
-# New Bing
-    - 'DOMAIN-SUFFIX,bing.com,代理模式'
-# 自定义规则
-    - 'DOMAIN-SUFFIX,local,DIRECT'
-    - 'IP-CIDR,127.0.0.0/8,DIRECT'
-    - 'IP-CIDR,172.16.0.0/12,DIRECT'
-    - 'IP-CIDR,192.168.0.0/16,DIRECT'
-    - 'IP-CIDR,10.0.0.0/8,DIRECT'
-    - 'IP-CIDR,17.0.0.0/8,DIRECT'
-    - 'IP-CIDR,100.64.0.0/10,DIRECT'
-    - 'IP-CIDR,224.0.0.0/4,DIRECT'
-    - 'IP-CIDR6,fe80::/10,DIRECT'
-    - 'DOMAIN-KEYWORD,shopify,代理模式'
-    - 'DOMAIN-KEYWORD,cilixiong,代理模式'
-    - 'DOMAIN-KEYWORD,ist,DIRECT'
-    - 'DOMAIN-KEYWORD,cn,DIRECT'
-    - 'DOMAIN-KEYWORD,1688,DIRECT'
-    - 'DOMAIN-KEYWORD,-cn,DIRECT'
-    - 'GEOIP,CN,DIRECT'
-    - 'MATCH,DIRECT'
+    # 自定义
+    - 'DOMAIN-KEYWORD,linkedin,PROXY'
+    - 'DOMAIN-KEYWORD,apollo,PROXY'
+    - 'DOMAIN-KEYWORD,yupoo,DIRECT'
+    - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
+    - 'DOMAIN-KEYWORD,wps,DIRECT'
+    - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
+    # openAI语言大模型
+    - 'DOMAIN-KEYWORD,openai,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,auth0.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,chatgpt.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,featuregates.org,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,identrust.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,intercom.io,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,oaistatic.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,openai.com,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,sentry.io,⚛️ ChatGPT - 人工智能'
+    - 'DOMAIN-SUFFIX,stripe.com,⚛️ ChatGPT - 人工智能'
+    # 规则集
+    - 'RULE-SET,reject,REJECT'
+    - 'RULE-SET,direct,DIRECT'
+    - 'RULE-SET,cncidr,DIRECT'
+    - 'RULE-SET,lancidr,DIRECT'
+    # 通配值
+    - 'MATCH,PROXY'
