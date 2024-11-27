@@ -99,7 +99,7 @@ proxies:
   - # 中国移动
     type: vless
     name: 📶 中国移动
-    server: 172.64.136.175
+    server: 172.67.23.166
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -118,7 +118,7 @@ proxies:
   - # 中国联通
     type: vless
     name: 📶 中国联通
-    server: 172.67.115.201
+    server: 172.64.110.145
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -137,7 +137,7 @@ proxies:
   - # 中国电信
     type: vless
     name: 📶 中国电信
-    server: 172.67.253.84
+    server: 172.67.55.132
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -192,7 +192,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -01
-    server: 2606:4700:133:3104:c7d4:77b9:27fc:43ee
+    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -211,7 +211,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -02
-    server: 2606:4700:133:3104:c7d4:77b9:27fc:43ee
+    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -230,7 +230,7 @@ proxies:
   - # IP6备用
     type: vless
     name: 🌎 IPv6备用 -03
-    server: 2606:4700:9ae4:cdf6:a2d4:d0e2:feaa:a97a
+    server: 2606:4700:99ed:4c3a:f89:3ace:de45:4d48
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
