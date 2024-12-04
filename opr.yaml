@@ -299,7 +299,7 @@ proxy-groups:
       - 🌎 IPv6备用 -03
       - 🇭🇰 香港CN2线路
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
-  - name: GPT - 语言大模型
+  - name: GPT - AI大模型
     type: select
     proxies:
       - ⚛️ ChatGPT - 1
@@ -342,23 +342,23 @@ rules:
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
     - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
-    # openAI语言大模型
-    - 'DOMAIN-KEYWORD,openai,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,auth0.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,chatgpt.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,featuregates.org,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,identrust.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,intercom.io,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,oaistatic.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,openai.com,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,sentry.io,GPT - 语言大模型'
-    - 'DOMAIN-SUFFIX,stripe.com,GPT - 语言大模型'
+    # openAIAI大模型
+    - 'DOMAIN-KEYWORD,openai,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,auth0.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,chatgpt.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,featuregates.org,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,identrust.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,intercom.io,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,oaistatic.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,openai.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,sentry.io,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,stripe.com,GPT - AI大模型'
     # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
