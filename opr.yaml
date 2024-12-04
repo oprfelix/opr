@@ -174,7 +174,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ⚛️ ChatGPT - 1
+    name: ✨ ChatGPT - 1
     server: 154.12.41.247
     uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
@@ -191,7 +191,7 @@ proxies:
       - h2
   - # Chatgpt专用线路2
     type: vless
-    name: ⚛️ ChatGPT - 2
+    name: ✨ ChatGPT - 2
     server: 89.117.217.19
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
@@ -302,8 +302,8 @@ proxy-groups:
   - name: GPT - AI大模型
     type: select
     proxies:
-      - ⚛️ ChatGPT - 1
-      - ⚛️ ChatGPT - 2
+      - ✨ ChatGPT - 1
+      - ✨ ChatGPT - 2
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
