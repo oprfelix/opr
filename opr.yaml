@@ -174,7 +174,7 @@ proxies:
       - h2
   - # Chatgpt专用线路
     type: vless
-    name: ⚛️ ChatGPT - 人工智能
+    name: ⚛️ ChatGPT - 1
     server: 154.12.41.247
     uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
@@ -191,7 +191,7 @@ proxies:
       - h2
   - # Chatgpt专用线路2
     type: vless
-    name: ⚛️ ChatGPT2 - 人工智能
+    name: ⚛️ ChatGPT - 2
     server: 89.117.217.19
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
@@ -291,21 +291,20 @@ proxy-groups:
       - 🇺🇸 pages - 03
       - 🇺🇸 pages - 04
       - 🇺🇸 pages - 05
-      - 🇭🇰 香港CN2线路
-      - ⚛️ ChatGPT - 人工智能
       - 📶 中国移动
       - 📶 中国联通
       - 📶 中国电信
       - 🌎 IPv6备用 -01
       - 🌎 IPv6备用 -02
       - 🌎 IPv6备用 -03
+      - 🇭🇰 香港CN2线路
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
-  - name: GPT
+  - name: GPT - 语言大模型
     type: select
     proxies:
-      - ⚛️ ChatGPT - 人工智能
-      - ⚛️ ChatGPT2 - 人工智能
-    icon: https://img.icons8.com/?size=100&id=4GhGzHg3nZeG&format=png&color=000000
+      - ⚛️ ChatGPT - 1
+      - ⚛️ ChatGPT - 2
+    icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
     reject:
@@ -344,22 +343,22 @@ rules:
     - 'DOMAIN-KEYWORD,wps,DIRECT'
     - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
     # openAI语言大模型
-    - 'DOMAIN-KEYWORD,openai,GPT'
-    - 'DOMAIN-SUFFIX,auth0.com,GPT'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT'
-    - 'DOMAIN-SUFFIX,chatgpt.com,GPT'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT'
-    - 'DOMAIN-SUFFIX,featuregates.org,GPT'
-    - 'DOMAIN-SUFFIX,identrust.com,GPT'
-    - 'DOMAIN-SUFFIX,intercom.io,GPT'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT'
-    - 'DOMAIN-SUFFIX,oaistatic.com,GPT'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT'
-    - 'DOMAIN-SUFFIX,openai.com,GPT'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT'
-    - 'DOMAIN-SUFFIX,sentry.io,GPT'
-    - 'DOMAIN-SUFFIX,stripe.com,GPT'
+    - 'DOMAIN-KEYWORD,openai,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,auth0.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,chatgpt.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,featuregates.org,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,identrust.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,intercom.io,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,oaistatic.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,openai.com,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,sentry.io,GPT - 语言大模型'
+    - 'DOMAIN-SUFFIX,stripe.com,GPT - 语言大模型'
     # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
