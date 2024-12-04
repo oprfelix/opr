@@ -176,7 +176,7 @@ proxies:
     type: vless
     name: ⚛️ ChatGPT - 人工智能
     server: 154.12.41.247
-    uuid: a66af37a-7910-441c-af6e-8f6779142409
+    uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
     flow: xtls-rprx-vision
     port: 32034
