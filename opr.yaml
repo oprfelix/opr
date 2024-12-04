@@ -208,65 +208,8 @@ proxies:
       - h2
   - # visa.com.hk
     type: vless
-    name: 🇭🇰 香港CN2线路
+    name: 🇭🇰 香港专线
     server: visa.com.hk
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # IP6备用
-    type: vless
-    name: 🌎 IPv6备用 -01
-    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # IP6备用
-    type: vless
-    name: 🌎 IPv6备用 -02
-    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # IP6备用
-    type: vless
-    name: 🌎 IPv6备用 -03
-    server: 2606:4700:99ed:4c3a:f89:3ace:de45:4d48
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -294,10 +237,7 @@ proxy-groups:
       - 📶 中国移动
       - 📶 中国联通
       - 📶 中国电信
-      - 🌎 IPv6备用 -01
-      - 🌎 IPv6备用 -02
-      - 🌎 IPv6备用 -03
-      - 🇭🇰 香港CN2线路
+      - 🇭🇰 香港专线
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
