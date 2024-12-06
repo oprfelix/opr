@@ -206,6 +206,8 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # 测试参数调整
+    type: vless; name: 🎉 .ovpn; server: 104.18.35.205; port: 443; uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243; network: ws; udp: true; servername: warp.fotoman.com; client-fingerprint: chrome; ws-opts: {path: /?ed=2048}
 proxy-groups:
   - name: PROXY
     type: select
@@ -218,6 +220,7 @@ proxy-groups:
       - 🇭🇰 香港CN2 - 1
       - 🇭🇰 香港CN2 - 2
       - 🇭🇰 香港CN2 - 3
+      - 🎉 .ovpn
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
