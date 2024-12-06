@@ -23,7 +23,7 @@ proxies:
   - # A1
     type: vless
     name: 🇺🇸 pages - 01
-    server: 104.16.30.20
+    server: 104.18.238.99
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -42,7 +42,7 @@ proxies:
   - # A2
     type: vless
     name: 🇺🇸 pages - 02
-    server: 104.19.154.47
+    server: 104.16.22.190
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -117,8 +117,8 @@ proxies:
       - h2
   - # 中国移动
     type: vless
-    name: 📶 中国移动
-    server: 172.67.23.166
+    name: 🇨🇳 CN2线路 - 1
+    server: 172.67.211.169
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -136,27 +136,8 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 📶 中国联通
-    server: 172.64.110.145
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 中国电信
-    type: vless
-    name: 📶 中国电信
-    server: 172.67.55.132
+    name: 🇨🇳 CN2线路 - 2
+    server: 172.64.97.133
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -208,7 +189,7 @@ proxies:
       - h2
   - # visa.com.hk
     type: vless
-    name: 🇭🇰 香港专线
+    name: 🇭🇰 香港CDN
     server: visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -234,10 +215,9 @@ proxy-groups:
       - 🇺🇸 pages - 03
       - 🇺🇸 pages - 04
       - 🇺🇸 pages - 05
-      - 📶 中国移动
-      - 📶 中国联通
-      - 📶 中国电信
-      - 🇭🇰 香港专线
+      - 🇨🇳 CN2线路 - 1
+      - 🇨🇳 CN2线路 - 2
+      - 🇭🇰 香港CDN
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
