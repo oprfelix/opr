@@ -22,7 +22,7 @@ dns:
 proxies:
   - # A1
     type: vless
-    name: 🇺🇸 pages - 01
+    name: 🇺🇸 美国BGP - 1
     server: 104.18.238.99
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -41,7 +41,7 @@ proxies:
       - h2
   - # A2
     type: vless
-    name: 🇺🇸 pages - 02
+    name: 🇺🇸 美国BGP - 2
     server: 104.16.22.190
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -60,8 +60,8 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: 🇺🇸 pages - 03
-    server: 104.17.202.119
+    name: 🇺🇸 美国BGP - 3
+    server: 104.17.203.160
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -79,8 +79,8 @@ proxies:
       - h2
   - # A4
     type: vless
-    name: 🇺🇸 pages - 04
-    server: 104.19.9.122
+    name: 🇺🇸 美国BGP - 4
+    server: 162.159.32.174
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -98,8 +98,8 @@ proxies:
       - h2
   - # A5
     type: vless
-    name: 🇺🇸 pages - 05
-    server: 104.19.214.164
+    name: 🇺🇸 美国BGP - 5
+    server: 172.64.92.86
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -117,7 +117,7 @@ proxies:
       - h2
   - # 中国移动
     type: vless
-    name: 🇨🇳 CN2线路 - 1
+    name: 🇭🇰 香港CDN - 1
     server: 172.67.211.169
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -136,8 +136,27 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 🇨🇳 CN2线路 - 2
+    name: 🇭🇰 香港CDN - 2
     server: 172.64.97.133
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # visa.com.hk
+    type: vless
+    name: 🇭🇰 香港CDN - 3
+    server: visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -187,37 +206,18 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # visa.com.hk
-    type: vless
-    name: 🇭🇰 香港CDN
-    server: visa.com.hk
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
 proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - 🇺🇸 pages - 01
-      - 🇺🇸 pages - 02
-      - 🇺🇸 pages - 03
-      - 🇺🇸 pages - 04
-      - 🇺🇸 pages - 05
-      - 🇨🇳 CN2线路 - 1
-      - 🇨🇳 CN2线路 - 2
-      - 🇭🇰 香港CDN
+      - 🇺🇸 美国BGP - 1
+      - 🇺🇸 美国BGP - 2
+      - 🇺🇸 美国BGP - 3
+      - 🇺🇸 美国BGP - 4
+      - 🇺🇸 美国BGP - 5
+      - 🇭🇰 香港CDN - 1
+      - 🇭🇰 香港CDN - 2
+      - 🇭🇰 香港CDN - 3
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
