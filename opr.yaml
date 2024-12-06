@@ -117,7 +117,7 @@ proxies:
       - h2
   - # 中国移动
     type: vless
-    name: 🇭🇰 香港CDN - 1
+    name: 🇭🇰 香港CN2 - 1
     server: 172.67.211.169
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -136,7 +136,7 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 🇭🇰 香港CDN - 2
+    name: 🇭🇰 香港CN2 - 2
     server: 172.64.97.133
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -155,7 +155,7 @@ proxies:
       - h2
   - # visa.com.hk
     type: vless
-    name: 🇭🇰 香港CDN - 3
+    name: 🇭🇰 香港CN2 - 3
     server: visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -215,9 +215,9 @@ proxy-groups:
       - 🇺🇸 美国BGP - 3
       - 🇺🇸 美国BGP - 4
       - 🇺🇸 美国BGP - 5
-      - 🇭🇰 香港CDN - 1
-      - 🇭🇰 香港CDN - 2
-      - 🇭🇰 香港CDN - 3
+      - 🇭🇰 香港CN2 - 1
+      - 🇭🇰 香港CN2 - 2
+      - 🇭🇰 香港CN2 - 3
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
