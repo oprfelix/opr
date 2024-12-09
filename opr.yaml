@@ -257,6 +257,7 @@ rule-providers:
 rules:
     # 自定义
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
+   - 'DOMAIN-KEYWORD,fiverr,PROXY'
     - 'DOMAIN-KEYWORD,apollo,PROXY'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
