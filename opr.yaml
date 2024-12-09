@@ -263,7 +263,7 @@ rules:
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
     - 'DOMAIN-KEYWORD,lingxing,DIRECT'
-    - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
+   # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
     # openAIAI大模型
     - 'DOMAIN-KEYWORD,openai,GPT - AI大模型'
     - 'DOMAIN-SUFFIX,auth0.com,GPT - AI大模型'
