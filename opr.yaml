@@ -8,12 +8,13 @@ external-controller: '127.0.0.1:9090'
 dns:
    enable: true
    default-nameserver:
-      - https://1.1.1.1/dns-query
- #     - https://223.5.5.5/dns-query
- #     - https://119.29.29.29/dns-query
- #     - https://8.8.8.8/dns-query
+      - https://223.5.5.5/dns-query
+   nameserver:
+     - https://223.5.5.5/dns-query
+     - https://doh.pub/dns-query
    fallback:
-     - https://8.8.4.4/dns-query
+     - https://9.9.9.9/dns-query
+     - https://doh.apad.pro/dns-query
    fallback-filter:
      geoip: true
      geoip-code: CN
