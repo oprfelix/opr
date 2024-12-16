@@ -22,8 +22,8 @@ dns:
 proxies:
   - # A1
     type: vless
-    name: 🇺🇸 pages - 01
-    server: 104.16.30.20
+    name: 🇺🇸 美国BGP - 1
+    server: 104.18.47.46
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -41,8 +41,8 @@ proxies:
       - h2
   - # A2
     type: vless
-    name: 🇺🇸 pages - 02
-    server: 104.19.154.47
+    name: 🇺🇸 美国BGP - 2
+    server: 104.16.91.36
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -60,8 +60,8 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: 🇺🇸 pages - 03
-    server: 104.17.202.119
+    name: 🇺🇸 美国BGP - 3
+    server: 104.18.56.63
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -79,8 +79,8 @@ proxies:
       - h2
   - # A4
     type: vless
-    name: 🇺🇸 pages - 04
-    server: 104.19.9.122
+    name: 🇺🇸 美国BGP - 4
+    server: 104.16.25.94
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -98,8 +98,8 @@ proxies:
       - h2
   - # A5
     type: vless
-    name: 🇺🇸 pages - 05
-    server: 104.19.214.164
+    name: 🇺🇸 美国BGP - 5
+    server: 104.16.105.129
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -117,8 +117,8 @@ proxies:
       - h2
   - # 中国移动
     type: vless
-    name: 📶 中国移动
-    server: 172.67.23.166
+    name: 🇭🇰 香港CN2 - 1
+    server: 104.19.204.86
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -136,27 +136,8 @@ proxies:
       - h2   
   - # 中国联通
     type: vless
-    name: 📶 中国联通
-    server: 172.64.110.145
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 中国电信
-    type: vless
-    name: 📶 中国电信
-    server: 172.67.55.132
+    name: 🇭🇰 香港CN2 - 2
+    server: 104.19.103.217
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -174,7 +155,7 @@ proxies:
       - h2
   - # visa.com.hk
     type: vless
-    name: 🇭🇰 香港CN2线路
+    name: 🇭🇰 香港CN2 - 3
     server: visa.com.hk
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -191,60 +172,37 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # IP6备用
+  - # Chatgpt专用线路
     type: vless
-    name: 🌎 IPv6备用 -01
-    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    name: ✨ ChatGPT - 1
+    server: 154.12.41.247
+    uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 443
-    tls: true
+    port: 32034
     udp: true
     network: ws
-    sni: warp.fotoman.com
+    sni: bing.com
     ws-opts:
       headers:
-        host: warp.fotoman.com
+        host: bing.com
       path: /?ed=2048
     alpn:
       - h2
-  - # IP6备用
+  - # Chatgpt专用线路2
     type: vless
-    name: 🌎 IPv6备用 -02
-    server: 2606:4700:9a6c:c4d4:d54a:ae20:ecf5:e6a8
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    name: ✨ ChatGPT - 2
+    server: 89.117.217.19
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
     flow: xtls-rprx-vision
-    port: 443
-    tls: true
+    port: 17070
     udp: true
     network: ws
-    sni: warp.fotoman.com
+    sni: bing.com
     ws-opts:
       headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # IP6备用
-    type: vless
-    name: 🌎 IPv6备用 -03
-    server: 2606:4700:99ed:4c3a:f89:3ace:de45:4d48
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
+        host: bing.com
       path: /?ed=2048
     alpn:
       - h2
@@ -252,19 +210,21 @@ proxy-groups:
   - name: PROXY
     type: select
     proxies:
-      - 🇺🇸 pages - 01
-      - 🇺🇸 pages - 02
-      - 🇺🇸 pages - 03
-      - 🇺🇸 pages - 04
-      - 🇺🇸 pages - 05
-      - 🇭🇰 香港CN2线路
-      - 📶 中国移动
-      - 📶 中国联通
-      - 📶 中国电信
-      - 🌎 IPv6备用 -01
-      - 🌎 IPv6备用 -02
-      - 🌎 IPv6备用 -03
+      - 🇺🇸 美国BGP - 1
+      - 🇺🇸 美国BGP - 2
+      - 🇺🇸 美国BGP - 3
+      - 🇺🇸 美国BGP - 4
+      - 🇺🇸 美国BGP - 5
+      - 🇭🇰 香港CN2 - 1
+      - 🇭🇰 香港CN2 - 2
+      - 🇭🇰 香港CN2 - 3
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+  - name: GPT - AI大模型
+    type: select
+    proxies:
+      - ✨ ChatGPT - 1
+      - ✨ ChatGPT - 2
+    icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
     reject:
