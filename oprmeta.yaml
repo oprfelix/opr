@@ -8,11 +8,13 @@ external-controller: '127.0.0.1:9090'
 dns:
    enable: true
    default-nameserver:
-     - 223.5.5.5
+      - https://223.5.5.5/dns-query
    nameserver:
-     - https://dns.alidns.com/dns-query
+     - https://223.5.5.5/dns-query
+     - https://doh.pub/dns-query
    fallback:
-     - https://dns.alidns.com/dns-query
+     - https://9.9.9.9/dns-query
+     - https://doh.apad.pro/dns-query
    fallback-filter:
      geoip: true
      geoip-code: CN
@@ -255,6 +257,33 @@ rule-providers:
       path: ./ruleset/lancidr.yaml
       interval: 86400
 rules:
+    # 自定义
+    - 'DOMAIN-KEYWORD,linkedin,PROXY'
+    - 'DOMAIN-KEYWORD,fiverr,PROXY'
+    - 'DOMAIN-KEYWORD,apollo,PROXY'
+    - 'DOMAIN-KEYWORD,yupoo,DIRECT'
+    - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
+    - 'DOMAIN-KEYWORD,wps,DIRECT'
+    - 'DOMAIN-KEYWORD,lingxing,DIRECT'
+    - 'DOMAIN-SUFFIX,gov.cn,DIRECT'
+   # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
+    # openAIAI大模型
+    - 'DOMAIN-KEYWORD,openai,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,auth0.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,chatgpt.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,featuregates.org,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,identrust.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,intercom.io,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,oaistatic.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,openai.com,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,sentry.io,GPT - AI大模型'
+    - 'DOMAIN-SUFFIX,stripe.com,GPT - AI大模型'
     # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
