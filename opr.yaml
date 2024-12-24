@@ -139,7 +139,7 @@ proxies:
   - # 中国联通
     type: vless
     name: 🇭🇰 香港CN2 - 2
-    server: 104.16.117.69
+    server: 104.19.70.9
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
