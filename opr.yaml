@@ -25,7 +25,7 @@ proxies:
   - # A1
     type: vless
     name: 🇺🇸 美国BGP - 1
-    server: 104.18.47.46
+    server: 104.16.22.217
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -44,7 +44,7 @@ proxies:
   - # A2
     type: vless
     name: 🇺🇸 美国BGP - 2
-    server: 104.16.91.36
+    server: 104.16.24.136
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -63,7 +63,7 @@ proxies:
   - # A3
     type: vless
     name: 🇺🇸 美国BGP - 3
-    server: 104.18.56.63
+    server: 172.64.97.80
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -82,7 +82,7 @@ proxies:
   - # A4
     type: vless
     name: 🇺🇸 美国BGP - 4
-    server: 104.16.25.94
+    server: 172.64.193.159
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -101,7 +101,7 @@ proxies:
   - # A5
     type: vless
     name: 🇺🇸 美国BGP - 5
-    server: 104.16.105.129
+    server: 104.19.223.75
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -120,7 +120,7 @@ proxies:
   - # 中国移动
     type: vless
     name: 🇭🇰 香港CN2 - 1
-    server: 104.19.204.86
+    server: 162.159.40.245
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
