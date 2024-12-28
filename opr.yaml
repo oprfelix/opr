@@ -208,6 +208,23 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # Chatgpt专用线路3
+    type: vless
+    name: ✨ ChatGPT - 3
+    server: 89.116.246.252
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 17070
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
   - name: PROXY
     type: select
@@ -226,6 +243,7 @@ proxy-groups:
     proxies:
       - ✨ ChatGPT - 1
       - ✨ ChatGPT - 2
+      - ✨ ChatGPT - 3
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
