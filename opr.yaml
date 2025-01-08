@@ -276,15 +276,11 @@ rule-providers:
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,PROXY'
-    - 'DOMAIN-KEYWORD,fiverr,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,GPT - AI大模型'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
     - 'DOMAIN-KEYWORD,lingxing,DIRECT'
     - 'DOMAIN-SUFFIX,gov.cn,DIRECT'
-   # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
     # openAIAI大模型
     - 'DOMAIN-KEYWORD,openai,GPT - AI大模型'
     - 'DOMAIN-SUFFIX,auth0.com,GPT - AI大模型'
