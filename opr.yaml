@@ -24,7 +24,7 @@ dns:
 proxies:
   - # A1
     type: vless
-    name: 🇺🇸 Global CDN 1
+    name: 🇺🇸 CDN 1
     server: 104.19.25.68
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -43,7 +43,7 @@ proxies:
       - h2
   - # A2
     type: vless
-    name: 🇺🇸 Global CDN 2
+    name: 🇺🇸 CDN 2
     server: 172.67.38.183
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -62,7 +62,7 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: 🇺🇸 Global CDN 3
+    name: 🇺🇸 CDN 3
     server: 104.16.35.34
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -81,7 +81,7 @@ proxies:
       - h2
   - # A4
     type: vless
-    name: 🇺🇸 Global CDN 4
+    name: 🇺🇸 CDN 4
     server: 104.19.152.249
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -153,10 +153,10 @@ proxy-groups:
   - name: Global Delivery
     type: select
     proxies:
-      - 🇺🇸 Global CDN 1
-      - 🇺🇸 Global CDN 2
-      - 🇺🇸 Global CDN 3
-      - 🇺🇸 Global CDN 4
+      - 🇺🇸 CDN 1
+      - 🇺🇸 CDN 2
+      - 🇺🇸 CDN 3
+      - 🇺🇸 CDN 4
    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
     icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
   - name: Intelligence
