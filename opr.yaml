@@ -225,23 +225,6 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # Apollo专用
-    type: vless
-    name: Apollo.io
-    server: 23.247.130.30
-    uuid: 1ae29e09-a5e2-4c8b-a350-8f61c9782775
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
 proxy-groups:
   - name: PROXY
     type: select
@@ -295,7 +278,7 @@ rules:
     # 自定义
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
     - 'DOMAIN-KEYWORD,fiverr,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,Apollo.io'
+    - 'DOMAIN-KEYWORD,apollo,GPT - AI大模型'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
