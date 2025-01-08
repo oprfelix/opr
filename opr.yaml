@@ -226,12 +226,22 @@ proxies:
     alpn:
       - h2
   - # Apollo专用
-    name: apio
-    password: 41L62nvA
-    port: 22
+    type: vless
+    name: Apollo.io
     server: 23.247.130.30
-    type: ssh
-    user: root
+    uuid: 1ae29e09-a5e2-4c8b-a350-8f61c9782775
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
   - name: PROXY
     type: select
@@ -244,7 +254,6 @@ proxy-groups:
       - 🇭🇰 香港CN2 - 1
       - 🇭🇰 香港CN2 - 2
       - 🇭🇰 香港CN2 - 3
-      - apio
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
@@ -286,7 +295,7 @@ rules:
     # 自定义
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
     - 'DOMAIN-KEYWORD,fiverr,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,apio'
+    - 'DOMAIN-KEYWORD,apollo,Apollo.io'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
