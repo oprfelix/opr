@@ -157,7 +157,8 @@ proxy-groups:
       - 🇺🇸 Global CDN 2
       - 🇺🇸 Global CDN 3
       - 🇺🇸 Global CDN 4
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+   # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+    icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
   - name: Intelligence
     type: select
     proxies:
