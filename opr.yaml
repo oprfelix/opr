@@ -150,7 +150,7 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-  - name: CDN for Global Delivery
+  - name: Global Delivery
     type: select
     proxies:
       - 🇺🇸 Global CDN 1
@@ -197,9 +197,9 @@ rule-providers:
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,CDN for Global Delivery'
-    - 'DOMAIN-KEYWORD,fiverr,CDN for Global Delivery'
-    - 'DOMAIN-KEYWORD,apollo,CDN for Global Delivery'
+    - 'DOMAIN-KEYWORD,linkedin,Global Delivery'
+    - 'DOMAIN-KEYWORD,fiverr,Global Delivery'
+    - 'DOMAIN-KEYWORD,apollo,Global Delivery'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
@@ -229,4 +229,4 @@ rules:
     - 'RULE-SET,cncidr,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
     # 通配值
-    - 'MATCH,CDN for Global Delivery'
+    - 'MATCH,Global Delivery'
