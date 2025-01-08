@@ -79,28 +79,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # A4
-    type: vless
-    name: 🇺🇸 CDN 4
-    server: 104.19.152.249
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
   - # AI专用线路
     type: vless
-    name: ✨ Gemini
+    name: 🏊 Gemini
     server: 154.12.41.247
     uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
@@ -117,7 +98,7 @@ proxies:
       - h2
   - # AI专用线路
     type: vless
-    name: ✨ ChatGPT
+    name: 🏊‍♂️ ChatGPT
     server: 89.117.217.19
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
@@ -134,7 +115,7 @@ proxies:
       - h2
   - # AI专用线路
     type: vless
-    name: ✨ Grok
+    name: 🏊‍♀️ Grok
     server: 89.116.246.252
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
@@ -156,15 +137,14 @@ proxy-groups:
       - 🇺🇸 CDN 1
       - 🇺🇸 CDN 2
       - 🇺🇸 CDN 3
-      - 🇺🇸 CDN 4
    # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
     icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
   - name: Intelligence
     type: select
     proxies:
-      - ✨ Gemini
-      - ✨ ChatGPT
-      - ✨ Grok
+      - 🏊 Gemini
+      - 🏊‍♂️ ChatGPT
+      - 🏊‍♀️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
