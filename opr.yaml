@@ -244,6 +244,7 @@ proxy-groups:
       - 🇭🇰 香港CN2 - 1
       - 🇭🇰 香港CN2 - 2
       - 🇭🇰 香港CN2 - 3
+      - apio
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
   - name: GPT - AI大模型
     type: select
