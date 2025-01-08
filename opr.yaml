@@ -225,6 +225,13 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # Apollo专用
+    name: apio
+    password: 41L62nvA
+    port: 22
+    server: 23.247.130.30
+    type: ssh
+    user: root
 proxy-groups:
   - name: PROXY
     type: select
@@ -278,7 +285,7 @@ rules:
     # 自定义
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
     - 'DOMAIN-KEYWORD,fiverr,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,PROXY'
+    - 'DOMAIN-KEYWORD,apollo,apio'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
