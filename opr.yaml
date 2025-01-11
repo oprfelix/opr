@@ -44,7 +44,7 @@ proxies:
   - # A2
     type: vless
     name: 🌈 CDN 2
-    server: 172.67.38.183
+    server: 104.19.118.154
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -63,7 +63,7 @@ proxies:
   - # A3
     type: vless
     name: 🌈 CDN 3
-    server: 104.16.35.34
+    server: 104.19.74.19
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
