@@ -24,8 +24,8 @@ dns:
 proxies:
   - # A1
     type: vless
-    name: 🇺🇸 美国BGP - 1
-    server: 104.18.47.46
+    name: 🌈 CDN 1
+    server: 104.19.25.68
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -43,8 +43,8 @@ proxies:
       - h2
   - # A2
     type: vless
-    name: 🇺🇸 美国BGP - 2
-    server: 104.16.91.36
+    name: 🌈 CDN 2
+    server: 104.19.118.154
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -62,8 +62,8 @@ proxies:
       - h2
   - # A3
     type: vless
-    name: 🇺🇸 美国BGP - 3
-    server: 104.18.56.63
+    name: 🌈 CDN 3
+    server: 104.19.74.19
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -79,104 +79,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # A4
+  - # AI专用线路
     type: vless
-    name: 🇺🇸 美国BGP - 4
-    server: 104.16.25.94
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # A5
-    type: vless
-    name: 🇺🇸 美国BGP - 5
-    server: 104.16.105.129
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 中国移动
-    type: vless
-    name: 🇭🇰 香港CN2 - 1
-    server: 104.19.204.86
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2   
-  - # 中国联通
-    type: vless
-    name: 🇭🇰 香港CN2 - 2
-    server: 104.19.103.217
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # visa.com.hk
-    type: vless
-    name: 🇭🇰 香港CN2 - 3
-    server: visa.com.hk
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # Chatgpt专用线路
-    type: vless
-    name: ✨ ChatGPT - 1
+    name: ♾️ Gemini
     server: 154.12.41.247
     uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
     client-fingerprint: chrome
@@ -191,9 +96,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # Chatgpt专用线路2
+  - # AI专用线路
     type: vless
-    name: ✨ ChatGPT - 2
+    name: ♾️ ChatGPT
     server: 89.117.217.19
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
     client-fingerprint: chrome
@@ -208,24 +113,38 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # AI专用线路
+    type: vless
+    name: ♾️ Grok
+    server: 89.116.246.252
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 17070
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
-  - name: PROXY
+  - name: Global Delivery
     type: select
     proxies:
-      - 🇺🇸 美国BGP - 1
-      - 🇺🇸 美国BGP - 2
-      - 🇺🇸 美国BGP - 3
-      - 🇺🇸 美国BGP - 4
-      - 🇺🇸 美国BGP - 5
-      - 🇭🇰 香港CN2 - 1
-      - 🇭🇰 香港CN2 - 2
-      - 🇭🇰 香港CN2 - 3
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
-  - name: GPT - AI大模型
+      - 🌈 CDN 1
+      - 🌈 CDN 2
+      - 🌈 CDN 3
+   # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+    icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
+  - name: Intelligence
     type: select
     proxies:
-      - ✨ ChatGPT - 1
-      - ✨ ChatGPT - 2
+      - ♾️ Gemini
+      - ♾️ ChatGPT
+      - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
     # 广告屏蔽
@@ -258,36 +177,36 @@ rule-providers:
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,PROXY'
-    - 'DOMAIN-KEYWORD,fiverr,PROXY'
-    - 'DOMAIN-KEYWORD,apollo,PROXY'
+    - 'DOMAIN-KEYWORD,linkedin,Global Delivery'
+    - 'DOMAIN-KEYWORD,fiverr,Global Delivery'
+    - 'DOMAIN-KEYWORD,apollo,Global Delivery'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
     - 'DOMAIN-KEYWORD,lingxing,DIRECT'
     - 'DOMAIN-SUFFIX,gov.cn,DIRECT'
    # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
-    # openAIAI大模型
-    - 'DOMAIN-KEYWORD,openai,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,auth0.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,chatgpt.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,featuregates.org,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,identrust.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,intercom.io,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,oaistatic.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,openai.com,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,sentry.io,GPT - AI大模型'
-    - 'DOMAIN-SUFFIX,stripe.com,GPT - AI大模型'
+    # AI大模型
+    - 'DOMAIN-KEYWORD,openai,Intelligence'
+    - 'DOMAIN-SUFFIX,auth0.com,Intelligence'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,Intelligence'
+    - 'DOMAIN-SUFFIX,chatgpt.com,Intelligence'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,Intelligence'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,Intelligence'
+    - 'DOMAIN-SUFFIX,featuregates.org,Intelligence'
+    - 'DOMAIN-SUFFIX,identrust.com,Intelligence'
+    - 'DOMAIN-SUFFIX,intercom.io,Intelligence'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,Intelligence'
+    - 'DOMAIN-SUFFIX,oaistatic.com,Intelligence'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,Intelligence'
+    - 'DOMAIN-SUFFIX,openai.com,Intelligence'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,Intelligence'
+    - 'DOMAIN-SUFFIX,sentry.io,Intelligence'
+    - 'DOMAIN-SUFFIX,stripe.com,Intelligence'
     # 规则集
     - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
     # 通配值
-    - 'MATCH,PROXY'
+    - 'MATCH,Global Delivery'
