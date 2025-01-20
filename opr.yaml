@@ -5,27 +5,11 @@ mode: rule              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
-dns:
-   enable: true
-   default-nameserver:
-      - https://223.5.5.5/dns-query
-   nameserver:
-     - https://223.5.5.5/dns-query
-     - https://doh.pub/dns-query
-   fallback:
-     - https://9.9.9.9/dns-query
-     - https://doh.apad.pro/dns-query
-   fallback-filter:
-     geoip: true
-     geoip-code: CN
-     ipcidr:
-      - 240.0.0.0/4
-      
 proxies:
-  - # A1
+  - # G1分组
     type: vless
-    name: 🌈 CDN 1
-    server: 104.19.25.68
+    name: 🚥 GR1C1
+    server: 104.19.214.45
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -41,10 +25,10 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # A2
+  - # G1分组
     type: vless
-    name: 🌈 CDN 2
-    server: 104.19.118.154
+    name: 🚥 GR1C2
+    server: 104.17.231.177
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -60,10 +44,67 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # A3
+  - # G2分组
     type: vless
-    name: 🌈 CDN 3
-    server: 104.19.74.19
+    name: 🚥 GR2C1
+    server: 104.19.242.62
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # G2分组
+    type: vless
+    name: 🚥 GR2C2
+    server: 173.245.49.87
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # G3分组
+    type: vless
+    name: 🚥 GR3C1
+    server: 172.64.148.37
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # G3分组
+    type: vless
+    name: 🚥 GR3C2
+    server: 172.66.40.131
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -131,15 +172,45 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-  - name: Global Delivery
-    type: select
+  - name: Hello World
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🌈 CDN 1
-      - 🌈 CDN 2
-      - 🌈 CDN 3
-   # icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+      - 自动模式
+      - 手动模式
+      - 负载均衡
+    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
+  - name: 自动模式
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🚥 GR1C1
+      - 🚥 GR1C2
+      - 🚥 GR2C1
+      - 🚥 GR2C2
+      - 🚥 GR3C1
+      - 🚥 GR3C2
+    icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
+  - name: 手动模式
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🚥 GR1C1
+      - 🚥 GR1C2
+      - 🚥 GR2C1
+      - 🚥 GR2C2
+      - 🚥 GR3C1
+      - 🚥 GR3C2
+    icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
+  - name: 负载均衡
+    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🚥 GR1C1
+      - 🚥 GR1C2
+      - 🚥 GR2C1
+      - 🚥 GR2C2
+      - 🚥 GR3C1
+      - 🚥 GR3C2
     icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
-  - name: Intelligence
+   # icon: https://img.icons8.com/?size=100&id=5Yjf1lCjbLsy&format=png&color=000000
+  - name: AI助手
     type: select
     proxies:
       - ♾️ Gemini
@@ -147,13 +218,6 @@ proxy-groups:
       - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
-    # 广告屏蔽
-    reject:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
-      path: ./ruleset/reject.yaml
-      interval: 86400
     # 国内域名
     direct:
       type: http
@@ -177,9 +241,9 @@ rule-providers:
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,Global Delivery'
-    - 'DOMAIN-KEYWORD,fiverr,Global Delivery'
-    - 'DOMAIN-KEYWORD,apollo,Global Delivery'
+    - 'DOMAIN-KEYWORD,linkedin,Hello World'
+    - 'DOMAIN-KEYWORD,fiverr,Hello World'
+    - 'DOMAIN-KEYWORD,apollo,Hello World'
     - 'DOMAIN-KEYWORD,yupoo,DIRECT'
     - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
     - 'DOMAIN-KEYWORD,wps,DIRECT'
@@ -187,26 +251,25 @@ rules:
     - 'DOMAIN-SUFFIX,gov.cn,DIRECT'
    # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
     # AI大模型
-    - 'DOMAIN-KEYWORD,openai,Intelligence'
-    - 'DOMAIN-SUFFIX,auth0.com,Intelligence'
-    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,Intelligence'
-    - 'DOMAIN-SUFFIX,chatgpt.com,Intelligence'
-    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,Intelligence'
-    - 'DOMAIN-SUFFIX,events.statsigapi.net,Intelligence'
-    - 'DOMAIN-SUFFIX,featuregates.org,Intelligence'
-    - 'DOMAIN-SUFFIX,identrust.com,Intelligence'
-    - 'DOMAIN-SUFFIX,intercom.io,Intelligence'
-    - 'DOMAIN-SUFFIX,intercomcdn.com,Intelligence'
-    - 'DOMAIN-SUFFIX,oaistatic.com,Intelligence'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,Intelligence'
-    - 'DOMAIN-SUFFIX,openai.com,Intelligence'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,Intelligence'
-    - 'DOMAIN-SUFFIX,sentry.io,Intelligence'
-    - 'DOMAIN-SUFFIX,stripe.com,Intelligence'
+    - 'DOMAIN-KEYWORD,openai,AI助手'
+    - 'DOMAIN-SUFFIX,auth0.com,AI助手'
+    - 'DOMAIN-SUFFIX,challenges.cloudflare.com,AI助手'
+    - 'DOMAIN-SUFFIX,chatgpt.com,AI助手'
+    - 'DOMAIN-SUFFIX,client-api.arkoselabs.com,AI助手'
+    - 'DOMAIN-SUFFIX,events.statsigapi.net,AI助手'
+    - 'DOMAIN-SUFFIX,featuregates.org,AI助手'
+    - 'DOMAIN-SUFFIX,identrust.com,AI助手'
+    - 'DOMAIN-SUFFIX,intercom.io,AI助手'
+    - 'DOMAIN-SUFFIX,intercomcdn.com,AI助手'
+    - 'DOMAIN-SUFFIX,oaistatic.com,AI助手'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI助手'
+    - 'DOMAIN-SUFFIX,openai.com,AI助手'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI助手'
+    - 'DOMAIN-SUFFIX,sentry.io,AI助手'
+    - 'DOMAIN-SUFFIX,stripe.com,AI助手'
     # 规则集
-    - 'RULE-SET,reject,REJECT'
     - 'RULE-SET,direct,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
     # 通配值
-    - 'MATCH,Global Delivery'
+    - 'MATCH,Hello World'
