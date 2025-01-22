@@ -9,7 +9,7 @@ proxies:
   - # G1分组
     type: vless
     name: 🚥 GR1C1
-    server: 104.19.214.45
+    server: 172.64.40.49
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -28,7 +28,7 @@ proxies:
   - # G1分组
     type: vless
     name: 🚥 GR1C2
-    server: 104.17.231.177
+    server: 104.18.118.218
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -47,7 +47,7 @@ proxies:
   - # G2分组
     type: vless
     name: 🚥 GR2C1
-    server: 104.19.242.62
+    server: 162.159.45.62
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -66,7 +66,7 @@ proxies:
   - # G2分组
     type: vless
     name: 🚥 GR2C2
-    server: 173.245.49.87
+    server: 104.18.119.121
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -85,7 +85,7 @@ proxies:
   - # G3分组
     type: vless
     name: 🚥 GR3C1
-    server: 172.64.148.37
+    server: 104.16.222.14
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -104,7 +104,7 @@ proxies:
   - # G3分组
     type: vless
     name: 🚥 GR3C2
-    server: 172.66.40.131
+    server: 104.18.125.148
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -218,38 +218,44 @@ proxy-groups:
       - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
 rule-providers:
-    # 国内域名
-    direct:
+    # gfw名单
+    gfw:
       type: http
       behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
-      path: ./ruleset/direct.yaml
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+      path: ./ruleset/gfw.yaml
       interval: 86400
-    # 国内IP
-    cncidr:
+    # google
+    google:
+      type: http
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+      path: ./ruleset/google.yaml
+      interval: 86400
+    # gfw2
+    gfw2:
+      type: http
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+      path: ./ruleset/proxy.yaml
+      interval: 86400
+    # telegramip
+    telegramcidr:
       type: http
       behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-      path: ./ruleset/cncidr.yaml
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+      path: ./ruleset/ptelegramcidr.yaml
       interval: 86400
-    # 局域网
-    lancidr:
+    # 非中国域名
+    tld-not-cn:
       type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./ruleset/lancidr.yaml
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
+      path: ./ruleset/ptelegramcidr.yaml
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,linkedin,Hello World'
-    - 'DOMAIN-KEYWORD,fiverr,Hello World'
-    - 'DOMAIN-KEYWORD,apollo,Hello World'
-    - 'DOMAIN-KEYWORD,yupoo,DIRECT'
-    - 'DOMAIN-KEYWORD,ksdoc,DIRECT'
-    - 'DOMAIN-KEYWORD,wps,DIRECT'
-    - 'DOMAIN-KEYWORD,lingxing,DIRECT'
-    - 'DOMAIN-SUFFIX,gov.cn,DIRECT'
-   # - 'DOMAIN-KEYWORD,baidu,REJECT'  #禁用百度 #国产垃圾
+    - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
     # AI大模型
     - 'DOMAIN-KEYWORD,openai,AI助手'
     - 'DOMAIN-SUFFIX,auth0.com,AI助手'
@@ -268,8 +274,10 @@ rules:
     - 'DOMAIN-SUFFIX,sentry.io,AI助手'
     - 'DOMAIN-SUFFIX,stripe.com,AI助手'
     # 规则集
-    - 'RULE-SET,direct,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT'
-    - 'RULE-SET,lancidr,DIRECT'
+    - 'RULE-SET,gfw,Hello World'
+    - 'RULE-SET,google,Hello World'
+    - 'RULE-SET,gfw2,Hello World'
+    - 'RULE-SET,telegramcidr,Hello World'
+    - 'RULE-SET,tld-not-cn,Hello World'
     # 通配值
-    - 'MATCH,Hello World'
+    - 'MATCH,DIRECT'
