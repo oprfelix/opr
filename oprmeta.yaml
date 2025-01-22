@@ -9,7 +9,7 @@ proxies:
   - # G1分组
     type: vless
     name: 🚥 GR1C1
-    server: 172.64.40.49
+    server: 104.16.9.44
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -28,7 +28,7 @@ proxies:
   - # G1分组
     type: vless
     name: 🚥 GR1C2
-    server: 104.18.118.218
+    server: 104.17.3.199
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -47,7 +47,7 @@ proxies:
   - # G2分组
     type: vless
     name: 🚥 GR2C1
-    server: 162.159.45.62
+    server: 104.18.221.73
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -66,7 +66,7 @@ proxies:
   - # G2分组
     type: vless
     name: 🚥 GR2C2
-    server: 104.18.119.121
+    server: 104.19.74.138
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -85,7 +85,7 @@ proxies:
   - # G3分组
     type: vless
     name: 🚥 GR3C1
-    server: 104.16.222.14
+    server: 104.17.83.105
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -104,7 +104,7 @@ proxies:
   - # G3分组
     type: vless
     name: 🚥 GR3C2
-    server: 104.18.125.148
+    server: 104.18.186.73
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
