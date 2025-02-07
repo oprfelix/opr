@@ -288,6 +288,9 @@ rules:
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,tidal,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
+    # google voice
+    - 'DOMAIN-SUFFIX,lens.l.google.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,♾️ Grok'
     # telegram
     - 'DOMAIN-SUFFIX,comments.app,Hello World'
     - 'DOMAIN-SUFFIX,contest.com,Hello World'
