@@ -6,10 +6,10 @@ log-level: info
 external-controller: '127.0.0.1:9090'
 
 proxies:
-  - # G1分组
+  - # CDN加速线路1
     type: vless
-    name: 🚥 GR1C1
-    server: 104.16.9.44
+    name: 🚥 CDN -1
+    server: 104.19.2.248
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -25,10 +25,29 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # G1分组
+  - # CDN加速线路2
     type: vless
-    name: 🚥 GR1C2
-    server: 104.17.3.199
+    name: 🚥 CDN -2
+    server: 172.67.16.146
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # CDN加速线路1
+    type: vless
+    name: 🚥 CDN -3
+    server: 104.19.4.75
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -44,10 +63,29 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # G2分组
+  - # CDN加速线路2
     type: vless
-    name: 🚥 GR2C1
-    server: 104.18.221.73
+    name: 🚥 CDN -4
+    server: 104.17.143.25
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # US服务器直连
+    type: vless
+    name: 🚥 DRT-24
+    server: 104.19.7.64
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -63,10 +101,28 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # G2分组
+  - # US服务器直连
     type: vless
-    name: 🚥 GR2C2
-    server: 104.19.74.138
+    name: 🚥 DRT-25
+    server: 104.18.59.56
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: randomized
+    skip-cert-verify: true
+    port: 443
+    tls: true
+    udp: false
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # US服务器直连
+    type: vless
+    name: 🚥 DRT-26
+    server: www.fortnite.com
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -82,42 +138,22 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # G3分组
+  - # US服务器直连
     type: vless
-    name: 🚥 GR3C1
-    server: 104.17.83.105
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
+    name: 🚥 DRT-27
+    server: 104.18.53.124
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: randomized
+    skip-cert-verify: true
     port: 443
     tls: true
-    udp: true
+    udp: false
     network: ws
-    sni: warp.fotoman.com
+    sni: dnscheck.techtrendparts.com
     ws-opts:
       headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # G3分组
-    type: vless
-    name: 🚥 GR3C2
-    server: 104.18.186.73
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
     alpn:
       - h2
   - # AI专用线路
@@ -182,32 +218,40 @@ proxy-groups:
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🚥 GR1C1
-      - 🚥 GR1C2
-      - 🚥 GR2C1
-      - 🚥 GR2C2
-      - 🚥 GR3C1
-      - 🚥 GR3C2
+      - 🚥 CDN -1
+      - 🚥 CDN -2
+      - 🚥 CDN -3
+      - 🚥 CDN -4
+      - 🚥 DRT-24
+      - 🚥 DRT-25
+      - 🚥 DRT-26
+      - 🚥 DRT-27
     icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
   - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🚥 GR1C1
-      - 🚥 GR1C2
-      - 🚥 GR2C1
-      - 🚥 GR2C2
-      - 🚥 GR3C1
-      - 🚥 GR3C2
+      - 🚥 CDN -1
+      - 🚥 CDN -2
+      - 🚥 CDN -3
+      - 🚥 CDN -4
+      - 🚥 DRT-24
+      - 🚥 DRT-25
+      - 🚥 DRT-26
+      - 🚥 DRT-27
     icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
   - name: 负载均衡
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    strategy: consistent-hashing  #consistent-hashing 散列, round-robin 轮询
+    interval: 120  #表示每隔120秒检查节点是否可用
     proxies:
-      - 🚥 GR1C1
-      - 🚥 GR1C2
-      - 🚥 GR2C1
-      - 🚥 GR2C2
-      - 🚥 GR3C1
-      - 🚥 GR3C2
+      - 🚥 CDN -1
+      - 🚥 CDN -2
+      - 🚥 CDN -3
+      - 🚥 CDN -4
+      - 🚥 DRT-24
+      - 🚥 DRT-25
+      - 🚥 DRT-26
+      - 🚥 DRT-27
     icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
    # icon: https://img.icons8.com/?size=100&id=5Yjf1lCjbLsy&format=png&color=000000
   - name: AI助手
@@ -239,22 +283,10 @@ rule-providers:
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
       path: ./ruleset/proxy.yaml
       interval: 86400
-    # telegramip
-    telegramcidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-      path: ./ruleset/ptelegramcidr.yaml
-      interval: 86400
-    # 非中国域名
-    tld-not-cn:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt"
-      path: ./ruleset/ptelegramcidr.yaml
-      interval: 86400
 rules:
     # 自定义
+    - 'DOMAIN-KEYWORD,telegram,Hello World'
+    - 'DOMAIN-KEYWORD,tidal,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
     # AI大模型
     - 'DOMAIN-KEYWORD,openai,AI助手'
@@ -277,7 +309,5 @@ rules:
     - 'RULE-SET,gfw,Hello World'
     - 'RULE-SET,google,Hello World'
     - 'RULE-SET,gfw2,Hello World'
-    - 'RULE-SET,telegramcidr,Hello World'
-    - 'RULE-SET,tld-not-cn,Hello World'
     # 通配值
     - 'MATCH,DIRECT'
