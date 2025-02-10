@@ -9,7 +9,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 CDN -1
-    server: 104.16.33.247
+    server: 104.19.2.96
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -28,7 +28,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 CDN -2
-    server: 104.22.22.251
+    server: 104.19.37.105
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -47,7 +47,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 CDN -3
-    server: 104.16.221.122
+    server: 104.19.20.188
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -66,7 +66,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 CDN -4
-    server: 104.18.113.225
+    server: 104.19.3.128
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -85,7 +85,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 DRT-24
-    server: 162.159.251.217
+    server: 104.19.17.68
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -104,7 +104,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 DRT-25
-    server: 104.18.123.94
+    server: 104.19.19.126
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
     skip-cert-verify: true
@@ -141,7 +141,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 DRT-27
-    server: 104.18.27.19
+    server: 104.19.38.234
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
     skip-cert-verify: true
