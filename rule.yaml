@@ -8,8 +8,8 @@ external-controller: '127.0.0.1:9090'
 proxies:
   - # CDN加速线路1
     type: vless
-    name: 🚥 CDN -1
-    server: 104.18.55.239
+    name: 🚥 Clash v01
+    server: 104.19.67.191
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -27,8 +27,8 @@ proxies:
       - h2
   - # CDN加速线路2
     type: vless
-    name: 🚥 CDN -2
-    server: 104.18.53.101
+    name: 🚥 Clash v02
+    server: 104.19.8.25
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -46,8 +46,9 @@ proxies:
       - h2
   - # US服务器直连
     type: vless
-    name: 🚥 DRT -25
-    server: 104.16.116.202
+    name: 🚥 Clash v03
+    server: 104.19.7.71
+    servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
     skip-cert-verify: true
@@ -64,8 +65,8 @@ proxies:
       - h2
   - # US服务器直连
     type: vless
-    name: 🚥 DRT -26
-    server: www.fortnite.com
+    name: 🚥 Clash v04
+    server: 104.16.120.160 #www.fortnite.com
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -138,35 +139,35 @@ proxy-groups:
     proxies:
       - 自动模式
       - 手动模式
-      - 负载均衡
+#      - 负载均衡
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🚥 CDN -1
-      - 🚥 CDN -2
-      - 🚥 DRT -25
-      - 🚥 DRT -26
+      - 🚥 Clash v01
+      - 🚥 Clash v02
+      - 🚥 Clash v03
+      - 🚥 Clash v04
     icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
   - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🚥 CDN -1
-      - 🚥 CDN -2
-      - 🚥 DRT -25
-      - 🚥 DRT -26
+      - 🚥 Clash v01
+      - 🚥 Clash v02
+      - 🚥 Clash v03
+      - 🚥 Clash v04
     icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
-  - name: 负载均衡
-    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
-    strategy: consistent-hashing  #consistent-hashing 散列, round-robin 轮询
-    interval: 120  #表示每隔120秒检查节点是否可用
-    proxies:
-      - 🚥 CDN -1
-      - 🚥 CDN -2
-      - 🚥 DRT -25
-      - 🚥 DRT -26
-    icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
-   # icon: https://img.icons8.com/?size=100&id=5Yjf1lCjbLsy&format=png&color=000000
+#  - name: 负载均衡
+#    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+#    strategy: consistent-hashing  #consistent-hashing 散列, round-robin 轮询
+#    interval: 120  #表示每隔120秒检查节点是否可用
+#    proxies:
+#      - 🚥 Clash v01
+#      - 🚥 Clash v02
+#      - 🚥 Clash v03
+#      - 🚥 Clash v04
+#    icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
+#   # icon: https://img.icons8.com/?size=100&id=5Yjf1lCjbLsy&format=png&color=000000
   - name: AI助手
     type: select
     proxies:
