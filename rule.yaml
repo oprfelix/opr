@@ -5,11 +5,55 @@ mode: rule              #规则模式 rule 全局模式 global
 log-level: info
 external-controller: '127.0.0.1:9090'
 
+dns:
+  enable: true #可选值 true/false 是否启用，如为 false，则使用系统 DNS 解析
+  prefer-h3: false #可选值 true/false 是否开启 DOH 的 http/3
+  listen: 0.0.0.0:1053 #dns 服务监听
+  ipv6: true #可选值 true/false
+  default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
+    - 223.6.6.6
+    - 119.29.29.29
+    - tls://223.5.5.5:853
+  enhanced-mode: fake-ip #可选值 fake-ip / redir-host Clash 的 dns 处理模式
+  fake-ip-range: 198.18.0.1/16 #格式为 ip/掩码 fakeip 下的 IP 段设置，tun 网卡的默认 ip 也使用此值
+  fake-ip-filter: #fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+  nameserver-policy: #指定域名查询的解析服务器，可使用 geosite, 优先于 nameserver/fallback 查询
+    '+.baidu.com': '180.76.76.76'
+    '+.qq.com': '119.29.29.29'
+    '+.internal.crop.com': '10.0.0.1'
+    '+.jd.com,+.google.cn,+.360buy.com': https://doh.pub/dns-query
+    'geosite:private,apple': https://dns.alidns.com/dns-query
+    'geosite:cn': https://doh.pub/dns-query
+  nameserver: #默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback: #后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+    - tls://dns.google
+    - https://1.0.0.1/dns-query
+  proxy-server-nameserver: #代理节点域名解析服务器，仅用于解析代理节点的域名
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true #可选值为 true/false 是否启用 fallback filter
+    geoip-code: CN #可选值为 国家缩写，默认值为 CN 除了 geoip-code 配置的国家 IP, 其他的 IP 结果会被视为污染 
+    geosite: #可选值为对于的 geosite 内包含的集合 geosite 列表的内容被视为已污染，匹配到 geosite 的域名，将只使用 fallback解析，不去使用 nameserver
+      - gfw
+    ipcidr: #书写内容为 IP/掩码 这些网段的结果会被视为污染，nameserver解析出这些结果时将会采用 fallback的解析结果
+      - 240.0.0.0/4
+    domain: #这些域名被视为已污染，匹配到这些域名，会直接使用 fallback解析，不去使用 nameserver
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      - '+.x.com'
+
 proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 Clash v01
-    server: 104.19.67.191
+    server: 141.101.123.212
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -28,7 +72,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 Clash v02
-    server: 104.19.8.25
+    server: 141.101.122.218
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -47,7 +91,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v03
-    server: 104.19.7.71
+    server: 141.101.121.232
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
@@ -66,7 +110,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v04
-    server: 104.16.120.160 #www.fortnite.com
+    server: 173.245.49.48 #www.fortnite.com
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -133,6 +177,22 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+  - # 工作专线
+    type: vless
+    name: 📂 禁止滥用 流量10G/月
+    server: 149.30.247.249
+    servername: work.fotoman.com
+    uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
+    client-fingerprint: chrome
+    port: 36342
+    tls: true
+    network: ws
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
   - name: Hello World
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -140,6 +200,7 @@ proxy-groups:
       - 自动模式
       - 手动模式
 #      - 负载均衡
+      - 工作模式 - 高速网络
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -167,7 +228,11 @@ proxy-groups:
 #      - 🚥 Clash v03
 #      - 🚥 Clash v04
 #    icon: https://img.icons8.com/?size=100&id=79045&format=png&color=000000
-#   # icon: https://img.icons8.com/?size=100&id=5Yjf1lCjbLsy&format=png&color=000000
+  - name: 工作模式 - 高速网络
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 📂 禁止滥用 流量10G/月
+    icon: https://img.icons8.com/?size=100&id=44783&format=png&color=000000
   - name: AI助手
     type: select
     proxies:
@@ -184,23 +249,27 @@ rule-providers:
       path: ./ruleset/gfw.yaml
       interval: 86400
     # google
-    google:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
-      path: ./ruleset/google.yaml
-      interval: 86400
+    #google:
+    #  type: http
+    #  behavior: domain
+    #  url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    #  path: ./ruleset/google.yaml
+    #  interval: 86400
     # gfw2
-    gfw2:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
-      path: ./ruleset/proxy.yaml
-      interval: 86400
+    #gfw2:
+    #  type: http
+    #  behavior: domain
+    #  url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    #  path: ./ruleset/proxy.yaml
+    #  interval: 86400
 rules:
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
-    - 'DOMAIN-KEYWORD,tidal,DIRECT'
+    - 'DOMAIN-KEYWORD,tidal,DIRECT' #tidal
+    - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
+    - 'DOMAIN-KEYWORD,amazon,DIRECT'
+    - 'DOMAIN-KEYWORD,sif,DIRECT'
+    - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,♾️ Grok'
@@ -261,7 +330,7 @@ rules:
     - 'DOMAIN-SUFFIX,stripe.com,AI助手'
     # 规则集
     - 'RULE-SET,gfw,Hello World'
-    - 'RULE-SET,google,Hello World'
-    - 'RULE-SET,gfw2,Hello World'
+#    - 'RULE-SET,google,Hello World'
+#    - 'RULE-SET,gfw2,Hello World'
     # 通配值
     - 'MATCH,DIRECT'
