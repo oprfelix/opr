@@ -256,6 +256,12 @@ rules:
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
+    # Grok
+    - 'DOMAIN-KEYWORD,twimg,工作模式 - 高速网络'
+    - 'DOMAIN-KEYWORD,grok,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,x.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,t.co,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,twitter.com,工作模式 - 高速网络'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,工作模式 - 高速网络'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,工作模式 - 高速网络'
