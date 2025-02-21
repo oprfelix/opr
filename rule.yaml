@@ -246,6 +246,8 @@ rule-providers: #规则集
       path: ./ruleset/telegramcidr.yaml
       interval: 86400
 rules:
+    # 视频
+    - 'DOMAIN-SUFFIX,googlevideo.com,Hello World'
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,reddit,工作模式 - 高速网络'
