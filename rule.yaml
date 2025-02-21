@@ -246,8 +246,16 @@ rule-providers: #规则集
       path: ./ruleset/telegramcidr.yaml
       interval: 86400
 rules:
-    # 视频
+    # Google优化
     - 'DOMAIN-SUFFIX,googlevideo.com,Hello World'
+    - 'DOMAIN-SUFFIX,docs.google.com,Hello World'
+    - 'DOMAIN-SUFFIX,drive.google.com,Hello World'
+    - 'DOMAIN-SUFFIX,ytimg.com,Hello World'
+    - 'DOMAIN-SUFFIX,google.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,googleapis.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,youtube.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,googleusercontent.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,android.com,工作模式 - 高速网络'
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,reddit,工作模式 - 高速网络'
