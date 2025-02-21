@@ -256,6 +256,8 @@ rules:
     - 'DOMAIN-SUFFIX,drive.google.com,Hello World'
     - 'DOMAIN-SUFFIX,ytimg.com,Hello World'
     - 'DOMAIN-SUFFIX,preview.redd.it,Hello World'
+    - 'DOMAIN-SUFFIX,v.redd.it,Hello World'
+    - 'DOMAIN-SUFFIX,packaged-media.redd.it,Hello World'
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,reddit,香港专线'
