@@ -257,7 +257,7 @@ rules:
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
     # Grok
-    - 'DOMAIN-KEYWORD,twimg,工作模式 - 高速网络'
+    - 'DOMAIN-KEYWORD,twimg,Hello World'
     - 'DOMAIN-KEYWORD,grok,工作模式 - 高速网络'
     - 'DOMAIN-SUFFIX,x.com,工作模式 - 高速网络'
     - 'DOMAIN-SUFFIX,t.co,工作模式 - 高速网络'
