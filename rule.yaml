@@ -53,7 +53,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 Clash v01
-    server: 141.101.123.12
+    server: 141.101.123.17
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -91,7 +91,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v03
-    server: 141.101.123.114
+    server: 141.101.123.22
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
@@ -110,7 +110,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v04
-    server: 141.101.123.123
+    server: 141.101.123.166
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
