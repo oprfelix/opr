@@ -177,9 +177,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-  - # 工作专线
+  - # 香港专线
     type: vless
-    name: 📂 禁止滥用 流量10G/月
+    name: 📂 hongkong v1
     server: 149.30.247.249
     servername: work.fotoman.com
     uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
@@ -199,8 +199,6 @@ proxy-groups:
     proxies:
       - 自动模式
       - 手动模式
-#      - 负载均衡
-      - 工作模式 - 高速网络
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -218,10 +216,10 @@ proxy-groups:
       - 🚥 Clash v03
       - 🚥 Clash v04
     icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
-  - name: 工作模式 - 高速网络
+  - name: 香港专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 📂 禁止滥用 流量10G/月
+      - 📂 hongkong v1
     icon: https://img.icons8.com/?size=100&id=44783&format=png&color=000000
   - name: AI助手
     type: select
@@ -251,14 +249,14 @@ rules:
     - 'DOMAIN-SUFFIX,docs.google.com,Hello World'
     - 'DOMAIN-SUFFIX,drive.google.com,Hello World'
     - 'DOMAIN-SUFFIX,ytimg.com,Hello World'
-    - 'DOMAIN-SUFFIX,google.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,googleapis.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,youtube.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,googleusercontent.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,android.com,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,google.com,香港专线'
+    - 'DOMAIN-SUFFIX,googleapis.com,香港专线'
+    - 'DOMAIN-SUFFIX,youtube.com,香港专线'
+    - 'DOMAIN-SUFFIX,googleusercontent.com,香港专线'
+    - 'DOMAIN-SUFFIX,android.com,香港专线'
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
-    - 'DOMAIN-KEYWORD,reddit,工作模式 - 高速网络'
+    - 'DOMAIN-KEYWORD,reddit,香港专线'
     - 'DOMAIN-KEYWORD,facebook,Hello World'
     - 'DOMAIN-KEYWORD,tidal,DIRECT' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
@@ -268,13 +266,13 @@ rules:
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
     # Grok
     - 'DOMAIN-KEYWORD,twimg,Hello World'
-    - 'DOMAIN-KEYWORD,grok,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,x.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,t.co,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,twitter.com,工作模式 - 高速网络'
+    - 'DOMAIN-KEYWORD,grok,香港专线'
+    - 'DOMAIN-SUFFIX,x.com,香港专线'
+    - 'DOMAIN-SUFFIX,t.co,香港专线'
+    - 'DOMAIN-SUFFIX,twitter.com,香港专线'
     # google voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,工作模式 - 高速网络'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,工作模式 - 高速网络'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,香港专线'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,香港专线'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,AI助手'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
