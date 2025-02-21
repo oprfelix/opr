@@ -128,23 +128,6 @@ proxies:
       - h2
   - # AI专用线路
     type: vless
-    name: ♾️ Gemini
-    server: 141.101.123.166
-    uuid: 17e0ea4c-adba-44e5-8c3b-e78a5ce3c2ad
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 32034
-    udp: true
-    network: ws
-    sni: bing.com
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # AI专用线路
-    type: vless
     name: ♾️ ChatGPT
     server: 89.117.217.19
     uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
@@ -224,7 +207,6 @@ proxy-groups:
   - name: AI助手
     type: select
     proxies:
-      - ♾️ Gemini
       - ♾️ ChatGPT
       - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
