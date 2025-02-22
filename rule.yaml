@@ -244,7 +244,7 @@ rules:
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,reddit,香港专线'
     - 'DOMAIN-KEYWORD,facebook,Hello World'
-    - 'DOMAIN-KEYWORD,tidal,DIRECT' #tidal
+    - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
