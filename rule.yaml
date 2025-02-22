@@ -246,6 +246,7 @@ rules:
     - 'DOMAIN-KEYWORD,facebook,Hello World'
     - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,Hello World'
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
