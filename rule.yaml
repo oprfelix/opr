@@ -255,6 +255,7 @@ rules:
     - 'DOMAIN-KEYWORD,grok,香港专线'
     - 'DOMAIN-SUFFIX,x.com,香港专线'
     - 'DOMAIN-SUFFIX,t.co,香港专线'
+    - 'DOMAIN-SUFFIX,x.ai,香港专线'
     - 'DOMAIN-SUFFIX,twitter.com,香港专线'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,香港专线'
