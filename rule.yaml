@@ -91,7 +91,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v03
-    server: 141.101.121.229
+    server: 104.19.55.123
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
@@ -110,7 +110,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v04
-    server: 141.101.122.232
+    server: 162.159.252.98
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
