@@ -53,7 +53,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 Clash v01
-    server: 141.101.121.36
+    server: 141.101.121.202
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -72,7 +72,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 Clash v02
-    server: 141.101.120.57
+    server: 141.101.120.96
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -91,7 +91,7 @@ proxies:
   - # US服务器直连
     type: vless
     name: 🚥 Clash v03
-    server: 141.101.123.41
+    server: 141.101.122.110
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: randomized
@@ -111,6 +111,44 @@ proxies:
     type: vless
     name: 🚥 Clash v04
     server: 141.101.122.141
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+    - # US服务器直连
+    type: vless
+    name: 🚥 Clash v05
+    server: 141.101.113.153
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+   - # US服务器直连
+    type: vless
+    name: 🚥 Clash v06
+    server: 141.101.123.75
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -190,6 +228,8 @@ proxy-groups:
       - 🚥 Clash v02
       - 🚥 Clash v03
       - 🚥 Clash v04
+      - 🚥 Clash v05
+      - 🚥 Clash v06
     icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
   - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -198,6 +238,8 @@ proxy-groups:
       - 🚥 Clash v02
       - 🚥 Clash v03
       - 🚥 Clash v04
+      - 🚥 Clash v05
+      - 🚥 Clash v06
     icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
   - name: 香港专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
