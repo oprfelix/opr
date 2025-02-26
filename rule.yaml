@@ -126,7 +126,7 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-    - # US服务器直连
+  - # US服务器直连
     type: vless
     name: 🚥 Clash v05
     server: 141.101.113.153
@@ -145,7 +145,7 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-   - # US服务器直连
+  - # US服务器直连
     type: vless
     name: 🚥 Clash v06
     server: 141.101.123.75
