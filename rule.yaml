@@ -269,11 +269,11 @@ rule-providers: #规则集
       interval: 86400
 rules:
     # 加速基础网络服务(低流量业务)
-    - 'DOMAIN-SUFFIX,google.com,香港专线'
-    - 'DOMAIN-SUFFIX,googleapis.com,香港专线'
-    - 'DOMAIN-SUFFIX,youtube.com,香港专线'
-    - 'DOMAIN-SUFFIX,googleusercontent.com,香港专线'
-    - 'DOMAIN-SUFFIX,android.com,香港专线'
+    #- 'DOMAIN-SUFFIX,google.com,香港专线'
+    #- 'DOMAIN-SUFFIX,googleapis.com,香港专线'
+    #- 'DOMAIN-SUFFIX,youtube.com,香港专线'
+    #- 'DOMAIN-SUFFIX,googleusercontent.com,香港专线'
+    #- 'DOMAIN-SUFFIX,android.com,香港专线'
     # 高带宽强制使用CDN加速(视频和图片业务)
     - 'DOMAIN-SUFFIX,googlevideo.com,Hello World'
     - 'DOMAIN-SUFFIX,docs.google.com,Hello World'
