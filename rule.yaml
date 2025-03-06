@@ -6,24 +6,13 @@ log-level: info
 external-controller: '127.0.0.1:9090'
 
 dns:
-  enable: true #可选值 true/false 是否启用，如为 false，则使用系统 DNS 解析
-  prefer-h3: false #可选值 true/false 是否开启 DOH 的 http/3
-  listen: 0.0.0.0:1053 #dns 服务监听
-  ipv6: true #可选值 true/false
+  enable: true
   default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
-    - 223.6.6.6
-    - 119.29.29.29
-    - tls://223.5.5.5:853
-  nameserver: #默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
+    - 8.8.8.8
+    - 1.1.1.1
+  nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
-  fallback: #后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-    - tls://dns.google
-    - https://1.0.0.1/dns-query
-  proxy-server-nameserver: #代理节点域名解析服务器，仅用于解析代理节点的域名
-    - https://dns.google/dns-query
 
 proxies:
   - # CDN加速线路1
