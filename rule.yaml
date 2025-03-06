@@ -181,9 +181,3 @@ proxy-groups:
       - 🚥 Clash v06
       - 🚥 Privacy HK
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
-  - name: AI助手
-    type: select
-    proxies:
-      - ♾️ ChatGPT
-      - ♾️ Grok
-    icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
