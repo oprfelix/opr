@@ -9,10 +9,10 @@ dns:
   enable: true
   default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
     - 8.8.8.8
-    - 1.1.1.1
+    - 223.6.6.6
   nameserver:
     - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
+    - https://dns.alidns.com/dns-query
 
 proxies:
   - # CDN加速线路1
