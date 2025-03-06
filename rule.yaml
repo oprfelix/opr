@@ -4,6 +4,18 @@ bind-address: '*'
 mode: global              #规则模式 rule 全局模式 global
 log-level: info
 
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 1.0.0.1
+    - 8.8.4.4
+    - 149.112.112.112
+  nameserver:
+    - https://1.1.1.1/dns-query # DNS over HTTPS
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+
 proxies:
   - # CDN加速线路1
     type: vless
