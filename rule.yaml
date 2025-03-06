@@ -156,7 +156,7 @@ proxies:
       - h2
   - # 香港专线
     type: vless
-    name: 🚥 hongkong v1
+    name: 🚥 Privacy HK
     server: 149.30.247.249
     servername: work.fotoman.com
     uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
@@ -180,13 +180,8 @@ proxy-groups:
       - 🚥 Clash v04
       - 🚥 Clash v05
       - 🚥 Clash v06
-      - 香港专线
+      - 🚥 Privacy HK
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
-  - name: 香港专线
-    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
-    proxies:
-      - 🚥 hongkong v1
-    icon: https://img.icons8.com/?size=100&id=44783&format=png&color=000000
   - name: AI助手
     type: select
     proxies:
@@ -224,8 +219,8 @@ rules:
     - 'DOMAIN-KEYWORD,grok,PROXY'
     - 'DOMAIN-SUFFIX,x.ai,PROXY'
     # google voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,香港专线'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,香港专线'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,AI助手'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
