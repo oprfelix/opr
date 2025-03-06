@@ -4,13 +4,6 @@ bind-address: '*'
 mode: global              #规则模式 rule 全局模式 global
 log-level: info
 
-dns:
-  enable: true #可选值 true/false 是否启用，如为 false，则使用系统 DNS 解析
-  default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
-    - 223.6.6.6
-  nameserver: #默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
-    - https://223.6.6.6/dns-query
-
 proxies:
   - # CDN加速线路1
     type: vless
@@ -194,39 +187,3 @@ proxy-groups:
       - ♾️ ChatGPT
       - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
-
-rules:
-    # 自定义
-    - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
-    - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
-    - 'DOMAIN-SUFFIX,tidal.com,PROXY' #tidal
-    - 'DOMAIN-KEYWORD,sif,DIRECT'
-    - 'DOMAIN-KEYWORD,sorftime,DIRECT'
-    # Grok
-    - 'DOMAIN-KEYWORD,grok,♾️ Grok'
-    - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
-    # google voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
-    # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,AI助手'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI助手'
-    - 'DOMAIN-SUFFIX,chatgpt.com,AI助手'
-    - 'DOMAIN-SUFFIX,chat.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,oaistatic.com,AI助手'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI助手'
-    - 'DOMAIN-SUFFIX,openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI助手'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI助手'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI助手'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,AI助手'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI助手'
-
-    # 通配值
-    - 'MATCH,DIRECT'
