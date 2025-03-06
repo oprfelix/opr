@@ -1,15 +1,15 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: rule              #规则模式 rule 全局模式 global
+mode: global              #规则模式 rule 全局模式 global
 log-level: info
 
 dns:
   enable: true #可选值 true/false 是否启用，如为 false，则使用系统 DNS 解析
   default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
-    - 8.8.8.8
+    - 223.6.6.6
   nameserver: #默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
-    - https://8.8.8.8/dns-query
+    - https://223.6.6.6/dns-query
 
 proxies:
   - # CDN加速线路1
