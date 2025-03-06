@@ -220,6 +220,7 @@ proxy-groups:
     proxies:
       - 自动模式
       - 手动模式
+      - 香港专线
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -268,20 +269,6 @@ rule-providers: #规则集
       path: ./ruleset/telegramcidr.yaml
       interval: 86400
 rules:
-    # 加速基础网络服务(低流量业务)
-    #- 'DOMAIN-SUFFIX,google.com,香港专线'
-    #- 'DOMAIN-SUFFIX,googleapis.com,香港专线'
-    #- 'DOMAIN-SUFFIX,youtube.com,香港专线'
-    #- 'DOMAIN-SUFFIX,googleusercontent.com,香港专线'
-    #- 'DOMAIN-SUFFIX,android.com,香港专线'
-    # 高带宽强制使用CDN加速(视频和图片业务)
-    - 'DOMAIN-SUFFIX,googlevideo.com,Hello World'
-    - 'DOMAIN-SUFFIX,docs.google.com,Hello World'
-    - 'DOMAIN-SUFFIX,drive.google.com,Hello World'
-    - 'DOMAIN-SUFFIX,ytimg.com,Hello World'
-    - 'DOMAIN-SUFFIX,preview.redd.it,Hello World'
-    - 'DOMAIN-SUFFIX,v.redd.it,Hello World'
-    - 'DOMAIN-SUFFIX,packaged-media.redd.it,Hello World'
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,Hello World'
     - 'DOMAIN-KEYWORD,reddit,香港专线'
@@ -289,20 +276,16 @@ rules:
     - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-SUFFIX,tidal.com,Hello World' #tidal
-    - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
+    - 'DOMAIN-KEYWORD,github,Hello World'
     # Grok
-    - 'DOMAIN-KEYWORD,twimg,Hello World'
-    - 'DOMAIN-KEYWORD,grok,香港专线'
-    - 'DOMAIN-SUFFIX,x.com,香港专线'
-    - 'DOMAIN-SUFFIX,t.co,香港专线'
-    - 'DOMAIN-SUFFIX,x.ai,香港专线'
-    - 'DOMAIN-SUFFIX,twitter.com,香港专线'
+    - 'DOMAIN-KEYWORD,grok,Hello World'
+    - 'DOMAIN-SUFFIX,x.ai,Hello World'
     # google voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,香港专线'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,香港专线'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Hello World'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,Hello World'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,AI助手'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
