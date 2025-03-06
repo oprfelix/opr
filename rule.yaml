@@ -11,8 +11,8 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
   nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
 
 proxies:
   - # CDN加速线路1
