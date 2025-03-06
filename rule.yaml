@@ -218,6 +218,7 @@ rules:
     # Grok
     - 'DOMAIN-KEYWORD,grok,♾️ Grok'
     - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
+    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
