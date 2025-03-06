@@ -216,8 +216,8 @@ rules:
     - 'DOMAIN-KEYWORD,ttsmaker,PROXY'
     - 'DOMAIN-KEYWORD,github,PROXY'
     # Grok
-    - 'DOMAIN-KEYWORD,grok,PROXY'
-    - 'DOMAIN-SUFFIX,x.ai,PROXY'
+    - 'DOMAIN-KEYWORD,grok,♾️ Grok'
+    - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
