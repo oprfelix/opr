@@ -206,7 +206,7 @@ rule-providers: #规则集
 rules:
     # 自定义
     - 'DOMAIN-KEYWORD,telegram,PROXY'
-    - 'DOMAIN-KEYWORD,reddit,香港专线'
+    - 'DOMAIN-KEYWORD,reddit,PROXY'
     - 'DOMAIN-KEYWORD,facebook,PROXY'
     - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
