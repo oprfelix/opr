@@ -194,21 +194,7 @@ proxy-groups:
       - ♾️ ChatGPT
       - ♾️ Grok
     icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
-rule-providers: #规则集
-    # gfw名单
-    gfw:
-      type: http
-      behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-      path: ./ruleset/gfw.yaml
-      interval: 86400
-    # google
-    telegramcidr:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-      path: ./ruleset/telegramcidr.yaml
-      interval: 86400
+
 rules:
     # 自定义
     - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
@@ -241,8 +227,6 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI助手'
     - 'DOMAIN-SUFFIX,client.crisp.chat,AI助手'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI助手'
-    # 规则集
-    - 'RULE-SET,gfw,PROXY'
-    - 'RULE-SET,telegramcidr,PROXY'
+
     # 通配值
     - 'MATCH,DIRECT'
