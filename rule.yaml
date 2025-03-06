@@ -205,20 +205,14 @@ rule-providers: #规则集
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,telegram,PROXY'
-    - 'DOMAIN-KEYWORD,reddit,PROXY'
-    - 'DOMAIN-KEYWORD,facebook,PROXY'
     - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-SUFFIX,tidal.com,PROXY' #tidal
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
-    - 'DOMAIN-KEYWORD,ttsmaker,PROXY'
-    - 'DOMAIN-KEYWORD,github,PROXY'
     # Grok
     - 'DOMAIN-KEYWORD,grok,♾️ Grok'
     - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
-    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
