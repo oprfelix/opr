@@ -21,7 +21,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 Clash v01
-    server: 141.101.122.186
+    server: 104.19.183.16
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -40,7 +40,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 Clash v02
-    server: 141.101.123.138
+    server: 104.19.22.126
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -54,82 +54,6 @@ proxies:
       headers:
         host: dnscheck.techtrendparts.com
       path: /?ed=2560
-    alpn:
-      - h2
-  - # US服务器直连
-    type: vless
-    name: 🚥 Clash v03
-    server: 141.101.120.168
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
-    client-fingerprint: randomized
-    skip-cert-verify: true
-    port: 443
-    tls: true
-    udp: false
-    network: ws
-    sni: dnscheck.techtrendparts.com
-    ws-opts:
-      headers:
-        host: dnscheck.techtrendparts.com
-      path: /?ed=2560
-    alpn:
-      - h2
-  - # US服务器直连
-    type: vless
-    name: 🚥 Clash v04
-    server: 141.101.115.111
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # US服务器直连
-    type: vless
-    name: 🚥 Clash v05
-    server: 104.17.70.137
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # US服务器直连
-    type: vless
-    name: 🚥 Clash v06
-    server: 104.19.23.160
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
     alpn:
       - h2
   - # AI专用线路
@@ -189,10 +113,6 @@ proxy-groups:
     proxies:
       - 🚥 Clash v01
       - 🚥 Clash v02
-      - 🚥 Clash v03
-      - 🚥 Clash v04
-      - 🚥 Clash v05
-      - 🚥 Clash v06
       - 🚥 Privacy HK
       - ♾️ Grok
       - ♾️ ChatGPT
