@@ -214,8 +214,9 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
+      
 proxy-groups:
-  - name: PROXY
+  - name: 代理模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 🚥 Clash v01
@@ -228,6 +229,7 @@ proxy-groups:
       - ♾️ Grok
       - ♾️ ChatGPT
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
+    
 rule-providers: #规则集
     # 白名单
     china:
@@ -243,11 +245,12 @@ rule-providers: #规则集
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
       path: ./ruleset/cncidr.yaml
       interval: 86400
+      
 rules:
-    # 自定义
-    - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
+    # 自定义代理规则
+    - 'DOMAIN-KEYWORD,tidal,代理模式' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
-    - 'DOMAIN-SUFFIX,tidal.com,PROXY' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
@@ -279,4 +282,4 @@ rules:
     - 'RULE-SET,china,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
     # 通配值
-    - 'MATCH,PROXY'
+    - 'MATCH,代理模式'
