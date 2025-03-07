@@ -160,6 +160,8 @@ rules:
     - 'DOMAIN-KEYWORD,reddit,🔐 Privacy HK'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
+    - 'DOMAIN-KEYWORD,lingxing,DIRECT'
+    - 'DOMAIN-KEYWORD,quanmaitong,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
