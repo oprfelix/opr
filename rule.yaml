@@ -1,20 +1,53 @@
 mixed-port: 7890
 allow-lan: true
 bind-address: '*'
-mode: global              #规则模式 rule 全局模式 global
+mode: rule              #规则模式 rule 全局模式 global
 log-level: info
+external-controller: '127.0.0.1:9090'
 
 dns:
-  enable: true
-  listen: 0.0.0.0:53
-  default-nameserver:
-    - 1.0.0.1
-    - 8.8.4.4
-    - 149.112.112.112
-  nameserver:
-    - https://1.1.1.1/dns-query
+  enable: true #可选值 true/false 是否启用，如为 false，则使用系统 DNS 解析
+  prefer-h3: false #可选值 true/false 是否开启 DOH 的 http/3
+  listen: 0.0.0.0:1053 #dns 服务监听
+  ipv6: true #可选值 true/false
+  default-nameserver: #默认 dns, 用于解析 DNS 服务器 的域名 必须为 ip, 可为加密 dns
+    - 223.6.6.6
+    - 119.29.29.29
+    - tls://223.5.5.5:853
+  enhanced-mode: fake-ip #可选值 fake-ip / redir-host Clash 的 dns 处理模式
+  fake-ip-range: 198.18.0.1/16 #格式为 ip/掩码 fakeip 下的 IP 段设置，tun 网卡的默认 ip 也使用此值
+  fake-ip-filter: #fakeip 过滤，以下地址不会下发 fakeip 映射用于连接
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+  nameserver-policy: #指定域名查询的解析服务器，可使用 geosite, 优先于 nameserver/fallback 查询
+    '+.baidu.com': '180.76.76.76'
+    '+.qq.com': '119.29.29.29'
+    '+.internal.crop.com': '10.0.0.1'
+    '+.jd.com,+.google.cn,+.360buy.com': https://doh.pub/dns-query
+    'geosite:private,apple': https://dns.alidns.com/dns-query
+    'geosite:cn': https://doh.pub/dns-query
+  nameserver: #默认的域名解析服务器，如不配置 fallback/proxy-server-nameserver , 则所有域名都由 nameserver 解析
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback: #后备域名解析服务器，一般情况下使用境外 DNS, 保证结果可信 配置 fallback后默认启用 fallback-filter,geoip-code为 cn
+    - tls://8.8.4.4
+    - tls://1.1.1.1
+    - tls://dns.google
+    - https://1.0.0.1/dns-query
+  proxy-server-nameserver: #代理节点域名解析服务器，仅用于解析代理节点的域名
     - https://dns.google/dns-query
-    - https://dns.quad9.net/dns-query
+  fallback-filter:
+    geoip: true #可选值为 true/false 是否启用 fallback filter
+    geoip-code: CN #可选值为 国家缩写，默认值为 CN 除了 geoip-code 配置的国家 IP, 其他的 IP 结果会被视为污染 
+    geosite: #可选值为对于的 geosite 内包含的集合 geosite 列表的内容被视为已污染，匹配到 geosite 的域名，将只使用 fallback解析，不去使用 nameserver
+      - gfw
+    ipcidr: #书写内容为 IP/掩码 这些网段的结果会被视为污染，nameserver解析出这些结果时将会采用 fallback的解析结果
+      - 240.0.0.0/4
+    domain: #这些域名被视为已污染，匹配到这些域名，会直接使用 fallback解析，不去使用 nameserver
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+      - '+.x.com'
 
 proxies:
   - # CDN加速线路1
@@ -167,7 +200,7 @@ proxies:
       - h2
   - # 香港专线
     type: vless
-    name: 🚥 Privacy HK
+    name: 🚥 hongkong v1
     server: 149.30.247.249
     servername: work.fotoman.com
     uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
@@ -182,7 +215,24 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-  - name: PROXY
+  - name: Hello World
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 自动模式
+      - 手动模式
+      - 香港专线
+    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
+  - name: 自动模式
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🚥 Clash v01
+      - 🚥 Clash v02
+      - 🚥 Clash v03
+      - 🚥 Clash v04
+      - 🚥 Clash v05
+      - 🚥 Clash v06
+    icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
+  - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 🚥 Clash v01
@@ -191,7 +241,72 @@ proxy-groups:
       - 🚥 Clash v04
       - 🚥 Clash v05
       - 🚥 Clash v06
-      - 🚥 Privacy HK
-      - ♾️ Grok
+    icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
+  - name: 香港专线
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🚥 hongkong v1
+    icon: https://img.icons8.com/?size=100&id=44783&format=png&color=000000
+  - name: AI助手
+    type: select
+    proxies:
       - ♾️ ChatGPT
-    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
+      - ♾️ Grok
+    icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
+rule-providers: #规则集
+    # gfw名单
+    gfw:
+      type: http
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+      path: ./ruleset/gfw.yaml
+      interval: 86400
+    # google
+    telegramcidr:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+      path: ./ruleset/telegramcidr.yaml
+      interval: 86400
+rules:
+    # 自定义
+    - 'DOMAIN-KEYWORD,telegram,Hello World'
+    - 'DOMAIN-KEYWORD,reddit,香港专线'
+    - 'DOMAIN-KEYWORD,facebook,Hello World'
+    - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
+    - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,Hello World' #tidal
+    - 'DOMAIN-KEYWORD,sif,DIRECT'
+    - 'DOMAIN-KEYWORD,sorftime,DIRECT'
+    - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
+    - 'DOMAIN-KEYWORD,github,Hello World'
+    # Grok
+    - 'DOMAIN-KEYWORD,grok,Hello World'
+    - 'DOMAIN-SUFFIX,x.ai,Hello World'
+    # google voice
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Hello World'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,Hello World'
+    # OpenAI (ChatGPT)
+    - 'DOMAIN-SUFFIX,ai.com,AI助手'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI助手'
+    - 'DOMAIN-SUFFIX,chatgpt.com,AI助手'
+    - 'DOMAIN-SUFFIX,chat.openai.com,AI助手'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,AI助手'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,AI助手'
+    - 'DOMAIN-SUFFIX,oaistatic.com,AI助手'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI助手'
+    - 'DOMAIN-SUFFIX,openai.com,AI助手'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI助手'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI助手'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI助手'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI助手'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI助手'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI助手'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,AI助手'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI助手'
+    # 规则集
+    - 'RULE-SET,gfw,Hello World'
+    - 'RULE-SET,telegramcidr,Hello World'
+    # 通配值
+    - 'MATCH,DIRECT'
