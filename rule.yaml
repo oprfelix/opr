@@ -152,6 +152,7 @@ rules:
     - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy HK'
+    - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
@@ -191,7 +192,6 @@ rules:
     - 'DOMAIN-KEYWORD,facebook,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,x.com,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
     - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
     - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
     - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
