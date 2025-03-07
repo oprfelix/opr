@@ -189,5 +189,6 @@ rules:
     - 'DOMAIN-KEYWORD,reddit,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
+    - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
     # 通配值
     - 'MATCH,代理模式'
