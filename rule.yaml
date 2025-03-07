@@ -123,15 +123,28 @@ proxies:
       - h2
 proxy-groups:
   - name: 代理模式
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 默认自动模式
+      - 切换手动模式
+    icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
+  - name: 默认自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - ❇️ CDN加速 v1
+      - ❇️ CDN加速 v2
+      - ❇️ CDN加速 v3
+    icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
+  - name: 切换手动模式
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ♾️ Grok
       - ♾️ ChatGPT
-    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
-    
+      - 🔐 Privacy
+    icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
     cnName:
