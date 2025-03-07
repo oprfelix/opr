@@ -17,7 +17,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: 🚥 cdn v01
-    server: 104.19.183.16
+    server: 104.19.20.228
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -36,7 +36,26 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: 🚥 cdn v02
-    server: 104.19.22.126
+    server: 104.19.13.43
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # CDN加速线路2
+    type: vless
+    name: 🚥 cdn v03
+    server: 141.101.123.126
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -88,7 +107,7 @@ proxies:
       - h2
   - # 香港专线
     type: vless
-    name: 🔐 Privacy HK
+    name: 🔐 Privacy
     server: 149.30.247.249
     servername: work.fotoman.com
     uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
@@ -102,13 +121,13 @@ proxies:
       path: /?ed=2048
     alpn:
       - h2
-      
 proxy-groups:
   - name: 代理模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 🚥 cdn v01
       - 🚥 cdn v02
+      - 🚥 cdn v03
       - ♾️ Grok
       - ♾️ ChatGPT
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
@@ -148,12 +167,12 @@ rules:
     # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     # Grok
-    - 'DOMAIN-KEYWORD,grok,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
     # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy HK'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
     # gemini
     - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
     - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
@@ -177,12 +196,12 @@ rules:
     - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
     # 自定义代理规则
-    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy HK' #tidal页面
+    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy' #tidal页面
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
-    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,github,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,github,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy'
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
     - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
@@ -191,11 +210,11 @@ rules:
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
     # 谷歌业务分离加速
-    - 'DOMAIN-KEYWORD,google,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy HK'
-    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
     - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
     - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
     - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
