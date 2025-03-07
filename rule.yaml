@@ -267,7 +267,11 @@ rules:
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
     - 'DOMAIN-KEYWORD,fiverr,🚥 Privacy HK'
+    - 'DOMAIN-KEYWORD,apollo,🚥 Privacy HK'
+    - 'DOMAIN-KEYWORD,github,🚥 Privacy HK'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
+    - 'DOMAIN-KEYWORD,apple,DIRECT'
+    - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
     - 'DOMAIN-KEYWORD,grok,♾️ Grok'
