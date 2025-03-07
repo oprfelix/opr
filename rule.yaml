@@ -145,6 +145,8 @@ rule-providers: #规则集
     
       
 rules:
+    # Amazon
+    - 'DOMAIN-KEYWORD,amazon,DIRECT'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy HK'
@@ -188,7 +190,6 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
-    - 'DOMAIN-KEYWORD,amazon,DIRECT'
     # 谷歌业务分离加速
     - 'DOMAIN-KEYWORD,google,🔐 Privacy HK'
     - 'DOMAIN-KEYWORD,youtube,🔐 Privacy HK'
