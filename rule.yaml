@@ -280,6 +280,7 @@ rules:
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
+    - 'DOMAIN-SUFFIX,voice.google.com,🚥 Privacy HK'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
