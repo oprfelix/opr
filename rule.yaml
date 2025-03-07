@@ -171,13 +171,6 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
     - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
-    # 规则集
-    - 'RULE-SET,cnName,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT,no-resolve'
-    - 'RULE-SET,lancidr,DIRECT,no-resolve'
-    - 'RULE-SET,applications,DIRECT'
-    - 'GEOIP,LAN,DIRECT'
-    - 'GEOIP,CN,DIRECT,no-resolve'
     # 自定义代理规则
     - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy HK' #tidal页面
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
@@ -205,5 +198,12 @@ rules:
     - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
     - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
     - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
+    # 规则集
+    - 'RULE-SET,cnName,DIRECT'
+    - 'RULE-SET,cncidr,DIRECT,no-resolve'
+    - 'RULE-SET,lancidr,DIRECT,no-resolve'
+    - 'RULE-SET,applications,DIRECT'
+    - 'GEOIP,LAN,DIRECT'
+    - 'GEOIP,CN,DIRECT,no-resolve'
     # 通配值
     - 'MATCH,代理模式'
