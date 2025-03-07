@@ -275,8 +275,8 @@ rules:
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
-    - 'DOMAIN-KEYWORD,grok,♾️ Grok'
-    - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
+    - 'DOMAIN-KEYWORD,grok,🚥 Privacy HK'
+    - 'DOMAIN-SUFFIX,x.ai,🚥 Privacy HK'
     # google voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
