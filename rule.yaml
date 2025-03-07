@@ -148,11 +148,13 @@ rules:
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy HK'
-    # google voice
+    # voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy HK'
+    # gemini
     - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
+    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
