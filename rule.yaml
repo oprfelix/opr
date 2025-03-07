@@ -190,5 +190,7 @@ rules:
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
     - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     # 通配值
     - 'MATCH,代理模式'
