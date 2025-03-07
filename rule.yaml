@@ -198,6 +198,7 @@ rules:
     - 'DOMAIN-KEYWORD,facebook,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,x.com,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,gemini,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
     - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
     - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
