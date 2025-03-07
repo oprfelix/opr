@@ -266,7 +266,7 @@ rules:
     - 'DOMAIN-KEYWORD,tidal,代理模式' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
-    - 'DOMAIN-KEYWORD,fiverr,代理模式'
+    - 'DOMAIN-KEYWORD,fiverr,🚥 Privacy HK'
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
