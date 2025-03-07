@@ -193,5 +193,12 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
+    # 谷歌业务分离加速
+    - 'DOMAIN-KEYWORD,google,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy HK'
+    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
+    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
     # 通配值
     - 'MATCH,代理模式'
