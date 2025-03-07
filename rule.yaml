@@ -200,7 +200,7 @@ proxies:
       - h2
   - # 香港专线
     type: vless
-    name: 🚥 hongkong v1
+    name: 🚥 Privacy HK
     server: 149.30.247.249
     servername: work.fotoman.com
     uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
@@ -215,24 +215,7 @@ proxies:
     alpn:
       - h2
 proxy-groups:
-  - name: Hello World
-    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
-    proxies:
-      - 自动模式
-      - 手动模式
-      - 香港专线
-    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
-  - name: 自动模式
-    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
-    proxies:
-      - 🚥 Clash v01
-      - 🚥 Clash v02
-      - 🚥 Clash v03
-      - 🚥 Clash v04
-      - 🚥 Clash v05
-      - 🚥 Clash v06
-    icon: https://img.icons8.com/?size=100&id=L8vpm0EbdITY&format=png&color=000000
-  - name: 手动模式
+  - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 🚥 Clash v01
@@ -241,18 +224,10 @@ proxy-groups:
       - 🚥 Clash v04
       - 🚥 Clash v05
       - 🚥 Clash v06
-    icon: https://img.icons8.com/?size=100&id=bBzzmBjaR1Sj&format=png&color=000000
-  - name: 香港专线
-    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
-    proxies:
-      - 🚥 hongkong v1
-    icon: https://img.icons8.com/?size=100&id=44783&format=png&color=000000
-  - name: AI助手
-    type: select
-    proxies:
-      - ♾️ ChatGPT
+      - 🚥 Privacy HK
       - ♾️ Grok
-    icon: https://img.icons8.com/?size=100&id=kTuxVYRKeKEY&format=png&color=000000
+      - ♾️ ChatGPT
+    icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
 rule-providers: #规则集
     # gfw名单
     gfw:
@@ -270,43 +245,38 @@ rule-providers: #规则集
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,telegram,Hello World'
-    - 'DOMAIN-KEYWORD,reddit,香港专线'
-    - 'DOMAIN-KEYWORD,facebook,Hello World'
     - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
     - 'DOMAIN-SUFFIX,tidal.com,Hello World' #tidal
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
-    - 'DOMAIN-KEYWORD,ttsmaker,Hello World'
-    - 'DOMAIN-KEYWORD,github,Hello World'
     # Grok
-    - 'DOMAIN-KEYWORD,grok,Hello World'
-    - 'DOMAIN-SUFFIX,x.ai,Hello World'
+    - 'DOMAIN-KEYWORD,grok,♾️ Grok'
+    - 'DOMAIN-SUFFIX,x.ai,♾️ Grok'
     # google voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,Hello World'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,Hello World'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🚥 Privacy HK'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🚥 Privacy HK'
     # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,AI助手'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI助手'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI助手'
-    - 'DOMAIN-SUFFIX,chatgpt.com,AI助手'
-    - 'DOMAIN-SUFFIX,chat.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,oaistatic.com,AI助手'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI助手'
-    - 'DOMAIN-SUFFIX,openai.com,AI助手'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI助手'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI助手'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI助手'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI助手'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,AI助手'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI助手'
+    - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,chatgpt.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,chat.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,oaistatic.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,♾️ Grok'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
     # 规则集
-    - 'RULE-SET,gfw,Hello World'
-    - 'RULE-SET,telegramcidr,Hello World'
+    - 'RULE-SET,gfw,DIRECT'
+    - 'RULE-SET,telegramcidr,DIRECT'
     # 通配值
-    - 'MATCH,DIRECT'
+    - 'MATCH,PROXY'
