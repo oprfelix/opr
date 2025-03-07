@@ -12,7 +12,7 @@ dns:
     - 8.8.4.4
     - 149.112.112.112
   nameserver:
-    - https://1.1.1.1/dns-query # DNS over HTTPS
+    - https://1.1.1.1/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
 
