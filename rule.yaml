@@ -16,7 +16,7 @@ dns:
 proxies:
   - # CDN加速线路1
     type: vless
-    name: 🚥 cdn v01
+    name: ❇️ cdn v01
     server: 104.19.20.228
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -35,7 +35,7 @@ proxies:
       - h2
   - # CDN加速线路2
     type: vless
-    name: 🚥 cdn v02
+    name: ❇️ cdn v02
     server: 104.19.13.43
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
@@ -54,7 +54,7 @@ proxies:
       - h2
   - # CDN加速线路2
     type: vless
-    name: 🚥 cdn v03
+    name: 🫡 cdn v03
     server: 141.101.123.126
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
@@ -125,9 +125,9 @@ proxy-groups:
   - name: 代理模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🚥 cdn v01
-      - 🚥 cdn v02
-      - 🚥 cdn v03
+      - ❇️ cdn v01
+      - ❇️ cdn v02
+      - 🫡 cdn v03
       - ♾️ Grok
       - ♾️ ChatGPT
     icon: https://img.icons8.com/?size=100&id=44805&format=png&color=000000
