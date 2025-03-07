@@ -248,10 +248,18 @@ rule-providers: #规则集
     # 局域网IP
     lancidr:
       type: http
-      behavior: ipcidr
+      behavior: classical
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
       path: ./ruleset/lancidr.yaml
       interval: 86400
+    # 应用程序
+    applications:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+      path: ./ruleset/applications.yaml
+      interval: 86400
+    
       
 rules:
     # 自定义代理规则
@@ -289,7 +297,8 @@ rules:
     - 'RULE-SET,cnName,DIRECT'
     - 'RULE-SET,cncidr,DIRECT'
     - 'RULE-SET,lancidr,DIRECT'
-    - GEOIP,LAN,DIRECT
-    - GEOIP,CN,DIRECT
+    - 'RULE-SET,applications,DIRECT'
+    - 'GEOIP,LAN,DIRECT'
+    - 'GEOIP,CN,DIRECT'
     # 通配值
     - 'MATCH,代理模式'
