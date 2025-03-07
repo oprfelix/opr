@@ -146,14 +146,6 @@ rule-providers: #规则集
     
       
 rules:
-    # 自定义代理规则
-    - 'DOMAIN-KEYWORD,tidal,代理模式' #tidal
-    - 'DOMAIN-KEYWORD,squareup,代理模式' #tidal
-    - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
-    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,github,🔐 Privacy HK'
-    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy HK'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy HK'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy HK'
@@ -187,5 +179,15 @@ rules:
     - 'RULE-SET,applications,DIRECT'
     - 'GEOIP,LAN,DIRECT'
     - 'GEOIP,CN,DIRECT,no-resolve'
+    # 自定义代理规则
+    - 'DOMAIN-KEYWORD,tidal,代理模式' #tidal
+    - 'DOMAIN-KEYWORD,squareup,代理模式' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
+    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,github,🔐 Privacy HK'
+    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy HK'
+    - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
+    - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
     # 通配值
     - 'MATCH,代理模式'
