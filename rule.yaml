@@ -245,9 +245,9 @@ rule-providers: #规则集
       interval: 86400
 rules:
     # 自定义
-    - 'DOMAIN-KEYWORD,tidal,Hello World' #tidal
+    - 'DOMAIN-KEYWORD,tidal,PROXY' #tidal
     - 'DOMAIN-KEYWORD,squareup,DIRECT' #tidal
-    - 'DOMAIN-SUFFIX,tidal.com,Hello World' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,PROXY' #tidal
     - 'DOMAIN-KEYWORD,sif,DIRECT'
     - 'DOMAIN-KEYWORD,sorftime,DIRECT'
     # Grok
