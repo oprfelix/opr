@@ -180,9 +180,8 @@ rules:
     - 'GEOIP,LAN,DIRECT'
     - 'GEOIP,CN,DIRECT,no-resolve'
     # 自定义代理规则
-    - 'DOMAIN-KEYWORD,tidal,代理模式' #tidal
-    - 'DOMAIN-KEYWORD,squareup,代理模式' #tidal
-    - 'DOMAIN-SUFFIX,tidal.com,代理模式' #tidal
+    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy HK' #tidal页面
+    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
     - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy HK'
     - 'DOMAIN-KEYWORD,apollo,🔐 Privacy HK'
     - 'DOMAIN-KEYWORD,github,🔐 Privacy HK'
