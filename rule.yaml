@@ -177,6 +177,19 @@ rule-providers: #规则集
     
       
 rules:
+    # 图片和视频业务
+    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
+    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
+    - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
+    # 谷歌业务分离加速
+    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
     # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     # Grok
@@ -222,18 +235,7 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
-    # 谷歌业务分离加速
-    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
-    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
-    - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
+
     # 规则集
     - 'RULE-SET,cnName,DIRECT'
     - 'RULE-SET,cncidr,DIRECT,no-resolve'
