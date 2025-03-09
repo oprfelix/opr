@@ -184,6 +184,7 @@ rules:
     - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
     - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
     - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
+    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
     # 谷歌业务分离加速
     - 'DOMAIN-KEYWORD,google,🔐 Privacy'
     - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
@@ -223,11 +224,11 @@ rules:
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
     # 自定义代理规则
     - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy' #tidal页面
-    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
     - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy'
     - 'DOMAIN-KEYWORD,apollo,🔐 Privacy'
     - 'DOMAIN-KEYWORD,github,🔐 Privacy'
     - 'DOMAIN-KEYWORD,reddit,🔐 Privacy'
+    # 常用直联站点
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
     - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
@@ -235,7 +236,6 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
-
     # 规则集
     - 'RULE-SET,cnName,DIRECT'
     - 'RULE-SET,cncidr,DIRECT,no-resolve'
