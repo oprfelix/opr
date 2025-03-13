@@ -1,1 +1,247 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: '*'
+mode: rule              #规则模式 rule 全局模式 global
+log-level: info
+external-controller: '127.0.0.1:9090'
 
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  default-nameserver:
+    - 223.6.6.6
+  nameserver:
+    - https://223.6.6.6/dns-query
+    
+proxies:
+  - # CDN加速线路1
+    type: vless
+    name: ❇️ CDN加速 v1
+    server: 104.18.127.128
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: warp.fotoman.com
+    ws-opts:
+      headers:
+        host: warp.fotoman.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # CDN加速线路2
+    type: vless
+    name: ❇️ CDN加速 v2
+    server: 104.19.136.251
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # CDN加速线路2
+    type: vless
+    name: ❇️ CDN加速 v3
+    server: 104.18.21.149
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # AI专用线路
+    type: vless
+    name: ♾️ ChatGPT
+    server: 89.117.217.19
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 17070
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # AI专用线路
+    type: vless
+    name: ♾️ Grok
+    server: 89.116.246.252
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 17070
+    udp: true
+    network: ws
+    sni: bing.com
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # 香港专线
+    type: vless
+    name: 🔐 Privacy
+    server: 149.30.247.249
+    servername: work.fotoman.com
+    uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
+    client-fingerprint: chrome
+    port: 36342
+    tls: true
+    network: ws
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+proxy-groups:
+  - name: 代理模式
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 默认自动模式
+      - 切换手动模式
+    icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
+  - name: 默认自动模式
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - ❇️ CDN加速 v1
+      - ❇️ CDN加速 v2
+      - ❇️ CDN加速 v3
+    icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
+  - name: 切换手动模式
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - ❇️ CDN加速 v1
+      - ❇️ CDN加速 v2
+      - ❇️ CDN加速 v3
+      - ♾️ Grok
+      - ♾️ ChatGPT
+      - 🔐 Privacy
+    icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+rule-providers: #规则集
+    # 中国域名
+    cnName:
+      type: http
+      behavior: domain
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+      path: ./ruleset/direct.yaml
+      interval: 86400
+    # 中国IP段
+    cncidr:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+      path: ./ruleset/cncidr.yaml
+      interval: 86400
+    # 局域网IP
+    lancidr:
+      type: http
+      behavior: classical
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+      path: ./ruleset/lancidr.yaml
+      interval: 86400
+    # 应用程序
+    applications:
+      type: http
+      behavior: ipcidr
+      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+      path: ./ruleset/applications.yaml
+      interval: 86400
+    
+      
+rules:
+    # 图片和视频业务
+    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
+    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
+    - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
+    - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
+    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
+    # 谷歌业务分离加速
+    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
+    # Amazon
+    - 'DOMAIN-KEYWORD,amazon,DIRECT'
+    # Grok
+    - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
+    # voice
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
+    # gemini
+    - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
+    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
+    # OpenAI (ChatGPT)
+    - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,chatgpt.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,chat.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,oaistatic.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openai.com,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,♾️ Grok'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
+    # 自定义代理规则
+    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy' #tidal页面
+    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,github,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy'
+    # 常用直联站点
+    - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
+    - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
+    - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
+    - 'DOMAIN-KEYWORD,icloud,DIRECT'
+    - 'DOMAIN-KEYWORD,apple,DIRECT'
+    # 规则集
+    - 'RULE-SET,cnName,DIRECT'
+    - 'RULE-SET,cncidr,DIRECT,no-resolve'
+    - 'RULE-SET,lancidr,DIRECT,no-resolve'
+    - 'RULE-SET,applications,DIRECT'
+    - 'GEOIP,LAN,DIRECT'
+    - 'GEOIP,CN,DIRECT,no-resolve'
+    # 通配值
+    - 'MATCH,代理模式'
