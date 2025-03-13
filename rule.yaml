@@ -17,7 +17,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v1
-    server: 104.18.127.128
+    server: 104.19.137.178
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -36,7 +36,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
-    server: 104.19.136.251
+    server: 162.159.44.12
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -55,7 +55,26 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v3
-    server: 104.18.21.149
+    server: 104.19.134.128
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+    - # CDN加速线路2
+    type: vless
+    name: ❇️ CDN加速 v4
+    server: 104.18.16.227
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -134,6 +153,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 切换手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -141,6 +161,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
