@@ -172,7 +172,7 @@ proxy-groups:
       - "🔐 Privacy"
     url: "http://www.google.com/generate_204"
     interval: 600
-    icon: https://img.icons8.com/?size=100&id=Ey9jEx96rxU0&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=9Xys3gUoNINi&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
     cnName:
