@@ -16,7 +16,7 @@ dns:
 proxies:
   - # CDN加速线路1
     type: vless
-    name: ❇️ CDN v1
+    name: ❇️ CDN加速 v1
     server: 104.18.127.128
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
@@ -35,7 +35,7 @@ proxies:
       - h2
   - # CDN加速线路2
     type: vless
-    name: ❇️ CDN v2
+    name: ❇️ CDN加速 v2
     server: 104.19.136.251
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
@@ -54,7 +54,7 @@ proxies:
       - h2
   - # CDN加速线路2
     type: vless
-    name: ❇️ CDN v3
+    name: ❇️ CDN加速 v3
     server: 104.18.21.149
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
@@ -131,16 +131,16 @@ proxy-groups:
   - name: 默认自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - ❇️ CDN v1
-      - ❇️ CDN v2
-      - ❇️ CDN v3
+      - ❇️ CDN加速 v1
+      - ❇️ CDN加速 v2
+      - ❇️ CDN加速 v3
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 切换手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - ❇️ CDN v1
-      - ❇️ CDN v2
-      - ❇️ CDN v3
+      - ❇️ CDN加速 v1
+      - ❇️ CDN加速 v2
+      - ❇️ CDN加速 v3
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
