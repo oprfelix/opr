@@ -2,16 +2,26 @@ mixed-port: 7890
 allow-lan: true
 bind-address: '*'
 mode: rule              #规则模式 rule 全局模式 global
-log-level: info
+log-level: warning
 external-controller: '127.0.0.1:9090'
 
 dns:
   enable: true
   listen: 0.0.0.0:53
+  ipv6: false  # 根据需求启用 IPv6
+  enhanced-mode: fake-ip  # 提高解析速度，推荐用于代理模式
   default-nameserver:
-    - 223.6.6.6
+    - 223.6.6.6  # 国内 DNS，用于直连流量
+    - 114.114.114.114
   nameserver:
-    - https://223.6.6.6/dns-query
+    - https://223.6.6.6/dns-query  # 国内 DoH
+    - https://1.1.1.1/dns-query    # 国外 DoH，提升国际域名解析
+  fallback:
+    - tls://8.8.4.4:853            # 备用 DoT，加密解析
+    - https://dns.google/dns-query # 备用 DoH
+  nameserver-policy:
+    "geosite:cn": 223.6.6.6        # 国内域名走国内 DNS
+    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国外域名走国际 DNS
     
 proxies:
   - # CDN加速线路1
@@ -27,6 +37,7 @@ proxies:
     udp: true
     network: ws
     sni: warp.fotoman.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: warp.fotoman.com
@@ -46,6 +57,7 @@ proxies:
     udp: true
     network: ws
     sni: dnscheck.techtrendparts.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: dnscheck.techtrendparts.com
@@ -82,6 +94,7 @@ proxies:
     udp: true
     network: ws
     sni: bing.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -99,6 +112,7 @@ proxies:
     udp: true
     network: ws
     sni: bing.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -115,6 +129,7 @@ proxies:
     port: 36342
     tls: true
     network: ws
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -134,6 +149,9 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 切换手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -144,7 +162,17 @@ proxy-groups:
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+  - name: "故障转移"
+    type: fallback
+    proxies:
+      - "🔐 Privacy"
+    url: "http://www.google.com/generate_204"
+    interval: 600
+    icon: https://img.icons8.com/?size=100&id=tfrJPRxaIxQM&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
     cnName:
