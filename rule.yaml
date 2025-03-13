@@ -71,7 +71,6 @@ proxies:
       path: /?ed=2560
     alpn:
       - h2
-  - {name: '❇️ CDN v4', type: 'vless', server: '104.19.67.191', servername: 'warp.fotoman.com', uuid: 'd59a4c29-4bdb-4c50-b5f7-9a4f9d04c243', client-fingerprint: 'chrome', flow: 'xtls-rprx-vision', port: 443, tls: true, udp: true, network: 'ws', sni: 'warp.fotoman.com', ws-opts: {headers: {host: 'warp.fotoman.com'}, path: '/?ed=2048'}, alpn: ['h2']}    type: vless
   - # AI专用线路
     type: vless
     name: ♾️ ChatGPT
@@ -135,7 +134,6 @@ proxy-groups:
       - ❇️ CDN v1
       - ❇️ CDN v2
       - ❇️ CDN v3
-      - ❇️ CDN v4
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 切换手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -143,7 +141,6 @@ proxy-groups:
       - ❇️ CDN v1
       - ❇️ CDN v2
       - ❇️ CDN v3
-      - ❇️ CDN v4
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
