@@ -221,6 +221,8 @@ rules:
     - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
     # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
+    # linkedin
+    - 'DOMAIN-KEYWORD,linkedin,代理模式'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
