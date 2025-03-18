@@ -83,6 +83,25 @@ proxies:
       path: /?ed=2560
     alpn:
       - h2
+    - # CDN加速线路2
+    type: vless
+    name: ❇️ CDN加速 v4
+    server: 141.101.122.203
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
   - # AI专用线路
     type: vless
     name: ♾️ ChatGPT
@@ -149,6 +168,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -159,6 +179,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
