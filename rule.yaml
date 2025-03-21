@@ -169,6 +169,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -179,6 +180,7 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
