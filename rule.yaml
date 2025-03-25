@@ -11,11 +11,11 @@ dns:
   ipv6: false  # 根据需求启用 IPv6
   enhanced-mode: fake-ip  # 提高解析速度，推荐用于代理模式
   default-nameserver:
-    - 223.6.6.6  # 国内 DNS，用于直连流量
-    - 114.114.114.114
+    - 1.1.1.1  # 国内 DNS，用于直连流量
+   # - 114.114.114.114
   nameserver:
-    - https://223.6.6.6/dns-query  # 国内 DoH
-    - https://1.12.12.12/dns-query    # 国外 DoH，提升国际域名解析
+    - https://1.1.1.1/dns-query  # 国内 DoH
+   # - https://1.12.12.12/dns-query    # 国外 DoH，提升国际域名解析
   fallback:
     - tls://8.8.4.4:853            # 备用 DoT，加密解析
     - https://dns.google/dns-query # 备用 DoH
