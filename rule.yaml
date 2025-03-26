@@ -21,12 +21,9 @@ dns:
     - tls://8.8.4.4:853  # Google DoT，加密且可靠
     - tls://1.0.0.1:853  # Cloudflare DoT，备用
   nameserver-policy:  # 域名分流策略
-    "geosite:cn": 
-      - https://dns.alidns.com/dns-query  # 阿里 DNS（223.6.6.6 的 DoH），优化国内解析
-    "geosite:geolocation-!cn": 
-      - https://1.1.1.1/dns-query  # 国际域名走 Cloudflare
-    "www.google.com,*.facebook.com": 
-      - https://dns.google/dns-query  # 指定特定域名使用 Google DNS
+    "geosite:cn": https://dns.alidns.com/dns-query  # 阿里 DNS（223.6.6.6 的 DoH），优化国内解析
+    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国际域名走 Cloudflare
+    "www.google.com,*.facebook.com": https://dns.google/dns-query  # 指定特定域名使用 Google DNS
   fallback-filter:  # 避免污染和不必要回落
     geoip: true
     geoip-code: CN  # 回落只用于非 CN IP
