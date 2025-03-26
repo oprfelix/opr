@@ -18,7 +18,7 @@ dns:
   nameserver-policy:
     "+.qq.com": 119.29.29.29
     "+.cn": 223.6.6.6
-
+    "rule-set:cnName": 223.6.6.6
 
 tun:
   enable: true
