@@ -26,6 +26,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
+    server: 162.159.207.62
     servername: helloworld.fotoman.com
     uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
     client-fingerprint: randomized
