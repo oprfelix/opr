@@ -97,21 +97,13 @@ rule-providers: #规则集
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
       path: ./ruleset/cncidr.yaml
       interval: 86400
-    # 局域网IP
-    lancidr:
-      type: http
-      behavior: classical
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./ruleset/lancidr.yaml
-      interval: 86400
       
 rules:
   # 规则集
     - 'RULE-SET,cnName,DIRECT'
     - 'RULE-SET,cncidr,DIRECT,no-resolve'
-    - 'RULE-SET,lancidr,DIRECT,no-resolve'
     - 'GEOIP,LAN,DIRECT'
-    - 'GEOIP,CN,DIRECT,no-resolve'
+    - 'GEOIP,CN,DIRECT'
   # 自定义规则
     - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
