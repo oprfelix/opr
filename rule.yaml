@@ -8,20 +8,32 @@ external-controller: '127.0.0.1:9090'
 dns:
   enable: true
   listen: 0.0.0.0:53
-  ipv6: false  # 根据需求启用 IPv6
-  enhanced-mode: fake-ip  # 提高解析速度，推荐用于代理模式
-  default-nameserver:
-   # - 223.6.6.6 # 国内 DNS
-    - 1.0.0.1 # 国外 DNS
-  nameserver:
-   # - https://223.6.6.6/dns-query  # 国内 DoH
-    - https://1.0.0.1/dns-query    # 国外 DoH，提升国际域名解析
-  fallback:
-    - tls://8.8.4.4:853            # 备用 DoT，加密解析
-    - https://dns.google/dns-query # 备用 DoH
-  nameserver-policy:
-    "geosite:cn": https://223.6.6.6/dns-query        # 国内域名走国内 DNS
-    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国外域名走国际 DNS
+  ipv6: false  # 已禁用 IPv6，若需要可改为 true
+  enhanced-mode: fake-ip  # 保留 fake-ip 模式，适合代理环境
+  fake-ip-range: 198.18.0.1/16  # 默认范围，可根据需要调整
+  default-nameserver:  # 用于启动时的初始解析，必须是明文 DNS
+    - 1.1.1.1  # Cloudflare，稳定且快速的国际 DNS
+    - 8.8.8.8  # Google DNS 作为备用
+  nameserver:  # 主 DNS 服务器，处理常规解析
+    - https://1.1.1.1/dns-query  # Cloudflare DoH，国际域名首选
+    - https://dns.google/dns-query  # Google DoH，备用
+  fallback:  # 备用 DNS，当主 DNS 失败时使用
+    - tls://8.8.4.4:853  # Google DoT，加密且可靠
+    - tls://1.0.0.1:853  # Cloudflare DoT，备用
+  nameserver-policy:  # 域名分流策略
+    "geosite:cn": 
+      - https://dns.alidns.com/dns-query  # 阿里 DNS（223.6.6.6 的 DoH），优化国内解析
+    "geosite:geolocation-!cn": 
+      - https://1.1.1.1/dns-query  # 国际域名走 Cloudflare
+    "www.google.com,*.facebook.com": 
+      - https://dns.google/dns-query  # 指定特定域名使用 Google DNS
+  fallback-filter:  # 避免污染和不必要回落
+    geoip: true
+    geoip-code: CN  # 回落只用于非 CN IP
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"  # 确保这些域名走国际 DNS
     
 proxies:
   - # CDN加速线路1
