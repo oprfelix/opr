@@ -36,7 +36,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v1
-    server: 104.16.239.61
+    server: 173.245.49.65
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -56,7 +56,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
-    server: 104.19.83.136
+    server: 162.159.207.62
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -76,7 +76,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v3
-    server: 104.18.91.219
+    server: 141.101.123.243
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -95,7 +95,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v4
-    server: 104.19.7.167
+    server: 104.19.255.235
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
