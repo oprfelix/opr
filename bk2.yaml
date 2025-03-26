@@ -2,22 +2,45 @@ mixed-port: 7890
 allow-lan: true
 bind-address: '*'
 mode: rule              #规则模式 rule 全局模式 global
-log-level: info
+log-level: warning
 external-controller: '127.0.0.1:9090'
 
 dns:
   enable: true
   listen: 0.0.0.0:53
-  default-nameserver:
-    - 223.6.6.6
-  nameserver:
-    - https://223.6.6.6/dns-query
+  ipv6: false  # 已禁用 IPv6，若需要可改为 true
+  enhanced-mode: fake-ip  # 保留 fake-ip 模式，适合代理环境
+  fake-ip-range: 198.18.0.1/16  # 默认范围，可根据需要调整
+  default-nameserver:  # 用于启动时的初始解析，必须是明文 DNS
+    - 1.1.1.1  # Cloudflare，稳定且快速的国际 DNS
+    - 8.8.8.8  # Google DNS 作为备用
+  nameserver:  # 主 DNS 服务器，处理常规解析
+    - https://1.1.1.1/dns-query  # Cloudflare DoH，国际域名首选
+    - https://dns.google/dns-query  # Google DoH，备用
+  fallback:  # 备用 DNS，当主 DNS 失败时使用
+    - tls://8.8.4.4:853  # Google DoT，加密且可靠
+    - tls://1.0.0.1:853  # Cloudflare DoT，备用
+  nameserver-policy:  # 域名分流策略
+    "+.qq.com": https://doh.pub/dns-query
+    "+.internal.crop.com": https://dns.alidns.com/dns-query
+    "+.jd.com,+.google.cn,+.360buy.com": https://doh.pub/dns-query
+    "geosite:private,apple": https://dns.alidns.com/dns-query
+    "geosite:cn": https://dns.alidns.com/dns-query  # 阿里 DNS（223.6.6.6 的 DoH），优化国内解析
+    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国际域名走 Cloudflare
+    "www.google.com,*.facebook.com": https://dns.google/dns-query  # 指定特定域名使用 Google DNS
+  fallback-filter:  # 避免污染和不必要回落
+    geoip: true
+    geoip-code: CN  # 回落只用于非 CN IP
+    domain:
+      - "+.google.com"
+      - "+.facebook.com"
+      - "+.youtube.com"  # 确保这些域名走国际 DNS
     
 proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v1
-    server: 104.18.127.128
+    server: 104.16.239.61
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -27,6 +50,7 @@ proxies:
     udp: true
     network: ws
     sni: warp.fotoman.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: warp.fotoman.com
@@ -36,7 +60,27 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
-    server: 104.19.136.251
+    server: 104.19.83.136
+    servername: dnscheck.techtrendparts.com
+    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 443
+    tls: true
+    udp: true
+    network: ws
+    sni: dnscheck.techtrendparts.com
+    skip-cert-verify: false
+    ws-opts:
+      headers:
+        host: dnscheck.techtrendparts.com
+      path: /?ed=2560
+    alpn:
+      - h2
+  - # CDN加速线路2
+    type: vless
+    name: ❇️ CDN加速 v3
+    server: 104.18.91.219
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -52,23 +96,24 @@ proxies:
       path: /?ed=2560
     alpn:
       - h2
-  - # CDN加速线路2
+  - # CDN加速线路1
     type: vless
-    name: ❇️ CDN加速 v3
-    server: 104.18.21.149
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
+    name: ❇️ CDN加速 v4
+    server: 104.19.7.167
+    servername: warp.fotoman.com
+    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
     flow: xtls-rprx-vision
     port: 443
     tls: true
     udp: true
     network: ws
-    sni: dnscheck.techtrendparts.com
+    sni: warp.fotoman.com
+    skip-cert-verify: false
     ws-opts:
       headers:
-        host: dnscheck.techtrendparts.com
-      path: /?ed=2560
+        host: warp.fotoman.com
+      path: /?ed=2048
     alpn:
       - h2
   - # AI专用线路
@@ -82,6 +127,7 @@ proxies:
     udp: true
     network: ws
     sni: bing.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -99,6 +145,7 @@ proxies:
     udp: true
     network: ws
     sni: bing.com
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -115,6 +162,7 @@ proxies:
     port: 36342
     tls: true
     network: ws
+    skip-cert-verify: false
     ws-opts:
       headers:
         host: bing.com
@@ -134,6 +182,10 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 切换手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -141,10 +193,21 @@ proxy-groups:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
+      - ❇️ CDN加速 v4
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+  - name: "故障转移"
+    type: fallback
+    proxies:
+      - "🔐 Privacy"
+    url: "http://www.google.com/generate_204"
+    interval: 600
+    icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
     cnName:
@@ -193,6 +256,8 @@ rules:
     - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
     # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
+    # linkedin
+    - 'DOMAIN-KEYWORD,linkedin,代理模式'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
