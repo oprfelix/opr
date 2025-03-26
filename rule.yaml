@@ -240,23 +240,8 @@ rule-providers: #规则集
     
       
 rules:
-    # 图片和视频业务
-    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
-    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
-    - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
-    # 谷歌业务分离加速
-    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
-    # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    # linkedin
     - 'DOMAIN-KEYWORD,linkedin,代理模式'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
@@ -287,12 +272,6 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
     - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
-    # 自定义代理规则
-    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy' #tidal页面
-    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,github,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy'
     # 常用直联站点
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
