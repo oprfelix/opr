@@ -5,6 +5,25 @@ mode: rule              #规则模式 rule 全局模式 global
 log-level: warning
 external-controller: '127.0.0.1:9090'
 
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: redir-host  # 或 fake-ip，视需求选择
+  default-nameserver:
+    - 8.8.8.8
+  nameserver:
+    - 8.8.8.8
+  proxy-server-nameserver:
+    - https://8.8.8.8/dns-query
+
+tun:
+  enable: true
+  stack: gvisor  # 可选：system, gvisor, lwip，根据系统选择
+  auto-route: true  # 自动添加路由表
+  auto-detect-interface: true  # 自动检测网络接口
+  dns-hijack:
+    - any:53  # 劫持所有 DNS 请求到 Clash
+    
 proxies:
   # CDN加速
   - {name: ❇️ CDN加速 v1, server: 173.245.49.65, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
