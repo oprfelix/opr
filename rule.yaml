@@ -31,7 +31,7 @@ proxies:
     uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
     client-fingerprint: randomized
     skip-cert-verify: true
-    port: 443
+    port: 8443
     tls: true
     udp: false
     network: ws
@@ -57,6 +57,7 @@ proxies:
       headers:
         host: helloworld.techtrendparts.com
       path: /?ed=2560
+  - {name: 🇺🇸 US 2, server: 162.159.129.11, port: 2053, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v4
@@ -65,7 +66,7 @@ proxies:
     uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
     client-fingerprint: randomized
     skip-cert-verify: true
-    port: 443
+    port: 8443
     tls: true
     udp: false
     network: ws
@@ -141,6 +142,7 @@ proxy-groups:
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
+      - 🇺🇸 US 2
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -152,6 +154,7 @@ proxy-groups:
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
+      - 🇺🇸 US 2
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
