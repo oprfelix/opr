@@ -104,21 +104,12 @@ rule-providers: #规则集
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
       path: ./ruleset/lancidr.yaml
       interval: 86400
-    # 应用程序
-    applications:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
-      path: ./ruleset/applications.yaml
-      interval: 86400
-    
       
 rules:
   # 规则集
     - 'RULE-SET,cnName,DIRECT'
     - 'RULE-SET,cncidr,DIRECT,no-resolve'
     - 'RULE-SET,lancidr,DIRECT,no-resolve'
-    - 'RULE-SET,applications,DIRECT'
     - 'GEOIP,LAN,DIRECT'
     - 'GEOIP,CN,DIRECT,no-resolve'
   # 自定义规则
