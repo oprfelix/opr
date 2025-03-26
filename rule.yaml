@@ -114,6 +114,14 @@ rule-providers: #规则集
     
       
 rules:
+  # 规则集
+    - 'RULE-SET,cnName,DIRECT'
+    - 'RULE-SET,cncidr,DIRECT,no-resolve'
+    - 'RULE-SET,lancidr,DIRECT,no-resolve'
+    - 'RULE-SET,applications,DIRECT'
+    - 'GEOIP,LAN,DIRECT'
+    - 'GEOIP,CN,DIRECT,no-resolve'
+  # 自定义规则
     - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
@@ -154,12 +162,6 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
-    # 规则集
-    - 'RULE-SET,cnName,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT,no-resolve'
-    - 'RULE-SET,lancidr,DIRECT,no-resolve'
-    - 'RULE-SET,applications,DIRECT'
-    - 'GEOIP,LAN,DIRECT'
-    - 'GEOIP,CN,DIRECT,no-resolve'
+
     # 通配值
     - 'MATCH,PROXY'
