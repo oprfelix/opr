@@ -41,10 +41,10 @@ proxy-groups:
   - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 默认自动模式
+      - PROXY
       - 切换手动模式
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
-  - name: 默认自动模式
+  - name: PROXY
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ❇️ CDN加速 v1
