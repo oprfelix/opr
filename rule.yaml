@@ -38,7 +38,7 @@ proxies:
   - {name: 🔐 Privacy, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: jd.com}}}
 
 proxy-groups:
-  - name: 代理模式
+  - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 默认自动模式
@@ -110,9 +110,9 @@ rule-providers: #规则集
     
       
 rules:
-    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
+    - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    - 'DOMAIN-KEYWORD,linkedin,代理模式'
+    - 'DOMAIN-KEYWORD,linkedin,PROXY'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
@@ -158,4 +158,4 @@ rules:
     - 'GEOIP,LAN,DIRECT'
     - 'GEOIP,CN,DIRECT,no-resolve'
     # 通配值
-    - 'MATCH,代理模式'
+    - 'MATCH,PROXY'
