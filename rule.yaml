@@ -11,17 +11,17 @@ dns:
   ipv6: false  # 根据需求启用 IPv6
   enhanced-mode: fake-ip  # 提高解析速度，推荐用于代理模式
   default-nameserver:
-    - 223.6.6.6  # 国内 DNS，用于直连流量
-   # - 1.1.1.1
+   # - 223.6.6.6 # 国内 DNS
+    - 1.0.0.1 # 国外 DNS
   nameserver:
-    - https://223.6.6.6/dns-query  # 国内 DoH
-   # - https://1.1.1.1/dns-query    # 国外 DoH，提升国际域名解析
+   # - https://223.6.6.6/dns-query  # 国内 DoH
+    - https://1.0.0.1/dns-query    # 国外 DoH，提升国际域名解析
   fallback:
     - tls://8.8.4.4:853            # 备用 DoT，加密解析
     - https://dns.google/dns-query # 备用 DoH
   nameserver-policy:
-    "geosite:cn": 223.6.6.6        # 国内域名走国内 DNS
-    "geosite:geolocation-!cn": https://223.6.6.6/dns-query  # 国外域名走国际 DNS
+    "geosite:cn": https://223.6.6.6/dns-query        # 国内域名走国内 DNS
+    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国外域名走国际 DNS
     
 proxies:
   - # CDN加速线路1
