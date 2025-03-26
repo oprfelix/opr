@@ -6,66 +6,73 @@ log-level: warning
 external-controller: '127.0.0.1:9090'
 
 proxies:
-  - {type: vless, name: ❇️ CDN加速 v1, server: 173.245.49.65, port: 443, password: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: /?ed=2560, headers: {Host: helloworld.fotoman.com}}}
+  - # CDN加速线路1
+    type: vless
+    name: ❇️ CDN加速 v1
+    server: 173.245.49.65
+    servername: helloworld.fotoman.com
+    uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
+    client-fingerprint: randomized
+    skip-cert-verify: true
+    port: 443
+    tls: true
+    udp: false
+    network: ws
+    sni: helloworld.fotoman.com
+    ws-opts:
+      headers:
+        host: helloworld.fotoman.com
+      path: /?ed=2560
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
-    server: 162.159.207.62
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
+    servername: helloworld.fotoman.com
+    uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
+    client-fingerprint: randomized
+    skip-cert-verify: true
     port: 443
     tls: true
-    udp: true
+    udp: false
     network: ws
-    sni: dnscheck.techtrendparts.com
-    skip-cert-verify: false
+    sni: helloworld.fotoman.com
     ws-opts:
       headers:
-        host: dnscheck.techtrendparts.com
+        host: helloworld.fotoman.com
       path: /?ed=2560
-    alpn:
-      - h2
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v3
     server: 141.101.123.243
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
+    servername: helloworld.techtrendparts.com
+    uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+    client-fingerprint: randomized
+    skip-cert-verify: true
     port: 443
     tls: true
-    udp: true
+    udp: false
     network: ws
-    sni: dnscheck.techtrendparts.com
+    sni: helloworld.techtrendparts.com
     ws-opts:
       headers:
-        host: dnscheck.techtrendparts.com
+        host: helloworld.techtrendparts.com
       path: /?ed=2560
-    alpn:
-      - h2
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v4
     server: 104.19.255.235
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
+    servername: helloworld.techtrendparts.com
+    uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+    client-fingerprint: randomized
+    skip-cert-verify: true
     port: 443
     tls: true
-    udp: true
+    udp: false
     network: ws
-    sni: warp.fotoman.com
-    skip-cert-verify: false
+    sni: helloworld.techtrendparts.com
     ws-opts:
       headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
+        host: helloworld.techtrendparts.com
+      path: /?ed=2560
   - # AI专用线路
     type: vless
     name: ♾️ ChatGPT
