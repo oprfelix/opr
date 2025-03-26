@@ -6,44 +6,13 @@ log-level: warning
 external-controller: '127.0.0.1:9090'
 
 proxies:
+  # CDN加速
   - {name: ❇️ CDN加速 v1, server: 173.245.49.65, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: ❇️ CDN加速 v2, server: 162.159.207.62, port: 8443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: ❇️ CDN加速 v3, server: 141.101.123.243, port: 2053, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN加速 v4, server: 104.19.255.235, port: 2096, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN加速 v5, server: 162.159.129.11, port: 2087, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
-  - # CDN加速线路2
-    type: vless
-    name: ❇️ CDN加速 v3
-    server: 141.101.123.243
-    servername: helloworld.techtrendparts.com
-    uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
-    client-fingerprint: randomized
-    skip-cert-verify: true
-    port: 443
-    tls: true
-    udp: false
-    network: ws
-    sni: helloworld.techtrendparts.com
-    ws-opts:
-      headers:
-        host: helloworld.techtrendparts.com
-      path: /?ed=2560
-  - {name: 🇺🇸 US 2, server: 162.159.129.11, port: 2053, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - # CDN加速线路1
-    type: vless
-    name: ❇️ CDN加速 v4
-    server: 104.19.255.235
-    servername: helloworld.techtrendparts.com
-    uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
-    client-fingerprint: randomized
-    skip-cert-verify: true
-    port: 8443
-    tls: true
-    udp: false
-    network: ws
-    sni: helloworld.techtrendparts.com
-    ws-opts:
-      headers:
-        host: helloworld.techtrendparts.com
-      path: /?ed=2560
   - # AI专用线路
     type: vless
     name: ♾️ ChatGPT
@@ -111,7 +80,7 @@ proxy-groups:
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
-      - 🇺🇸 US 2
+      - ❇️ CDN加速 v5
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -123,7 +92,7 @@ proxy-groups:
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
-      - 🇺🇸 US 2
+      - ❇️ CDN加速 v5
       - ♾️ Grok
       - ♾️ ChatGPT
       - 🔐 Privacy
