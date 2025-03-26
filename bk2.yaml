@@ -8,39 +8,35 @@ external-controller: '127.0.0.1:9090'
 dns:
   enable: true
   listen: 0.0.0.0:53
-  ipv6: false  # 已禁用 IPv6，若需要可改为 true
-  enhanced-mode: fake-ip  # 保留 fake-ip 模式，适合代理环境
-  fake-ip-range: 198.18.0.1/16  # 默认范围，可根据需要调整
-  default-nameserver:  # 用于启动时的初始解析，必须是明文 DNS
-    - 1.1.1.1  # Cloudflare，稳定且快速的国际 DNS
-    - 8.8.8.8  # Google DNS 作为备用
-  nameserver:  # 主 DNS 服务器，处理常规解析
-    - https://1.1.1.1/dns-query  # Cloudflare DoH，国际域名首选
-    - https://dns.google/dns-query  # Google DoH，备用
-  fallback:  # 备用 DNS，当主 DNS 失败时使用
-    - tls://8.8.4.4:853  # Google DoT，加密且可靠
-    - tls://1.0.0.1:853  # Cloudflare DoT，备用
-  nameserver-policy:  # 域名分流策略
-    "+.qq.com": https://doh.pub/dns-query
-    "+.internal.crop.com": https://dns.alidns.com/dns-query
-    "+.jd.com,+.google.cn,+.360buy.com": https://doh.pub/dns-query
-    "geosite:private,apple": https://dns.alidns.com/dns-query
-    "geosite:cn": https://dns.alidns.com/dns-query  # 阿里 DNS（223.6.6.6 的 DoH），优化国内解析
-    "geosite:geolocation-!cn": https://1.1.1.1/dns-query  # 国际域名走 Cloudflare
-    "www.google.com,*.facebook.com": https://dns.google/dns-query  # 指定特定域名使用 Google DNS
-  fallback-filter:  # 避免污染和不必要回落
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver: # 启动时的初始解析，确保可用性
+    - 223.6.6.6  # 阿里公共 DNS，国内稳定
+    # - 1.0.0.1    # Cloudflare，国际备用
+  nameserver: # 主 DNS 服务器
+    - https://223.6.6.6/dns-query       # 阿里 DoH，国内优先
+    # - https://1.0.0.1/dns-query         # Cloudflare DoH，国际备用
+  fallback: # 备用 DNS，防止解析失败
+    - tls://8.8.4.4:853      # Google DoT
+    - tls://1.0.0.1:853      # Cloudflare DoT
+  nameserver-policy: # 域名分流策略
+    "geosite:cn": https://dns.alidns.com/dns-query       # 国内域名走阿里
+    "geosite:geolocation-!cn": https://1.1.1.1/dns-query # 国外域名走 Cloudflare
+    "www.google.com,*.facebook.com": https://dns.google/dns-query # 特定域名走 Google
+  fallback-filter: # 避免 DNS 污染
     geoip: true
-    geoip-code: CN  # 回落只用于非 CN IP
+    geoip-code: CN
     domain:
       - "+.google.com"
       - "+.facebook.com"
-      - "+.youtube.com"  # 确保这些域名走国际 DNS
+      - "+.youtube.com"
     
 proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v1
-    server: 104.16.239.61
+    server: 173.245.49.65
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -60,7 +56,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v2
-    server: 104.19.83.136
+    server: 162.159.207.62
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -80,7 +76,7 @@ proxies:
   - # CDN加速线路2
     type: vless
     name: ❇️ CDN加速 v3
-    server: 104.18.91.219
+    server: 141.101.123.243
     servername: dnscheck.techtrendparts.com
     uuid: 9ffadd75-6188-42fa-a716-c9298de56393
     client-fingerprint: chrome
@@ -99,7 +95,7 @@ proxies:
   - # CDN加速线路1
     type: vless
     name: ❇️ CDN加速 v4
-    server: 104.19.7.167
+    server: 104.19.255.235
     servername: warp.fotoman.com
     uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
     client-fingerprint: chrome
@@ -240,23 +236,8 @@ rule-providers: #规则集
     
       
 rules:
-    # 图片和视频业务
-    - 'DOMAIN-SUFFIX,googlevideo.com,代理模式' #youtube视频源
-    - 'DOMAIN-SUFFIX,ytimg.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,ggpht.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,gstatic.com,代理模式' #谷歌图片源
-    - 'DOMAIN-SUFFIX,xx.fbcdn.net,代理模式' #FB图片源
-    - 'DOMAIN-SUFFIX,twimg.com,代理模式' #x图片源
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
-    # 谷歌业务分离加速
-    - 'DOMAIN-KEYWORD,google,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,youtube,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,facebook,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,x.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,twitter.com,🔐 Privacy'
-    # Amazon
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    # linkedin
     - 'DOMAIN-KEYWORD,linkedin,代理模式'
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
@@ -287,12 +268,6 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
     - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
-    # 自定义代理规则
-    - 'DOMAIN-SUFFIX,tidal.com,🔐 Privacy' #tidal页面
-    - 'DOMAIN-KEYWORD,fiverr,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,apollo,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,github,🔐 Privacy'
-    - 'DOMAIN-KEYWORD,reddit,🔐 Privacy'
     # 常用直联站点
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
