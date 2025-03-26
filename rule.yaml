@@ -16,6 +16,7 @@ dns:
   proxy-server-nameserver:
     - https://8.8.8.8/dns-query
   nameserver-policy:
+    "geosite:cn": 223.6.6.6  # 所有中国大陆相关域名走 223.6.6.6
     "+.qq.com": 119.29.29.29
     "+.cn": 223.6.6.6
     "+.taobao.com": 223.6.6.6
