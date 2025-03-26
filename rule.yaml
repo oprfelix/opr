@@ -15,6 +15,9 @@ dns:
     - 8.8.8.8
   proxy-server-nameserver:
     - https://8.8.8.8/dns-query
+  nameserver-policy:
+    "nstool.netease.com": 223.6.6.6
+
 
 tun:
   enable: true
