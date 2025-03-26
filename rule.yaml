@@ -16,7 +16,8 @@ dns:
   proxy-server-nameserver:
     - https://8.8.8.8/dns-query
   nameserver-policy:
-    "nstool.netease.com": 223.6.6.6
+    "+.qq.com": 119.29.29.29
+    "+.cn": 223.6.6.6
 
 
 tun:
