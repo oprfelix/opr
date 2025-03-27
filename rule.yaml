@@ -58,10 +58,45 @@ proxies:
   - {name: ❇️ CDN加速 v5, server: 173.245.49.150, port: 2087, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
 
   # 专线直连
-  - {name: ♾️ ChatGPT, server: 89.117.217.19, port: 2053, client-fingerprint: randomized, type: vless, uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320, tls: true, tfo: false, skip-cert-verify: true, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: ♾️ Grok, server: 89.116.246.252, port: 2053, client-fingerprint: randomized, type: vless, uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320, tls: true, tfo: false, skip-cert-verify: true, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: 🔐 Privacy, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-
+  
+  # AI专线
+- # 01
+    type: vless
+    name: ♾️ ChatGPT
+    server: 89.117.217.19
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 2053
+    udp: true
+    network: ws
+    sni: bing.com
+    skip-cert-verify: false
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
+  - # 02
+    type: vless
+    name: ♾️ Grok
+    server: 89.116.246.252
+    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
+    client-fingerprint: chrome
+    flow: xtls-rprx-vision
+    port: 2053
+    udp: true
+    network: ws
+    sni: bing.com
+    skip-cert-verify: false
+    ws-opts:
+      headers:
+        host: bing.com
+      path: /?ed=2048
+    alpn:
+      - h2
 proxy-groups:
   - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
