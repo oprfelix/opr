@@ -87,8 +87,6 @@ proxy-groups:
   - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🛣️ Options -1
-      - 🛣️ Options -2
       - 🛣️ Options+
     url: "http://www.gstatic.com/generate_204"
     interval: 300
