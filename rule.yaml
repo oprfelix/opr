@@ -27,6 +27,7 @@ dns:
     "+.douyin.com": 223.6.6.6
     "+.meituan.com": 223.6.6.6
     "+.ele.me": 223.6.6.6
+    "+.amap.com": 223.6.6.6
 
 tun:
   enable: true
