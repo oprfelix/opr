@@ -67,7 +67,8 @@ proxy-groups:
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 自动模式
-      - 切换手动模式
+      - 手动模式
+      - 故障转移
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -81,7 +82,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
-  - name: 切换手动模式
+  - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ❇️ CDN加速 v1
@@ -105,14 +106,14 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
-    cnName:
+    china:
       type: http
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
       path: ./ruleset/direct.yaml
       interval: 86400
     # 中国IP段
-    cncidr:
+    cnip:
       type: http
       behavior: ipcidr
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
@@ -120,25 +121,37 @@ rule-providers: #规则集
       interval: 86400
       
 rules:
-  # 规则集
-    - 'RULE-SET,cnName,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT,no-resolve'
-    - 'GEOIP,LAN,DIRECT'
-    - 'GEOIP,CN,DIRECT'
-  # 自定义规则
+ # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,linkedin,PROXY'
+    
+  # 规则集 - 直连
+    - 'RULE-SET,china,DIRECT'
+    - 'RULE-SET,cnip,DIRECT,no-resolve'
+
+  # 常用直联站点
+    - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
+    - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
+    - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
+    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
+    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
+    - 'DOMAIN-KEYWORD,icloud,DIRECT'
+    - 'DOMAIN-KEYWORD,apple,DIRECT'
+
     # Grok
     - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
     - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
+    
     # voice
     - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
     - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
+    
     # gemini
     - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
     - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
+    
     # OpenAI (ChatGPT)
     - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
     - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
@@ -158,14 +171,6 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
     - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
-    # 常用直联站点
-    - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
-    - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
-    - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
-    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
-    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
-    - 'DOMAIN-KEYWORD,icloud,DIRECT'
-    - 'DOMAIN-KEYWORD,apple,DIRECT'
-
+    
     # 通配值
     - 'MATCH,PROXY'
