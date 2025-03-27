@@ -8,38 +8,17 @@ external-controller: '127.0.0.1:9090'
 dns:
   enable: true
   listen: 0.0.0.0:53
-  enhanced-mode: fake-ip  # 或 fake-ip，视需求选择
-  fake-ip-range: 198.18.0.1/16
   default-nameserver:
-    - 8.8.8.8
+    - 223.6.6.6
   nameserver:
-    - 8.8.8.8
+    - 223.6.6.6
   proxy-server-nameserver:
-    - https://8.8.8.8/dns-query
+    - https://223.6.6.6/dns-query
   nameserver-policy:
-    "+.qq.com": 119.29.29.29
-    "+.cn": 223.6.6.6
-    "+.taobao.com": 223.6.6.6
-    "+.jd.com": 223.6.6.6
-    "+.xiaohongshu.com": 223.6.6.6
-    "+.tmall.com": 223.6.6.6
-    "+.alipay.com": 223.6.6.6
-    "+.douyin.com": 223.6.6.6
-    "+.meituan.com": 223.6.6.6
-    "+.ele.me": 223.6.6.6
-    "+.amap.com": 223.6.6.6
-    "+.dianping.com": 223.6.6.6
-    "+.aliyun.com": 223.6.6.6
-    "+.ctrip.com": 223.6.6.6
-    "+.163.com": 223.6.6.6
-    "+.weibo.com": 223.6.6.6
-    "+.sina.com.cn": 223.6.6.6
-    "+.youku.com": 223.6.6.6
-    "+.iqiyi.com": 223.6.6.6
-    "+.mgtv.com": 223.6.6.6
-    "+.wechat.com": 119.29.29.29
-    "+.1688.com": 223.6.6.6
-    "+.pinduoduo.com": 223.6.6.6
+    "+.google.com": 8.8.8.8
+    "+.facebook.com": 8.8.8.8
+    "+.x.com": 8.8.8.8
+    "+.telegram.com": 8.8.8.8
     
 proxies:
   # CDN加速
