@@ -59,44 +59,7 @@ proxies:
 
   # 专线直连
   - {name: 🔐 Privacy, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  
-  # AI专线
-- # 01
-    type: vless
-    name: ♾️ ChatGPT
-    server: 89.117.217.19
-    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 2053
-    udp: true
-    network: ws
-    sni: bing.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 02
-    type: vless
-    name: ♾️ Grok
-    server: 89.116.246.252
-    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 2053
-    udp: true
-    network: ws
-    sni: bing.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
+
 proxy-groups:
   - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -125,8 +88,6 @@ proxy-groups:
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
       - ❇️ CDN加速 v5
-      - ♾️ Grok
-      - ♾️ ChatGPT
       - 🔐 Privacy
     url: "http://www.gstatic.com/generate_204"
     interval: 300
@@ -182,30 +143,6 @@ rules:
     - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
     - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
     - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
-    
-    # gemini
-    - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
-    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
-    
-    # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,chatgpt.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,chat.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,oaistatic.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,♾️ Grok'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
     
     # 通配值
     - 'MATCH,PROXY'
