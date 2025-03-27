@@ -103,7 +103,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=0MCygyU2fC18&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=r9qA6fLGZtdf&format=png&color=000000
   - name: "故障转移"
     type: fallback
     proxies:
