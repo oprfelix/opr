@@ -64,6 +64,10 @@ proxies:
   # 专线直连
   - {name: 🛣️ Options+, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
 
+  # ai美国专线
+  - {name: 🛣️ us1, server: 107.173.140.91, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: 🛣️ us2, server: 137.220.49.212, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+
 proxy-groups:
   - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -89,11 +93,22 @@ proxy-groups:
     proxies:
       - 🛣️ Grapher x1
       - 🛣️ Grapher x2
+      - 🛣️ us1
+      - 🛣️ us2
       - 🛣️ Options+
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+  - name: AI专线
+    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🛣️ us1
+      - 🛣️ us2
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://img.icons8.com/?size=100&id=2f8efjyRWNVz&format=png&color=000000
   - name: "故障转移"
     type: fallback
     proxies:
@@ -118,6 +133,26 @@ rule-providers: #规则集
       interval: 86400
       
 rules:
+    # OpenAI (ChatGPT)
+    - 'DOMAIN-SUFFIX,ai.com,AI专线'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI专线'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI专线'
+    - 'DOMAIN-SUFFIX,chatgpt.com,AI专线'
+    - 'DOMAIN-SUFFIX,chat.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,oaistatic.com,AI专线'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI专线'
+    - 'DOMAIN-SUFFIX,openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI专线'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI专线'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI专线'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,AI专线'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI专线'
+
  # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
