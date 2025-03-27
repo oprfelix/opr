@@ -58,7 +58,7 @@ proxies:
   - {name: ❇️ CDN加速 v5, server: 173.245.49.150, port: 2087, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
 
   # 专线直连
-  - {name: 🔐 Privacy, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  - {name: 🛣️ Options+, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
 
 proxy-groups:
   - name: PROXY
@@ -88,7 +88,7 @@ proxy-groups:
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
       - ❇️ CDN加速 v5
-      - 🔐 Privacy
+      - 🛣️ Options+
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -96,7 +96,7 @@ proxy-groups:
   - name: "故障转移"
     type: fallback
     proxies:
-      - "🔐 Privacy"
+      - "🛣️ Options+"
     url: "http://www.google.com/generate_204"
     interval: 600
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
@@ -136,13 +136,13 @@ rules:
     - 'DOMAIN-KEYWORD,apple,DIRECT'
 
     # Grok
-    - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
+    - 'DOMAIN-KEYWORD,grok,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,x.ai,🛣️ Options+'
     
     # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,voice.google.com,🛣️ Options+'
     
     # 通配值
     - 'MATCH,PROXY'
