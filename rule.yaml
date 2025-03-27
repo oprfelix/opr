@@ -28,6 +28,18 @@ dns:
     "+.meituan.com": 223.6.6.6
     "+.ele.me": 223.6.6.6
     "+.amap.com": 223.6.6.6
+    "+.dianping.com": 223.6.6.6
+    "+.aliyun.com": 223.6.6.6
+    "+.ctrip.com": 223.6.6.6
+    "+.163.com": 223.6.6.6
+    "+.weibo.com": 223.6.6.6
+    "+.sina.com.cn": 223.6.6.6
+    "+.youku.com": 223.6.6.6
+    "+.iqiyi.com": 223.6.6.6
+    "+.mgtv.com": 223.6.6.6
+    "+.wechat.com": 223.6.6.6
+    "+.1688.com": 223.6.6.6
+    "+.pinduoduo.com": 223.6.6.6
 
 tun:
   enable: true
