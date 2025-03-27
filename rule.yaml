@@ -19,6 +19,18 @@ dns:
     "+.facebook.com": 8.8.8.8
     "+.x.com": 8.8.8.8
     "+.telegram.com": 8.8.8.8
+    "+.twitter.com": 8.8.8.8
+    "+.instagram.com": 8.8.8.8
+    "+.whatsapp.com": 8.8.8.8
+    "+.googleapis.com": 8.8.8.8
+    "+.youtube.com": 8.8.8.8
+    "+.gmail.com": 8.8.8.8
+    "+.wikipedia.com": 8.8.8.8
+    "+.wikimedia.com": 8.8.8.8
+    "+.github.com": 8.8.8.8
+    "+.reddit.com": 8.8.8.8
+    "+.chatgpt.com": 8.8.8.8
+    "+.openai.com": 8.8.8.8
     
 proxies:
   # CDN加速
