@@ -10,10 +10,17 @@ dns:
   listen: 0.0.0.0:53
   default-nameserver:
     - 223.6.6.6
+    - 223.5.5.5
+    - 119.28.28.28
+    - 114.114.114.114
+    - 8.8.8.8
+    - 1.0.0.1
   nameserver:
-    - 223.6.6.6
-  proxy-server-nameserver:
     - https://223.6.6.6/dns-query
+    - https://223.5.5.5/dns-query
+    - https://1.12.12.12/dns-query
+    - https://dns.google/dns-query
+    - https://1.0.0.1/dns-query
   nameserver-policy:
     "+.google.com": 8.8.8.8
     "+.facebook.com": 8.8.8.8
