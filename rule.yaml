@@ -22,6 +22,11 @@ dns:
     "+.taobao.com": 223.6.6.6
     "+.jd.com": 223.6.6.6
     "+.xiaohongshu.com": 223.6.6.6
+    "+.tmall.com": 223.6.6.6
+    "+.alipay.com": 223.6.6.6
+    "+.douyin.com": 223.6.6.6
+    "+.meituan.com": 223.6.6.6
+    "+.ele.me": 223.6.6.6
 
 tun:
   enable: true
