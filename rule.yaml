@@ -21,6 +21,11 @@ dns:
     - https://1.12.12.12/dns-query
     - https://dns.google/dns-query
     - https://1.0.0.1/dns-query
+  fallback:
+    - 8.8.8.8
+    - 8.8.4.4
+    - tls://1.0.0.1:853
+    - tls://dns.google:853
   nameserver-policy:
     "+.google.com": 8.8.8.8
     "+.facebook.com": 8.8.8.8
