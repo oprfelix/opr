@@ -40,14 +40,6 @@ dns:
     "+.wechat.com": 119.29.29.29
     "+.1688.com": 223.6.6.6
     "+.pinduoduo.com": 223.6.6.6
-
-tun:
-  enable: true
-  stack: system  # 可选：system, gvisor, lwip，根据系统选择
-  auto-route: true  # 自动添加路由表
-  auto-detect-interface: true  # 自动检测网络接口
-  dns-hijack:
-    - any:53  # 劫持所有 DNS 请求到 Clash
     
 proxies:
   # CDN加速
