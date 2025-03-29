@@ -33,14 +33,14 @@ proxies:
   - {name: VPS2, server: 137.220.49.212, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  - name: helloworld
+  - name: HelloWorld
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 自动模式
-      - 手动模式
+      - Auto
+      - Manual
       - 故障转移
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
-  - name: 自动模式
+  - name: Auto
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - CDN v1
@@ -52,7 +52,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
-  - name: 手动模式
+  - name: Manual
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ACF1
@@ -120,7 +120,7 @@ rules:
  # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    - 'DOMAIN-KEYWORD,linkedin,helloworld'
+    - 'DOMAIN-KEYWORD,linkedin,HelloWorld'
     
   # 规则集 - 直连
     - 'RULE-SET,china,DIRECT'
@@ -145,4 +145,4 @@ rules:
     - 'DOMAIN-SUFFIX,voice.google.com,HKG'
     
     # 通配值
-    - 'MATCH,helloworld'
+    - 'MATCH,HelloWorld'
