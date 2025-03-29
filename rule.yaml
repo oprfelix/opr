@@ -33,7 +33,7 @@ proxies:
   - {name: VPS2, server: 137.220.49.212, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  - name: 代理模式
+  - name: helloworld
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 自动模式
@@ -120,7 +120,7 @@ rules:
  # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    - 'DOMAIN-KEYWORD,linkedin,代理模式'
+    - 'DOMAIN-KEYWORD,linkedin,helloworld'
     
   # 规则集 - 直连
     - 'RULE-SET,china,DIRECT'
@@ -145,4 +145,4 @@ rules:
     - 'DOMAIN-SUFFIX,voice.google.com,HKG'
     
     # 通配值
-    - 'MATCH,代理模式'
+    - 'MATCH,helloworld'
