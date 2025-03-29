@@ -38,7 +38,7 @@ proxy-groups:
     proxies:
       - Auto
       - Manual
-      - 故障转移
+      - Emergency
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: Auto
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -73,7 +73,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=r9qA6fLGZtdf&format=png&color=000000
-  - name: "故障转移"
+  - name: Emergency
     type: fallback
     proxies:
       - HKG
@@ -136,13 +136,13 @@ rules:
     - 'DOMAIN-KEYWORD,apple,DIRECT'
 
     # Grok
-    - 'DOMAIN-KEYWORD,grok,HKG'
-    - 'DOMAIN-SUFFIX,x.ai,HKG'
+    - 'DOMAIN-KEYWORD,grok,Emergency'
+    - 'DOMAIN-SUFFIX,x.ai,Emergency'
     
     # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,HKG'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,HKG'
-    - 'DOMAIN-SUFFIX,voice.google.com,HKG'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Emergency'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,Emergency'
+    - 'DOMAIN-SUFFIX,voice.google.com,Emergency'
     
     # 通配值
     - 'MATCH,HelloWorld'
