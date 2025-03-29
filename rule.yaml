@@ -15,11 +15,11 @@ dns:
 
 proxies:
   # CDN加速
-  - {name: ❇️ CDN加速 v1, server: 162.159.255.166, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: ❇️ CDN加速 v2, server: 104.16.114.239, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: ❇️ CDN加速 v3, server: 104.16.119.31, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: ❇️ CDN加速 v4, server: 162.159.45.148, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: ❇️ CDN加速 v5, server: 104.18.127.210, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN v1, server: 162.159.255.166, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: ❇️ CDN v2, server: 104.16.114.239, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: ❇️ CDN v3, server: 104.16.119.31, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN v4, server: 162.159.45.148, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN v5, server: 104.18.127.210, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
 
   # 手动模式
   - {name: 🛣️ LA1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -43,11 +43,11 @@ proxy-groups:
   - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - ❇️ CDN加速 v1
-      - ❇️ CDN加速 v2
-      - ❇️ CDN加速 v3
-      - ❇️ CDN加速 v4
-      - ❇️ CDN加速 v5
+      - ❇️ CDN v1
+      - ❇️ CDN v2
+      - ❇️ CDN v3
+      - ❇️ CDN v4
+      - ❇️ CDN v5
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
