@@ -64,7 +64,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
-  - name: AI专线
+  - name: AI
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - VPS1
@@ -98,24 +98,24 @@ rule-providers: #规则集
       
 rules:
     # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,AI专线'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI专线'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI专线'
-    - 'DOMAIN-SUFFIX,chatgpt.com,AI专线'
-    - 'DOMAIN-SUFFIX,chat.openai.com,AI专线'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,AI专线'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,AI专线'
-    - 'DOMAIN-SUFFIX,oaistatic.com,AI专线'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI专线'
-    - 'DOMAIN-SUFFIX,openai.com,AI专线'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI专线'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI专线'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI专线'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI专线'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI专线'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI专线'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,AI专线'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI专线'
+    - 'DOMAIN-SUFFIX,ai.com,AI'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI'
+    - 'DOMAIN-SUFFIX,chatgpt.com,AI'
+    - 'DOMAIN-SUFFIX,chat.openai.com,AI'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,AI'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,AI'
+    - 'DOMAIN-SUFFIX,oaistatic.com,AI'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI'
+    - 'DOMAIN-SUFFIX,openai.com,AI'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,AI'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI'
 
  # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,HelloWorld' #tidal音乐源
