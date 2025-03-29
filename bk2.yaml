@@ -8,284 +8,127 @@ external-controller: '127.0.0.1:9090'
 dns:
   enable: true
   listen: 0.0.0.0:53
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  default-nameserver: # 启动时的初始解析，确保可用性
-    - 223.6.6.6  # 阿里公共 DNS，国内稳定
-    # - 1.0.0.1    # Cloudflare，国际备用
-  nameserver: # 主 DNS 服务器
-    - https://223.6.6.6/dns-query       # 阿里 DoH，国内优先
-    # - https://1.0.0.1/dns-query         # Cloudflare DoH，国际备用
-  fallback: # 备用 DNS，防止解析失败
-    - tls://8.8.4.4:853      # Google DoT
-    - tls://1.0.0.1:853      # Cloudflare DoT
-  nameserver-policy: # 域名分流策略
-    "geosite:cn": https://dns.alidns.com/dns-query       # 国内域名走阿里
-    "geosite:geolocation-!cn": https://1.1.1.1/dns-query # 国外域名走 Cloudflare
-    "www.google.com,*.facebook.com": https://dns.google/dns-query # 特定域名走 Google
-  fallback-filter: # 避免 DNS 污染
-    geoip: true
-    geoip-code: CN
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-
-#  nameserver-policy:
-#    "+.google.com": 8.8.8.8
-#    "+.facebook.com": 8.8.8.8
-#    "+.x.com": 8.8.8.8
-#    "+.telegram.com": 8.8.8.8
-#    "+.twitter.com": 8.8.8.8
-#    "+.instagram.com": 8.8.8.8
-#    "+.whatsapp.com": 8.8.8.8
-#    "+.googleapis.com": 8.8.8.8
-#    "+.youtube.com": 8.8.8.8
-#    "+.gmail.com": 8.8.8.8
- #   "+.wikipedia.com": 8.8.8.8
- #   "+.wikimedia.com": 8.8.8.8
-  #  "+.github.com": 8.8.8.8
-  #  "+.reddit.com": 8.8.8.8
-  #  "+.chatgpt.com": 8.8.8.8
- #   "+.openai.com": 8.8.8.8
+  default-nameserver:
+    - 223.6.6.6
+  nameserver:
+    - https://223.6.6.6/dns-query
+  fallback:
+    - 8.8.8.8
+    
 proxies:
-  - # CDN加速线路1
-    type: vless
-    name: ❇️ CDN加速 v1
-    server: 173.245.49.65
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # CDN加速线路2
-    type: vless
-    name: ❇️ CDN加速 v2
-    server: 162.159.207.62
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: dnscheck.techtrendparts.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: dnscheck.techtrendparts.com
-      path: /?ed=2560
-    alpn:
-      - h2
-  - # CDN加速线路2
-    type: vless
-    name: ❇️ CDN加速 v3
-    server: 141.101.123.243
-    servername: dnscheck.techtrendparts.com
-    uuid: 9ffadd75-6188-42fa-a716-c9298de56393
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: dnscheck.techtrendparts.com
-    ws-opts:
-      headers:
-        host: dnscheck.techtrendparts.com
-      path: /?ed=2560
-    alpn:
-      - h2
-  - # CDN加速线路1
-    type: vless
-    name: ❇️ CDN加速 v4
-    server: 104.19.255.235
-    servername: warp.fotoman.com
-    uuid: d59a4c29-4bdb-4c50-b5f7-9a4f9d04c243
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 443
-    tls: true
-    udp: true
-    network: ws
-    sni: warp.fotoman.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: warp.fotoman.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # AI专用线路
-    type: vless
-    name: ♾️ ChatGPT
-    server: 89.117.217.19
-    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 17070
-    udp: true
-    network: ws
-    sni: bing.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # AI专用线路
-    type: vless
-    name: ♾️ Grok
-    server: 89.116.246.252
-    uuid: 1ea35698-5ab8-4e1a-9f7a-45380bb9f320
-    client-fingerprint: chrome
-    flow: xtls-rprx-vision
-    port: 17070
-    udp: true
-    network: ws
-    sni: bing.com
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
-  - # 香港专线
-    type: vless
-    name: 🔐 Privacy
-    server: 149.30.247.249
-    servername: work.fotoman.com
-    uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
-    client-fingerprint: chrome
-    port: 36342
-    tls: true
-    network: ws
-    skip-cert-verify: false
-    ws-opts:
-      headers:
-        host: bing.com
-      path: /?ed=2048
-    alpn:
-      - h2
+  # CDN加速
+  - {name: ❇️ CDN加速 v1, server: 104.17.193.169, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: ❇️ CDN加速 v2, server: 104.17.183.118, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: ❇️ CDN加速 v3, server: 104.17.81.106, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN加速 v4, server: 104.16.107.81, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: ❇️ CDN加速 v5, server: 104.17.73.32, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+
+  # 手动模式
+  - {name: 🛣️ Grapher x1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: 🛣️ Grapher x2, server: helloworld.techtrendparts.com, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  
+  # 专线直连
+  - {name: 🛣️ Options+, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+
+  # ai美国专线
+  - {name: 🛣️ us1, server: 107.173.140.91, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: 🛣️ us2, server: 137.220.49.212, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+
 proxy-groups:
-  - name: 代理模式
+  - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 默认自动模式
-      - 切换手动模式
+      - 自动模式
+      - 手动模式
+      - 故障转移
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
-  - name: 默认自动模式
+  - name: 自动模式
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ❇️ CDN加速 v1
       - ❇️ CDN加速 v2
       - ❇️ CDN加速 v3
       - ❇️ CDN加速 v4
+      - ❇️ CDN加速 v5
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
-  - name: 切换手动模式
+  - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - ❇️ CDN加速 v1
-      - ❇️ CDN加速 v2
-      - ❇️ CDN加速 v3
-      - ❇️ CDN加速 v4
-      - ♾️ Grok
-      - ♾️ ChatGPT
-      - 🔐 Privacy
+      - 🛣️ Grapher x1
+      - 🛣️ Grapher x2
+      - 🛣️ us1
+      - 🛣️ us2
+      - 🛣️ Options+
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+  - name: AI专线
+    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - 🛣️ us1
+      - 🛣️ us2
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://img.icons8.com/?size=100&id=r9qA6fLGZtdf&format=png&color=000000
   - name: "故障转移"
     type: fallback
     proxies:
-      - "🔐 Privacy"
+      - "🛣️ Options+"
     url: "http://www.google.com/generate_204"
     interval: 600
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
 rule-providers: #规则集
     # 中国域名
-    cnName:
+    china:
       type: http
       behavior: domain
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
       path: ./ruleset/direct.yaml
       interval: 86400
     # 中国IP段
-    cncidr:
+    cnip:
       type: http
       behavior: ipcidr
       url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
       path: ./ruleset/cncidr.yaml
       interval: 86400
-    # 局域网IP
-    lancidr:
-      type: http
-      behavior: classical
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
-      path: ./ruleset/lancidr.yaml
-      interval: 86400
-    # 应用程序
-    applications:
-      type: http
-      behavior: ipcidr
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
-      path: ./ruleset/applications.yaml
-      interval: 86400
-    
       
 rules:
-    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
-    - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    - 'DOMAIN-KEYWORD,linkedin,代理模式'
-    # Grok
-    - 'DOMAIN-KEYWORD,grok,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,x.ai,🔐 Privacy'
-    # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,🔐 Privacy'
-    - 'DOMAIN-SUFFIX,voice.google.com,🔐 Privacy'
-    # gemini
-    - 'DOMAIN-SUFFIX,gemini.google.com,♾️ Grok'
-    - 'DOMAIN-KEYWORD,gemini,♾️ Grok'
     # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,chatgpt.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,chat.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,oaistatic.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openai.com,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,♾️ Grok'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,♾️ Grok'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,♾️ Grok'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,♾️ Grok'
-    # 常用直联站点
+    - 'DOMAIN-SUFFIX,ai.com,AI专线'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI专线'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI专线'
+    - 'DOMAIN-SUFFIX,chatgpt.com,AI专线'
+    - 'DOMAIN-SUFFIX,chat.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,oaistatic.com,AI专线'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI专线'
+    - 'DOMAIN-SUFFIX,openai.com,AI专线'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI专线'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI专线'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI专线'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI专线'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,AI专线'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI专线'
+
+ # 自定义
+    - 'DOMAIN-SUFFIX,audio.tidal.com,PROXY' #tidal音乐源
+    - 'DOMAIN-KEYWORD,amazon,DIRECT'
+    - 'DOMAIN-KEYWORD,linkedin,PROXY'
+    
+  # 规则集 - 直连
+    - 'RULE-SET,china,DIRECT'
+    - 'RULE-SET,cnip,DIRECT,no-resolve'
+
+  # 常用直联站点
     - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
     - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
     - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
@@ -293,12 +136,15 @@ rules:
     - 'DOMAIN-SUFFIX,apple.com,DIRECT'
     - 'DOMAIN-KEYWORD,icloud,DIRECT'
     - 'DOMAIN-KEYWORD,apple,DIRECT'
-    # 规则集
-    - 'RULE-SET,cnName,DIRECT'
-    - 'RULE-SET,cncidr,DIRECT,no-resolve'
-    - 'RULE-SET,lancidr,DIRECT,no-resolve'
-    - 'RULE-SET,applications,DIRECT'
-    - 'GEOIP,LAN,DIRECT'
-    - 'GEOIP,CN,DIRECT,no-resolve'
+
+    # Grok
+    - 'DOMAIN-KEYWORD,grok,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,x.ai,🛣️ Options+'
+    
+    # voice
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,voice.google.com,🛣️ Options+'
+    
     # 通配值
-    - 'MATCH,代理模式'
+    - 'MATCH,PROXY'
