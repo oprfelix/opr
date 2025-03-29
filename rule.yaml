@@ -118,7 +118,7 @@ rules:
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI专线'
 
  # 自定义
-    - 'DOMAIN-SUFFIX,audio.tidal.com,代理模式' #tidal音乐源
+    - 'DOMAIN-SUFFIX,audio.tidal.com,HelloWorld' #tidal音乐源
     - 'DOMAIN-KEYWORD,amazon,DIRECT'
     - 'DOMAIN-KEYWORD,linkedin,HelloWorld'
     
