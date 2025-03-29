@@ -22,11 +22,11 @@ proxies:
   - {name: ❇️ CDN加速 v5, server: 104.18.127.210, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
 
   # 手动模式
-  - {name: 🛣️ Grapher x1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: 🛣️ Grapher x2, server: helloworld.techtrendparts.com, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: 🛣️ LA1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: 🛣️ LA2, server: helloworld.techtrendparts.com, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
   # 专线直连
-  - {name: 🛣️ Options+, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  - {name: 🛣️ VPL1, server: 149.30.247.249, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
 
   # ai美国专线
   - {name: 🛣️ us1, server: 107.173.140.91, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -55,11 +55,11 @@ proxy-groups:
   - name: 手动模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 🛣️ Grapher x1
-      - 🛣️ Grapher x2
+      - 🛣️ LA1
+      - 🛣️ LA2
       - 🛣️ us1
       - 🛣️ us2
-      - 🛣️ Options+
+      - 🛣️ VPL1
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
@@ -76,7 +76,7 @@ proxy-groups:
   - name: "故障转移"
     type: fallback
     proxies:
-      - "🛣️ Options+"
+      - "🛣️ VPL1"
     url: "http://www.google.com/generate_204"
     interval: 600
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
@@ -136,13 +136,13 @@ rules:
     - 'DOMAIN-KEYWORD,apple,DIRECT'
 
     # Grok
-    - 'DOMAIN-KEYWORD,grok,🛣️ Options+'
-    - 'DOMAIN-SUFFIX,x.ai,🛣️ Options+'
+    - 'DOMAIN-KEYWORD,grok,🛣️ VPL1'
+    - 'DOMAIN-SUFFIX,x.ai,🛣️ VPL1'
     
     # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,🛣️ Options+'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,🛣️ Options+'
-    - 'DOMAIN-SUFFIX,voice.google.com,🛣️ Options+'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,🛣️ VPL1'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,🛣️ VPL1'
+    - 'DOMAIN-SUFFIX,voice.google.com,🛣️ VPL1'
     
     # 通配值
     - 'MATCH,代理模式'
