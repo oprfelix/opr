@@ -33,14 +33,14 @@ proxies:
   - {name: VPS2, server: 137.220.49.212, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  - name: HelloWorld
+  - name: Athens
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - Auto
-      - Manual
-      - Solar
+      - Delphi
+      - Olympia
+      - Mycenae
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
-  - name: Auto
+  - name: Delphi
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - CDN v1
@@ -52,7 +52,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
-  - name: Manual
+  - name: Olympia
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - ACF1
@@ -64,7 +64,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
-  - name: AI
+  - name: Knossos
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - VPS1
@@ -73,7 +73,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=utiKBYyMZ6Ba&format=png&color=000000
-  - name: Solar
+  - name: Mycenae
     type: url-test
     proxies:
       - HKG
@@ -109,41 +109,41 @@ rules:
     - 'DOMAIN-KEYWORD,apple,DIRECT'
     
  # 自定义
-    - 'DOMAIN-SUFFIX,audio.tidal.com,HelloWorld' #tidal音乐源
-    - 'DOMAIN-KEYWORD,linkedin,HelloWorld'
+    - 'DOMAIN-SUFFIX,audio.tidal.com,Athens' #tidal音乐源
+    - 'DOMAIN-KEYWORD,linkedin,Athens'
     
     # Grok
-    - 'DOMAIN-KEYWORD,grok,Solar'
-    - 'DOMAIN-SUFFIX,x.ai,Solar'
+    - 'DOMAIN-KEYWORD,grok,Mycenae'
+    - 'DOMAIN-SUFFIX,x.ai,Mycenae'
     
     # voice
-    - 'DOMAIN-SUFFIX,lens.l.google.com,Solar'
-    - 'DOMAIN-SUFFIX,voice.telephony.goog,Solar'
-    - 'DOMAIN-SUFFIX,voice.google.com,Solar'
+    - 'DOMAIN-SUFFIX,lens.l.google.com,Mycenae'
+    - 'DOMAIN-SUFFIX,voice.telephony.goog,Mycenae'
+    - 'DOMAIN-SUFFIX,voice.google.com,Mycenae'
 
     # OpenAI (ChatGPT)
-    - 'DOMAIN-SUFFIX,ai.com,AI'
-    - 'DOMAIN-SUFFIX,api.revenuecat.com,AI'
-    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,AI'
-    - 'DOMAIN-SUFFIX,chatgpt.com,AI'
-    - 'DOMAIN-SUFFIX,chat.openai.com,AI'
-    - 'DOMAIN-SUFFIX,auth0.openai.com,AI'
-    - 'DOMAIN-SUFFIX,cdn.openai.com,AI'
-    - 'DOMAIN-SUFFIX,oaistatic.com,AI'
-    - 'DOMAIN-SUFFIX,oaiusercontent.com,AI'
-    - 'DOMAIN-SUFFIX,openai.com,AI'
-    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,AI'
-    - 'DOMAIN-SUFFIX,openaicom.imgix.net,AI'
-    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,AI'
-    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,AI'
-    - 'DOMAIN-SUFFIX,ingest.sentry.io,AI'
-    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,AI'
-    - 'DOMAIN-SUFFIX,client.crisp.chat,AI'
-    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,AI'
+    - 'DOMAIN-SUFFIX,ai.com,Knossos'
+    - 'DOMAIN-SUFFIX,api.revenuecat.com,Knossos'
+    - 'DOMAIN-SUFFIX,browser-intake-datadoghq.com,Knossos'
+    - 'DOMAIN-SUFFIX,chatgpt.com,Knossos'
+    - 'DOMAIN-SUFFIX,chat.openai.com,Knossos'
+    - 'DOMAIN-SUFFIX,auth0.openai.com,Knossos'
+    - 'DOMAIN-SUFFIX,cdn.openai.com,Knossos'
+    - 'DOMAIN-SUFFIX,oaistatic.com,Knossos'
+    - 'DOMAIN-SUFFIX,oaiusercontent.com,Knossos'
+    - 'DOMAIN-SUFFIX,openai.com,Knossos'
+    - 'DOMAIN-SUFFIX,openaiapi-site.azureedge.net,Knossos'
+    - 'DOMAIN-SUFFIX,openaicom.imgix.net,Knossos'
+    - 'DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,Knossos'
+    - 'DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,Knossos'
+    - 'DOMAIN-SUFFIX,ingest.sentry.io,Knossos'
+    - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,Knossos'
+    - 'DOMAIN-SUFFIX,client.crisp.chat,Knossos'
+    - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos'
     
   # 规则集 - 直连
     - 'RULE-SET,china,DIRECT'
     - 'RULE-SET,cnip,DIRECT,no-resolve'
 
     # 通配值
-    - 'MATCH,HelloWorld'
+    - 'MATCH,Athens'
