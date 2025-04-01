@@ -25,9 +25,9 @@ proxies:
   - {name: CDN v5, server: 104.18.127.210, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
 
   # 手动模式
-  - {name: ACF1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: ACF2, server: helloworld.todsm.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: ACF3, server: helloworld.techtrendparts.com, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: CF1, server: helloworld.fotoman.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: CF2, server: helloworld.todsm.com, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: CF3, server: helloworld.techtrendparts.com, port: 443, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
   # 专线直连
   - {name: HKG, server: work.fotoman.com, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
@@ -59,9 +59,9 @@ proxy-groups:
   - name: Olympia
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - ACF1
-      - ACF2
-      - ACF3
+      - CF1
+      - CF2
+      - CF3
       - VPS1
       - VPS2
       - HKG
