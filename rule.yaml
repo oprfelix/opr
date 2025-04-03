@@ -10,43 +10,19 @@ keep-alive-interval: 1800
 
 dns:
   enable: true
-  prefer-h3: true
   listen: 0.0.0.0:1053
-  ipv6: true
   default-nameserver:
     - 223.6.6.6
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
   nameserver-policy:
-    '+.qq.com': '119.29.29.29'
-    '+.google.com': '8.8.8.8'
-    '+.googleapis.com': '8.8.8.8'
-    '+.youtube.com': '8.8.8.8'
-    '+.facebook.com': '8.8.8.8'
-    '+.grok.com': '8.8.8.8'
-    'geosite:cn': '223.5.5.5'
+  'www.baidu.com': '114.114.114.114'
+  '+.internal.crop.com': '10.0.0.1'
+  'geosite:geolocation-!cn': [tls://8.8.4.4, https://1.0.0.1/dns-query]
+  'www.baidu.com,+.google.cn': https://doh.pub/dns-query
+  'geosite:private,apple': https://dns.alidns.com/dns-query
+  'rule-set:google': 8.8.8.8
   nameserver:
     - https://223.6.6.6/dns-query
     - https://dns.alidns.com/dns-query
-  fallback:
-    - tls://8.8.4.4
-    - tls://1.1.1.1
-  proxy-server-nameserver:
-    - https://223.6.6.6/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    geosite:
-      - gfw
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
 
 proxies:
   # CDN加速
