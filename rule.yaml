@@ -14,11 +14,13 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
-    - 119.29.29.29
+    - 223.6.6.6
   nameserver-policy:
     '+.facebook.com': '8.8.8.8'
     '+.google.com': '8.8.8.8'
+    '+.googleapis.com': '8.8.8.8'
     '+.youtube.com': '8.8.8.8'
+    '+.grok.com': '8.8.8.8'
   nameserver:
     - https://223.6.6.6/dns-query
       
