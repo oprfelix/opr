@@ -14,18 +14,14 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: true
   default-nameserver:
-    - 223.6.6.6
+    - tls://223.6.6.6:853
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - '*.lan'
     - localhost.ptlogin2.qq.com
   nameserver-policy:
-    '+.googleapis.com': '8.8.8.8'
-    '+.google.com': '8.8.8.8'
-    '+.facebook.com': '8.8.8.8'
-    '+.youtube.com': '8.8.8.8'
-    '+.gstatic.com': '8.8.8.8'
+    'geosite:gfw': '8.8.8.8'
   nameserver:
     - https://223.6.6.6/dns-query
       
