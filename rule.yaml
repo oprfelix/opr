@@ -21,7 +21,7 @@ dns:
     - '*.lan'
     - localhost.ptlogin2.qq.com
   nameserver-policy:
-    'geosite:gfw': '8.8.8.8'
+    '+.googleapis.com,+.google.com,+.facebook.com,+.youtube.com,+.telegram.com': '8.8.8.8'
   nameserver:
     - https://223.6.6.6/dns-query
       
