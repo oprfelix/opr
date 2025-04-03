@@ -21,6 +21,7 @@ dns:
     '+.googleapis.com': '8.8.8.8'
     '+.youtube.com': '8.8.8.8'
     '+.grok.com': '8.8.8.8'
+    '+.telegram.com': '8.8.8.8'
   nameserver:
     - https://223.6.6.6/dns-query
       
