@@ -151,15 +151,15 @@ rules:
   - GEOSITE,geolocation-cn,DIRECT
 
   # 国外服务走代理（基于 GEOSITE）
-  - GEOSITE,facebook,PROXY
-  - GEOSITE,youtube,PROXY
-  - GEOSITE,google,PROXY
-  - GEOSITE,geolocation-!cn,PROXY
+  - GEOSITE,facebook,Athens
+  - GEOSITE,youtube,Athens
+  - GEOSITE,google,Athens
+  - GEOSITE,geolocation-!cn,Athens
 
   # IP 规则（基于 GEOIP）
   - GEOIP,private,DIRECT,no-resolve  # 私有网络直连
   - GEOIP,cn,DIRECT                  # 中国大陆 IP 直连
-  - GEOIP,telegram,PROXY,no-resolve  # Telegram 走代理
+  - GEOIP,telegram,Athens,no-resolve  # Telegram 走代理
 
   # 默认规则
-  - MATCH,PROXY  # 未匹配的流量走代理
+  - MATCH,Athens  # 未匹配的流量走代理
