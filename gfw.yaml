@@ -137,23 +137,23 @@ rules:
     - RULE-SET,cn,DIRECT
     - GEOSITE,category-ads-all,REJECT
     - GEOSITE,private,DIRECT
-    - GEOSITE,youtube,PROXY
-    - GEOSITE,google,PROXY
-    - GEOSITE,twitter,PROXY
-    - GEOSITE,pixiv,PROXY
-    - GEOSITE,category-scholar-!cn,PROXY
-    - GEOSITE,biliintl,PROXY
+    - GEOSITE,youtube,Athens
+    - GEOSITE,google,Athens
+    - GEOSITE,twitter,Athens
+    - GEOSITE,pixiv,Athens
+    - GEOSITE,category-scholar-!cn,Athens
+    - GEOSITE,biliintl,Athens
     - GEOSITE,onedrive,DIRECT
     - GEOSITE,microsoft@cn,DIRECT
     - GEOSITE,apple-cn,DIRECT
     - GEOSITE,steam@cn,DIRECT
     - GEOSITE,category-games@cn,DIRECT
-    - GEOSITE,geolocation-!cn,PROXY
+    - GEOSITE,geolocation-!cn,Athens
     - GEOSITE,cn,DIRECT
 
   #GEOIP 规则
     - GEOIP,private,DIRECT,no-resolve
-    - GEOIP,telegram,PROXY
-    - GEOIP,JP,PROXY
+    - GEOIP,telegram,Athens
+    - GEOIP,JP,Athens
     - GEOIP,CN,DIRECT
     - MATCH,DIRECT
