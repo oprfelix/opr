@@ -151,7 +151,7 @@ rules:
   - GEOSITE,geolocation-cn,DIRECT
 
   # 国外服务走代理（基于 GEOSITE）
-  - GEOSITE,facebook,SOCIAL-MEDIA
+  - GEOSITE,facebook,PROXY
   - GEOSITE,youtube,PROXY
   - GEOSITE,google,PROXY
   - GEOSITE,geolocation-!cn,PROXY
