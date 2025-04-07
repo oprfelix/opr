@@ -127,6 +127,7 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,Knossos'
     - 'DOMAIN-SUFFIX,client.crisp.chat,Knossos'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos'
+    
     # gfw黑名单
     - 'RULE-SET,gfw,Athens'
 
