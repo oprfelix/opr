@@ -112,6 +112,36 @@ rule-providers:
 
 # 规则部分（GeoIP 和 GeoSite）
 rules:
+
+  # Grok
+  - DOMAIN-KEYWORD,grok,Mycenae
+  - DOMAIN-SUFFIX,x.ai,Mycenae
+    
+  # voice
+  - DOMAIN-SUFFIX,lens.l.google.com,Mycenae
+  - DOMAIN-SUFFIX,voice.telephony.goog,Mycenae
+  - DOMAIN-SUFFIX,voice.google.com,Mycenae
+
+  # OpenAI (ChatGPT)
+  - DOMAIN-SUFFIX,ai.com,Knossos
+  - DOMAIN-SUFFIX,api.revenuecat.com,Knossos
+  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,Knossos
+  - DOMAIN-SUFFIX,chatgpt.com,Knossos
+  - DOMAIN-SUFFIX,chat.openai.com,Knossos
+  - DOMAIN-SUFFIX,auth0.openai.com,Knossos
+  - DOMAIN-SUFFIX,cdn.openai.com,Knossos
+  - DOMAIN-SUFFIX,oaistatic.com,Knossos
+  - DOMAIN-SUFFIX,oaiusercontent.com,Knossos
+  - DOMAIN-SUFFIX,openai.com,Knossos
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,Knossos
+  - DOMAIN-SUFFIX,openaicom.imgix.net,Knossos
+  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,Knossos
+  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,Knossos
+  - DOMAIN-SUFFIX,ingest.sentry.io,Knossos
+  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,Knossos
+  - DOMAIN-SUFFIX,client.crisp.chat,Knossos
+  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos
+
   # 广告拦截（基于 GEOSITE）
   - GEOSITE,category-ads-all,AD-BLOCK
 
