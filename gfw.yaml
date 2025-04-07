@@ -143,7 +143,7 @@ rules:
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos
 
   # 广告拦截（基于 GEOSITE）
-  - GEOSITE,category-ads-all,AD-BLOCK
+  - GEOSITE,category-ads-all,REJECT
 
   # 国内服务直连（基于 GEOSITE）
   - GEOSITE,apple@cn,DIRECT
