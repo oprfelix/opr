@@ -91,12 +91,18 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
 rule-providers: 
     #黑名单模式
-    gfw:
-      type: http
+   # gfw:
+    #  type: http
+    #  behavior: domain
+    #  url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    #  path: ./ruleset/gfw.yaml
+    #  interval: 86400 
+    cn:
       behavior: domain
-      url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-      path: ./ruleset/gfw.yaml
-      interval: 86400 
+      interval: 86400
+      path: ./provider/rule-set/cn_domain.yaml
+      type: http
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.yaml"
 rules:
     
     # Grok
@@ -127,9 +133,27 @@ rules:
     - 'DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,Knossos'
     - 'DOMAIN-SUFFIX,client.crisp.chat,Knossos'
     - 'DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos'
-    
-    # gfw黑名单
-    - 'RULE-SET,gfw,Athens'
+  #GEOSITE 规则
+    - RULE-SET,cn,DIRECT
+    - GEOSITE,category-ads-all,REJECT
+    - GEOSITE,private,DIRECT
+    - GEOSITE,youtube,PROXY
+    - GEOSITE,google,PROXY
+    - GEOSITE,twitter,PROXY
+    - GEOSITE,pixiv,PROXY
+    - GEOSITE,category-scholar-!cn,PROXY
+    - GEOSITE,biliintl,PROXY
+    - GEOSITE,onedrive,DIRECT
+    - GEOSITE,microsoft@cn,DIRECT
+    - GEOSITE,apple-cn,DIRECT
+    - GEOSITE,steam@cn,DIRECT
+    - GEOSITE,category-games@cn,DIRECT
+    - GEOSITE,geolocation-!cn,PROXY
+    - GEOSITE,cn,DIRECT
 
-    # 通配值
-    - 'MATCH,DIRECT'
+  #GEOIP 规则
+    - GEOIP,private,DIRECT,no-resolve
+    - GEOIP,telegram,PROXY
+    - GEOIP,JP,PROXY
+    - GEOIP,CN,DIRECT
+    - MATCH,DIRECT
