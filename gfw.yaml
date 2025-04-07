@@ -22,12 +22,6 @@ dns:
   nameserver:
     - https://dns.alidns.com/dns-query  # 国内 DNS
     - https://doh.pub/dns-query         # 腾讯 DNS
-    - https://1.1.1.1/dns-query         # Cloudflare DNS
-  nameserver-policy:
-    "geosite:cn": 
-      - https://dns.alidns.com/dns-query
-    "geosite:geolocation-!cn":
-      - https://1.1.1.1/dns-query
 
 proxies:
   # CDN加速
