@@ -113,16 +113,6 @@ rule-providers: #规则集
       interval: 86400
       
 rules:
-
-  # 常用直联站点
-    - 'DOMAIN-KEYWORD,amazon,DIRECT'
-    - 'DOMAIN-SUFFIX,lingxing.com,DIRECT'
-    - 'DOMAIN-SUFFIX,quanmaitong.com,DIRECT'
-    - 'DOMAIN-SUFFIX,maskfog.com,DIRECT'
-    - 'DOMAIN-SUFFIX,icloud.com,DIRECT'
-    - 'DOMAIN-SUFFIX,apple.com,DIRECT'
-    - 'DOMAIN-KEYWORD,icloud,DIRECT'
-    - 'DOMAIN-KEYWORD,apple,DIRECT'
     
  # 自定义
     - 'DOMAIN-SUFFIX,audio.tidal.com,Athens' #tidal音乐源
