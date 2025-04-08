@@ -160,6 +160,10 @@ rules:
   - GEOIP,private,DIRECT,no-resolve  # 私有网络直连
   - GEOIP,cn,DIRECT                  # 中国大陆 IP 直连
   - GEOIP,telegram,Athens,no-resolve  # Telegram 走代理
+ 
+  # 规则集（去广告和国内直联）
+  - RULE-SET,reject,REJECT
+  - RULE-SET,cn,DIRECT
 
   # 默认规则
   - MATCH,Athens  # 未匹配的流量走代理
