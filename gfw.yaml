@@ -62,7 +62,7 @@ proxy-groups:
       - xAI专线
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: 欧美专线
-    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - US1
       - US2
@@ -75,7 +75,7 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 日本专线
-    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - JP1
       - JP2
@@ -87,7 +87,7 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
   - name: 备用线路
-    type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - CF1
       - CF2
