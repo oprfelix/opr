@@ -56,13 +56,13 @@ proxy-groups:
   - name: PROXY
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - 欧美专线
-      - 日本专线
-      - 备用线路
+      - USA
+      - JAPAN
+      - CF
       - HKG
       - JPN
     icon: https://img.icons8.com/?size=100&id=FgiulRIQMQS8&format=png&color=000000
-  - name: 欧美专线
+  - name: USA
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - US1
@@ -75,7 +75,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=YLWeFgMZW9UC&format=png&color=000000
-  - name: 日本专线
+  - name: JAPAN
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - JP1
@@ -87,7 +87,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=tuomIWjrnJEn&format=png&color=000000
-  - name: 备用线路
+  - name: CF
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - CF1
@@ -97,7 +97,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=eZ12s45xUpOW&format=png&color=000000
-  - name: GPT专线
+  - name: GPT
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - VPS1
@@ -106,7 +106,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=FiiA2qi0YFmp&format=png&color=000000
-  - name: xAI专线
+  - name: Google
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - HKG
@@ -134,33 +134,33 @@ rule-providers:
 rules:
 
   # Grok
-  - DOMAIN-KEYWORD,grok,xAI专线
-  - DOMAIN-SUFFIX,x.ai,xAI专线
+  - DOMAIN-KEYWORD,grok,Google
+  - DOMAIN-SUFFIX,x.ai,Google
     
   # voice
-  - DOMAIN-SUFFIX,lens.l.google.com,xAI专线
-  - DOMAIN-SUFFIX,voice.telephony.goog,xAI专线
-  - DOMAIN-SUFFIX,voice.google.com,xAI专线
+  - DOMAIN-SUFFIX,lens.l.google.com,Google
+  - DOMAIN-SUFFIX,voice.telephony.goog,Google
+  - DOMAIN-SUFFIX,voice.google.com,Google
 
   # OpenAI (ChatGPT)
-  - DOMAIN-SUFFIX,ai.com,GPT专线
-  - DOMAIN-SUFFIX,api.revenuecat.com,GPT专线
-  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,GPT专线
-  - DOMAIN-SUFFIX,chatgpt.com,GPT专线
-  - DOMAIN-SUFFIX,chat.openai.com,GPT专线
-  - DOMAIN-SUFFIX,auth0.openai.com,GPT专线
-  - DOMAIN-SUFFIX,cdn.openai.com,GPT专线
-  - DOMAIN-SUFFIX,oaistatic.com,GPT专线
-  - DOMAIN-SUFFIX,oaiusercontent.com,GPT专线
-  - DOMAIN-SUFFIX,openai.com,GPT专线
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT专线
-  - DOMAIN-SUFFIX,openaicom.imgix.net,GPT专线
-  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,GPT专线
-  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,GPT专线
-  - DOMAIN-SUFFIX,ingest.sentry.io,GPT专线
-  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT专线
-  - DOMAIN-SUFFIX,client.crisp.chat,GPT专线
-  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT专线
+  - DOMAIN-SUFFIX,ai.com,GPT
+  - DOMAIN-SUFFIX,api.revenuecat.com,GPT
+  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,GPT
+  - DOMAIN-SUFFIX,chatgpt.com,GPT
+  - DOMAIN-SUFFIX,chat.openai.com,GPT
+  - DOMAIN-SUFFIX,auth0.openai.com,GPT
+  - DOMAIN-SUFFIX,cdn.openai.com,GPT
+  - DOMAIN-SUFFIX,oaistatic.com,GPT
+  - DOMAIN-SUFFIX,oaiusercontent.com,GPT
+  - DOMAIN-SUFFIX,openai.com,GPT
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT
+  - DOMAIN-SUFFIX,openaicom.imgix.net,GPT
+  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,GPT
+  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,GPT
+  - DOMAIN-SUFFIX,ingest.sentry.io,GPT
+  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
+  - DOMAIN-SUFFIX,client.crisp.chat,GPT
+  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
 
   # 广告拦截（基于 GEOSITE）
   - GEOSITE,category-ads-all,REJECT
