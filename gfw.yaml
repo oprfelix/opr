@@ -59,7 +59,8 @@ proxy-groups:
       - 欧美专线
       - 日本专线
       - 备用线路
-      - xAI专线
+      - HKG
+      - JPN
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: 欧美专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
