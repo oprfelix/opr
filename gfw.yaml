@@ -93,10 +93,6 @@ proxy-groups:
       - CF1
       - CF2
       - CF3
-      - VPS1
-      - VPS2
-      - HKG
-      - JPN
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
