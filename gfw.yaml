@@ -40,7 +40,7 @@ proxies:
   # 专线直连
   - {name: HKG, server: work.fotoman.com, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, client-fingerprint: randomized, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, tfo: false, skip-cert-verify: true, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN - 2, server: tky2.todsm.com, port: 35764, client-fingerprint: randomized, type: vless, uuid: b0ee0f1a-f887-4959-d77a-b8eac0d9b3eb, tls: true, tfo: false, skip-cert-verify: true, servername: tky2.todsm.com, network: ws, ws-opts: {path: "/?ed=2056", headers: {Host: bing.com}}}
+  - {name: JPN - 2, server: 54.238.126.147, port: 35764, client-fingerprint: randomized, type: vless, uuid: b0ee0f1a-f887-4959-d77a-b8eac0d9b3eb, tls: true, tfo: false, skip-cert-verify: true, servername: tky2.todsm.com, network: ws, ws-opts: {path: "/?ed=2056", headers: {Host: bing.com}}}
   
   # ai美国专线
   - {name: VPS1, server: us1.fotoman.com, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
