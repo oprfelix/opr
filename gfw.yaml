@@ -53,7 +53,7 @@ proxies:
   - {name: VPS2, server: us2.fotoman.com, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  - name: 代理模式
+  - name: 当前代理线路
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - 欧美专线
@@ -61,7 +61,7 @@ proxy-groups:
       - 备用线路
       - HKG
       - JPN
-    icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=HNJrjVxxdyLe&format=png&color=000000
   - name: 欧美专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -96,7 +96,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=5urwhBvXOSbW&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=fGXrdngvTXOA&format=png&color=000000
   - name: GPT专线
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -171,19 +171,19 @@ rules:
   - GEOSITE,geolocation-cn,DIRECT
 
   # 国外服务走代理（基于 GEOSITE）
-  - GEOSITE,facebook,代理模式
-  - GEOSITE,youtube,代理模式
-  - GEOSITE,google,代理模式
-  - GEOSITE,geolocation-!cn,代理模式
+  - GEOSITE,facebook,当前代理线路
+  - GEOSITE,youtube,当前代理线路
+  - GEOSITE,google,当前代理线路
+  - GEOSITE,geolocation-!cn,当前代理线路
 
   # IP 规则（基于 GEOIP）
   - GEOIP,private,DIRECT,no-resolve  # 私有网络直连
   - GEOIP,cn,DIRECT                  # 中国大陆 IP 直连
-  - GEOIP,telegram,代理模式,no-resolve  # Telegram 走代理
+  - GEOIP,telegram,当前代理线路,no-resolve  # Telegram 走代理
  
   # 规则集（去广告和国内直联）
   - RULE-SET,reject,REJECT
   - RULE-SET,cn,DIRECT
 
   # 默认规则
-  - MATCH,代理模式  # 未匹配的流量走代理
+  - MATCH,当前代理线路  # 未匹配的流量走代理
