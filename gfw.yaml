@@ -40,7 +40,6 @@ proxies:
   # 专线直连
   - {name: HKG, server: work.fotoman.com, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, client-fingerprint: randomized, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, tfo: false, skip-cert-verify: true, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN - 2, server: 54.238.126.147, port: 35764, client-fingerprint: randomized, type: vless, uuid: b0ee0f1a-f887-4959-d77a-b8eac0d9b3eb, tls: true, tfo: false, skip-cert-verify: true, servername: tky2.todsm.com, network: ws, ws-opts: {path: "/?ed=2056", headers: {Host: bing.com}}}
   
   # ai美国专线
   - {name: VPS1, server: us1.fotoman.com, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -54,7 +53,6 @@ proxy-groups:
       - Olympia
       - Mycenae
       - JPN
-      - JPN - 2
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: Delphi
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -79,13 +77,12 @@ proxy-groups:
       - VPS2
       - HKG
       - JPN
-      - JPN - 2
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
   - name: Knossos
-    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - VPS1
       - VPS2
@@ -94,11 +91,10 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=utiKBYyMZ6Ba&format=png&color=000000
   - name: Mycenae
-    type: url-test
+    type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - HKG
       - JPN
-      - JPN - 2
     url: "http://www.google.com/generate_204"
     interval: 600
     icon: https://img.icons8.com/?size=100&id=MFJMc45IItls&format=png&color=000000
