@@ -48,7 +48,7 @@ proxies:
   - {name: HKG, server: work.fotoman.com, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, client-fingerprint: randomized, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, tfo: false, skip-cert-verify: true, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   
-  # ai专线
+  # AI专线
   - {name: VPS1, server: us1.fotoman.com, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
@@ -59,7 +59,7 @@ proxy-groups:
       - 欧美专线
       - 日本专线
       - 备用线路
-      - AI专线
+      - xAI专线
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
   - name: 欧美专线
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
@@ -109,7 +109,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=utiKBYyMZ6Ba&format=png&color=000000
-  - name: AI专线
+  - name: xAI专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - HKG
@@ -137,13 +137,13 @@ rule-providers:
 rules:
 
   # Grok
-  - DOMAIN-KEYWORD,grok,AI专线
-  - DOMAIN-SUFFIX,x.ai,AI专线
+  - DOMAIN-KEYWORD,grok,xAI专线
+  - DOMAIN-SUFFIX,x.ai,xAI专线
     
   # voice
-  - DOMAIN-SUFFIX,lens.l.google.com,AI专线
-  - DOMAIN-SUFFIX,voice.telephony.goog,AI专线
-  - DOMAIN-SUFFIX,voice.google.com,AI专线
+  - DOMAIN-SUFFIX,lens.l.google.com,xAI专线
+  - DOMAIN-SUFFIX,voice.telephony.goog,xAI专线
+  - DOMAIN-SUFFIX,voice.google.com,xAI专线
 
   # OpenAI (ChatGPT)
   - DOMAIN-SUFFIX,ai.com,GPT专线
