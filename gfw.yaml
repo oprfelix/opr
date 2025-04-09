@@ -24,62 +24,69 @@ dns:
     - https://doh.pub/dns-query         # 腾讯 DNS
 
 proxies:
-  # CDN加速
-  - {name: CDN1, server: 104.16.68.170, port: 8443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: CDN2, server: 172.66.44.80, port: 2083, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: CDN3, server: 173.245.49.127, port: 2087, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: CDN4, server: 104.18.36.227, port: 2053, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: CDN5, server: 104.19.172.76, port: 2096, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: CDN6, server: 104.19.224.35, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: CDNx, server: 13.225.163.156, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  # 欧美加速
+  - {name: US1, server: 104.16.68.170, port: 8443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: US2, server: 172.66.44.80, port: 2083, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: US3, server: 173.245.49.127, port: 2087, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: US4, server: 104.18.36.227, port: 2053, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: US5, server: 104.19.172.76, port: 2096, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: US6, server: 104.19.224.35, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
 
-  # 手动模式
+  # 日本加速
+  - {name: JP1, server: 13.225.163.156, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  - {name: JP2, server: 13.225.169.136, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  - {name: JP3, server: 65.9.31.223, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  - {name: JP4, server: 13.33.213.89, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  - {name: JP5, server: 18.172.30.5, port: 443, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  
+  # 服务器直联
   - {name: CF1, server: helloworld.fotoman.com, port: 8443, client-fingerprint: randomized, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: CF2, server: helloworld.todsm.com, port: 2053, client-fingerprint: randomized, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   - {name: CF3, server: helloworld.techtrendparts.com, port: 2096, client-fingerprint: randomized, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, tfo: false, skip-cert-verify: true, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
-  # 专线直连
+  # 商用专线
   - {name: HKG, server: work.fotoman.com, port: 36342, client-fingerprint: randomized, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, tfo: false, skip-cert-verify: true, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, client-fingerprint: randomized, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, tfo: false, skip-cert-verify: true, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   
-  # ai美国专线
+  # ai专线
   - {name: VPS1, server: us1.fotoman.com, port: 46456, client-fingerprint: randomized, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, tfo: false, skip-cert-verify: true, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, client-fingerprint: randomized, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, tfo: false, skip-cert-verify: true, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  - name: Athens
+  - name: 代理模式
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - Delphi
-      - Olympia
-      - Mycenae
-      - CDN1
-      - CDN2
-      - CDN3
-      - CDN4
-      - CDN5
-      - CDN6
-      - CDNx
-      - VPS1
-      - VPS2
-      - HKG
-      - JPN
+      - 欧美专线
+      - 日本专线
+      - 备用线路
+      - AI专线
     icon: https://img.icons8.com/?size=100&id=13542&format=png&color=000000
-  - name: Delphi
+  - name: 欧美专线
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
-      - CDN1
-      - CDN2
-      - CDN3
-      - CDN4
-      - CDN5
-      - CDN6
-      - CDNx
+      - US1
+      - US2
+      - US3
+      - US4
+      - US5
+      - US6
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
-  - name: Olympia
+  - name: 日本专线
+    type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
+    proxies:
+      - JP1
+      - JP2
+      - JP3
+      - JP4
+      - JP5
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
+    icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
+  - name: 备用线路
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - CF1
@@ -93,7 +100,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
-  - name: Knossos
+  - name: GPT专线
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - VPS1
@@ -102,7 +109,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=utiKBYyMZ6Ba&format=png&color=000000
-  - name: Mycenae
+  - name: AI专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - HKG
@@ -130,33 +137,33 @@ rule-providers:
 rules:
 
   # Grok
-  - DOMAIN-KEYWORD,grok,Mycenae
-  - DOMAIN-SUFFIX,x.ai,Mycenae
+  - DOMAIN-KEYWORD,grok,AI专线
+  - DOMAIN-SUFFIX,x.ai,AI专线
     
   # voice
-  - DOMAIN-SUFFIX,lens.l.google.com,Mycenae
-  - DOMAIN-SUFFIX,voice.telephony.goog,Mycenae
-  - DOMAIN-SUFFIX,voice.google.com,Mycenae
+  - DOMAIN-SUFFIX,lens.l.google.com,AI专线
+  - DOMAIN-SUFFIX,voice.telephony.goog,AI专线
+  - DOMAIN-SUFFIX,voice.google.com,AI专线
 
   # OpenAI (ChatGPT)
-  - DOMAIN-SUFFIX,ai.com,Knossos
-  - DOMAIN-SUFFIX,api.revenuecat.com,Knossos
-  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,Knossos
-  - DOMAIN-SUFFIX,chatgpt.com,Knossos
-  - DOMAIN-SUFFIX,chat.openai.com,Knossos
-  - DOMAIN-SUFFIX,auth0.openai.com,Knossos
-  - DOMAIN-SUFFIX,cdn.openai.com,Knossos
-  - DOMAIN-SUFFIX,oaistatic.com,Knossos
-  - DOMAIN-SUFFIX,oaiusercontent.com,Knossos
-  - DOMAIN-SUFFIX,openai.com,Knossos
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,Knossos
-  - DOMAIN-SUFFIX,openaicom.imgix.net,Knossos
-  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,Knossos
-  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,Knossos
-  - DOMAIN-SUFFIX,ingest.sentry.io,Knossos
-  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,Knossos
-  - DOMAIN-SUFFIX,client.crisp.chat,Knossos
-  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,Knossos
+  - DOMAIN-SUFFIX,ai.com,GPT专线
+  - DOMAIN-SUFFIX,api.revenuecat.com,GPT专线
+  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,GPT专线
+  - DOMAIN-SUFFIX,chatgpt.com,GPT专线
+  - DOMAIN-SUFFIX,chat.openai.com,GPT专线
+  - DOMAIN-SUFFIX,auth0.openai.com,GPT专线
+  - DOMAIN-SUFFIX,cdn.openai.com,GPT专线
+  - DOMAIN-SUFFIX,oaistatic.com,GPT专线
+  - DOMAIN-SUFFIX,oaiusercontent.com,GPT专线
+  - DOMAIN-SUFFIX,openai.com,GPT专线
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT专线
+  - DOMAIN-SUFFIX,openaicom.imgix.net,GPT专线
+  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,GPT专线
+  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,GPT专线
+  - DOMAIN-SUFFIX,ingest.sentry.io,GPT专线
+  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT专线
+  - DOMAIN-SUFFIX,client.crisp.chat,GPT专线
+  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT专线
 
   # 广告拦截（基于 GEOSITE）
   - GEOSITE,category-ads-all,REJECT
@@ -167,19 +174,19 @@ rules:
   - GEOSITE,geolocation-cn,DIRECT
 
   # 国外服务走代理（基于 GEOSITE）
-  - GEOSITE,facebook,Athens
-  - GEOSITE,youtube,Athens
-  - GEOSITE,google,Athens
-  - GEOSITE,geolocation-!cn,Athens
+  - GEOSITE,facebook,代理模式
+  - GEOSITE,youtube,代理模式
+  - GEOSITE,google,代理模式
+  - GEOSITE,geolocation-!cn,代理模式
 
   # IP 规则（基于 GEOIP）
   - GEOIP,private,DIRECT,no-resolve  # 私有网络直连
   - GEOIP,cn,DIRECT                  # 中国大陆 IP 直连
-  - GEOIP,telegram,Athens,no-resolve  # Telegram 走代理
+  - GEOIP,telegram,代理模式,no-resolve  # Telegram 走代理
  
   # 规则集（去广告和国内直联）
   - RULE-SET,reject,REJECT
   - RULE-SET,cn,DIRECT
 
   # 默认规则
-  - MATCH,Athens  # 未匹配的流量走代理
+  - MATCH,代理模式  # 未匹配的流量走代理
