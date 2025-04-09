@@ -74,7 +74,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=v8VaWVgXmNCx&format=png&color=000000
   - name: 日本专线
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -86,7 +86,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=19076&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=5urwhBvXOSbW&format=png&color=000000
   - name: 备用线路
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -96,7 +96,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=19074&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=5urwhBvXOSbW&format=png&color=000000
   - name: GPT专线
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
