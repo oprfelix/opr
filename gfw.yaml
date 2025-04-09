@@ -106,7 +106,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=FiiA2qi0YFmp&format=png&color=000000
-  - name: Google
+  - name: GROK
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
       - HKG
@@ -134,13 +134,13 @@ rule-providers:
 rules:
 
   # Grok
-  - DOMAIN-KEYWORD,grok,Google
-  - DOMAIN-SUFFIX,x.ai,Google
+  - DOMAIN-KEYWORD,grok,GROK
+  - DOMAIN-SUFFIX,x.ai,GROK
     
   # voice
-  - DOMAIN-SUFFIX,lens.l.google.com,Google
-  - DOMAIN-SUFFIX,voice.telephony.goog,Google
-  - DOMAIN-SUFFIX,voice.google.com,Google
+  - DOMAIN-SUFFIX,lens.l.google.com,GROK
+  - DOMAIN-SUFFIX,voice.telephony.goog,GROK
+  - DOMAIN-SUFFIX,voice.google.com,GROK
 
   # OpenAI (ChatGPT)
   - DOMAIN-SUFFIX,ai.com,GPT
