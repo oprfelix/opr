@@ -61,7 +61,7 @@ proxy-groups:
       - CF
       - HKG
       - JPN
-    icon: https://img.icons8.com/?size=100&id=TA5iZEVxwge2&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
   - name: USA
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -74,7 +74,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=VxCPW5vX443o&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
   - name: JAPAN
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -86,7 +86,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=LdE9oCI8hhV4&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=mXUDzGJOU7PV&format=png&color=000000
   - name: CF
     type: select #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -96,7 +96,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=rkZbEnMdLF4E&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
   - name: GPT
     type: load-balance #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -105,7 +105,7 @@ proxy-groups:
     url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=n9y22DoWIrLU&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
   - name: GROK
     type: url-test #load-balance 负载均衡, select 手动选择, url-test 自动选取择
     proxies:
@@ -113,7 +113,7 @@ proxy-groups:
       - JPN
     url: "http://www.google.com/generate_204"
     interval: 600
-    icon: https://img.icons8.com/?size=100&id=cWuTlvdMSZiD&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 # 规则集（可选，动态加载外部规则）
 rule-providers:
   reject:
