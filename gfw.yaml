@@ -8,7 +8,7 @@
 mixed-port: 7890              # 设置 HTTP 和 SOCKS 代理的混合端口
 allow-lan: false              # 禁止局域网访问，增强安全性
 mode: rule                    # 使用规则模式，根据规则分流流量
-log-level: info               # 日志级别，info 适合日常使用，调试时可改为 debug
+log-level: debug               # 日志级别，info 适合日常使用，调试时可改为 debug
 external-controller: 127.0.0.1:9090  # 外部控制接口，仅限本地访问，用于 Clash 管理工具
 ipv6: true                    # 启用 IPv6 支持，适配双栈网络环境
 
