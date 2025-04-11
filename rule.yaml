@@ -48,18 +48,10 @@ dns:
     geosite:              # 以下 GeoSite 列表中的域名使用主 DNS
       - geosite:cn
       - geosite:private
-    domains:              # 以下特定域名使用主 DNS
-      - '+.google.cn'
-      - '+.baidu.com'
-      - '+.qq.com'
-      - '+.tencent.com'
-      - '+.aliyuncs.com'
-      - '+.aliyun.com'
-      - '+.taobao.com'
-      - '+.tmall.com'
-      - '!+.linkedin.com'
-      - '!+licdn.cn'
-      - '!+linkedin.cn'
+    nameserver-policy:
+      '+.licdn.cn': '1.1.1.1'
+      '+.linkedin.cn': '1.1.1.1'
+      '+.linkedin.com': '1.1.1.1'
 
 # --------------------------------------
 # 代理节点配置
