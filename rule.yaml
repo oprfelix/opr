@@ -61,6 +61,7 @@ dns:
       - '+.aliyun.com'
       - '+.taobao.com'
       - '+.tmall.com'
+      - '!+.linkedin.com'  # 强制 LinkedIn 使用 fallback DNS
 
 # --------------------------------------
 # 代理节点配置
