@@ -57,9 +57,6 @@ dns:
     geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
     ipcidr:               # 可选：指定 IP 范围使用主 DNS
       - 240.0.0.0/4       # 示例：排除保留地址
-    geosite:              # 以下 GeoSite 列表中的域名使用主 DNS
-      - geosite:cn
-      - geosite:private
     domains:              # 以下特定域名使用主 DNS，!表示例外
       - '+.google.cn'
       - '+.baidu.com'
