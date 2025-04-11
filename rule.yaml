@@ -40,6 +40,10 @@ dns:
     - https://cloudflare-dns.com/dns-query # Cloudflare - DoH
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
+  nameserver-policy:
+      '+.licdn.cn': '1.1.1.1'
+      '+.linkedin.cn': '1.1.1.1'
+      '+.linkedin.com': '1.1.1.1'
   fallback-filter:
     geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
     geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
@@ -48,10 +52,7 @@ dns:
     geosite:              # 以下 GeoSite 列表中的域名使用主 DNS
       - geosite:cn
       - geosite:private
-    nameserver-policy:
-      '+.licdn.cn': '1.1.1.1'
-      '+.linkedin.cn': '1.1.1.1'
-      '+.linkedin.com': '1.1.1.1'
+    
 
 # --------------------------------------
 # 代理节点配置
