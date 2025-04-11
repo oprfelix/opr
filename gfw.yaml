@@ -184,6 +184,10 @@ proxy-groups:
 
 rules:
 
+  # Linkedin 服务（优先匹配）
+  - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
+  - DOMAIN-KEYWORD,licdn,HKG
+
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
 
