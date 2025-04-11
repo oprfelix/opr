@@ -45,13 +45,13 @@ dns:
     - 8.8.8.8                              # Google - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
-      '+.licdn.cn': '1.1.1.1'
-      '+.linkedin.cn': '1.1.1.1'
-      '+.linkedin.com': '1.1.1.1'
-      '+.tiktok.com': '1.1.1.1'
-      '+.tiktokcdn.com': '1.1.1.1'
-      '+.tiktokv.com': '1.1.1.1'
-      '+.tiktokvideo.com': '1.1.1.1'
+    '+.licdn.cn': '1.1.1.1'
+    '+.linkedin.cn': '1.1.1.1'
+    '+.linkedin.com': '1.1.1.1'
+    '+.tiktok.com': '1.1.1.1'
+    '+.tiktokcdn.com': '1.1.1.1'
+    '+.tiktokv.com': '1.1.1.1'
+    '+.tiktokvideo.com': '1.1.1.1'
   fallback-filter:
     geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
     geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
