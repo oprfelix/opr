@@ -33,25 +33,39 @@ dns:
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
     - https://dns.alidns.com/dns-query  # 阿里 DNS（中国）- DoH
-    - 223.6.6.6                        # 阿里 DNS（中国）- 普通 UDP/TCP
+    - https://doh.pub/dns-query         # 腾讯 DNSPod（中国）- DoH
+    - 223.5.5.5                         # 阿里 DNS（中国）- 普通 UDP/TCP
+    - 119.29.29.29                      # 腾讯 DNSPod（中国）- 普通 UDP/TCP
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
     - https://cloudflare-dns.com/dns-query # Cloudflare - DoH
+    - https://dns.google/dns-query         # Google - DoH
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
+    - 8.8.8.8                              # Google - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
-      '+.licdn.com': '1.1.1.1'
-      '+.linkedin.cn': '1.1.1.1'
-      '+.linkedin.com': '1.1.1.1'
+    '+.licdn.com': '1.1.1.1'
+    '+.linkedin.cn': '1.1.1.1'
+    '+.linkedin.com': '1.1.1.1'
+    '+.tiktok.com': '1.1.1.1'
+    '+.tiktokcdn.com': '1.1.1.1'
+    '+.tiktokv.com': '1.1.1.1'
+    '+.tiktokvideo.com': '1.1.1.1'
   fallback-filter:
     geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
     geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
     ipcidr:               # 可选：指定 IP 范围使用主 DNS
       - 240.0.0.0/4       # 示例：排除保留地址
-    geosite:              # 以下 GeoSite 列表中的域名使用主 DNS
-      - geosite:cn
-      - geosite:private
+    domains:              # 以下特定域名使用主 DNS，!表示例外
+      - '+.google.cn'
+      - '+.baidu.com'
+      - '+.qq.com'
+      - '+.tencent.com'
+      - '+.aliyuncs.com'
+      - '+.aliyun.com'
+      - '+.taobao.com'
+      - '+.tmall.com'
     
 
 # --------------------------------------
@@ -166,6 +180,10 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+
+  # Linkedin 服务（优先匹配）
+  - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
+  - DOMAIN-KEYWORD,licdn,HKG
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
