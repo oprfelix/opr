@@ -41,7 +41,7 @@ dns:
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
-      '+.licdn.cn': '1.1.1.1'
+      '+.licdn.com': '1.1.1.1'
       '+.linkedin.cn': '1.1.1.1'
       '+.linkedin.com': '1.1.1.1'
   fallback-filter:
