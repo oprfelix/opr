@@ -32,17 +32,13 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
-    - https://dns.alidns.com/dns-query  # 阿里 DNS（中国）- DoH
-    - https://doh.pub/dns-query         # 腾讯 DNSPod（中国）- DoH
-    - 223.5.5.5                         # 阿里 DNS（中国）- 普通 UDP/TCP
-    - 119.29.29.29                      # 腾讯 DNSPod（中国）- 普通 UDP/TCP
+    - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
+    - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
-    - https://cloudflare-dns.com/dns-query # Cloudflare - DoH
-    - https://dns.google/dns-query         # Google - DoH
+    - https://1.1.1.1/dns-query # Cloudflare - DoH
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
-    - 8.8.8.8                              # Google - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
     '+.licdn.com': '1.1.1.1'
@@ -75,11 +71,8 @@ dns:
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
   - {name: US1, server: 141.101.122.62, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US2, server: 162.159.243.207, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: US2, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: US3, server: 162.159.39.146, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: US4, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US5, server: 198.41.192.175, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US6, server: 173.245.49.7, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # 服务器直连节点（用于特定服务直接访问）
   - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -104,6 +97,9 @@ proxy-groups:
     type: select              # 手动选择代理组或节点
     proxies:
       - USA
+      - US1
+      - US2
+      - US3
       - CF
       - HKG
       - JPN
@@ -116,9 +112,6 @@ proxy-groups:
       - US1
       - US2
       - US3
-      - US4
-      - US5
-      - US6
     url: "http://www.gstatic.com/generate_204"  # 测试延迟的 URL
     interval: 300                               # 测试间隔（秒）
     tolerance: 50                               # 延迟容差（毫秒）
