@@ -96,7 +96,7 @@ proxy-groups:
   - name: PROXY
     type: select              # 手动选择代理组或节点
     proxies:
-      - USA
+      - US
       - US1
       - US2
       - US3
@@ -106,7 +106,7 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   # 美国节点组，自动选择最优节点
-  - name: USA
+  - name: US
     type: url-test            # 自动测试延迟，选择最优节点
     proxies:
       - US1
