@@ -32,8 +32,8 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
-    - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
-    - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
+    - https://1.1.1.1/dns-query       # 阿里 DNS（中国）- DoH
+    - 1.1.1.1                         # 阿里 DNS（中国）- 普通 UDP/TCP
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
