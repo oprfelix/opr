@@ -52,17 +52,7 @@ dns:
     geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
     geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
     ipcidr:               # 可选：指定 IP 范围使用主 DNS
-      - 240.0.0.0/4       # 示例：排除保留地址
-    domains:              # 以下特定域名使用主 DNS，!表示例外
-      - '+.google.cn'
-      - '+.baidu.com'
-      - '+.qq.com'
-      - '+.tencent.com'
-      - '+.aliyuncs.com'
-      - '+.aliyun.com'
-      - '+.taobao.com'
-      - '+.tmall.com'
-    
+      - 240.0.0.0/4       # 示例：排除保留地址    
 
 # --------------------------------------
 # 代理节点配置
