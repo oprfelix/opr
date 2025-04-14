@@ -8,7 +8,7 @@
 mixed-port: 7890              # 设置 HTTP 和 SOCKS 代理的混合端口
 allow-lan: false              # 禁止局域网访问，增强安全性
 mode: rule                    # 使用规则模式，根据规则分流流量
-log-level: info               # 日志级别，info 适合日常使用，调试时可改为 debug
+log-level: debug               # 日志级别，info 适合日常使用，调试时可改为 debug
 external-controller: 127.0.0.1:9090  # 外部控制接口，仅限本地访问，用于 Clash 管理工具
 ipv6: true                    # 启用 IPv6 支持，适配双栈网络环境
 
@@ -32,17 +32,13 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
-    - https://dns.alidns.com/dns-query  # 阿里 DNS（中国）- DoH
-    - https://doh.pub/dns-query         # 腾讯 DNSPod（中国）- DoH
-    - 223.5.5.5                         # 阿里 DNS（中国）- 普通 UDP/TCP
-    - 119.29.29.29                      # 腾讯 DNSPod（中国）- 普通 UDP/TCP
+    - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
+    - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
-    - https://cloudflare-dns.com/dns-query # Cloudflare - DoH
-    - https://dns.google/dns-query         # Google - DoH
+    - https://1.1.1.1/dns-query # Cloudflare - DoH
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
-    - 8.8.8.8                              # Google - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
     '+.licdn.com': '1.1.1.1'
@@ -74,19 +70,9 @@ dns:
 # 定义多个 VLESS 代理节点，按地区和服务类型分组
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: US1, server: 104.19.105.3, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US2, server: 104.19.94.33, port: 2083, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US3, server: 104.19.103.33, port: 2087, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: US4, server: 104.16.202.183, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US5, server: 104.16.63.58, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US6, server: 104.19.101.204, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-
-  # 日本加速节点（适用于亚洲地区低延迟需求）
-  - {name: JP1, server: 13.225.163.156, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
-  - {name: JP2, server: 99.86.196.199, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
-  - {name: JP3, server: 18.65.167.21, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
-  - {name: JP4, server: 13.33.213.89, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
-  - {name: JP5, server: 13.225.180.161, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: d3dlug5q1876ap.cloudfront.net, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: d3dlug5q1876ap.cloudfront.net}}}
+  - {name: US1, server: 141.101.122.62, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: US2, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: US3, server: 162.159.39.146, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # 服务器直连节点（用于特定服务直接访问）
   - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -110,40 +96,25 @@ proxy-groups:
   - name: PROXY
     type: select              # 手动选择代理组或节点
     proxies:
-      - USA
-      - JAPAN
+      - US
+      - US1
+      - US2
+      - US3
       - CF
       - HKG
       - JPN
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   # 美国节点组，自动选择最优节点
-  - name: USA
+  - name: US
     type: url-test            # 自动测试延迟，选择最优节点
     proxies:
       - US1
       - US2
       - US3
-      - US4
-      - US5
-      - US6
     url: "http://www.gstatic.com/generate_204"  # 测试延迟的 URL
     interval: 300                               # 测试间隔（秒）
     tolerance: 50                               # 延迟容差（毫秒）
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  # 日本节点组，自动选择最优节点
-  - name: JAPAN
-    type: url-test
-    proxies:
-      - JP1
-      - JP2
-      - JP3
-      - JP4
-      - JP5
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=mXUDzGJOU7PV&format=png&color=000000
 
   # 直连节点组，手动选择
@@ -180,6 +151,8 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,lingxing,DIRECT
 
   # Linkedin 服务（优先匹配）
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
