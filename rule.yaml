@@ -32,37 +32,8 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
-    - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
-    - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
-  # 备用 DNS 服务器（用于国外域名解析）
-  # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
-  fallback:
-    - https://1.1.1.1/dns-query # Cloudflare - DoH
-    - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
-  # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
-  nameserver-policy:
-    '+.licdn.com': '1.1.1.1'
-    '+.linkedin.cn': '1.1.1.1'
-    '+.linkedin.com': '1.1.1.1'
-    '+.tiktok.com': '1.1.1.1'
-    '+.tiktokcdn.com': '1.1.1.1'
-    '+.tiktokv.com': '1.1.1.1'
-    '+.tiktokvideo.com': '1.1.1.1'
-  fallback-filter:
-    geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
-    geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
-    ipcidr:               # 可选：指定 IP 范围使用主 DNS
-      - 240.0.0.0/4       # 示例：排除保留地址
-    domains:              # 以下特定域名使用主 DNS，!表示例外
-      - '+.google.cn'
-      - '+.baidu.com'
-      - '+.qq.com'
-      - '+.tencent.com'
-      - '+.aliyuncs.com'
-      - '+.aliyun.com'
-      - '+.taobao.com'
-      - '+.tmall.com'
-    
+    - https://1.1.1.1/dns-query       # Cloudflare DNS - DoH
+    - 1.1.1.1                         # Cloudflare DNS - 普通 UDP/TCP
 
 # --------------------------------------
 # 代理节点配置
@@ -74,19 +45,6 @@ proxies:
   - {name: US2, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: US3, server: 162.159.39.146, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
-  # 服务器直连节点（用于特定服务直接访问）
-  - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: CF2, server: helloworld.todsm.com, port: 2053, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: CF3, server: helloworld.techtrendparts.com, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  
-  # 商用专线（高稳定性，适用于企业或关键任务）
-  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  
-  # AI 专线（优化 AI 服务访问，如 ChatGPT）
-  - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-
 # --------------------------------------
 # 代理组配置
 # --------------------------------------
@@ -94,101 +52,30 @@ proxies:
 proxy-groups:
   # 主代理组，手动选择地区或服务
   - name: PROXY
-    type: select              # 手动选择代理组或节点
+    type: load-balance              # 手动选择代理组或节点
     proxies:
       - US
       - US1
       - US2
       - US3
-      - CF
-      - HKG
-      - JPN
+      - US4
+      - US5
+      - US6
+      - US7
+      - US8
+      - US9
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  # 美国节点组，自动选择最优节点
-  - name: US
-    type: url-test            # 自动测试延迟，选择最优节点
-    proxies:
-      - US1
-      - US2
-      - US3
-    url: "http://www.gstatic.com/generate_204"  # 测试延迟的 URL
-    interval: 300                               # 测试间隔（秒）
-    tolerance: 50                               # 延迟容差（毫秒）
-    icon: https://img.icons8.com/?size=100&id=mXUDzGJOU7PV&format=png&color=000000
-
-  # 直连节点组，手动选择
-  - name: CF
-    type: select
-    proxies:
-      - CF1
-      - CF2
-      - CF3
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
-
-  # AI 专线组，负载均衡
-  - name: GPT
-    type: load-balance        # 流量平均分配到各节点
-    proxies:
-      - VPS1
-      - VPS2
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-
-  # Grok 专线组，自动选择最优节点
-  - name: GROK
-    type: url-test
-    proxies:
-      - HKG
-      - JPN
-    url: "http://www.google.com/generate_204"
-    interval: 600             # 较长的测试间隔，减少资源消耗
-    icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
 
   # Linkedin 服务（优先匹配）
-  - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
-  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,linkedin,PROXY        # 匹配含 "linkedin" 的域名
+  - DOMAIN-KEYWORD,licdn,PROXY
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
-
-  # Grok 服务（优先匹配）
-  - DOMAIN-KEYWORD,grok,GROK        # 匹配含 "grok" 的域名
-  - DOMAIN-SUFFIX,x.ai,GROK         # xAI 相关域名走 GROK 组
-    
-  # 语音服务（Google 相关）
-  - DOMAIN-SUFFIX,lens.l.google.com,GROK
-  - DOMAIN-SUFFIX,voice.telephony.goog,GROK
-  - DOMAIN-SUFFIX,voice.google.com,GROK
-
-  # OpenAI (ChatGPT) 服务
-  - DOMAIN-SUFFIX,ai.com,GPT
-  - DOMAIN-SUFFIX,api.revenuecat.com,GPT
-  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,GPT
-  - DOMAIN-SUFFIX,chatgpt.com,GPT
-  - DOMAIN-SUFFIX,chat.openai.com,GPT
-  - DOMAIN-SUFFIX,auth0.openai.com,GPT
-  - DOMAIN-SUFFIX,cdn.openai.com,GPT
-  - DOMAIN-SUFFIX,oaistatic.com,GPT
-  - DOMAIN-SUFFIX,oaiusercontent.com,GPT
-  - DOMAIN-SUFFIX,openai.com,GPT
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT
-  - DOMAIN-SUFFIX,openaicom.imgix.net,GPT
-  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,GPT
-  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,GPT
-  - DOMAIN-SUFFIX,ingest.sentry.io,GPT
-  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
-  - DOMAIN-SUFFIX,client.crisp.chat,GPT
-  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
 
   # 国内服务直连
   - GEOSITE,apple@cn,DIRECT         # 苹果中国服务直连
