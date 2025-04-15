@@ -34,25 +34,6 @@ dns:
   nameserver:
     - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
     - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
-  # 备用 DNS 服务器（用于国外域名解析）
-  # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
-  fallback:
-    - https://1.1.1.1/dns-query            # Cloudflare - DoH
-    - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
-  # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
-  nameserver-policy:
-    '+.licdn.com': '1.1.1.1'
-    '+.linkedin.cn': '1.1.1.1'
-    '+.linkedin.com': '1.1.1.1'
-    '+.tiktok.com': '1.1.1.1'
-    '+.tiktokcdn.com': '1.1.1.1'
-    '+.tiktokv.com': '1.1.1.1'
-    '+.tiktokvideo.com': '1.1.1.1'
-  fallback-filter:
-    geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
-    geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
-    ipcidr:               # 可选：指定 IP 范围使用主 DNS
-      - 240.0.0.0/4       # 示例：排除保留地址    
 
 # --------------------------------------
 # 代理节点配置
