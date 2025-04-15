@@ -89,7 +89,7 @@ proxies:
 # 定义代理组，用于节点选择和负载均衡
 proxy-groups:
   # 主代理组，手动选择地区或服务
-  - name: PROXY
+  - name: Anycast
     type: load-balance              # 手动选择代理组或节点
     proxies:
       - Anycast-1
@@ -185,11 +185,11 @@ rules:
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
   # 国外服务走代理
-  - GEOSITE,facebook,PROXY          # Facebook 相关域名走代理
-  - GEOSITE,youtube,PROXY           # YouTube 相关域名走代理
-  - GEOSITE,google,PROXY            # Google 相关域名走代理
-  - GEOIP,telegram,PROXY,no-resolve # Telegram IP 走代理
-  - GEOSITE,geolocation-!cn,PROXY   # 非中国域名走代理
+  - GEOSITE,facebook,Anycast          # Facebook 相关域名走代理
+  - GEOSITE,youtube,Anycast           # YouTube 相关域名走代理
+  - GEOSITE,google,Anycast            # Google 相关域名走代理
+  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
+  - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
 
   # 默认规则
-  - MATCH,PROXY                     # 未匹配的流量走 PROXY 组
+  - MATCH,Anycast                     # 未匹配的流量走 PROXY 组
