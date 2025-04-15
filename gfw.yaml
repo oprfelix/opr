@@ -63,6 +63,7 @@ proxies:
   - {name: US1, server: 104.21.70.137, port: 2053, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: US2, server: 104.16.152.132, port: 8443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: US3, server: 172.67.174.79, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: US4, server: 104.21.76.148, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # 服务器直连节点（用于特定服务直接访问）
   - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -90,6 +91,7 @@ proxy-groups:
       - US1
       - US2
       - US3
+      - US4
       - CF
       - HKG
       - JPN
@@ -102,6 +104,7 @@ proxy-groups:
       - US1
       - US2
       - US3
+      - US4
     url: "http://www.gstatic.com/generate_204"  # 测试延迟的 URL
     interval: 300                               # 测试间隔（秒）
     tolerance: 50                               # 延迟容差（毫秒）
