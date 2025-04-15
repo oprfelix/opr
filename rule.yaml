@@ -41,42 +41,41 @@ dns:
 # 定义多个 VLESS 代理节点，按地区和服务类型分组
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: US1, server: 141.101.122.62, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US2, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US3, server: 162.159.39.146, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: US4, server: 104.21.42.253, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US5, server: 172.67.190.128, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US6, server: 104.16.117.60, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: US7, server: 104.16.152.132, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: US8, server: 172.67.205.238, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: US9, server: 172.67.174.79, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: Anycast-1, server: 141.101.122.62, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-2, server: 162.159.45.139, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-3, server: 162.159.39.146, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: Anycast-4, server: 104.21.42.253, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-5, server: 172.67.190.128, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-6, server: 104.16.117.60, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: Anycast-7, server: 104.16.152.132, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-8, server: 172.67.205.238, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-9, server: 172.67.174.79, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
 # --------------------------------------
 # 代理组配置
 # --------------------------------------
 # 定义代理组，用于节点选择和负载均衡
 proxy-groups:
   # 主代理组，手动选择地区或服务
-  - name: PROXY
+  - name: Anycast
     type: load-balance              # 手动选择代理组或节点
     proxies:
-      - US1
-      - US2
-      - US3
-      - US4
-      - US5
-      - US6
-      - US7
-      - US8
-      - US9
+      - Anycast-1
+      - Anycast-2
+      - Anycast-3
+      - Anycast-4
+      - Anycast-5
+      - Anycast-6
+      - Anycast-7
+      - Anycast-8
+      - Anycast-9
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
 rules:
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
-  - DOMAIN-KEYWORD,lingxing,DIRECT
 
   # Linkedin 服务（优先匹配）
-  - DOMAIN-KEYWORD,linkedin,PROXY        # 匹配含 "linkedin" 的域名
-  - DOMAIN-KEYWORD,licdn,PROXY
+  - DOMAIN-KEYWORD,linkedin,Anycast        # 匹配含 "linkedin" 的域名
+  - DOMAIN-KEYWORD,licdn,Anycast
+  - DOMAIN-KEYWORD,protechts,Anycast
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
@@ -89,11 +88,11 @@ rules:
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
   # 国外服务走代理
-  - GEOSITE,facebook,PROXY          # Facebook 相关域名走代理
-  - GEOSITE,youtube,PROXY           # YouTube 相关域名走代理
-  - GEOSITE,google,PROXY            # Google 相关域名走代理
-  - GEOIP,telegram,PROXY,no-resolve # Telegram IP 走代理
-  - GEOSITE,geolocation-!cn,PROXY   # 非中国域名走代理
+  - GEOSITE,facebook,Anycast          # Facebook 相关域名走代理
+  - GEOSITE,youtube,Anycast           # YouTube 相关域名走代理
+  - GEOSITE,google,Anycast            # Google 相关域名走代理
+  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
+  - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
 
   # 默认规则
-  - MATCH,PROXY                     # 未匹配的流量走 PROXY 组
+  - MATCH,Anycast                     # 未匹配的流量走 Anycast 组
