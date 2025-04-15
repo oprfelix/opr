@@ -37,7 +37,7 @@ dns:
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
-    - https://1.1.1.1/dns-query # Cloudflare - DoH
+    - https://1.1.1.1/dns-query            # Cloudflare - DoH
     - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
@@ -58,6 +58,7 @@ dns:
 # 代理节点配置
 # --------------------------------------
 # 定义多个 VLESS 代理节点，按地区和服务类型分组
+
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
   - {name: Anycast-1, server: 141.101.122.62, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
