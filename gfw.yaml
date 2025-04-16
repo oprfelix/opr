@@ -33,12 +33,11 @@ dns:
   listen: 0.0.0.0:1053
   enhanced-mode: fake-ip
   fake-ip-range: 198.19.0.1/16
-  default-mode: fake-ip
   nameserver:
-    - https://223.6.6.6/dns-query      # Alibaba DoH
-    - https://120.53.53.53/dns-query   # DNSPod DoH
-    - 223.6.6.6                        # Alibaba UDP/TCP
-    - 120.53.53.53                     # DNSPod UDP/TCP
+    - https://223.6.6.6/dns-query
+    - https://120.53.53.53/dns-query
+    - 223.6.6.6
+    - 120.53.53.53
   nameserver-policy:
     'linkedin.com': '8.8.4.4'
     'licdn.com': '8.8.4.4'
