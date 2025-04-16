@@ -135,6 +135,8 @@ proxy-groups:
 rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,apollo,HKG
 
   # Linkedin 服务（优先匹配）
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
