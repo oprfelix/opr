@@ -43,6 +43,8 @@ dns:
     '+.tiktokcdn.com': '1.1.1.1'
     '+.tiktokv.com': '1.1.1.1'
     '+.tiktokvideo.com': '1.1.1.1'
+    '+.tiktokv.us': '1.1.1.1'
+    '+.tiktokcdn-us.com': '1.1.1.1'
     '+.licdn.com': '1.1.1.1'
     '+.linkedin.cn': '1.1.1.1'
     '+.linkedin.com': '1.1.1.1'
