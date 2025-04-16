@@ -1,25 +1,42 @@
 # Clash 配置文件
 # 说明: 本配置文件适用于 Clash 客户端，支持 VLESS 协议，提供国内外加速、AI 专线和规则分流功能。
-# 日期: 2025-04-11
+# 日期: 2025-04-16
 
 # --------------------------------------
 # 基础配置
 # --------------------------------------
-mixed-port: 7890              # 设置 HTTP 和 SOCKS 代理的混合端口
-allow-lan: false              # 禁止局域网访问，增强安全性
-mode: rule                    # 使用规则模式，根据规则分流流量
-log-level: debug               # 日志级别，info 适合日常使用，调试时可改为 debug
-external-controller: 127.0.0.1:9090  # 外部控制接口，仅限本地访问，用于 Clash 管理工具
-ipv6: true                    # 启用 IPv6 支持，适配双栈网络环境
+mixed-port: 7890
+bind-address: 127.0.0.1  # Restrict to localhost
+allow-lan: true
+lan-allowed-ips:
+  - 192.168.0.0/16  # Adjust to your LAN
+  - 10.0.0.0/8
+mode: rule
+log-level: info  # Changed from debug
+external-controller: 127.0.0.1:9090
+secret: "your-secret-key"  # Add a strong secret
+ipv6: false  # Disabled unless needed
+unified-delay: true
+tcp-concurrent: true
+sniffing: true
+profile:
+  store-selected: true
+  store-fake-ip: true
 
 # --------------------------------------
 # Geo 数据源配置
 # --------------------------------------
-# 用于加载 GeoIP 和 GeoSite 数据，支持地理位置和域名分流
-geodata-mode: true            # 启用 Geo 数据库模式，提升规则匹配效率
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 168  # Update every 7 days
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"    # GeoIP 数据源，用于 IP 地理位置判断
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"  # GeoSite 数据源，用于域名分类
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+
+# 备用Geo源地址
+#geox-url:
+#  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
+#  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
 # --------------------------------------
 # DNS 配置
