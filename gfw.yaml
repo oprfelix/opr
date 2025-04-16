@@ -32,27 +32,33 @@ dns:
   fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
   # 主 DNS 服务器（用于初始解析和国内域名）
   nameserver:
-    - https://223.6.6.6/dns-query       # 阿里 DNS（中国）- DoH
-    - 223.6.6.6                         # 阿里 DNS（中国）- 普通 UDP/TCP
+    - https://223.6.6.6/dns-query      # Alibaba DoH
+    - https://120.53.53.53/dns-query   # DNSPod DoH
+    - 223.6.6.6                        # Alibaba UDP/TCP
+    - 120.53.53.53                     # DNSPod UDP/TCP
   # 备用 DNS 服务器（用于国外域名解析）
   # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
-    - https://1.1.1.1/dns-query            # Cloudflare - DoH
-    - 1.1.1.1                              # Cloudflare - 普通 UDP/TCP
+    - https://1.0.0.1/dns-query          # Cloudflare DoH
+    - https://8.8.4.4/dns-query          # Google DoH
+    - https://9.9.9.9/dns-query          # Quad9 DoH
+    - 1.0.0.1                            # Cloudflare UDP/TCP
+    - 8.8.4.4                            # Google UDP/TCP
   # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
   nameserver-policy:
-    '+.licdn.com': '1.1.1.1'
-    '+.linkedin.cn': '1.1.1.1'
-    '+.linkedin.com': '1.1.1.1'
-    '+.tiktok.com': '1.1.1.1'
-    '+.tiktokcdn.com': '1.1.1.1'
-    '+.tiktokv.com': '1.1.1.1'
-    '+.tiktokvideo.com': '1.1.1.1'
+    'linkedin.com,licdn.com,linkedin.cn': '8.8.4.4'  # Group LinkedIn-related domains
+    'tiktok.com,tiktokcdn.com,tiktokv.com,tiktokvideo.com': '8.8.4.4'  # Group TikTok-related domains  
+    'apollo.io': '8.8.4.4'
   fallback-filter:
-    geoip: true           # 启用 GeoIP 过滤，优先为国内 IP 使用主 DNS
-    geoip-code: CN        # GeoIP 国家代码，CN IP 使用主 DNS
-    ipcidr:               # 可选：指定 IP 范围使用主 DNS
-      - 240.0.0.0/4       # 示例：排除保留地址    
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+  domain:
+      - '+.google.com'
+      - '+.amazonaws.com'
+      - '+.microsoft.com'
+      
 # --------------------------------------
 # 代理节点配置
 # --------------------------------------
