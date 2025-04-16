@@ -6,12 +6,12 @@
 # 基础配置
 # --------------------------------------
 mixed-port: 7890
-bind-address: 127.0.0.1  # Restrict to localhost
+bind-address: 127.0.0.1
 allow-lan: true
 mode: rule
-log-level: info  # Changed from debug
+log-level: info
 external-controller: 127.0.0.1:9090
-ipv6: false  # Disabled unless needed
+ipv6: false
 
 # --------------------------------------
 # Geo 数据源配置
@@ -34,24 +34,19 @@ dns:
   enhanced-mode: redir-host
   nameserver:
     - https://223.6.6.6/dns-query
-    - https://120.53.53.53/dns-query
     - 223.6.6.6
-    - 120.53.53.53
   fallback:
-    - https://1.1.1.1/dns-query        # Cloudflare DoH
-    - https://8.8.8.8/dns-query        # Google DoH
-    - https://9.9.9.9/dns-query        # Quad9 DoH
-    - 1.1.1.1                          # Cloudflare UDP/TCP
-    - 8.8.8.8                          # Google UDP/TCP
+    - https://1.1.1.1/dns-query
+    - 1.1.1.1
   nameserver-policy:
-    '+.tiktok.com': '8.8.4.4'
-    '+.tiktokcdn.com': '8.8.4.4'
-    '+.tiktokv.com': '8.8.4.4'
-    '+.tiktokvideo.com': '8.8.4.4'
-    '+.licdn.com': '8.8.4.4'
-    '+.linkedin.cn': '8.8.4.4'
-    '+.linkedin.com': '8.8.4.4'
-    '+.apollo.io': '8.8.4.4'
+    '+.tiktok.com': '1.1.1.1'
+    '+.tiktokcdn.com': '1.1.1.1'
+    '+.tiktokv.com': '1.1.1.1'
+    '+.tiktokvideo.com': '1.1.1.1'
+    '+.licdn.com': '1.1.1.1'
+    '+.linkedin.cn': '1.1.1.1'
+    '+.linkedin.com': '1.1.1.1'
+    '+.apollo.io': '1.1.1.1'
   fallback-filter:
     geoip: true
     geoip-code: CN
