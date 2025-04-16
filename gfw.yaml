@@ -143,6 +143,14 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+
+  # 直连本地网络和私有地址
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  
+  # 自定规则
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,github,HKG
