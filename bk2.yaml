@@ -6,22 +6,12 @@
 # 基础配置
 # --------------------------------------
 mixed-port: 7890
-bind-address: 127.0.0.1  # Restrict to localhost
+bind-address: 127.0.0.1
 allow-lan: true
-lan-allowed-ips:
-  - 192.168.0.0/16  # Adjust to your LAN
-  - 10.0.0.0/8
 mode: rule
-log-level: info  # Changed from debug
+log-level: info
 external-controller: 127.0.0.1:9090
-secret: "your-secret-key"  # Add a strong secret
-ipv6: false  # Disabled unless needed
-unified-delay: true
-tcp-concurrent: true
-sniffing: true
-profile:
-  store-selected: true
-  store-fake-ip: true
+ipv6: false
 
 # --------------------------------------
 # Geo 数据源配置
