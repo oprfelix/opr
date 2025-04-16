@@ -31,8 +31,7 @@ geox-url:
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.19.0.1/16
+  enhanced-mode: redir-host
   nameserver:
     - https://223.6.6.6/dns-query
     - https://120.53.53.53/dns-query
