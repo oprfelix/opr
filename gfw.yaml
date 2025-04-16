@@ -138,6 +138,12 @@ rules:
   - DOMAIN-KEYWORD,github,HKG
   - DOMAIN-KEYWORD,apollo,HKG
 
+  # Tiktok 服务
+  - DOMAIN-SUFFIX,tiktok.com,Anycast
+  - DOMAIN-SUFFIX,tiktokcdn.com,Anycast
+  - DOMAIN-SUFFIX,tiktokv.com,Anycast
+  - DOMAIN-SUFFIX,tiktokvideo.com,Anycast
+
   # Linkedin 服务（优先匹配）
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
   - DOMAIN-KEYWORD,licdn,HKG
