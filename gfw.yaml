@@ -8,20 +8,10 @@
 mixed-port: 7890
 bind-address: 127.0.0.1  # Restrict to localhost
 allow-lan: true
-lan-allowed-ips:
-  - 192.168.0.0/16  # Adjust to your LAN
-  - 10.0.0.0/8
 mode: rule
 log-level: info  # Changed from debug
 external-controller: 127.0.0.1:9090
-secret: "your-secret-key"  # Add a strong secret
 ipv6: false  # Disabled unless needed
-unified-delay: true
-tcp-concurrent: true
-sniffing: true
-profile:
-  store-selected: true
-  store-fake-ip: true
 
 # --------------------------------------
 # Geo 数据源配置
@@ -33,10 +23,6 @@ geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
-# 备用Geo源地址
-#geox-url:
-#  geoip: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
-#  geosite: "https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
 
 # --------------------------------------
 # DNS 配置
@@ -48,33 +34,15 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.19.0.1/16
   default-mode: fake-ip
-  cache: true
-  cache-size: 4096
-  cache-ttl: 600
   nameserver:
     - https://223.6.6.6/dns-query      # Alibaba DoH
     - https://120.53.53.53/dns-query   # DNSPod DoH
     - 223.6.6.6                        # Alibaba UDP/TCP
     - 120.53.53.53                     # DNSPod UDP/TCP
-  fallback:
-    - https://1.1.1.1/dns-query        # Cloudflare DoH
-    - https://8.8.8.8/dns-query        # Google DoH
-    - https://9.9.9.9/dns-query        # Quad9 DoH
-    - 1.1.1.1                          # Cloudflare UDP/TCP
-    - 8.8.8.8                          # Google UDP/TCP
   nameserver-policy:
     'linkedin.com,licdn.com,linkedin.cn': '1.1.1.1'
     'tiktok.com,tiktokcdn.com,tiktokv.com,tiktokvideo.com': '1.1.1.1'
     'apollo.io': '8.8.4.4'
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.amazonaws.com'
-      - '+.microsoft.com'
       
 # --------------------------------------
 # 代理节点配置
