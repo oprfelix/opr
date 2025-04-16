@@ -139,10 +139,13 @@ rules:
   - DOMAIN-KEYWORD,apollo,HKG
 
   # Tiktok 服务
+  - DOMAIN-KEYWORD,tiktok,Anycast
   - DOMAIN-SUFFIX,tiktok.com,Anycast
   - DOMAIN-SUFFIX,tiktokcdn.com,Anycast
   - DOMAIN-SUFFIX,tiktokv.com,Anycast
   - DOMAIN-SUFFIX,tiktokvideo.com,Anycast
+  - DOMAIN-SUFFIX,tiktokv.us,Anycast
+  - DOMAIN-SUFFIX,tiktokcdn-us.com,Anycast
 
   # Linkedin 服务（优先匹配）
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
