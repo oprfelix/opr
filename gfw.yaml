@@ -26,35 +26,35 @@ geox-url:
 # --------------------------------------
 # 配置 DNS 解析策略，优化国内外域名解析并防止 DNS 污染
 dns:
-  enable: true                  # 启用 Clash 内置 DNS 解析模块
-  listen: 0.0.0.0:1053          # DNS 服务监听地址和端口
-  enhanced-mode: fake-ip        # 使用 Fake-IP 模式，提升性能并防止 DNS 泄露
-  fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
-  # 主 DNS 服务器（用于初始解析和国内域名）
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.19.0.1/16
+  default-mode: fake-ip
+  cache: true
+  cache-size: 4096
+  cache-ttl: 600
   nameserver:
     - https://223.6.6.6/dns-query      # Alibaba DoH
     - https://120.53.53.53/dns-query   # DNSPod DoH
     - 223.6.6.6                        # Alibaba UDP/TCP
     - 120.53.53.53                     # DNSPod UDP/TCP
-  # 备用 DNS 服务器（用于国外域名解析）
-  # 在 Fake-IP 模式下至关重要，确保国外域名解析正确
   fallback:
-    - https://1.0.0.1/dns-query          # Cloudflare DoH
-    - https://8.8.4.4/dns-query          # Google DoH
-    - https://9.9.9.9/dns-query          # Quad9 DoH
-    - 1.0.0.1                            # Cloudflare UDP/TCP
-    - 8.8.4.4                            # Google UDP/TCP
-  # 备用 DNS 过滤规则（决定哪些域名使用主 DNS 或备用 DNS）
+    - https://1.1.1.1/dns-query        # Cloudflare DoH
+    - https://8.8.8.8/dns-query        # Google DoH
+    - https://9.9.9.9/dns-query        # Quad9 DoH
+    - 1.1.1.1                          # Cloudflare UDP/TCP
+    - 8.8.8.8                          # Google UDP/TCP
   nameserver-policy:
-    'linkedin.com,licdn.com,linkedin.cn': '8.8.4.4'  # Group LinkedIn-related domains
-    'tiktok.com,tiktokcdn.com,tiktokv.com,tiktokvideo.com': '8.8.4.4'  # Group TikTok-related domains  
+    'linkedin.com,licdn.com,linkedin.cn': '1.1.1.1'
+    'tiktok.com,tiktokcdn.com,tiktokv.com,tiktokvideo.com': '1.1.1.1'
     'apollo.io': '8.8.4.4'
   fallback-filter:
     geoip: true
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
-  domain:
+    domain:
       - '+.google.com'
       - '+.amazonaws.com'
       - '+.microsoft.com'
