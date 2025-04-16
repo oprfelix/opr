@@ -92,9 +92,9 @@ proxies:
 # --------------------------------------
 # 定义代理组，用于节点选择和负载均衡
 proxy-groups:
-  # 主代理组，手动选择地区或服务
+  # 主代理组
   - name: Anycast
-    type: load-balance              # 手动选择代理组或节点
+    type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
       - Anycast-2
@@ -107,37 +107,29 @@ proxy-groups:
       - Anycast-9
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  # 直连节点组，手动选择
+  # 直连节点组
   - name: CF
-    type: select
+    type: url-test
     proxies:
       - CF1
       - CF2
       - CF3
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-  # AI 专线组，负载均衡
+  # AI 专线组
   - name: GPT
-    type: load-balance        # 流量平均分配到各节点
+    type: url-test
     proxies:
       - VPS1
       - VPS2
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
-    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
 
-  # Grok 专线组，自动选择最优节点
+  # Grok 专线组
   - name: GROK
     type: url-test
     proxies:
       - HKG
       - JPN
-    url: "http://www.google.com/generate_204"
-    interval: 600             # 较长的测试间隔，减少资源消耗
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
