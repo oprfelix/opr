@@ -44,12 +44,12 @@ dns:
     - 1.1.1.1                          # Cloudflare UDP/TCP
     - 8.8.8.8                          # Google UDP/TCP
   nameserver-policy:
-    '+.tiktok.com':'8.8.4.4'
-    '+.tiktokcdn.com':'8.8.4.4'
-    '+.tiktokv.com':'8.8.4.4'
-    '+.tiktokvideo.com':'8.8.4.4'
-    '+.licdn.com':'8.8.4.4'
-    '+.linkedin.cn':'8.8.4.4'
+    '+.tiktok.com': '8.8.4.4'
+    '+.tiktokcdn.com': '8.8.4.4'
+    '+.tiktokv.com': '8.8.4.4'
+    '+.tiktokvideo.com': '8.8.4.4'
+    '+.licdn.com': '8.8.4.4'
+    '+.linkedin.cn': '8.8.4.4'
     '+.linkedin.com': '8.8.4.4'
     '+.apollo.io': '8.8.4.4'
   fallback-filter:
