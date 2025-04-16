@@ -45,17 +45,12 @@ geox-url:
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.19.0.1/16
-  default-mode: fake-ip
-  cache: true
-  cache-size: 4096
-  cache-ttl: 600
+  enhanced-mode: redir-host
   nameserver:
-    - https://223.6.6.6/dns-query      # Alibaba DoH
-    - https://120.53.53.53/dns-query   # DNSPod DoH
-    - 223.6.6.6                        # Alibaba UDP/TCP
-    - 120.53.53.53                     # DNSPod UDP/TCP
+    - https://223.6.6.6/dns-query
+    - https://120.53.53.53/dns-query
+    - 223.6.6.6
+    - 120.53.53.53
   fallback:
     - https://1.1.1.1/dns-query        # Cloudflare DoH
     - https://8.8.8.8/dns-query        # Google DoH
@@ -63,9 +58,14 @@ dns:
     - 1.1.1.1                          # Cloudflare UDP/TCP
     - 8.8.8.8                          # Google UDP/TCP
   nameserver-policy:
-    'linkedin.com,licdn.com,linkedin.cn': '1.1.1.1'
-    'tiktok.com,tiktokcdn.com,tiktokv.com,tiktokvideo.com': '1.1.1.1'
-    'apollo.io': '8.8.4.4'
+    '+.tiktok.com': '8.8.4.4'
+    '+.tiktokcdn.com': '8.8.4.4'
+    '+.tiktokv.com': '8.8.4.4'
+    '+.tiktokvideo.com': '8.8.4.4'
+    '+.licdn.com': '8.8.4.4'
+    '+.linkedin.cn': '8.8.4.4'
+    '+.linkedin.com': '8.8.4.4'
+    '+.apollo.io': '8.8.4.4'
   fallback-filter:
     geoip: true
     geoip-code: CN
