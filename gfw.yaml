@@ -37,6 +37,12 @@ dns:
     - https://120.53.53.53/dns-query
     - 223.6.6.6
     - 120.53.53.53
+  fallback:
+    - https://1.1.1.1/dns-query        # Cloudflare DoH
+    - https://8.8.8.8/dns-query        # Google DoH
+    - https://9.9.9.9/dns-query        # Quad9 DoH
+    - 1.1.1.1                          # Cloudflare UDP/TCP
+    - 8.8.8.8                          # Google UDP/TCP
   nameserver-policy:
     'linkedin.com': '8.8.4.4'
     'licdn.com': '8.8.4.4'
@@ -46,6 +52,15 @@ dns:
     'tiktokv.com': '8.8.4.4'
     'tiktokvideo.com': '8.8.4.4'
     'apollo.io': '8.8.4.4'
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+    domain:
+      - '+.google.com'
+      - '+.amazonaws.com'
+      - '+.microsoft.com'
       
 # --------------------------------------
 # 代理节点配置
