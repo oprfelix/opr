@@ -195,4 +195,4 @@ rules:
   - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
 
   # 默认规则
-  - MATCH,Anycast                     # 未匹配的流量走 PROXY 组
+  - MATCH,Anycast                     # 未匹配的流量走代理组
