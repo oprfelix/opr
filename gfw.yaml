@@ -153,6 +153,7 @@ rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,apollo,DIRECT
 
   # Tiktok 服务
   - DOMAIN-KEYWORD,tiktok,Anycast
