@@ -62,7 +62,6 @@ dns:
     '+.licdn.com': '1.1.1.1'
     '+.linkedin.cn': '1.1.1.1'
     '+.linkedin.com': '1.1.1.1'
-    '+.apollo.io': '1.1.1.1'
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -154,7 +153,6 @@ rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,apollo,HKG
 
   # Tiktok 服务
   - DOMAIN-KEYWORD,tiktok,Anycast
