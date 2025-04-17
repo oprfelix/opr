@@ -80,11 +80,11 @@ dns:
 
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: Anycast-1, server: 104.19.101.79, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-1, server: 104.19.126.172, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: Anycast-2, server: 104.19.101.79, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-3, server: 104.19.223.56, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   - {name: Anycast-4, server: 104.19.223.56, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Anycast-5, server: 104.19.245.27, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-5, server: 104.19.37.248, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-6, server: 104.19.245.27, port: 8443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # 服务器直连节点（用于特定服务直接访问）
