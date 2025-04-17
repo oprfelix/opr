@@ -163,6 +163,7 @@ rules:
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
+  - GEOSITE,linkedin,HKG
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
