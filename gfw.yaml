@@ -213,8 +213,15 @@ rules:
   - GEOSITE,facebook,Anycast          # Facebook 相关域名走代理
   - GEOSITE,youtube,Anycast           # YouTube 相关域名走代理
   - GEOSITE,google,Anycast            # Google 相关域名走代理
-  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
   - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
+  - GEOSITE,gfw,Anycast   
+  - GEOSITE,greatfire,Anycast  
+
+  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
+  - GEOIP,us,Anycast,no-resolve
+  - GEOIP,private,DIRECT
+  - GEOIP,jp,Anycast
+
 
   # 默认规则
-  - MATCH,Anycast                     # 未匹配的流量走代理组
+  - MATCH,DIRECT                      # 未匹配的流量走直联
