@@ -172,6 +172,7 @@ rules:
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
+  - GEOSITE,win-spy,REJECT
 
   # Grok 服务（优先匹配）
   - DOMAIN-KEYWORD,grok,GROK        # 匹配含 "grok" 的域名
@@ -207,6 +208,10 @@ rules:
   - GEOSITE,microsoft@cn,DIRECT     # 微软中国服务直连
   - GEOSITE,geolocation-cn,DIRECT   # 国内域名直连
   - GEOIP,private,DIRECT,no-resolve # 私有网络 IP 直连
+  - GEOSITE,china-list,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,icloud,DIRECT
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
   # 国外服务走代理
@@ -217,12 +222,12 @@ rules:
   - GEOSITE,gfw,Anycast   
   - GEOSITE,greatfire,Anycast  
   - GEOSITE,meta,Anycast
+  - GEOSITE,private,DIRECT
 
   - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
   - GEOIP,us,Anycast,no-resolve
-  - GEOIP,private,DIRECT
   - GEOIP,jp,Anycast
 
 
   # 默认规则
-  - MATCH,DIRECT                      # 未匹配的流量走直联
+  - MATCH,DIRECT                     # 未匹配的流量走代理组
