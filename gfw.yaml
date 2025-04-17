@@ -216,6 +216,7 @@ rules:
   - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
   - GEOSITE,gfw,Anycast   
   - GEOSITE,greatfire,Anycast  
+  - GEOSITE,meta,Anycast
 
   - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
   - GEOIP,us,Anycast,no-resolve
