@@ -197,6 +197,9 @@ rules:
   - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
   - DOMAIN-SUFFIX,client.crisp.chat,GPT
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
+  - GEOSITE,openai,GPT
+  - DOMAIN-KEYWORD,openai,GPT
+  - DOMAIN-SUFFIX,ai.com,GPT
 
   # 国内服务直连
   - GEOSITE,apple@cn,DIRECT         # 苹果中国服务直连
