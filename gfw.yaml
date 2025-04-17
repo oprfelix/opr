@@ -62,6 +62,7 @@ dns:
     '+.licdn.com': '1.1.1.1'
     '+.linkedin.cn': '1.1.1.1'
     '+.linkedin.com': '1.1.1.1'
+    '+.apollo.io': '223.6.6.6'
   fallback-filter:
     geoip: true
     geoip-code: CN
