@@ -231,3 +231,4 @@ rules:
 
   # 默认规则
   - MATCH,DIRECT                     # 未匹配的流量走代理组
+  - GEOSITE,geolocation-!cn,Anycast  # 兜底规则
