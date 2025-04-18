@@ -42,11 +42,11 @@ dns:
 
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: Anycast-1, server: 104.19.101.79, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-1, server: 104.19.126.172, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: Anycast-2, server: 104.19.101.79, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Anycast-3, server: 104.19.101.79, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: Anycast-4, server: 104.19.245.27, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Anycast-5, server: 104.19.245.27, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-3, server: 104.19.1.170, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: Anycast-4, server: 104.19.223.56, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-5, server: 104.19.37.248, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-6, server: 104.19.245.27, port: 8443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # 服务器直连节点（用于特定服务直接访问）
@@ -105,10 +105,12 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+  
+  # 自定规则
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,apollo,HKG
+  - DOMAIN-KEYWORD,apollo,DIRECT
 
   # Tiktok 服务
   - DOMAIN-KEYWORD,tiktok,Anycast
@@ -123,15 +125,16 @@ rules:
   - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
+  - GEOSITE,linkedin,HKG
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
 
-  # Grok 服务（优先匹配）
-  - DOMAIN-KEYWORD,grok,GROK        # 匹配含 "grok" 的域名
-  - DOMAIN-SUFFIX,x.ai,GROK         # xAI 相关域名走 GROK 组
-    
-  # 语音服务（Google 相关）
+  # Grok 服务
+  - DOMAIN-KEYWORD,grok,GROK
+  - DOMAIN-SUFFIX,x.ai,GROK
+  
+  # 语音服务
   - DOMAIN-SUFFIX,lens.l.google.com,GROK
   - DOMAIN-SUFFIX,voice.telephony.goog,GROK
   - DOMAIN-SUFFIX,voice.google.com,GROK
@@ -155,20 +158,24 @@ rules:
   - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
   - DOMAIN-SUFFIX,client.crisp.chat,GPT
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
+  - DOMAIN-KEYWORD,openai,GPT
+  - DOMAIN-SUFFIX,ai.com,GPT
 
   # 国内服务直连
   - GEOSITE,apple@cn,DIRECT         # 苹果中国服务直连
   - GEOSITE,microsoft@cn,DIRECT     # 微软中国服务直连
   - GEOSITE,geolocation-cn,DIRECT   # 国内域名直连
-  - GEOIP,private,DIRECT,no-resolve # 私有网络 IP 直连
+  - GEOSITE,private,DIRECT
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
   # 国外服务走代理
   - GEOSITE,facebook,Anycast          # Facebook 相关域名走代理
   - GEOSITE,youtube,Anycast           # YouTube 相关域名走代理
   - GEOSITE,google,Anycast            # Google 相关域名走代理
-  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
   - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
 
+  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
+
   # 默认规则
-  - MATCH,Anycast                     # 未匹配的流量走代理组
+  - MATCH,DIRECT                     # 未匹配的流量走代理组
+  - GEOSITE,geolocation-!cn,Anycast  # 兜底规则
