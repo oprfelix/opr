@@ -34,8 +34,10 @@ geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 168  # Update every 7 days
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  geoip: "https://dash.fotoman.com/geoip.dat"
+  geosite: "https://dash.fotoman.com/geosite.dat"
+  #geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  #geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
 
 # --------------------------------------
