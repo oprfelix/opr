@@ -143,7 +143,9 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
-  
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
+
   # 自定规则
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
@@ -165,17 +167,14 @@ rules:
   - DOMAIN-KEYWORD,protechts,HKG
   - GEOSITE,linkedin,HKG
 
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
-
   # Grok 服务
-  - DOMAIN-KEYWORD,grok,GROK
-  - DOMAIN-SUFFIX,x.ai,GROK
+  - DOMAIN-KEYWORD,grok,HKG
+  - DOMAIN-SUFFIX,x.ai,HKG
   
   # 语音服务
-  - DOMAIN-SUFFIX,lens.l.google.com,GROK
-  - DOMAIN-SUFFIX,voice.telephony.goog,GROK
-  - DOMAIN-SUFFIX,voice.google.com,GROK
+  - DOMAIN-SUFFIX,lens.l.google.com,HKG
+  - DOMAIN-SUFFIX,voice.telephony.goog,HKG
+  - DOMAIN-SUFFIX,voice.google.com,HKG
 
   # OpenAI (ChatGPT) 服务
   - DOMAIN-SUFFIX,ai.com,GPT
@@ -196,24 +195,10 @@ rules:
   - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
   - DOMAIN-SUFFIX,client.crisp.chat,GPT
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
-  - DOMAIN-KEYWORD,openai,GPT
-  - DOMAIN-SUFFIX,ai.com,GPT
 
   # 国内服务直连
-  - GEOSITE,apple@cn,DIRECT         # 苹果中国服务直连
-  - GEOSITE,microsoft@cn,DIRECT     # 微软中国服务直连
   - GEOSITE,geolocation-cn,DIRECT   # 国内域名直连
-  - GEOSITE,private,DIRECT
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
-  # 国外服务走代理
-  - GEOSITE,facebook,Anycast          # Facebook 相关域名走代理
-  - GEOSITE,youtube,Anycast           # YouTube 相关域名走代理
-  - GEOSITE,google,Anycast            # Google 相关域名走代理
-  - GEOSITE,geolocation-!cn,Anycast   # 非中国域名走代理
-
-  - GEOIP,telegram,Anycast,no-resolve # Telegram IP 走代理
-
   # 默认规则
-  - MATCH,DIRECT                     # 未匹配的流量走代理组
-  - GEOSITE,geolocation-!cn,Anycast  # 兜底规则
+  - MATCH,Anycast                     # 未匹配的流量走代理组
