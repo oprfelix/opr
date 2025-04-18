@@ -20,9 +20,6 @@ dns:
   nameserver:
     - https://223.6.6.6/dns-query
     - 223.6.6.6
-  fallback:
-    - https://1.1.1.1/dns-query
-    - 1.1.1.1
   nameserver-policy:
     '+.tiktok.com': '1.1.1.1'
     '+.tiktokcdn.com': '1.1.1.1'
@@ -34,15 +31,6 @@ dns:
     '+.linkedin.cn': '1.1.1.1'
     '+.linkedin.com': '1.1.1.1'
     '+.apollo.io': '223.6.6.6'
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-    domain:
-      - '+.google.com'
-      - '+.amazonaws.com'
-      - '+.microsoft.com'
 
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
