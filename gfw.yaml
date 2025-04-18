@@ -1,35 +1,11 @@
-# Clash 配置文件
-# 说明: 本配置文件适用于 Clash 客户端，支持 VLESS 协议，提供国内外加速、AI 专线和规则分流功能。
-# 日期: 2025-04-16
-
-# --------------------------------------
-# 基础配置
-# --------------------------------------
 mixed-port: 7890
 bind-address: 127.0.0.1
 allow-lan: true
 mode: rule
 log-level: info
 external-controller: 127.0.0.1:9090
-ipv6: false
+ipv6: true
 
-# --------------------------------------
-# 强制使用TUN模式
-# --------------------------------------
-tun:
-    enable: true
-    stack: system # 可选值: system, gvisor, mixed
-    auto-route: true # 自动配置路由表
-    auto-detect-interface: true # 自动检测网络接口
-    dns-hijack:
-      - any:53 # 劫持 DNS 请求
-    strict-route: false # 是否强制路由
-    mtu: 9000 # 最大传输单元
-    endpoint-independent-nat: true # 启用端到端 NAT
-    
-# --------------------------------------
-# Geo 数据源配置
-# --------------------------------------
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 168  # Update every 7 days
@@ -37,11 +13,6 @@ geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
-
-# --------------------------------------
-# DNS 配置
-# --------------------------------------
-# 配置 DNS 解析策略，优化国内外域名解析并防止 DNS 污染
 dns:
   enable: true
   listen: 0.0.0.0:1053
@@ -72,11 +43,6 @@ dns:
       - '+.google.com'
       - '+.amazonaws.com'
       - '+.microsoft.com'
-      
-# --------------------------------------
-# 代理节点配置
-# --------------------------------------
-# 定义多个 VLESS 代理节点，按地区和服务类型分组
 
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
@@ -100,12 +66,8 @@ proxies:
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
-# --------------------------------------
-# 代理组配置
-# --------------------------------------
-# 定义代理组，用于节点选择和负载均衡
 proxy-groups:
-  # 主代理组
+
   - name: Anycast
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
@@ -117,7 +79,7 @@ proxy-groups:
       - Anycast-6
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  # 直连节点组
+
   - name: CF
     type: url-test
     proxies:
@@ -126,7 +88,7 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-  # AI 专线组
+
   - name: GPT
     type: url-test
     proxies:
@@ -134,7 +96,7 @@ proxy-groups:
       - VPS2
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
 
-  # Grok 专线组
+
   - name: GROK
     type: url-test
     proxies:
@@ -144,7 +106,7 @@ proxy-groups:
 
 rules:
   # 广告拦截
-  - GEOSITE,category-ads-all,REJECT  # 屏蔽广告相关域名
+  - GEOSITE,category-ads-all,REJECT
 
   # 自定规则
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
@@ -162,7 +124,7 @@ rules:
   - DOMAIN-SUFFIX,tiktokcdn-us.com,Anycast
 
   # Linkedin 服务（优先匹配）
-  - DOMAIN-KEYWORD,linkedin,HKG        # 匹配含 "linkedin" 的域名
+  - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
   - GEOSITE,linkedin,HKG
@@ -197,8 +159,8 @@ rules:
   - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
 
   # 国内服务直连
-  - GEOSITE,geolocation-cn,DIRECT   # 国内域名直连
-  - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOIP,cn,DIRECT
 
   # 默认规则
-  - MATCH,Anycast                     # 未匹配的流量走代理组
+  - MATCH,Anycast
