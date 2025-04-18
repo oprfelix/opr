@@ -1,47 +1,26 @@
-# Clash 配置文件
-# 说明: 本配置文件适用于 Clash 客户端，支持 VLESS 协议，提供国内外加速、AI 专线和规则分流功能。
-# 日期: 2025-04-11
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: debug
+external-controller: 127.0.0.1:9090
+ipv6: true
 
-# --------------------------------------
-# 基础配置
-# --------------------------------------
-mixed-port: 7890              # 设置 HTTP 和 SOCKS 代理的混合端口
-allow-lan: false              # 禁止局域网访问，增强安全性
-mode: rule                    # 使用规则模式，根据规则分流流量
-log-level: debug               # 日志级别，info 适合日常使用，调试时可改为 debug
-external-controller: 127.0.0.1:9090  # 外部控制接口，仅限本地访问，用于 Clash 管理工具
-ipv6: true                    # 启用 IPv6 支持，适配双栈网络环境
-
-# --------------------------------------
-# Geo 数据源配置
-# --------------------------------------
-# 用于加载 GeoIP 和 GeoSite 数据，支持地理位置和域名分流
-geodata-mode: true            # 启用 Geo 数据库模式，提升规则匹配效率
+geodata-mode: true
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"    # GeoIP 数据源，用于 IP 地理位置判断
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"  # GeoSite 数据源，用于域名分类
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
-# --------------------------------------
-# DNS 配置
-# --------------------------------------
-# 配置 DNS 解析策略，优化国内外域名解析并防止 DNS 污染
 dns:
-  enable: true                  # 启用 Clash 内置 DNS 解析模块
-  listen: 0.0.0.0:1053          # DNS 服务监听地址和端口
-  enhanced-mode: fake-ip        # 使用 Fake-IP 模式，提升性能并防止 DNS 泄露
-  fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围，用于虚拟 IP 分配
-  # 主 DNS 服务器（用于初始解析和国内域名）
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
   nameserver:
-    - https://1.1.1.1/dns-query       # Cloudflare DNS- DoH
-    - 1.1.1.1                         # Cloudflare DNS- 普通 UDP/TCP
-
-# --------------------------------------
-# 代理节点配置
-# --------------------------------------
-# 定义多个 VLESS 代理节点，按地区和服务类型分组
+    - https://1.1.1.1/dns-query
+    - 1.1.1.1
 
 proxies:
-  # 欧美加速节点（适用于高带宽需求，如视频流媒体）
+
   - {name: Anycast-1, server: 104.19.126.172, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: Anycast-2, server: 104.19.101.79, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-3, server: 104.19.1.170, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
@@ -49,25 +28,21 @@ proxies:
   - {name: Anycast-5, server: 104.19.37.248, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-6, server: 104.19.245.27, port: 8443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
-  # 服务器直连节点（用于特定服务直接访问）
+
   - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: CF2, server: helloworld.todsm.com, port: 2053, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   - {name: CF3, server: helloworld.techtrendparts.com, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
-  # 商用专线（高稳定性，适用于企业或关键任务）
+
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   
-  # AI 专线（优化 AI 服务访问，如 ChatGPT）
+
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
-# --------------------------------------
-# 代理组配置
-# --------------------------------------
-# 定义代理组，用于节点选择和负载均衡
 proxy-groups:
-  # 主代理组
+
   - name: Anycast
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
@@ -79,7 +54,6 @@ proxy-groups:
       - Anycast-6
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  # 直连节点组
   - name: CF
     type: url-test
     proxies:
@@ -88,7 +62,6 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-  # AI 专线组
   - name: GPT
     type: url-test
     proxies:
@@ -96,7 +69,6 @@ proxy-groups:
       - VPS2
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
 
-  # Grok 专线组
   - name: GROK
     type: url-test
     proxies:
