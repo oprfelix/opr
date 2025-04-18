@@ -207,7 +207,6 @@ rules:
   - GEOSITE,apple@cn,DIRECT         # 苹果中国服务直连
   - GEOSITE,microsoft@cn,DIRECT     # 微软中国服务直连
   - GEOSITE,geolocation-cn,DIRECT   # 国内域名直连
-  - GEOIP,private,DIRECT,no-resolve # 私有网络 IP 直连
   - GEOIP,cn,DIRECT                 # 中国大陆 IP 直连
 
   # 国外服务走代理
