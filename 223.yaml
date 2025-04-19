@@ -76,6 +76,7 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
   # ai线路优先
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
@@ -85,7 +86,6 @@ rules:
   - GEOSITE,category-ads-all,REJECT
 
   # 自定规则
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
