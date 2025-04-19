@@ -46,8 +46,12 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
+      - CF1
+      - CF2
+      - CF3
+      - VPS1
+      - VPS2
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
 
   - name: CF
     type: url-test
@@ -57,14 +61,12 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-
   - name: GPT
     type: url-test
     proxies:
       - VPS1
       - VPS2
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-
 
   - name: GROK
     type: url-test
