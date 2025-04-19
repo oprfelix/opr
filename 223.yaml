@@ -95,6 +95,7 @@ rules:
   - DOMAIN-SUFFIX,x.com,Anycast
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
   - DOMAIN-KEYWORD,github,HKG
 
   # 国内服务直连
