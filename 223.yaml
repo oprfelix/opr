@@ -84,6 +84,7 @@ rules:
   - DOMAIN-KEYWORD,qobuz,Anycast
   - DOMAIN-KEYWORD,tidal,Anycast
   - DOMAIN-KEYWORD,spotify,Anycast
+  - DOMAIN-KEYWORD,googlevideo,Anycast
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
