@@ -118,6 +118,7 @@ rules:
   - DOMAIN-SUFFIX,quobuz.com,Anycast
   - DOMAIN-SUFFIX,quobuz.fr,Anycast
   - DOMAIN-SUFFIX,static-qobuz.com,Anycast
+  - DOMAIN-SUFFIX,akamaized.net,Anycast
   - IP-CIDR,52.211.1.180/32,Anycast
   - IP-CIDR,99.81.97.56/32,Anycast
   
