@@ -78,6 +78,12 @@ rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
 
+  # 自定规则
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
   - GEOIP,cn,DIRECT
