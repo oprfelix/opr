@@ -97,6 +97,7 @@ rules:
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
   - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,grok,HKG
 
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
