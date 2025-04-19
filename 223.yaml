@@ -84,6 +84,14 @@ rules:
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
 
+  # 国外网络代理
+  - DOMAIN-KEYWORD,google,Anycast
+  - DOMAIN-KEYWORD,facebook,Anycast
+  - DOMAIN-KEYWORD,grok,Anycast
+  - DOMAIN-KEYWORD,twitter,Anycast
+  - DOMAIN-KEYWORD,tiktok,Anycast
+  - DOMAIN-SUFFIX,x.com,Anycast
+
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
   - GEOIP,cn,DIRECT
