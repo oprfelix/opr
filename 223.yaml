@@ -82,7 +82,8 @@ rules:
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
   - DOMAIN-KEYWORD,qobuz,Anycast
-  - DOMAIN-KEYWORD,ietheivaicai,Anycast
+  - DOMAIN-KEYWORD,tidal,Anycast
+  - DOMAIN-KEYWORD,spotify,Anycast
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
