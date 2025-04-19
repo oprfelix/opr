@@ -78,23 +78,17 @@ proxy-groups:
 rules:
 
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  
   # ai线路优先
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,tidal,Anycast
-  - DOMAIN-KEYWORD,spotify,Anycast
+  - DOMAIN-KEYWORD,tidal,Anycast       # Tidal
+  - DOMAIN-KEYWORD,spotify,Anycast     # Spotify
+  - DOMAIN-KEYWORD,scdn,Anycast        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Anycast       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Anycast   # Qobuz
   - DOMAIN-KEYWORD,googlevideo,Anycast
-
-  # Qobuz串流
-  - DOMAIN-KEYWORD,qobuz,JPN
-  - DOMAIN-SUFFIX,cobeuz.fr,JPN
-  - DOMAIN-SUFFIX,cobuz.fr,JPN
-  - DOMAIN-SUFFIX,cobuzz.fr,JPN
-  - DOMAIN-SUFFIX,kobuz.fr,JPN
-  - DOMAIN-SUFFIX,akamaized.net,JPN
-  - IP-CIDR,52.211.1.180/32,JPN
-  - IP-CIDR,99.81.97.56/32,JPN
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
