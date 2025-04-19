@@ -76,7 +76,11 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
-
+  # ai线路优先
+  - DOMAIN-KEYWORD,grok,HKG
+  - DOMAIN-KEYWORD,ai,GPT
+  - DOMAIN-KEYWORD,chatgpt,GPT
+  
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
 
@@ -97,7 +101,6 @@ rules:
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
   - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,grok,HKG
 
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
