@@ -76,15 +76,50 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   # ai线路优先
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,qobuz,Anycast
   - DOMAIN-KEYWORD,tidal,Anycast
   - DOMAIN-KEYWORD,spotify,Anycast
   - DOMAIN-KEYWORD,googlevideo,Anycast
+
+  # Qobuz串流
+  - DOMAIN-SUFFIX,cobeuz.fr,Anycast
+  - DOMAIN-SUFFIX,cobuz.fr,Anycast
+  - DOMAIN-SUFFIX,cobuzz.fr,Anycast
+  - DOMAIN-SUFFIX,kobuz.fr,Anycast
+  - DOMAIN-SUFFIX,qobuz.at,Anycast
+  - DOMAIN-SUFFIX,qobuz.be,Anycast
+  - DOMAIN-SUFFIX,qobuz.biz,Anycast
+  - DOMAIN-SUFFIX,qobuz.ca,Anycast
+  - DOMAIN-SUFFIX,qobuz.ch,Anycast
+  - DOMAIN-SUFFIX,qobuz.co.uk,Anycast
+  - DOMAIN-SUFFIX,qobuz.com,Anycast
+  - DOMAIN-SUFFIX,qobuz.de,Anycast
+  - DOMAIN-SUFFIX,qobuz.eu,Anycast
+  - DOMAIN-SUFFIX,qobuz.fi,Anycast
+  - DOMAIN-SUFFIX,qobuz.fr,Anycast
+  - DOMAIN-SUFFIX,qobuz.gr,Anycast
+  - DOMAIN-SUFFIX,qobuz.hk,Anycast
+  - DOMAIN-SUFFIX,qobuz.info,Anycast
+  - DOMAIN-SUFFIX,qobuz.it,Anycast
+  - DOMAIN-SUFFIX,qobuz.lt,Anycast
+  - DOMAIN-SUFFIX,qobuz.lu,Anycast
+  - DOMAIN-SUFFIX,qobuz.net,Anycast
+  - DOMAIN-SUFFIX,qobuz.org,Anycast
+  - DOMAIN-SUFFIX,qobuz.pl,Anycast
+  - DOMAIN-SUFFIX,qobuz.ro,Anycast
+  - DOMAIN-SUFFIX,qobuz.se,Anycast
+  - DOMAIN-SUFFIX,qobuz.tv,Anycast
+  - DOMAIN-SUFFIX,qobuz.us,Anycast
+  - DOMAIN-SUFFIX,quobuz.com,Anycast
+  - DOMAIN-SUFFIX,quobuz.fr,Anycast
+  - DOMAIN-SUFFIX,static-qobuz.com,Anycast
+  - IP-CIDR,52.211.1.180/32,Anycast
+  - IP-CIDR,99.81.97.56/32,Anycast
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
