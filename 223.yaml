@@ -93,6 +93,8 @@ rules:
   - DOMAIN-KEYWORD,twitter,Anycast
   - DOMAIN-KEYWORD,tiktok,Anycast
   - DOMAIN-SUFFIX,x.com,Anycast
+  - DOMAIN-KEYWORD,linkedin,Anycast
+  - DOMAIN-KEYWORD,licdn,Anycast
 
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
