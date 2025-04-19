@@ -6,6 +6,13 @@ log-level: info
 external-controller: 127.0.0.1:9090
 ipv6: true
 
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 168  # Update every 7 days
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
   - {name: Anycast-1, server: 198.41.192.67, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -68,5 +75,12 @@ proxy-groups:
 
 rules:
 
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
+
+  # 国内服务直连
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOIP,cn,DIRECT
+  
   # 默认规则
   - MATCH,Anycast
