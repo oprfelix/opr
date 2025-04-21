@@ -44,7 +44,7 @@ proxies:
 
 proxy-groups:
 
-  - name: Anycast
+  - name: 自动代理模式
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
@@ -53,19 +53,17 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
-      - CF1
-      - CF2
-      - CF3
-      - VPS1
-      - VPS2
+      - 手动代理模式
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: CF
+  - name: 手动代理模式
     type: url-test
     proxies:
       - CF1
       - CF2
       - CF3
+      - VPS1
+      - VPS2
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
@@ -90,12 +88,12 @@ rules:
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,tidal,Anycast       # Tidal
-  - DOMAIN-KEYWORD,spotify,Anycast     # Spotify
-  - DOMAIN-KEYWORD,scdn,Anycast        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Anycast       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Anycast   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Anycast
+  - DOMAIN-KEYWORD,tidal,自动代理模式       # Tidal
+  - DOMAIN-KEYWORD,spotify,自动代理模式     # Spotify
+  - DOMAIN-KEYWORD,scdn,自动代理模式        # Spotify
+  - DOMAIN-KEYWORD,qobuz,自动代理模式       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,自动代理模式   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,自动代理模式
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
@@ -106,12 +104,12 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
 
   # 国外网络代理
-  - DOMAIN-KEYWORD,google,Anycast
-  - DOMAIN-KEYWORD,facebook,Anycast
-  - DOMAIN-KEYWORD,grok,Anycast
-  - DOMAIN-KEYWORD,twitter,Anycast
-  - DOMAIN-KEYWORD,tiktok,Anycast
-  - DOMAIN-SUFFIX,x.com,Anycast
+  - DOMAIN-KEYWORD,google,自动代理模式
+  - DOMAIN-KEYWORD,facebook,自动代理模式
+  - DOMAIN-KEYWORD,grok,自动代理模式
+  - DOMAIN-KEYWORD,twitter,自动代理模式
+  - DOMAIN-KEYWORD,tiktok,自动代理模式
+  - DOMAIN-SUFFIX,x.com,自动代理模式
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
@@ -122,4 +120,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认规则
-  - MATCH,Anycast
+  - MATCH,自动代理模式
