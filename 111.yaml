@@ -22,7 +22,7 @@ dns:
 
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: Anycast-1, server: 104.19.126.172, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-1, server: 198.41.192.67, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: Anycast-2, server: 104.19.101.79, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-3, server: 104.19.1.170, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   - {name: Anycast-4, server: 104.19.223.56, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -53,8 +53,12 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
+      - CF1
+      - CF2
+      - CF3
+      - VPS1
+      - VPS2
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
 
   - name: CF
     type: url-test
@@ -64,14 +68,12 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-
   - name: GPT
     type: url-test
     proxies:
       - VPS1
       - VPS2
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-
 
   - name: GROK
     type: url-test
@@ -81,62 +83,43 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  
+  # ai线路优先
+  - DOMAIN-KEYWORD,grok,HKG
+  - DOMAIN-KEYWORD,ai,GPT
+  - DOMAIN-KEYWORD,chatgpt,GPT
+  - DOMAIN-KEYWORD,tidal,Anycast       # Tidal
+  - DOMAIN-KEYWORD,spotify,Anycast     # Spotify
+  - DOMAIN-KEYWORD,scdn,Anycast        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Anycast       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Anycast   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,Anycast
+  
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
 
   # 自定规则
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,lingxing,DIRECT
-  - DOMAIN-KEYWORD,github,HKG
   - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
 
-  # Tiktok 服务
+  # 国外网络代理
+  - DOMAIN-KEYWORD,google,Anycast
+  - DOMAIN-KEYWORD,facebook,Anycast
+  - DOMAIN-KEYWORD,grok,Anycast
+  - DOMAIN-KEYWORD,twitter,Anycast
   - DOMAIN-KEYWORD,tiktok,Anycast
-  - DOMAIN-SUFFIX,tiktok.com,Anycast
-  - DOMAIN-SUFFIX,tiktokcdn.com,Anycast
-  - DOMAIN-SUFFIX,tiktokv.com,Anycast
-  - DOMAIN-SUFFIX,tiktokvideo.com,Anycast
-  - DOMAIN-SUFFIX,tiktokv.us,Anycast
-  - DOMAIN-SUFFIX,tiktokcdn-us.com,Anycast
-
-  # Linkedin 服务（优先匹配）
+  - DOMAIN-SUFFIX,x.com,Anycast
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
-  - GEOSITE,linkedin,HKG
-
-  # Grok 服务
-  - DOMAIN-KEYWORD,grok,HKG
-  - DOMAIN-SUFFIX,x.ai,HKG
-  
-  # 语音服务
-  - DOMAIN-SUFFIX,lens.l.google.com,HKG
-  - DOMAIN-SUFFIX,voice.telephony.goog,HKG
-  - DOMAIN-SUFFIX,voice.google.com,HKG
-
-  # OpenAI (ChatGPT) 服务
-  - DOMAIN-SUFFIX,ai.com,GPT
-  - DOMAIN-SUFFIX,api.revenuecat.com,GPT
-  - DOMAIN-SUFFIX,browser-intake-datadoghq.com,GPT
-  - DOMAIN-SUFFIX,chatgpt.com,GPT
-  - DOMAIN-SUFFIX,chat.openai.com,GPT
-  - DOMAIN-SUFFIX,auth0.openai.com,GPT
-  - DOMAIN-SUFFIX,cdn.openai.com,GPT
-  - DOMAIN-SUFFIX,oaistatic.com,GPT
-  - DOMAIN-SUFFIX,oaiusercontent.com,GPT
-  - DOMAIN-SUFFIX,openai.com,GPT
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,GPT
-  - DOMAIN-SUFFIX,openaicom.imgix.net,GPT
-  - DOMAIN-SUFFIX,openaicomproductionae4b.blob.core.windows.net,GPT
-  - DOMAIN-SUFFIX,openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net,GPT
-  - DOMAIN-SUFFIX,ingest.sentry.io,GPT
-  - DOMAIN-SUFFIX,ios.chat.openai.com.cdn.cloudflare.net,GPT
-  - DOMAIN-SUFFIX,client.crisp.chat,GPT
-  - DOMAIN-SUFFIX,o33249.ingest.sentry.io,GPT
+  - DOMAIN-KEYWORD,github,HKG
 
   # 国内服务直连
   - GEOSITE,geolocation-cn,DIRECT
   - GEOIP,cn,DIRECT
-
+  
   # 默认规则
   - MATCH,Anycast
