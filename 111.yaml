@@ -47,13 +47,13 @@ proxy-groups:
   - name: Automatic
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
-      - Manual
       - Anycast-1
       - Anycast-2
       - Anycast-3
       - Anycast-4
       - Anycast-5
       - Anycast-6
+      - Manual
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: Manual
