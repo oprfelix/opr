@@ -91,7 +91,7 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   
   # 大语言模型
-  - DOMAIN-KEYWORD,grok,HKG
+  - DOMAIN-KEYWORD,grok,JPN
   - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
 
@@ -106,13 +106,14 @@ rules:
   # 国外网络
   - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,facebook,Automatic
+  - DOMAIN-KEYWORD,youtube,Automatic
   - DOMAIN-KEYWORD,twitter,Automatic
   - DOMAIN-KEYWORD,tiktok,Automatic
   - DOMAIN-SUFFIX,x.com,Automatic
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,linkedin,JPN
+  - DOMAIN-KEYWORD,licdn,JPN
+  - DOMAIN-KEYWORD,protechts,JPN
+  - DOMAIN-KEYWORD,github,JPN
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
