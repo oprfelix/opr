@@ -106,7 +106,6 @@ rules:
   # 国外网络代理
   - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,facebook,Automatic
-  - DOMAIN-KEYWORD,grok,Automatic
   - DOMAIN-KEYWORD,twitter,Automatic
   - DOMAIN-KEYWORD,tiktok,Automatic
   - DOMAIN-SUFFIX,x.com,Automatic
