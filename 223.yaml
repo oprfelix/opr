@@ -100,6 +100,7 @@ rules:
   # 国外网络
   - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,facebook,Automatic
+  - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,twitter,Automatic
   - DOMAIN-KEYWORD,tiktok,Automatic
   - DOMAIN-SUFFIX,x.com,Automatic
