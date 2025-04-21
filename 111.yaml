@@ -81,28 +81,29 @@ proxy-groups:
 
 rules:
 
+  # 自定规则
+  - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
+
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
   
-  # ai线路优先
+  # 大语言模型
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
+
+  # 串流媒体
   - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
   - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
   - DOMAIN-KEYWORD,scdn,Automatic        # Spotify
   - DOMAIN-KEYWORD,qobuz,Automatic       # Qobuz
   - DOMAIN-KEYWORD,akamaized,Automatic   # Qobuz
   - DOMAIN-KEYWORD,googlevideo,Automatic
-  
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
 
-  # 自定规则
-  - DOMAIN-KEYWORD,lingxing,DIRECT
-  - DOMAIN-KEYWORD,apollo,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-
-  # 国外网络代理
+  # 国外网络
   - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,facebook,Automatic
   - DOMAIN-KEYWORD,twitter,Automatic
@@ -113,9 +114,9 @@ rules:
   - DOMAIN-KEYWORD,protechts,HKG
   - DOMAIN-KEYWORD,github,HKG
 
-  # 国内服务直连
+  # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
   - GEOIP,cn,DIRECT
   
-  # 默认规则
+  # 默认
   - MATCH,Automatic
