@@ -19,7 +19,6 @@ dns:
     - https://1.1.1.1/dns-query
     - 1.1.1.1
 
-
 proxies:
   # 欧美加速节点（适用于高带宽需求，如视频流媒体）
   - {name: Anycast-1, server: 198.41.192.67, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -86,7 +85,7 @@ rules:
   
   # ai线路优先
   - DOMAIN-KEYWORD,grok,HKG
-  - DOMAIN-KEYWORD,ai,GPT
+  - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
   - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
   - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
