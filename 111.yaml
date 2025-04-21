@@ -44,7 +44,7 @@ proxies:
 
 proxy-groups:
 
-  - name: 自动代理模式
+  - name: 代理模式
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
@@ -88,12 +88,12 @@ rules:
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,tidal,自动代理模式       # Tidal
-  - DOMAIN-KEYWORD,spotify,自动代理模式     # Spotify
-  - DOMAIN-KEYWORD,scdn,自动代理模式        # Spotify
-  - DOMAIN-KEYWORD,qobuz,自动代理模式       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,自动代理模式   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,自动代理模式
+  - DOMAIN-KEYWORD,tidal,代理模式       # Tidal
+  - DOMAIN-KEYWORD,spotify,代理模式     # Spotify
+  - DOMAIN-KEYWORD,scdn,代理模式        # Spotify
+  - DOMAIN-KEYWORD,qobuz,代理模式       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,代理模式   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,代理模式
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
@@ -104,12 +104,12 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
 
   # 国外网络代理
-  - DOMAIN-KEYWORD,google,自动代理模式
-  - DOMAIN-KEYWORD,facebook,自动代理模式
-  - DOMAIN-KEYWORD,grok,自动代理模式
-  - DOMAIN-KEYWORD,twitter,自动代理模式
-  - DOMAIN-KEYWORD,tiktok,自动代理模式
-  - DOMAIN-SUFFIX,x.com,自动代理模式
+  - DOMAIN-KEYWORD,google,代理模式
+  - DOMAIN-KEYWORD,facebook,代理模式
+  - DOMAIN-KEYWORD,grok,代理模式
+  - DOMAIN-KEYWORD,twitter,代理模式
+  - DOMAIN-KEYWORD,tiktok,代理模式
+  - DOMAIN-SUFFIX,x.com,代理模式
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
@@ -120,4 +120,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认规则
-  - MATCH,自动代理模式
+  - MATCH,代理模式
