@@ -108,6 +108,7 @@ rules:
   - DOMAIN-KEYWORD,licdn,JPN
   - DOMAIN-KEYWORD,protechts,JPN
   - DOMAIN-KEYWORD,github,JPN
+  - DOMAIN-KEYWORD,cloudflare,JPN
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
