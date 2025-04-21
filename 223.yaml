@@ -100,14 +100,14 @@ rules:
   # 国外网络
   - DOMAIN-KEYWORD,google,Automatic
   - DOMAIN-KEYWORD,facebook,Automatic
-  - DOMAIN-KEYWORD,google,Automatic
+  - DOMAIN-KEYWORD,youtube,Automatic
   - DOMAIN-KEYWORD,twitter,Automatic
   - DOMAIN-KEYWORD,tiktok,Automatic
   - DOMAIN-SUFFIX,x.com,Automatic
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,github,JPN
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
