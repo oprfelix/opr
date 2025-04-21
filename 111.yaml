@@ -44,7 +44,7 @@ proxies:
 
 proxy-groups:
 
-  - name: Automatic Mode
+  - name: Automatic
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
@@ -53,10 +53,10 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
-      - Manual Mode
+      - Manual
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: Manual Mode
+  - name: Manual
     type: url-test
     proxies:
       - CF1
@@ -88,12 +88,12 @@ rules:
   - DOMAIN-KEYWORD,grok,HKG
   - DOMAIN-KEYWORD,ai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,tidal,Automatic Mode       # Tidal
-  - DOMAIN-KEYWORD,spotify,Automatic Mode     # Spotify
-  - DOMAIN-KEYWORD,scdn,Automatic Mode        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Automatic Mode       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Automatic Mode   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Automatic Mode
+  - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
+  - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
+  - DOMAIN-KEYWORD,scdn,Automatic        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Automatic       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Automatic   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,Automatic
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
@@ -104,12 +104,12 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
 
   # 国外网络代理
-  - DOMAIN-KEYWORD,google,Automatic Mode
-  - DOMAIN-KEYWORD,facebook,Automatic Mode
-  - DOMAIN-KEYWORD,grok,Automatic Mode
-  - DOMAIN-KEYWORD,twitter,Automatic Mode
-  - DOMAIN-KEYWORD,tiktok,Automatic Mode
-  - DOMAIN-SUFFIX,x.com,Automatic Mode
+  - DOMAIN-KEYWORD,google,Automatic
+  - DOMAIN-KEYWORD,facebook,Automatic
+  - DOMAIN-KEYWORD,grok,Automatic
+  - DOMAIN-KEYWORD,twitter,Automatic
+  - DOMAIN-KEYWORD,tiktok,Automatic
+  - DOMAIN-SUFFIX,x.com,Automatic
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
@@ -120,4 +120,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认规则
-  - MATCH,Automatic Mode
+  - MATCH,Automatic
