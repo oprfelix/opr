@@ -37,7 +37,7 @@ proxies:
 
 proxy-groups:
 
-  - name: Anycast
+  - name: Automatic
     type: url-test              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
@@ -46,19 +46,17 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
-      - CF1
-      - CF2
-      - CF3
-      - VPS1
-      - VPS2
+      - Manual
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: CF
+  - name: Manual
     type: url-test
     proxies:
       - CF1
       - CF2
       - CF3
+      - VPS1
+      - VPS2
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
@@ -81,14 +79,14 @@ rules:
   
   # ai线路优先
   - DOMAIN-KEYWORD,grok,HKG
-  - DOMAIN-KEYWORD,ai,GPT
+  - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
-  - DOMAIN-KEYWORD,tidal,Anycast       # Tidal
-  - DOMAIN-KEYWORD,spotify,Anycast     # Spotify
-  - DOMAIN-KEYWORD,scdn,Anycast        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Anycast       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Anycast   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Anycast
+  - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
+  - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
+  - DOMAIN-KEYWORD,scdn,Automatic        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Automatic       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Automatic   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,Automatic
   
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
@@ -99,12 +97,11 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
 
   # 国外网络代理
-  - DOMAIN-KEYWORD,google,Anycast
-  - DOMAIN-KEYWORD,facebook,Anycast
-  - DOMAIN-KEYWORD,grok,Anycast
-  - DOMAIN-KEYWORD,twitter,Anycast
-  - DOMAIN-KEYWORD,tiktok,Anycast
-  - DOMAIN-SUFFIX,x.com,Anycast
+  - DOMAIN-KEYWORD,google,Automatic
+  - DOMAIN-KEYWORD,facebook,Automatic
+  - DOMAIN-KEYWORD,twitter,Automatic
+  - DOMAIN-KEYWORD,tiktok,Automatic
+  - DOMAIN-SUFFIX,x.com,Automatic
   - DOMAIN-KEYWORD,linkedin,HKG
   - DOMAIN-KEYWORD,licdn,HKG
   - DOMAIN-KEYWORD,protechts,HKG
@@ -115,4 +112,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认规则
-  - MATCH,Anycast
+  - MATCH,Automatic
