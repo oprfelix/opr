@@ -86,6 +86,7 @@ rules:
   
   # 大语言模型
   - DOMAIN-KEYWORD,grok,JPN
+  - DOMAIN-SUFFIX,x.ai,JPN
   - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
 
