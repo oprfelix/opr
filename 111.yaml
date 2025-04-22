@@ -92,6 +92,7 @@ rules:
   
   # 大语言模型
   - DOMAIN-KEYWORD,grok,JPN
+  - DOMAIN-SUFFIX,x.ai,JPN
   - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
 
@@ -114,6 +115,7 @@ rules:
   - DOMAIN-KEYWORD,licdn,JPN
   - DOMAIN-KEYWORD,protechts,JPN
   - DOMAIN-KEYWORD,github,JPN
+  - DOMAIN-KEYWORD,cloudflare,JPN
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
