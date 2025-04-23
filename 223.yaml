@@ -80,6 +80,7 @@ rules:
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,jomashop,JPN
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
