@@ -91,10 +91,10 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   
   # 大语言模型
-  - DOMAIN-KEYWORD,grok,JPN1
-  - DOMAIN-SUFFIX,x.ai,JPN1
-  - DOMAIN-KEYWORD,openai,GPT
-  - DOMAIN-KEYWORD,chatgpt,GPT
+  - DOMAIN-KEYWORD,grok,JPN2
+  - DOMAIN-SUFFIX,x.ai,JPN2
+  - DOMAIN-KEYWORD,openai,JPN2
+  - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
   - DOMAIN-KEYWORD,tidal,手动模式       # Tidal
@@ -102,7 +102,7 @@ rules:
   - DOMAIN-KEYWORD,scdn,手动模式        # Spotify
   - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
   - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,手动模式
+  - DOMAIN-KEYWORD,googlevideo,自动模式
 
   # 国外网络
   - DOMAIN-KEYWORD,google,手动模式
@@ -111,11 +111,11 @@ rules:
   - DOMAIN-KEYWORD,twitter,手动模式
   - DOMAIN-KEYWORD,tiktok,手动模式
   - DOMAIN-SUFFIX,x.com,手动模式
-  - DOMAIN-KEYWORD,linkedin,JPN1
-  - DOMAIN-KEYWORD,licdn,JPN1
-  - DOMAIN-KEYWORD,protechts,JPN1
-  - DOMAIN-KEYWORD,github,JPN1
-  - DOMAIN-KEYWORD,cloudflare,JPN1
+  - DOMAIN-KEYWORD,linkedin,JPN2
+  - DOMAIN-KEYWORD,licdn,JPN2
+  - DOMAIN-KEYWORD,protechts,JPN2
+  - DOMAIN-KEYWORD,github,JPN2
+  - DOMAIN-KEYWORD,cloudflare,JPN2
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
