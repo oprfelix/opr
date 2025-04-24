@@ -35,7 +35,7 @@ proxies:
   
   # 商用专线（高稳定性，适用于企业或关键任务）
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  - {name: JPN1, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
 
   # AI 专线（优化 AI 服务访问，如 ChatGPT）
@@ -70,17 +70,18 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
-    type: url-test
+    type: select
     proxies:
       - VPS1
       - VPS2
     icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
 
   - name: GROK
-    type: url-test
+    type: select
     proxies:
       - HKG
-      - JPN
+      - JPN1
+      - JPN2
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
@@ -96,8 +97,8 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   
   # 大语言模型
-  - DOMAIN-KEYWORD,grok,JPN
-  - DOMAIN-SUFFIX,x.ai,JPN
+  - DOMAIN-KEYWORD,grok,JPN1
+  - DOMAIN-SUFFIX,x.ai,JPN1
   - DOMAIN-KEYWORD,openai,GPT
   - DOMAIN-KEYWORD,chatgpt,GPT
 
@@ -116,11 +117,11 @@ rules:
   - DOMAIN-KEYWORD,twitter,手动模式
   - DOMAIN-KEYWORD,tiktok,手动模式
   - DOMAIN-SUFFIX,x.com,手动模式
-  - DOMAIN-KEYWORD,linkedin,JPN
-  - DOMAIN-KEYWORD,licdn,JPN
-  - DOMAIN-KEYWORD,protechts,JPN
-  - DOMAIN-KEYWORD,github,JPN
-  - DOMAIN-KEYWORD,cloudflare,JPN
+  - DOMAIN-KEYWORD,linkedin,JPN1
+  - DOMAIN-KEYWORD,licdn,JPN1
+  - DOMAIN-KEYWORD,protechts,JPN1
+  - DOMAIN-KEYWORD,github,JPN1
+  - DOMAIN-KEYWORD,cloudflare,JPN1
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
