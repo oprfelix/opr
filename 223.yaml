@@ -59,6 +59,7 @@ proxy-groups:
       - CF3
       - VPS1
       - VPS2
+      - KYO
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
