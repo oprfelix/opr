@@ -38,8 +38,20 @@ proxies:
 
 proxy-groups:
 
+  - name: Manual
+    type: select              # 自动 url-test 轮询 load-balance 手动 select
+    proxies:
+      - TYO
+      - CF1
+      - CF2
+      - CF3
+      - VPS1
+      - VPS2
+      - Automatic
+    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
   - name: Automatic
-    type: url-test              # 自动 url-test 轮询 load-balance 手动 select
+    type: url-test
     proxies:
       - Anycast-1
       - Anycast-2
@@ -47,19 +59,6 @@ proxy-groups:
       - Anycast-4
       - Anycast-5
       - Anycast-6
-      - TYO
-      - Manual
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  - name: Manual
-    type: url-test
-    proxies:
-      - CF1
-      - CF2
-      - CF3
-      - VPS1
-      - VPS2
-      - TYO
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
@@ -95,20 +94,20 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,GPT
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
-  - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
-  - DOMAIN-KEYWORD,scdn,Automatic        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Automatic       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Automatic   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Automatic
+  - DOMAIN-KEYWORD,tidal,Manual       # Tidal
+  - DOMAIN-KEYWORD,spotify,Manual     # Spotify
+  - DOMAIN-KEYWORD,scdn,Manual        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Manual       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Manual   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,Manual
 
   # 国外网络
-  - DOMAIN-KEYWORD,google,Automatic
-  - DOMAIN-KEYWORD,facebook,Automatic
-  - DOMAIN-KEYWORD,youtube,Automatic
-  - DOMAIN-KEYWORD,twitter,Automatic
-  - DOMAIN-KEYWORD,tiktok,Automatic
-  - DOMAIN-SUFFIX,x.com,Automatic
+  - DOMAIN-KEYWORD,google,Manual
+  - DOMAIN-KEYWORD,facebook,Manual
+  - DOMAIN-KEYWORD,youtube,Manual
+  - DOMAIN-KEYWORD,twitter,Manual
+  - DOMAIN-KEYWORD,tiktok,Manual
+  - DOMAIN-SUFFIX,x.com,Manual
   - DOMAIN-KEYWORD,linkedin,JPN
   - DOMAIN-KEYWORD,licdn,JPN
   - DOMAIN-KEYWORD,protechts,JPN
@@ -120,4 +119,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认
-  - MATCH,Automatic
+  - MATCH,Manual
