@@ -38,7 +38,7 @@ proxies:
 
 proxy-groups:
 
-  - name: Manual
+  - name: 手动模式
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - TYO
@@ -47,10 +47,10 @@ proxy-groups:
       - CF3
       - VPS1
       - VPS2
-      - Automatic
+      - 自动模式
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: Automatic
+  - name: 自动模式
     type: url-test
     proxies:
       - Anycast-1
@@ -94,20 +94,20 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,GPT
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,Manual       # Tidal
-  - DOMAIN-KEYWORD,spotify,Manual     # Spotify
-  - DOMAIN-KEYWORD,scdn,Manual        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Manual       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Manual   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Manual
+  - DOMAIN-KEYWORD,tidal,手动模式       # Tidal
+  - DOMAIN-KEYWORD,spotify,手动模式     # Spotify
+  - DOMAIN-KEYWORD,scdn,手动模式        # Spotify
+  - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,手动模式
 
   # 国外网络
-  - DOMAIN-KEYWORD,google,Manual
-  - DOMAIN-KEYWORD,facebook,Manual
-  - DOMAIN-KEYWORD,youtube,Manual
-  - DOMAIN-KEYWORD,twitter,Manual
-  - DOMAIN-KEYWORD,tiktok,Manual
-  - DOMAIN-SUFFIX,x.com,Manual
+  - DOMAIN-KEYWORD,google,手动模式
+  - DOMAIN-KEYWORD,facebook,手动模式
+  - DOMAIN-KEYWORD,youtube,手动模式
+  - DOMAIN-KEYWORD,twitter,手动模式
+  - DOMAIN-KEYWORD,tiktok,手动模式
+  - DOMAIN-SUFFIX,x.com,手动模式
   - DOMAIN-KEYWORD,linkedin,JPN
   - DOMAIN-KEYWORD,licdn,JPN
   - DOMAIN-KEYWORD,protechts,JPN
@@ -119,4 +119,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认
-  - MATCH,Manual
+  - MATCH,手动模式
