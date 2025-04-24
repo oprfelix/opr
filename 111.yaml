@@ -27,42 +27,46 @@ proxies:
   - {name: Anycast-4, server: 198.41.218.150, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {name: Anycast-5, server: 162.159.39.134, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Anycast-6, server: 172.64.159.63, port: 8443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-
+  
   # 服务器直连节点（用于特定服务直接访问）
-  - {name: CF1, server: helloworld.fotoman.com, port: 8443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: CF2, server: helloworld.todsm.com, port: 2053, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: CF3, server: helloworld.techtrendparts.com, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: CF1, server: helloworld.fotoman.com, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: CF2, server: helloworld.todsm.com, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: CF3, server: helloworld.techtrendparts.com, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
   # 商用专线（高稳定性，适用于企业或关键任务）
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  
+  - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
+
   # AI 专线（优化 AI 服务访问，如 ChatGPT）
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
 
-  - name: Automatic
-    type: url-test              # 自动 url-test 轮询 load-balance 手动 select
+  - name: 手动模式
+    type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
+      - JPN2
+      - JPN1
+      - VPS1
+      - VPS2
+      - HKG
+      - 自动模式
+    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
+  - name: 自动模式
+    type: url-test
+    proxies:
+      - CF1
+      - CF2
+      - CF3
       - Anycast-1
       - Anycast-2
       - Anycast-3
       - Anycast-4
       - Anycast-5
       - Anycast-6
-      - Manual
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  - name: Manual
-    type: url-test
-    proxies:
-      - CF1
-      - CF2
-      - CF3
-      - VPS1
-      - VPS2
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: GPT
@@ -86,6 +90,7 @@ rules:
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,jomashop,JPN2
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
@@ -97,20 +102,20 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,GPT
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,Automatic       # Tidal
-  - DOMAIN-KEYWORD,spotify,Automatic     # Spotify
-  - DOMAIN-KEYWORD,scdn,Automatic        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Automatic       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Automatic   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Automatic
+  - DOMAIN-KEYWORD,tidal,手动模式       # Tidal
+  - DOMAIN-KEYWORD,spotify,手动模式     # Spotify
+  - DOMAIN-KEYWORD,scdn,手动模式        # Spotify
+  - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,手动模式
 
   # 国外网络
-  - DOMAIN-KEYWORD,google,Automatic
-  - DOMAIN-KEYWORD,facebook,Automatic
-  - DOMAIN-KEYWORD,youtube,Automatic
-  - DOMAIN-KEYWORD,twitter,Automatic
-  - DOMAIN-KEYWORD,tiktok,Automatic
-  - DOMAIN-SUFFIX,x.com,Automatic
+  - DOMAIN-KEYWORD,google,手动模式
+  - DOMAIN-KEYWORD,facebook,手动模式
+  - DOMAIN-KEYWORD,youtube,手动模式
+  - DOMAIN-KEYWORD,twitter,手动模式
+  - DOMAIN-KEYWORD,tiktok,手动模式
+  - DOMAIN-SUFFIX,x.com,手动模式
   - DOMAIN-KEYWORD,linkedin,JPN
   - DOMAIN-KEYWORD,licdn,JPN
   - DOMAIN-KEYWORD,protechts,JPN
@@ -122,4 +127,4 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认
-  - MATCH,Automatic
+  - MATCH,手动模式
