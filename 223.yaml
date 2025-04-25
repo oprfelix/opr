@@ -44,8 +44,8 @@ proxy-groups:
     proxies:
       - 日本专线
       - 美国专线
+      - CDN加速
       - Cloudflare
-      - CDN
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: 日本专线
@@ -64,7 +64,7 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-  - name: CDN
+  - name: CDN加速
     type: url-test
     proxies:
       - Anycast-1
@@ -109,12 +109,12 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,CDN       # Tidal
-  - DOMAIN-KEYWORD,spotify,CDN     # Spotify
-  - DOMAIN-KEYWORD,scdn,CDN        # Spotify
-  - DOMAIN-KEYWORD,qobuz,CDN       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,CDN   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,CDN
+  - DOMAIN-KEYWORD,tidal,CDN加速       # Tidal
+  - DOMAIN-KEYWORD,spotify,CDN加速     # Spotify
+  - DOMAIN-KEYWORD,scdn,CDN加速        # Spotify
+  - DOMAIN-KEYWORD,qobuz,CDN加速       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,CDN加速   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,CDN加速
 
   # 其它
   - DOMAIN-KEYWORD,redd,JPN2
