@@ -127,6 +127,7 @@ rules:
   - DOMAIN-KEYWORD,tiktok,CDN加速
   - DOMAIN-KEYWORD,reddit,CDN加速
   - DOMAIN-KEYWORD,yahoo,CDN加速
+  - DOMAIN-KEYWORD,kickstarter,JPN1
   - DOMAIN-SUFFIX,x.com,VPS2
   - DOMAIN-SUFFIX,grok.com,VPS2
   - DOMAIN-SUFFIX,x.ai,VPS2
