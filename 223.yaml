@@ -85,7 +85,6 @@ rules:
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
-  - DOMAIN-KEYWORD,jomashop,JPN2
   - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-KEYWORD,tencent,DIRECT
@@ -106,6 +105,9 @@ rules:
   - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
   - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
   - DOMAIN-KEYWORD,googlevideo,自动模式
+
+  # 其它
+  - DOMAIN-KEYWORD,redd,JPN2
 
   # 国外网络
   - DOMAIN-KEYWORD,google,手动模式
