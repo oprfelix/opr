@@ -49,7 +49,7 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: 日本专线
-    type: load-balance
+    type: select
     proxies:
       - JPN3
       - JPN2
@@ -57,7 +57,7 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
 
   - name: 美国专线
-    type: url-test
+    type: select
     proxies:
       - CF1
       - CF2
@@ -65,7 +65,7 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: CDN加速
-    type: url-test
+    type: select
     proxies:
       - Anycast-1
       - Anycast-2
@@ -75,7 +75,7 @@ proxy-groups:
       - Anycast-6
     icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
     
-  - name: GPT大语言模型
+  - name: GPT
     type: select
     proxies:
       - VPS1
@@ -90,6 +90,9 @@ proxy-groups:
 
 rules:
 
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
+
   # 自定规则
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
@@ -98,9 +101,6 @@ rules:
   - DOMAIN-SUFFIX,icloud.com,DIRECT
   - DOMAIN-SUFFIX,apple.com,DIRECT
   - DOMAIN-KEYWORD,tencent,DIRECT
-
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
   
   # 大语言模型
   - DOMAIN-KEYWORD,grok,JPN2
@@ -118,6 +118,11 @@ rules:
 
   # 其它
   - DOMAIN-KEYWORD,redd,JPN2
+  - DOMAIN-KEYWORD,linkedin,JPN2
+  - DOMAIN-KEYWORD,licdn,JPN2
+  - DOMAIN-KEYWORD,protechts,JPN2
+  - DOMAIN-KEYWORD,github,JPN2
+  - DOMAIN-KEYWORD,cloudflare,JPN2
 
   # 国外网络
   - DOMAIN-KEYWORD,google,代理分组
@@ -126,11 +131,6 @@ rules:
   - DOMAIN-KEYWORD,twitter,代理分组
   - DOMAIN-KEYWORD,tiktok,代理分组
   - DOMAIN-SUFFIX,x.com,代理分组
-  - DOMAIN-KEYWORD,linkedin,JPN2
-  - DOMAIN-KEYWORD,licdn,JPN2
-  - DOMAIN-KEYWORD,protechts,JPN2
-  - DOMAIN-KEYWORD,github,JPN2
-  - DOMAIN-KEYWORD,cloudflare,JPN2
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
