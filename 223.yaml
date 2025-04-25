@@ -84,6 +84,7 @@ rules:
 
 # 规则列表
 - GEOSITE,gfw,CDN
+- GEOSITE,greatfire,CDN
 - GEOIP,telegram,JPN
 - GEOIP,facebook,JPN
 - GEOIP,private,DIRECT
@@ -92,9 +93,10 @@ rules:
 - GEOSITE,china-list,DIRECT
 - GEOSITE,apple-cn,DIRECT
 - GEOSITE,google-cn,DIRECT
+- GEOSITE,geolocation-!cn,CDN
 - GEOSITE,icloud,DIRECT
 - GEOSITE,tld-cn,DIRECT
 - GEOIP,cn,DIRECT
 
 # 通配规则
-- MATCH,CDN
+- MATCH,DIRECT
