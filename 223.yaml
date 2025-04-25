@@ -64,10 +64,19 @@ proxy-groups:
   - JPN
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
+rule-providers:
+  adblock:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt"
+    path: ./ruleset/easylistchina.txt
+    interval: 86400
+
 rules:
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
+  - RULE-SET,adblock,REJECT
   
   # 最优先：直接连接特定域名/关键词
   - DOMAIN-KEYWORD,lingxing,DIRECT
