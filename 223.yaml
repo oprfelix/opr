@@ -84,9 +84,15 @@ rules:
   - DOMAIN-SUFFIX,x.com,VPS2
   - DOMAIN-SUFFIX,grok.com,VPS2
   - DOMAIN-SUFFIX,x.ai,VPS2
-  - DOMAIN-SUFFIX,openai.com,VPS1
-  - DOMAIN-SUFFIX,chatgpt.com,VPS1
   - DOMAIN-KEYWORD,tiktok,CDN
+
+  # OpenAI
+  - GEOSITE,openai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN
 
   # China-related rules
   - GEOSITE,geolocation-cn,DIRECT
