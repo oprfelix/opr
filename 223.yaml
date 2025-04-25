@@ -30,7 +30,7 @@ proxies:
   # 商用专线（高稳定性，适用于企业或关键任务）
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN1, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
+  - {name: JPN2, server: 47.79.95.99, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
 
   # AI 专线（优化 AI 服务访问，如 ChatGPT）
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
