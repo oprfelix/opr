@@ -36,7 +36,8 @@ proxies:
   # 商用专线（高稳定性，适用于企业或关键任务）
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN1, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
+  - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
+  - {name: JPN3, server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com}}}
 
   # AI 专线（优化 AI 服务访问，如 ChatGPT）
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -44,31 +45,41 @@ proxies:
 
 proxy-groups:
 
-  - name: 手动模式
+  - name: 代理分组
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
-      - JPN2
-      - JPN1
-      - VPS1
-      - VPS2
-      - HKG
-      - 自动模式
+      - 日本专线
+      - 美国专线
+      - CDN加速
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: 自动模式
-    type: url-test
+  - name: 日本专线
+    type: select
+    proxies:
+      - JPN3
+      - JPN2
+      - JPN1
+    icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
+
+  - name: 美国专线
+    type: select
     proxies:
       - CF1
       - CF2
       - CF3
+    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
+
+  - name: CDN加速
+    type: select
+    proxies:
       - Anycast-1
       - Anycast-2
       - Anycast-3
       - Anycast-4
       - Anycast-5
       - Anycast-6
-    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
-
+    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
+    
   - name: GPT
     type: select
     proxies:
@@ -80,52 +91,55 @@ proxy-groups:
     type: select
     proxies:
       - HKG
-      - JPN1
-      - JPN2
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
+
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
 
   # 自定规则
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
-  - DOMAIN-KEYWORD,jomashop,JPN2
-
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
+  - DOMAIN-KEYWORD,tencent,DIRECT
   
   # 大语言模型
-  - DOMAIN-KEYWORD,grok,JPN1
-  - DOMAIN-SUFFIX,x.ai,JPN1
-  - DOMAIN-KEYWORD,openai,GPT
-  - DOMAIN-KEYWORD,chatgpt,GPT
+  - DOMAIN-KEYWORD,grok,JPN2
+  - DOMAIN-SUFFIX,x.ai,JPN2
+  - DOMAIN-KEYWORD,openai,JPN2
+  - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,手动模式       # Tidal
-  - DOMAIN-KEYWORD,spotify,手动模式     # Spotify
-  - DOMAIN-KEYWORD,scdn,手动模式        # Spotify
-  - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,手动模式
+  - DOMAIN-KEYWORD,tidal,CDN加速       # Tidal
+  - DOMAIN-KEYWORD,spotify,CDN加速     # Spotify
+  - DOMAIN-KEYWORD,scdn,CDN加速        # Spotify
+  - DOMAIN-KEYWORD,qobuz,CDN加速       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,CDN加速   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,CDN加速
+
+  # 其它
+  - DOMAIN-KEYWORD,redd,JPN2
+  - DOMAIN-KEYWORD,linkedin,JPN2
+  - DOMAIN-KEYWORD,licdn,JPN2
+  - DOMAIN-KEYWORD,protechts,JPN2
+  - DOMAIN-KEYWORD,github,JPN2
+  - DOMAIN-KEYWORD,cloudflare,JPN2
 
   # 国外网络
-  - DOMAIN-KEYWORD,google,手动模式
-  - DOMAIN-KEYWORD,facebook,手动模式
-  - DOMAIN-KEYWORD,youtube,手动模式
-  - DOMAIN-KEYWORD,twitter,手动模式
-  - DOMAIN-KEYWORD,tiktok,手动模式
-  - DOMAIN-SUFFIX,x.com,手动模式
-  - DOMAIN-KEYWORD,linkedin,JPN1
-  - DOMAIN-KEYWORD,licdn,JPN1
-  - DOMAIN-KEYWORD,protechts,JPN1
-  - DOMAIN-KEYWORD,github,JPN1
-  - DOMAIN-KEYWORD,cloudflare,JPN1
+  - DOMAIN-KEYWORD,google,代理分组
+  - DOMAIN-KEYWORD,facebook,代理分组
+  - DOMAIN-KEYWORD,youtube,代理分组
+  - DOMAIN-KEYWORD,twitter,代理分组
+  - DOMAIN-KEYWORD,tiktok,代理分组
+  - DOMAIN-SUFFIX,x.com,代理分组
 
   # 国内直连
   - GEOSITE,geolocation-cn,DIRECT
   - GEOIP,cn,DIRECT
   
   # 默认
-  - MATCH,手动模式
+  - MATCH,代理分组
