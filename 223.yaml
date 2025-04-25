@@ -77,6 +77,13 @@ rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
+
+  # 需要代理的特定域名/关键词 (香港)
+  - DOMAIN-KEYWORD,linkedin,HKG
+  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,cloudflare,HKG
   
   # 最优先：直接连接特定域名/关键词
   - DOMAIN-KEYWORD,lingxing,DIRECT
@@ -105,13 +112,6 @@ rules:
   - DOMAIN-SUFFIX,auth0.openai.com,JPN
   - DOMAIN,api.openai.com,JPN
   - DOMAIN,chat.openai.com,JPN
-
-  # 需要代理的特定域名/关键词 (香港)
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,cloudflare,HKG
 
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,JPN
