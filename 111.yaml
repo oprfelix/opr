@@ -1,132 +1,194 @@
-mixed-port: 7890
-allow-lan: false
 mode: rule
-log-level: debug
-external-controller: 127.0.0.1:9090
-ipv6: true
-
+mixed-port: 7897
+allow-lan: false
+log-level: info
+ipv6: false
+external-controller: 127.0.0.1:9097
+secret: ''
+unified-delay: true
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - '*'
+bind-address: 127.0.0.1
+geo-auto-update: true
 geodata-mode: true
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-
+geo-update-interval: 168
+profile:
+  store-selected: true
 dns:
   enable: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   nameserver:
-    - https://1.1.1.1/dns-query
-    - 1.1.1.1
-
+  - https://223.6.6.6/dns-query
+  - 223.6.6.6
+  use-system-hosts: false
+geox-url:
+  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+tun:
+  enable: false
+  stack: gvisor
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
 proxies:
-  # 欧美加速节点（适用于高带宽需求，如视频流媒体）
-  - {name: Anycast-1, server: 172.64.159.63, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Anycast-2, server: 141.101.120.75, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Anycast-3, server: 162.159.247.186, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: Anycast-4, server: 198.41.218.150, port: 2087, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Anycast-5, server: 162.159.39.134, port: 2096, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Anycast-6, server: 172.64.159.63, port: 8443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  
-  # 服务器直连节点（用于特定服务直接访问）
-  - {name: CF1, server: helloworld.fotoman.com, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: CF2, server: helloworld.todsm.com, port: 443, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: CF3, server: helloworld.techtrendparts.com, port: 443, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  
-  # 商用专线（高稳定性，适用于企业或关键任务）
-  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN1, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN2, server: izpghjswwyeo.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1a7bb8e0-6cc8-42ff-b20a-a3b01a83f8cd, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: izpghjswwyeo.ap-northeast-1.clawcloudrun.com}}}
-  - {name: JPN3, server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com}}}
-
-  # AI 专线（优化 AI 服务访问，如 ChatGPT）
-  - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-
+- name: Anycast-1
+  server: 172.67.126.165
+  port: 443
+  type: vless
+  uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
+  tls: true
+  skip-cert-verify: false
+  servername: helloworld.fotoman.com
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: helloworld.fotoman.com
+- name: Anycast-2
+  server: 104.19.243.213
+  port: 2053
+  type: vless
+  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+  tls: true
+  skip-cert-verify: false
+  servername: helloworld.techtrendparts.com
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: helloworld.techtrendparts.com
+- name: Anycast-3
+  server: 104.17.155.156
+  port: 2083
+  type: vless
+  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+  tls: true
+  skip-cert-verify: false
+  servername: helloworld.todsm.com
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: helloworld.todsm.com
+- name: HKG
+  server: work.fotoman.com
+  port: 36342
+  type: vless
+  uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
+  tls: true
+  skip-cert-verify: false
+  servername: work.fotoman.com
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: bing.com
+- name: JPN
+  server: tky.todsm.com
+  port: 11121
+  type: vless
+  uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059
+  tls: true
+  skip-cert-verify: false
+  servername: tky.todsm.com
+  network: ws
+  ws-opts:
+    path: /?ed=2048
+    headers:
+      Host: bing.com
+- name: VPS1
+  server: us1.fotoman.com
+  port: 46456
+  type: vless
+  uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5
+  tls: true
+  skip-cert-verify: false
+  servername: us1.fotoman.com
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: bing.com
+- name: VPS2
+  server: us2.fotoman.com
+  port: 17468
+  type: vless
+  uuid: 2c383049-92d5-4599-d086-2d0eb404cae9
+  tls: true
+  skip-cert-verify: false
+  servername: us2.fotoman.com
+  network: ws
+  ws-opts:
+    path: /?ed=2560
+    headers:
+      Host: bing.com
+- name: TR1
+  server: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
+  port: 80
+  type: vless
+  uuid: d2727dd8-65d4-4b13-a8f7-59caf2e277ef
+  tls: false
+  skip-cert-verify: true
+  servername: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
+- name: TR2
+  server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com
+  port: 80
+  type: vless
+  uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18
+  tls: false
+  skip-cert-verify: true
+  servername: bing.com
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com
 proxy-groups:
-
-  - name: 代理分组
-    type: select              # 自动 url-test 轮询 load-balance 手动 select
-    proxies:
-      - CDN加速
-      - 日本专线
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  - name: CDN加速
-    type: load-balance
-    proxies:
-      - Anycast-1
-      - Anycast-2
-      - Anycast-3
-      - Anycast-4
-      - Anycast-5
-      - Anycast-6
-      - CF1
-      - CF2
-      - CF3
-      - VPS1
-      - VPS2
-    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
-
-  - name: 日本专线
-    type: url-test
-    proxies:
-      - JPN3
-      - JPN2
-      - JPN1
-    icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
-
-  - name: GPT
-    type: url-test
-    proxies:
-      - VPS1
-      - VPS2
-    icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-
-  - name: GROK
-    type: url-test
-    proxies:
-      - HKG
-    icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
-
+- name: CDN
+  type: url-test
+  proxies:
+  - Anycast-1
+  - Anycast-2
+  - Anycast-3
+  icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+- name: GPT
+  type: url-test
+  proxies:
+  - VPS1
+  - VPS2
+  icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
+- name: GROK
+  type: url-test
+  proxies:
+  - HKG
+  - JPN
+  icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 rules:
-
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
-
-  # 自定规则
-  - DOMAIN-KEYWORD,lingxing,DIRECT
-  - DOMAIN-KEYWORD,apollo,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
-
-
-  # 串流媒体
-  - DOMAIN-KEYWORD,tidal,CDN加速       # Tidal
-  - DOMAIN-KEYWORD,spotify,CDN加速     # Spotify
-  - DOMAIN-KEYWORD,scdn,CDN加速        # Spotify
-  - DOMAIN-KEYWORD,qobuz,CDN加速       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,CDN加速   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,CDN加速
-
-  # 其它
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,cloudflare,HKG
-
-  # 国外网络
-  - DOMAIN-KEYWORD,google,代理分组
-  - DOMAIN-KEYWORD,facebook,代理分组
-  - DOMAIN-KEYWORD,youtube,代理分组
-  - DOMAIN-KEYWORD,twitter,代理分组
-  - DOMAIN-KEYWORD,tiktok,代理分组
-  - DOMAIN-SUFFIX,x.com,代理分组
-
-  # 国内直连
-  - GEOSITE,geolocation-cn,DIRECT
-  - GEOIP,cn,DIRECT
-  
-  # 默认
-  - MATCH,代理分组
+- GEOSITE,category-ads-all,REJECT
+- DOMAIN-KEYWORD,lingxing,DIRECT
+- DOMAIN-KEYWORD,apollo,DIRECT
+- DOMAIN-KEYWORD,qq,DIRECT
+- DOMAIN-KEYWORD,quanmaitong,DIRECT
+- DOMAIN-KEYWORD,linkedin,HKG
+- DOMAIN-KEYWORD,licdn,HKG
+- DOMAIN-KEYWORD,protechts,HKG
+- DOMAIN-KEYWORD,github,HKG
+- DOMAIN-KEYWORD,cloudflare,HKG
+- DOMAIN-KEYWORD,kickstarter,JPN
+- DOMAIN-SUFFIX,x.com,VPS2
+- DOMAIN-SUFFIX,grok.com,VPS2
+- DOMAIN-SUFFIX,x.ai,VPS2
+- DOMAIN-SUFFIX,openai.com,VPS1
+- DOMAIN-SUFFIX,chatgpt.com,VPS1
+- GEOSITE,geolocation-cn,DIRECT
+- GEOIP,cn,DIRECT
+- MATCH,CDN
