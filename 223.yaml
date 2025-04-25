@@ -86,6 +86,8 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,jomashop,JPN2
+  - DOMAIN-SUFFIX,icloud.com,DIRECT
+  - DOMAIN-SUFFIX,apple.com,DIRECT
 
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
