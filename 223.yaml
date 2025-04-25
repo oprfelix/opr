@@ -109,12 +109,12 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,自动模式       # Tidal
-  - DOMAIN-KEYWORD,spotify,自动模式     # Spotify
-  - DOMAIN-KEYWORD,scdn,自动模式        # Spotify
-  - DOMAIN-KEYWORD,qobuz,自动模式       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,自动模式   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,自动模式
+  - DOMAIN-KEYWORD,tidal,Cloudfalre CDN       # Tidal
+  - DOMAIN-KEYWORD,spotify,Cloudfalre CDN     # Spotify
+  - DOMAIN-KEYWORD,scdn,Cloudfalre CDN        # Spotify
+  - DOMAIN-KEYWORD,qobuz,Cloudfalre CDN       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,Cloudfalre CDN   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,Cloudfalre CDN
 
   # 其它
   - DOMAIN-KEYWORD,redd,JPN2
