@@ -61,8 +61,10 @@ proxy-groups:
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 rules:
 
-# 常用规则
+# 屏蔽广告
 - GEOSITE,category-ads-all,REJECT
+
+# 自定规则
 - DOMAIN-KEYWORD,lingxing,DIRECT
 - DOMAIN-KEYWORD,apollo,DIRECT
 - DOMAIN-KEYWORD,qq,DIRECT
@@ -80,7 +82,18 @@ rules:
 - DOMAIN-SUFFIX,chatgpt.com,VPS1
 
 # 规则列表
+- GEOSITE,gfw,CDN
 - GEOIP,telegram,JPN
+- GEOIP,facebook,JPN
+- GEOIP,private,DIRECT
 - GEOSITE,geolocation-cn,DIRECT
+- GEOSITE,cn,DIRECT
+- GEOSITE,china-list,DIRECT
+- GEOSITE,apple-cn,DIRECT
+- GEOSITE,google-cn,DIRECT
+- GEOSITE,icloud,DIRECT
+- GEOSITE,tld-cn,DIRECT
 - GEOIP,cn,DIRECT
+
+# 通配规则
 - MATCH,CDN
