@@ -43,9 +43,9 @@ proxy-groups:
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - 日本专线
-      - GPT大语言模型
+      - 美国专线
       - Cloudflare
-      - Cloudfalre CDN
+      - CDN
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: 日本专线
@@ -56,7 +56,7 @@ proxy-groups:
       - JPN1
     icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
 
-  - name: Cloudflare
+  - name: 美国专线
     type: url-test
     proxies:
       - CF1
@@ -64,7 +64,7 @@ proxy-groups:
       - CF3
     icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
-  - name: Cloudflare CDN
+  - name: CDN
     type: url-test
     proxies:
       - Anycast-1
@@ -109,12 +109,12 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,Cloudfalre CDN       # Tidal
-  - DOMAIN-KEYWORD,spotify,Cloudfalre CDN     # Spotify
-  - DOMAIN-KEYWORD,scdn,Cloudfalre CDN        # Spotify
-  - DOMAIN-KEYWORD,qobuz,Cloudfalre CDN       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,Cloudfalre CDN   # Qobuz
-  - DOMAIN-KEYWORD,googlevideo,Cloudfalre CDN
+  - DOMAIN-KEYWORD,tidal,CDN       # Tidal
+  - DOMAIN-KEYWORD,spotify,CDN     # Spotify
+  - DOMAIN-KEYWORD,scdn,CDN        # Spotify
+  - DOMAIN-KEYWORD,qobuz,CDN       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,CDN   # Qobuz
+  - DOMAIN-KEYWORD,googlevideo,CDN
 
   # 其它
   - DOMAIN-KEYWORD,redd,JPN2
