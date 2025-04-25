@@ -42,14 +42,20 @@ proxy-groups:
   - name: 手动模式
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
-      - JPN3
-      - JPN2
-      - JPN1
+      - 东京
       - VPS1
       - VPS2
       - HKG
       - 自动模式
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
+- name: 东京
+    type: load-balance
+    proxies:
+      - JPN3
+      - JPN2
+      - JPN1
+    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
 
   - name: 自动模式
     type: url-test
@@ -78,6 +84,7 @@ proxy-groups:
       - HKG
       - JPN1
       - JPN2
+      - JPN3
     icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
