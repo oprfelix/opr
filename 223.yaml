@@ -84,6 +84,9 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
+  # 需要代理的特定域名/关键词 (CDN)
+  - DOMAIN-KEYWORD,tiktok,CDN
+
   # 中国大陆相关域名/地理位置
   - GEOSITE,geolocation-cn,DIRECT
   - GEOSITE,china-list,DIRECT
@@ -117,9 +120,6 @@ rules:
   - DOMAIN-SUFFIX,x.com,VPS2
   - DOMAIN-SUFFIX,grok.com,VPS2
   - DOMAIN-SUFFIX,x.ai,VPS2
-
-  # 需要代理的特定域名/关键词 (CDN)
-  - DOMAIN-KEYWORD,tiktok,CDN
 
   # 全球代理规则 (CDN)
   - GEOSITE,gfw,CDN
