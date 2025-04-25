@@ -65,36 +65,17 @@ proxy-groups:
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 
 rules:
-  # Ad blocking
-  - GEOSITE,category-ads-all,REJECT
 
-  # Custom direct rules
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
+  
+  # 最优先：直接连接特定域名/关键词
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
-  # Custom proxy rules
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,cloudflare,HKG
-  - DOMAIN-KEYWORD,kickstarter,JPN
-  - DOMAIN-SUFFIX,x.com,VPS2
-  - DOMAIN-SUFFIX,grok.com,VPS2
-  - DOMAIN-SUFFIX,x.ai,VPS2
-  - DOMAIN-KEYWORD,tiktok,CDN
-
-  # OpenAI
-  - GEOSITE,openai,JPN
-  - DOMAIN-SUFFIX,openai.com,JPN
-  - DOMAIN-SUFFIX,chatgpt.com,JPN
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN
-  - DOMAIN,api.openai.com,JPN
-  - DOMAIN,chat.openai.com,JPN
-
-  # China-related rules
+  # 中国大陆相关域名/地理位置
   - GEOSITE,geolocation-cn,DIRECT
   - GEOSITE,china-list,DIRECT
   - GEOSITE,apple-cn,DIRECT
@@ -105,12 +86,40 @@ rules:
   - GEOSITE,cn,DIRECT
   - GEOIP,cn,DIRECT
 
-  # Global proxy rules
+  # OpenAI 相关域名/地理位置
+  - GEOSITE,openai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN
+
+  # 需要代理的特定域名/关键词 (香港)
+  - DOMAIN-KEYWORD,linkedin,HKG
+  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,cloudflare,HKG
+
+  # 需要代理的特定域名/关键词 (日本)
+  - DOMAIN-KEYWORD,kickstarter,JPN
+
+  # 需要代理的特定域名后缀 (VPS2)
+  - DOMAIN-SUFFIX,x.com,VPS2
+  - DOMAIN-SUFFIX,grok.com,VPS2
+  - DOMAIN-SUFFIX,x.ai,VPS2
+
+  # 需要代理的特定域名/关键词 (CDN)
+  - DOMAIN-KEYWORD,tiktok,CDN
+
+  # 全球代理规则 (CDN)
   - GEOSITE,gfw,CDN
   - GEOSITE,greatfire,CDN
-  - GEOIP,telegram,JPN
-  - GEOIP,facebook,JPN
   - GEOSITE,geolocation-!cn,CDN
 
-  # Fallback rule
+  # 全球代理规则 (日本)
+  - GEOIP,telegram,JPN
+  - GEOIP,facebook,JPN
+
+  # 默认规则
   - MATCH,DIRECT
