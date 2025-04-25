@@ -58,6 +58,8 @@ proxy-groups:
       - CF1
       - CF2
       - CF3
+      - VPS1
+      - VPS2
     icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
 
   - name: 日本专线
