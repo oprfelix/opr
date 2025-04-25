@@ -1,24 +1,39 @@
-mixed-port: 7890
-bind-address: 127.0.0.1
-allow-lan: true
 mode: rule
+mixed-port: 7897
+allow-lan: false
 log-level: info
-external-controller: 127.0.0.1:9090
-ipv6: true
-
-geodata-mode: true
+ipv6: false
+external-controller: 127.0.0.1:9097
+secret: ''
+unified-delay: true
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - '*'
+bind-address: 127.0.0.1
 geo-auto-update: true
-geo-update-interval: 168  # Update every 7 days
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-
+geodata-mode: true
+geo-update-interval: 168
+profile:
+  store-selected: true
 dns:
   enable: true
   listen: 0.0.0.0:1053
   nameserver:
-    - https://223.6.6.6/dns-query
-    - 223.6.6.6
+  - https://223.6.6.6/dns-query
+  - 223.6.6.6
+  use-system-hosts: false
+geox-url:
+  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+tun:
+  enable: false
+  stack: gvisor
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
     
 proxies:
   
@@ -37,67 +52,42 @@ proxies:
   - {name: TR2, server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com}}}
 
 proxy-groups:
-
-  - name: VPN代理分组
-    type: select              # 自动 url-test 轮询 load-balance 手动 select
-    proxies:
-      - CDN
-      - GPT
-      - GROK
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  - name: CDN
-    type: url-test
-    proxies:
-      - Anycast-1
-      - Anycast-2
-      - Anycast-3
-    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
-
-  - name: GPT
-    type: url-test
-    proxies:
-      - VPS1
-      - VPS2
-    icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-
-  - name: GROK
-    type: url-test
-    proxies:
-      - HKG
-      - JPN
-    icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
-
-
+- name: CDN
+  type: url-test
+  proxies:
+  - Anycast-1
+  - Anycast-2
+  - Anycast-3
+  icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+- name: GPT
+  type: url-test
+  proxies:
+  - VPS1
+  - VPS2
+  icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
+- name: GROK
+  type: url-test
+  proxies:
+  - HKG
+  - JPN
+  icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 rules:
-
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
-
-  # 自定规则
-  - DOMAIN-KEYWORD,lingxing,DIRECT
-  - DOMAIN-KEYWORD,apollo,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
-
-  # 其它
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,cloudflare,HKG
-  - DOMAIN-KEYWORD,kickstarter,JPN
-  
-  # 国外网络
-  - DOMAIN-SUFFIX,x.com,VPS2
-  - DOMAIN-SUFFIX,grok.com,VPS2
-  - DOMAIN-SUFFIX,x.ai,VPS2
-  - DOMAIN-SUFFIX,openai.com,VPS1
-  - DOMAIN-SUFFIX,chatgpt.com,VPS1
-
-  # 国内直连
-  - GEOSITE,geolocation-cn,DIRECT
-  - GEOIP,cn,DIRECT
-  
-  # 默认
-  - MATCH,CDN
+- GEOSITE,category-ads-all,REJECT
+- DOMAIN-KEYWORD,lingxing,DIRECT
+- DOMAIN-KEYWORD,apollo,DIRECT
+- DOMAIN-KEYWORD,qq,DIRECT
+- DOMAIN-KEYWORD,quanmaitong,DIRECT
+- DOMAIN-KEYWORD,linkedin,HKG
+- DOMAIN-KEYWORD,licdn,HKG
+- DOMAIN-KEYWORD,protechts,HKG
+- DOMAIN-KEYWORD,github,HKG
+- DOMAIN-KEYWORD,cloudflare,HKG
+- DOMAIN-KEYWORD,kickstarter,JPN
+- DOMAIN-SUFFIX,x.com,VPS2
+- DOMAIN-SUFFIX,grok.com,VPS2
+- DOMAIN-SUFFIX,x.ai,VPS2
+- DOMAIN-SUFFIX,openai.com,VPS1
+- DOMAIN-SUFFIX,chatgpt.com,VPS1
+- GEOSITE,geolocation-cn,DIRECT
+- GEOIP,cn,DIRECT
+- MATCH,CDN
