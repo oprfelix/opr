@@ -96,7 +96,7 @@ rules:
 
   # 中国大陆相关域名/地理位置
   - GEOSITE,geolocation-cn,DIRECT
-  - GEOSITE,china-list,DIRECT
+ # - GEOSITE,china-list,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,google-cn,DIRECT
   - GEOSITE,icloud,DIRECT
