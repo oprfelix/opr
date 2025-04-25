@@ -55,7 +55,7 @@ proxy-groups:
       - JPN3
       - JPN2
       - JPN1
-    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
 
   - name: 自动模式
     type: url-test
