@@ -42,14 +42,14 @@ proxy-groups:
   - name: 手动模式
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
-      - 东京
+      - 东京漂移
       - VPS1
       - VPS2
       - HKG
       - 自动模式
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: 东京
+  - name: 东京漂移
     type: load-balance
     proxies:
       - JPN3
