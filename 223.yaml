@@ -60,6 +60,8 @@ proxy-groups:
   - JPN
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
 rules:
+
+# 常用规则
 - GEOSITE,category-ads-all,REJECT
 - DOMAIN-KEYWORD,lingxing,DIRECT
 - DOMAIN-KEYWORD,apollo,DIRECT
@@ -76,6 +78,9 @@ rules:
 - DOMAIN-SUFFIX,x.ai,VPS2
 - DOMAIN-SUFFIX,openai.com,VPS1
 - DOMAIN-SUFFIX,chatgpt.com,VPS1
+
+# 规则列表
+- GEOIP,telegram,JPN
 - GEOSITE,geolocation-cn,DIRECT
 - GEOIP,cn,DIRECT
 - MATCH,CDN
