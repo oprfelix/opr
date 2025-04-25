@@ -48,10 +48,23 @@ proxy-groups:
   - name: 代理分组
     type: select              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
-      - 日本专线
-      - 美国专线
       - CDN加速
+      - 日本专线
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
+  - name: CDN加速
+    type: load-balance
+    proxies:
+      - Anycast-1
+      - Anycast-2
+      - Anycast-3
+      - Anycast-4
+      - Anycast-5
+      - Anycast-6
+      - CF1
+      - CF2
+      - CF3
+    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
 
   - name: 日本专线
     type: select
@@ -61,25 +74,6 @@ proxy-groups:
       - JPN1
     icon: https://img.icons8.com/?size=100&id=MpGLmNG61Bnx&format=png&color=000000
 
-  - name: 美国专线
-    type: select
-    proxies:
-      - CF1
-      - CF2
-      - CF3
-    icon: https://img.icons8.com/?size=100&id=ZhuIYH27J3x7&format=png&color=000000
-
-  - name: CDN加速
-    type: select
-    proxies:
-      - Anycast-1
-      - Anycast-2
-      - Anycast-3
-      - Anycast-4
-      - Anycast-5
-      - Anycast-6
-    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
-    
   - name: GPT
     type: select
     proxies:
@@ -103,15 +97,7 @@ rules:
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
-  - DOMAIN-SUFFIX,icloud.com,DIRECT
-  - DOMAIN-SUFFIX,apple.com,DIRECT
-  - DOMAIN-KEYWORD,tencent,DIRECT
-  
-  # 大语言模型
-  - DOMAIN-KEYWORD,grok,JPN2
-  - DOMAIN-SUFFIX,x.ai,JPN2
-  - DOMAIN-KEYWORD,openai,JPN2
-  - DOMAIN-KEYWORD,chatgpt,JPN2
+
 
   # 串流媒体
   - DOMAIN-KEYWORD,tidal,CDN加速       # Tidal
@@ -122,12 +108,11 @@ rules:
   - DOMAIN-KEYWORD,googlevideo,CDN加速
 
   # 其它
-  - DOMAIN-KEYWORD,redd,JPN2
-  - DOMAIN-KEYWORD,linkedin,JPN2
-  - DOMAIN-KEYWORD,licdn,JPN2
-  - DOMAIN-KEYWORD,protechts,JPN2
-  - DOMAIN-KEYWORD,github,JPN2
-  - DOMAIN-KEYWORD,cloudflare,JPN2
+  - DOMAIN-KEYWORD,linkedin,HKG
+  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,cloudflare,HKG
 
   # 国外网络
   - DOMAIN-KEYWORD,google,代理分组
