@@ -99,11 +99,11 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,JPN2
 
   # 串流媒体
-  - DOMAIN-KEYWORD,tidal,手动模式       # Tidal
-  - DOMAIN-KEYWORD,spotify,手动模式     # Spotify
-  - DOMAIN-KEYWORD,scdn,手动模式        # Spotify
-  - DOMAIN-KEYWORD,qobuz,手动模式       # Qobuz
-  - DOMAIN-KEYWORD,akamaized,手动模式   # Qobuz
+  - DOMAIN-KEYWORD,tidal,自动模式       # Tidal
+  - DOMAIN-KEYWORD,spotify,自动模式     # Spotify
+  - DOMAIN-KEYWORD,scdn,自动模式        # Spotify
+  - DOMAIN-KEYWORD,qobuz,自动模式       # Qobuz
+  - DOMAIN-KEYWORD,akamaized,自动模式   # Qobuz
   - DOMAIN-KEYWORD,googlevideo,自动模式
 
   # 其它
