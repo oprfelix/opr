@@ -6,27 +6,31 @@ ipv6: false
 external-controller: 127.0.0.1:9097
 secret: ''
 unified-delay: true
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - '*'
 bind-address: 127.0.0.1
 geo-auto-update: true
 geodata-mode: true
 geo-update-interval: 168
+
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+    - '*'
+
 profile:
   store-selected: true
+
 dns:
   enable: true
   listen: 0.0.0.0:1053
   nameserver:
-  - https://223.6.6.6/dns-query
-  - 223.6.6.6
+    - https://223.6.6.6/dns-query
+    - 223.6.6.6
   use-system-hosts: false
+
 geox-url:
   geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
   geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
-    
+
 proxies:
   
   - {name: Anycast-1, server: 172.67.126.165, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
@@ -59,44 +63,48 @@ proxy-groups:
   - HKG
   - JPN
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
+
 rules:
+  # Ad blocking
+  - GEOSITE,category-ads-all,REJECT
 
-# 屏蔽广告
-- GEOSITE,category-ads-all,REJECT
+  # Custom direct rules
+  - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
-# 自定规则
-- DOMAIN-KEYWORD,lingxing,DIRECT
-- DOMAIN-KEYWORD,apollo,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,linkedin,HKG
-- DOMAIN-KEYWORD,licdn,HKG
-- DOMAIN-KEYWORD,protechts,HKG
-- DOMAIN-KEYWORD,github,HKG
-- DOMAIN-KEYWORD,cloudflare,HKG
-- DOMAIN-KEYWORD,kickstarter,JPN
-- DOMAIN-SUFFIX,x.com,VPS2
-- DOMAIN-SUFFIX,grok.com,VPS2
-- DOMAIN-SUFFIX,x.ai,VPS2
-- DOMAIN-SUFFIX,openai.com,VPS1
-- DOMAIN-SUFFIX,chatgpt.com,VPS1
-- DOMAIN-KEYWORD,tiktok,CDN
+  # Custom proxy rules
+  - DOMAIN-KEYWORD,linkedin,HKG
+  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,cloudflare,HKG
+  - DOMAIN-KEYWORD,kickstarter,JPN
+  - DOMAIN-SUFFIX,x.com,VPS2
+  - DOMAIN-SUFFIX,grok.com,VPS2
+  - DOMAIN-SUFFIX,x.ai,VPS2
+  - DOMAIN-SUFFIX,openai.com,VPS1
+  - DOMAIN-SUFFIX,chatgpt.com,VPS1
+  - DOMAIN-KEYWORD,tiktok,CDN
 
-# 规则列表
-- GEOSITE,gfw,CDN
-- GEOSITE,greatfire,CDN
-- GEOIP,telegram,JPN
-- GEOIP,facebook,JPN
-- GEOIP,private,DIRECT
-- GEOSITE,geolocation-cn,DIRECT
-- GEOSITE,cn,DIRECT
-- GEOSITE,china-list,DIRECT
-- GEOSITE,apple-cn,DIRECT
-- GEOSITE,google-cn,DIRECT
-- GEOSITE,geolocation-!cn,CDN
-- GEOSITE,icloud,DIRECT
-- GEOSITE,tld-cn,DIRECT
-- GEOIP,cn,DIRECT
+  # China-related rules
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOSITE,china-list,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,icloud,DIRECT
+  - GEOSITE,tld-cn,DIRECT
+  - GEOIP,private,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,cn,DIRECT
 
-# 通配规则
-- MATCH,DIRECT
+  # Global proxy rules
+  - GEOSITE,gfw,CDN
+  - GEOSITE,greatfire,CDN
+  - GEOIP,telegram,JPN
+  - GEOIP,facebook,JPN
+  - GEOSITE,geolocation-!cn,CDN
+
+  # Fallback rule
+  - MATCH,DIRECT
