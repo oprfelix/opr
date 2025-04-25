@@ -126,6 +126,7 @@ rules:
   - DOMAIN-KEYWORD,twitter,VPS2
   - DOMAIN-KEYWORD,tiktok,CDN加速
   - DOMAIN-KEYWORD,reddit,CDN加速
+  - DOMAIN-KEYWORD,yahoo,CDN加速
   - DOMAIN-SUFFIX,x.com,VPS2
   - DOMAIN-SUFFIX,grok.com,VPS2
   - DOMAIN-SUFFIX,x.ai,VPS2
@@ -137,5 +138,5 @@ rules:
   - GEOIP,cn,DIRECT
   
   # 默认
-  - MATCH,DIRECT
+  - MATCH,HKG
 
