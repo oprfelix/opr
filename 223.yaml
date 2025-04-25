@@ -26,14 +26,6 @@ dns:
 geox-url:
   geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
   geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
-tun:
-  enable: false
-  stack: gvisor
-  auto-route: true
-  strict-route: false
-  auto-detect-interface: true
-  dns-hijack:
-  - any:53
     
 proxies:
   
@@ -47,10 +39,6 @@ proxies:
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   
-  # 测试线路
-  - {name: TR1, server: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com, port: 80, type: vless, uuid: d2727dd8-65d4-4b13-a8f7-59caf2e277ef, tls: false, skip-cert-verify: true, servername: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com, network: ws, ws-opts: {path: "/", headers: {Host: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com}}}
-  - {name: TR2, server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com, port: 80, type: vless, uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18, tls: false, skip-cert-verify: true, servername: bing.com, network: ws, ws-opts: {path: "/", headers: {Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com}}}
-
 proxy-groups:
 - name: CDN
   type: url-test
