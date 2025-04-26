@@ -57,7 +57,7 @@ proxy-groups:
   - VPS1
   - VPS2
   icon: https://img.icons8.com/?size=100&id=wSyvqE7d5vFL&format=png&color=000000
-- name: GROK
+- name: BIZ
   type: url-test
   proxies:
   - HKG
@@ -79,13 +79,13 @@ rules:
   - RULE-SET,adblock,REJECT
 
   # 需要代理的特定域名/关键词 (香港)
-  - DOMAIN-KEYWORD,linkedin,JPN
-  - DOMAIN-KEYWORD,licdn,JPN
-  - DOMAIN-KEYWORD,protechts,JPN
-  - DOMAIN-KEYWORD,github,JPN
-  - DOMAIN-KEYWORD,cloudflare,JPN
-  - DOMAIN-KEYWORD,discord,JPN
-  - DOMAIN-KEYWORD,quora,JPN
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protechts,BIZ
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,discord,BIZ
+  - DOMAIN-KEYWORD,quora,BIZ
   
   # 最优先：直接连接特定域名/关键词
   - DOMAIN-KEYWORD,lingxing,DIRECT
@@ -108,20 +108,20 @@ rules:
   - GEOIP,cn,DIRECT
 
   # OpenAI 相关域名/地理位置
-  - GEOSITE,openai,JPN
-  - DOMAIN-SUFFIX,openai.com,JPN
-  - DOMAIN-SUFFIX,chatgpt.com,JPN
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN
-  - DOMAIN,api.openai.com,JPN
-  - DOMAIN,chat.openai.com,JPN
+  - GEOSITE,openai,BIZ
+  - DOMAIN-SUFFIX,openai.com,BIZ
+  - DOMAIN-SUFFIX,chatgpt.com,BIZ
+  - DOMAIN-SUFFIX,auth0.openai.com,BIZ
+  - DOMAIN,api.openai.com,BIZ
+  - DOMAIN,chat.openai.com,BIZ
 
   # 需要代理的特定域名/关键词 (日本)
-  - DOMAIN-KEYWORD,kickstarter,JPN
+  - DOMAIN-KEYWORD,kickstarter,BIZ
 
-  # 需要代理的特定域名后缀 (JPN)
-  - DOMAIN-SUFFIX,x.com,JPN
-  - DOMAIN-SUFFIX,grok.com,JPN
-  - DOMAIN-SUFFIX,x.ai,JPN
+  # 需要代理的特定域名后缀 (BIZ)
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,grok.com,BIZ
+  - DOMAIN-SUFFIX,x.ai,BIZ
 
   # 全球代理规则 (CDN)
   - GEOSITE,gfw,CDN
@@ -129,8 +129,8 @@ rules:
   - GEOSITE,geolocation-!cn,CDN
 
   # 全球代理规则 (日本)
-  - GEOIP,telegram,JPN
-  - GEOIP,facebook,JPN
+  - GEOIP,telegram,BIZ
+  - GEOIP,facebook,BIZ
 
   # 默认规则
   - MATCH,DIRECT
