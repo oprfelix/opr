@@ -6,152 +6,43 @@ ipv6: false
 external-controller: 127.0.0.1:9097
 secret: ''
 unified-delay: true
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - '*'
 bind-address: 127.0.0.1
 geo-auto-update: true
 geodata-mode: true
 geo-update-interval: 168
+
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+    - '*'
+
 profile:
   store-selected: true
+
 dns:
   enable: true
   listen: 0.0.0.0:1053
   nameserver:
-  - https://223.6.6.6/dns-query
-  - 223.6.6.6
+    - https://1.12.12.12/dns-query
+    - 119.28.28.28
   use-system-hosts: false
+
 geox-url:
   geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
   geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
-tun:
-  enable: false
-  stack: gvisor
-  auto-route: true
-  strict-route: false
-  auto-detect-interface: true
-  dns-hijack:
-  - any:53
+
 proxies:
-- name: Anycast-1
-  server: 172.67.126.165
-  port: 443
-  type: vless
-  uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3
-  tls: true
-  skip-cert-verify: false
-  servername: helloworld.fotoman.com
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: helloworld.fotoman.com
-- name: Anycast-2
-  server: 104.19.243.213
-  port: 2053
-  type: vless
-  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
-  tls: true
-  skip-cert-verify: false
-  servername: helloworld.techtrendparts.com
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: helloworld.techtrendparts.com
-- name: Anycast-3
-  server: 104.17.155.156
-  port: 2083
-  type: vless
-  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
-  tls: true
-  skip-cert-verify: false
-  servername: helloworld.todsm.com
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: helloworld.todsm.com
-- name: HKG
-  server: work.fotoman.com
-  port: 36342
-  type: vless
-  uuid: 2948257a-90ab-4bf5-995a-62d909e11d40
-  tls: true
-  skip-cert-verify: false
-  servername: work.fotoman.com
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: bing.com
-- name: JPN
-  server: tky.todsm.com
-  port: 11121
-  type: vless
-  uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059
-  tls: true
-  skip-cert-verify: false
-  servername: tky.todsm.com
-  network: ws
-  ws-opts:
-    path: /?ed=2048
-    headers:
-      Host: bing.com
-- name: VPS1
-  server: us1.fotoman.com
-  port: 46456
-  type: vless
-  uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5
-  tls: true
-  skip-cert-verify: false
-  servername: us1.fotoman.com
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: bing.com
-- name: VPS2
-  server: us2.fotoman.com
-  port: 17468
-  type: vless
-  uuid: 2c383049-92d5-4599-d086-2d0eb404cae9
-  tls: true
-  skip-cert-verify: false
-  servername: us2.fotoman.com
-  network: ws
-  ws-opts:
-    path: /?ed=2560
-    headers:
-      Host: bing.com
-- name: TR1
-  server: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
-  port: 80
-  type: vless
-  uuid: d2727dd8-65d4-4b13-a8f7-59caf2e277ef
-  tls: false
-  skip-cert-verify: true
-  servername: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: wlskhfsmkjnp.ap-northeast-1.clawcloudrun.com.com
-- name: TR2
-  server: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com
-  port: 80
-  type: vless
-  uuid: 1b503e56-9bfe-4b2f-ac89-daacce1a0e18
-  tls: false
-  skip-cert-verify: true
-  servername: bing.com
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: eqhxscgrptwc.ap-northeast-1.clawcloudrun.com
+  
+  - {name: Anycast-1, server: 172.67.126.165, port: 443, type: vless, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, tls: true, skip-cert-verify: false, servername: helloworld.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Anycast-2, server: 104.19.243.213, port: 2053, type: vless, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, tls: true, skip-cert-verify: false, servername: helloworld.techtrendparts.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Anycast-3, server: 104.19.18.84, port: 2083, type: vless, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, tls: true, skip-cert-verify: false, servername: helloworld.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+ 
+  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  - {name: JPN, server: tky.todsm.com, port: 11121, type: vless, uuid: ccf8200d-fb62-4b34-f6f5-ce3d9a4dd059, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  
+  - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  
 proxy-groups:
 - name: CDN
   type: url-test
@@ -172,23 +63,72 @@ proxy-groups:
   - HKG
   - JPN
   icon: https://img.icons8.com/?size=100&id=EpVBAlwtrdmW&format=png&color=000000
+
+rule-providers:
+  adblock:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt"
+    path: ./ruleset/easylistchina.txt
+    interval: 86400
+
 rules:
-- GEOSITE,category-ads-all,REJECT
-- DOMAIN-KEYWORD,lingxing,DIRECT
-- DOMAIN-KEYWORD,apollo,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,linkedin,HKG
-- DOMAIN-KEYWORD,licdn,HKG
-- DOMAIN-KEYWORD,protechts,HKG
-- DOMAIN-KEYWORD,github,HKG
-- DOMAIN-KEYWORD,cloudflare,HKG
-- DOMAIN-KEYWORD,kickstarter,JPN
-- DOMAIN-SUFFIX,x.com,VPS2
-- DOMAIN-SUFFIX,grok.com,VPS2
-- DOMAIN-SUFFIX,x.ai,VPS2
-- DOMAIN-SUFFIX,openai.com,VPS1
-- DOMAIN-SUFFIX,chatgpt.com,VPS1
-- GEOSITE,geolocation-cn,DIRECT
-- GEOIP,cn,DIRECT
-- MATCH,CDN
+
+  # 广告拦截
+  - GEOSITE,category-ads-all,REJECT
+  - RULE-SET,adblock,REJECT
+
+  # 需要代理的特定域名/关键词 (香港)
+  - DOMAIN-KEYWORD,linkedin,HKG
+  - DOMAIN-KEYWORD,licdn,HKG
+  - DOMAIN-KEYWORD,protechts,HKG
+  - DOMAIN-KEYWORD,github,HKG
+  - DOMAIN-KEYWORD,cloudflare,HKG
+  
+  # 最优先：直接连接特定域名/关键词
+  - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+
+  # 需要代理的特定域名/关键词 (CDN)
+  - DOMAIN-KEYWORD,tiktok,CDN
+
+  # 中国大陆相关域名/地理位置
+  - GEOSITE,geolocation-cn,DIRECT
+ # - GEOSITE,china-list,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,icloud,DIRECT
+  - GEOSITE,tld-cn,DIRECT
+  - GEOIP,private,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,cn,DIRECT
+
+  # OpenAI 相关域名/地理位置
+  - GEOSITE,openai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN
+
+  # 需要代理的特定域名/关键词 (日本)
+  - DOMAIN-KEYWORD,kickstarter,JPN
+
+  # 需要代理的特定域名后缀 (VPS2)
+  - DOMAIN-SUFFIX,x.com,VPS2
+  - DOMAIN-SUFFIX,grok.com,VPS2
+  - DOMAIN-SUFFIX,x.ai,VPS2
+
+  # 全球代理规则 (CDN)
+  - GEOSITE,gfw,CDN
+  - GEOSITE,greatfire,CDN
+  - GEOSITE,geolocation-!cn,CDN
+
+  # 全球代理规则 (日本)
+  - GEOIP,telegram,JPN
+  - GEOIP,facebook,JPN
+
+  # 默认规则
+  - MATCH,DIRECT
