@@ -78,6 +78,16 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
 
+  # Qobuz 相关域名分流
+  - DOMAIN-SUFFIX,qobuz.com,CDN
+  - DOMAIN,www.qobuz.com,CDN
+  - DOMAIN,api.qobuz.com,CDN
+  - DOMAIN,streaming.qobuz.com,CDN
+  - DOMAIN,download.qobuz.com,CDN
+  - DOMAIN-SUFFIX,cloudfront.net,CDN
+  - DOMAIN-SUFFIX,akamaihd.net,CDN
+  - GEOIP,qobuz,CDN,no-resolve
+
   # 需要代理的特定域名/关键词 (香港)
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
