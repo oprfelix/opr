@@ -79,11 +79,11 @@ rules:
   - RULE-SET,adblock,REJECT
 
   # 需要代理的特定域名/关键词 (香港)
-  - DOMAIN-KEYWORD,linkedin,HKG
-  - DOMAIN-KEYWORD,licdn,HKG
-  - DOMAIN-KEYWORD,protechts,HKG
-  - DOMAIN-KEYWORD,github,HKG
-  - DOMAIN-KEYWORD,cloudflare,HKG
+  - DOMAIN-KEYWORD,linkedin,JPN
+  - DOMAIN-KEYWORD,licdn,JPN
+  - DOMAIN-KEYWORD,protechts,JPN
+  - DOMAIN-KEYWORD,github,JPN
+  - DOMAIN-KEYWORD,cloudflare,JPN
   - DOMAIN-KEYWORD,discord,JPN
   - DOMAIN-KEYWORD,quora,JPN
   
