@@ -78,6 +78,10 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
 
+  # YouTuBe视频分流
+  - DOMAIN-SUFFIX,youtube.com,JPN
+  - DOMAIN-SUFFIX,googlevideo.com,CDN
+
   # Qobuz 相关域名分流
   - DOMAIN-SUFFIX,qobuz.com,CDN
   - DOMAIN,www.qobuz.com,CDN
