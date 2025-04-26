@@ -135,10 +135,15 @@ rules:
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,BIZ
 
-  # 需要代理的特定域名后缀 (BIZ)
-  - DOMAIN-SUFFIX,x.com,BIZ
-  - DOMAIN-SUFFIX,grok.com,BIZ
-  - DOMAIN-SUFFIX,x.ai,BIZ
+  # Grok 域名分流（核心服务）
+  - DOMAIN-SUFFIX,grok.com,JPN
+  - DOMAIN-SUFFIX,x.ai,JPN
+  # Grok IP 地址分流（Cloudflare IPv4）
+  - IP-CIDR,104.18.0.0/20,JPN,no-resolve
+  - IP-CIDR,104.16.0.0/12,JPN,no-resolve
+  - IP-CIDR,172.64.0.0/13,JPN,no-resolve
+  # Grok IP 地址分流（Cloudflare IPv6）
+  - IP-CIDR6,2606:4700::/32,JPN,no-resolve
 
   # 全球代理规则 (CDN)
   - GEOSITE,gfw,CDN
