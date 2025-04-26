@@ -50,6 +50,7 @@ proxy-groups:
   - Anycast-1
   - Anycast-2
   - Anycast-3
+  - LLM
   icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 - name: LLM
   type: url-test
