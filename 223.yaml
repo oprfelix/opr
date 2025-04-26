@@ -86,7 +86,7 @@ rules:
   - DOMAIN,download.qobuz.com,CDN
   - DOMAIN-SUFFIX,cloudfront.net,CDN
   - DOMAIN-SUFFIX,akamaihd.net,CDN
-  - GEOIP,qobuz,CDN,no-resolve
+  #- GEOIP,qobuz,CDN,no-resolve
 
   # 需要代理的特定域名/关键词 (香港)
   - DOMAIN-KEYWORD,linkedin,BIZ
