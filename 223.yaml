@@ -118,12 +118,19 @@ rules:
   - GEOIP,cn,DIRECT
 
   # OpenAI 相关域名/地理位置
-  - GEOSITE,openai,BIZ
-  - DOMAIN-SUFFIX,openai.com,BIZ
-  - DOMAIN-SUFFIX,chatgpt.com,BIZ
-  - DOMAIN-SUFFIX,auth0.openai.com,BIZ
-  - DOMAIN,api.openai.com,BIZ
-  - DOMAIN,chat.openai.com,BIZ
+  - GEOSITE,openai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN
+  # OpenAI IP 地址分流（Cloudflare 和 Azure）
+  - IP-CIDR,104.18.0.0/20,JPN,no-resolve
+  - IP-CIDR,104.16.0.0/12,JPN,no-resolve
+  - IP-CIDR,172.64.0.0/13,JPN,no-resolve
+  - IP-CIDR,20.36.0.0/14,JPN,no-resolve
+  - IP-CIDR,20.150.0.0/15,JPN,no-resolve
+  - IP-CIDR,40.81.0.0/16,JPN,no-resolve
 
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,BIZ
