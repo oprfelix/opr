@@ -79,6 +79,7 @@ rules:
   - RULE-SET,adblock,REJECT
 
   # YouTuBe视频分流
+  - DOMAIN-SUFFIX,google.com,JPN
   - DOMAIN-SUFFIX,youtube.com,JPN
   - DOMAIN-SUFFIX,googlevideo.com,CDN
 
