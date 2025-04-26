@@ -128,8 +128,16 @@ rules:
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
 
-  # 全球代理规则 (日本)
-  - GEOIP,telegram,BIZ
+  # Telegram 相关域名分流
+  - GEOSITE,telegram,BIZ
+  - GEOIP,telegram,BIZ,no-resolve
+  - DOMAIN-SUFFIX,telegram.org,BIZ
+  - DOMAIN-SUFFIX,t.me,BIZ
+  - DOMAIN-SUFFIX,telegra.ph,BIZ
+  - DOMAIN-SUFFIX,telegram.me,BIZ
+  # Telegram API 和媒体服务
+  - DOMAIN,api.telegram.org,BIZ
+  - DOMAIN,media.telegram.org,BIZ
   - GEOIP,facebook,BIZ
 
   # 默认规则
