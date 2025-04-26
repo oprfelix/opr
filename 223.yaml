@@ -118,10 +118,10 @@ rules:
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,JPN
 
-  # 需要代理的特定域名后缀 (VPS2)
-  - DOMAIN-SUFFIX,x.com,VPS2
-  - DOMAIN-SUFFIX,grok.com,VPS2
-  - DOMAIN-SUFFIX,x.ai,VPS2
+  # 需要代理的特定域名后缀 (JPN)
+  - DOMAIN-SUFFIX,x.com,JPN
+  - DOMAIN-SUFFIX,grok.com,JPN
+  - DOMAIN-SUFFIX,x.ai,JPN
 
   # 全球代理规则 (CDN)
   - GEOSITE,gfw,CDN
