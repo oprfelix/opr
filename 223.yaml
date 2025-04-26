@@ -84,6 +84,8 @@ rules:
   - DOMAIN-KEYWORD,protechts,HKG
   - DOMAIN-KEYWORD,github,HKG
   - DOMAIN-KEYWORD,cloudflare,HKG
+  - DOMAIN-KEYWORD,discord,JPN
+  - DOMAIN-KEYWORD,quora,JPN
   
   # 最优先：直接连接特定域名/关键词
   - DOMAIN-KEYWORD,lingxing,DIRECT
