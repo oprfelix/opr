@@ -132,6 +132,19 @@ rules:
   - IP-CIDR,20.150.0.0/15,JPN,no-resolve
   - IP-CIDR,40.81.0.0/16,JPN,no-resolve
 
+  # Gemini 域名分流（核心服务）
+  - DOMAIN-SUFFIX,gemini.google.com,JPN
+  - DOMAIN-SUFFIX,ai.google.dev,JPN
+  - DOMAIN-SUFFIX,generativelanguage.googleapis.com,JPN
+  - DOMAIN-SUFFIX,withgoogle.com,JPN
+  # Gemini IP 地址分流（Google Cloud 和 Cloudflare IPv4）
+  - IP-CIDR,142.250.0.0/15,JPN,no-resolve
+  - IP-CIDR,172.217.0.0/16,JPN,no-resolve
+  - IP-CIDR,104.16.0.0/12,JPN,no-resolve
+  # Gemini IP 地址分流（Google Cloud 和 Cloudflare IPv6）
+  - IP-CIDR6,2607:f8b0::/32,JPN,no-resolve
+  - IP-CIDR6,2606:4700::/32,JPN,no-resolve
+
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,BIZ
 
