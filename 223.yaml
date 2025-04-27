@@ -62,42 +62,29 @@ rule-providers:
     path: ./ruleset/easylistchina.txt
     interval: 86400
 
+# Clash Meta 配置文件 - 规则部分
 rules:
-
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
 
-  # 需要代理的特定域名/关键词 (香港)
-  - DOMAIN-KEYWORD,linkedin,BIZ
-  - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protechts,BIZ
-  - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,cloudflare,BIZ
-  - DOMAIN-KEYWORD,discord,BIZ
-  - DOMAIN-KEYWORD,quora,BIZ
-  
-  # 最优先：直接连接特定域名/关键词
+  # 直接连接特定域名/关键词（高优先级）
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
-  # 需要代理的特定域名/关键词 (CDN)
-  - DOMAIN-KEYWORD,tiktok,CDN
-
-  # 中国大陆相关域名/地理位置
+  # 中国大陆相关域名和地理位置（直连）
   - GEOSITE,geolocation-cn,DIRECT
- # - GEOSITE,china-list,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,google-cn,DIRECT
   - GEOSITE,icloud,DIRECT
   - GEOSITE,tld-cn,DIRECT
-  - GEOIP,private,DIRECT
   - GEOSITE,cn,DIRECT
+  - GEOIP,private,DIRECT
   - GEOIP,cn,DIRECT
 
-# OpenAI 相关域名/地理位置
+  # OpenAI 相关域名（走 VPS1 代理）
   - GEOSITE,openai,VPS1
   - DOMAIN-SUFFIX,openai.com,VPS1
   - DOMAIN-SUFFIX,chatgpt.com,VPS1
@@ -105,20 +92,25 @@ rules:
   - DOMAIN,api.openai.com,VPS1
   - DOMAIN,chat.openai.com,VPS1
 
-  # 需要代理的特定域名后缀 (VPS1)
+  # 特定域名后缀（走 VPS1 代理）
   - DOMAIN-SUFFIX,x.com,VPS1
   - DOMAIN-SUFFIX,grok.com,VPS1
   - DOMAIN-SUFFIX,x.ai,VPS1
-  
-  # 需要代理的特定域名/关键词 (日本)
+
+  # 特定域名/关键词（走香港 BIZ 代理）
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protechts,BIZ
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,discord,BIZ
+  - DOMAIN-KEYWORD,quora,BIZ
+
+  # 特定域名/关键词（走 CDN 代理）
+  - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-KEYWORD,kickstarter,CDN
 
-  # 全球代理规则 (CDN)
-  - GEOSITE,gfw,CDN
-  - GEOSITE,greatfire,CDN
-  - GEOSITE,geolocation-!cn,CDN
-
-  # Telegram 相关域名分流
+  # Telegram 相关域名和 IP 规则（走 CDN 代理）
   - GEOSITE,telegram,CDN
   - GEOIP,telegram,CDN,no-resolve
   - IP-CIDR,91.108.4.0/22,CDN,no-resolve
@@ -134,5 +126,10 @@ rules:
   - IP-CIDR6,2001:b28:f23f::/48,CDN,no-resolve
   - IP-CIDR6,2001:67c:4e8::/48,CDN,no-resolve
 
-  # 默认规则
+  # 全球代理规则（走 CDN 代理）
+  - GEOSITE,gfw,CDN
+  - GEOSITE,greatfire,CDN
+  - GEOSITE,geolocation-!cn,CDN
+
+  # 默认规则（兜底直连）
   - MATCH,DIRECT
