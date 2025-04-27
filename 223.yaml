@@ -81,6 +81,15 @@ rules:
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
+  # 特定域名/关键词（走香港 BIZ 代理）
+  - DOMAIN-KEYWORD,linkedin,LLM
+  - DOMAIN-KEYWORD,licdn,LLM
+  - DOMAIN-KEYWORD,protechts,LLM
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,discord,LLM
+  - DOMAIN-KEYWORD,quora,LLM
+  
   # 中国大陆相关域名和地理位置（直连）
   - GEOSITE,geolocation-cn,DIRECT
   - GEOSITE,apple-cn,DIRECT
@@ -90,7 +99,7 @@ rules:
   - GEOSITE,cn,DIRECT
   - GEOIP,private,DIRECT
   - GEOIP,cn,DIRECT
-
+  
   # OpenAI 相关域名（走 VPS1 代理）
   - GEOSITE,openai,LLM
   - DOMAIN-SUFFIX,openai.com,LLM
@@ -103,15 +112,6 @@ rules:
   - DOMAIN-SUFFIX,x.com,LLM
   - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,x.ai,LLM
-
-  # 特定域名/关键词（走香港 BIZ 代理）
-  - DOMAIN-KEYWORD,linkedin,BIZ
-  - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protechts,BIZ
-  - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,cloudflare,BIZ
-  - DOMAIN-KEYWORD,discord,BIZ
-  - DOMAIN-KEYWORD,quora,BIZ
 
   # 特定域名/关键词（走 CDN 代理）
   - DOMAIN-KEYWORD,tiktok,CDN
