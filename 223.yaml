@@ -41,13 +41,14 @@ proxies:
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   
 proxy-groups:
-- name: CDN
-  type: url-test
-  proxies:
-  - Anycast-1
-  - Anycast-2
-  - Anycast-3
-  icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+- { name: CDN, type: url-test, proxies: [Anycast-1, Anycast-2, Anycast-3], icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000 }
+#- name: CDN
+#  type: url-test
+#  proxies:
+#  - Anycast-1
+#  - Anycast-2
+#  - Anycast-3
+#  icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 - name: LLM
   type: url-test
   proxies:
