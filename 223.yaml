@@ -1,25 +1,32 @@
+# Clash Meta 配置文件 - 基础和 DNS 设置
 mixed-port: 7890
-bind-address: 127.0.0.1
+bind-address: "127.0.0.1"
 allow-lan: true
 mode: rule
 log-level: info
-external-controller: 127.0.0.1:9090
+external-controller: "127.0.0.1:9090"
+ipv6: false  # 禁用 IPv6，减少不必要的解析开销（可根据需要启用）
 
+# Geo 数据自动更新设置
 geo-auto-update: true
-geodata-mode: true
-geo-update-interval: 168
+geo-update-interval: 168  # 每周更新一次 Geo 数据（单位：小时）
+geodata-mode: true  # 使用二进制 Geo 数据格式，性能更优
 
+# DNS 配置
 dns:
   enable: true
-  listen: 0.0.0.0:1053
+  listen: "0.0.0.0:1053"  # DNS 监听地址
+  ipv6: false  # 与全局 IPv6 设置保持一致
+  default-nameserver:
+    - 223.6.6.6  # 用于初始 DNS 查询的服务器
   nameserver:
-    - https://223.6.6.6/dns-query
-    - 223.6.6.6
-  use-system-hosts: false
+    - https://223.6.6.6/dns-query  # 主 DNS 服务器（DoH）
+    - 223.6.6.6  # 备用 DNS 服务器（明文）
 
+# Geo 数据源
 geox-url:
-  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
-  geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
 proxies:
   
