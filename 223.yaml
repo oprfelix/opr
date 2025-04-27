@@ -1,23 +1,13 @@
-mode: rule
-mixed-port: 7897
-allow-lan: false
-log-level: info
-ipv6: false
-external-controller: 127.0.0.1:9097
-secret: ''
-unified-delay: true
+mixed-port: 7890
 bind-address: 127.0.0.1
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
 geo-auto-update: true
 geodata-mode: true
 geo-update-interval: 168
-
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-    - '*'
-
-profile:
-  store-selected: true
 
 dns:
   enable: true
@@ -78,16 +68,6 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
 
-  # Qobuz 相关域名分流
-  - DOMAIN-SUFFIX,qobuz.com,CDN
-  - DOMAIN,www.qobuz.com,CDN
-  - DOMAIN,api.qobuz.com,CDN
-  - DOMAIN,streaming.qobuz.com,CDN
-  - DOMAIN,download.qobuz.com,CDN
-  - DOMAIN-SUFFIX,cloudfront.net,CDN
-  - DOMAIN-SUFFIX,akamaihd.net,CDN
-  #- GEOIP,qobuz,CDN,no-resolve
-
   # 需要代理的特定域名/关键词 (香港)
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
@@ -128,28 +108,6 @@ rules:
   # Telegram 相关域名分流
   - GEOSITE,telegram,BIZ
   - GEOIP,telegram,BIZ,no-resolve
-  - DOMAIN-SUFFIX,telegram.org,BIZ
-  - DOMAIN-SUFFIX,t.me,BIZ
-  - DOMAIN-SUFFIX,telegra.ph,BIZ
-  - DOMAIN-SUFFIX,telegram.me,BIZ
-  # Telegram API 和媒体服务
-  - DOMAIN,api.telegram.org,BIZ
-  - DOMAIN,media.telegram.org,BIZ
-  - GEOIP,facebook,BIZ
-  # Telegram IP地址
-  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
-  - IP-CIDR,149.154.164.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.168.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.24.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.36.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.176.0/21,BIZ,no-resolve
 
   # 默认规则
   - MATCH,DIRECT
