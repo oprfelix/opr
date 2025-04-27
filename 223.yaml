@@ -98,17 +98,17 @@ rules:
   - GEOIP,cn,DIRECT
 
 # OpenAI 相关域名/地理位置
-  - GEOSITE,openai,CDN
-  - DOMAIN-SUFFIX,openai.com,CDN
-  - DOMAIN-SUFFIX,chatgpt.com,CDN
-  - DOMAIN-SUFFIX,auth0.openai.com,CDN
-  - DOMAIN,api.openai.com,CDN
-  - DOMAIN,chat.openai.com,CDN
+  - GEOSITE,openai,VPS1
+  - DOMAIN-SUFFIX,openai.com,VPS1
+  - DOMAIN-SUFFIX,chatgpt.com,VPS1
+  - DOMAIN-SUFFIX,auth0.openai.com,VPS1
+  - DOMAIN,api.openai.com,VPS1
+  - DOMAIN,chat.openai.com,VPS1
 
-  # 需要代理的特定域名后缀 (VPS2)
-  - DOMAIN-SUFFIX,x.com,CDN
-  - DOMAIN-SUFFIX,grok.com,CDN
-  - DOMAIN-SUFFIX,x.ai,CDN
+  # 需要代理的特定域名后缀 (VPS1)
+  - DOMAIN-SUFFIX,x.com,VPS1
+  - DOMAIN-SUFFIX,grok.com,VPS1
+  - DOMAIN-SUFFIX,x.ai,VPS1
   
   # 需要代理的特定域名/关键词 (日本)
   - DOMAIN-KEYWORD,kickstarter,CDN
