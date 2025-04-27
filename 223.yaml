@@ -92,17 +92,17 @@ rules:
   - GEOIP,cn,DIRECT
 
   # OpenAI 相关域名（走 VPS1 代理）
-  - GEOSITE,openai,VPS1
-  - DOMAIN-SUFFIX,openai.com,VPS1
-  - DOMAIN-SUFFIX,chatgpt.com,VPS1
-  - DOMAIN-SUFFIX,auth0.openai.com,VPS1
-  - DOMAIN,api.openai.com,VPS1
-  - DOMAIN,chat.openai.com,VPS1
+  - GEOSITE,openai,LLM
+  - DOMAIN-SUFFIX,openai.com,LLM
+  - DOMAIN-SUFFIX,chatgpt.com,LLM
+  - DOMAIN-SUFFIX,auth0.openai.com,LLM
+  - DOMAIN,api.openai.com,LLM
+  - DOMAIN,chat.openai.com,LLM
 
   # 特定域名后缀（走 VPS1 代理）
-  - DOMAIN-SUFFIX,x.com,VPS1
-  - DOMAIN-SUFFIX,grok.com,VPS1
-  - DOMAIN-SUFFIX,x.ai,VPS1
+  - DOMAIN-SUFFIX,x.com,LLM
+  - DOMAIN-SUFFIX,grok.com,LLM
+  - DOMAIN-SUFFIX,x.ai,LLM
 
   # 特定域名/关键词（走香港 BIZ 代理）
   - DOMAIN-KEYWORD,linkedin,BIZ
@@ -115,7 +115,7 @@ rules:
 
   # 特定域名/关键词（走 CDN 代理）
   - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-KEYWORD,kickstarter,CDN
+  - DOMAIN-KEYWORD,kickstarter,LLM
 
   # Telegram 相关域名和 IP 规则（走 CDN 代理）
   - GEOSITE,telegram,CDN
