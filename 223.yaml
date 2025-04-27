@@ -75,6 +75,11 @@ rules:
   - GEOSITE,category-ads-all,REJECT
   - RULE-SET,adblock,REJECT
 
+  # Google业务
+  - DOMAIN-KEYWORD,google,CDN
+  - DOMAIN-KEYWORD,youtube,CDN
+  - DOMAIN-KEYWORD,facebook,CDN
+
   # 直接连接特定域名/关键词（高优先级）
   - DOMAIN-KEYWORD,lingxing,DIRECT
   - DOMAIN-KEYWORD,apollo,DIRECT
