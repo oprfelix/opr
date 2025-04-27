@@ -121,6 +121,18 @@ rules:
   # Telegram 相关域名分流
   - GEOSITE,telegram,BIZ
   - GEOIP,telegram,BIZ,no-resolve
+  - IP-CIDR,91.108.4.0/22,CDN,no-resolve
+  - IP-CIDR,91.108.8.0/22,CDN,no-resolve
+  - IP-CIDR,91.108.12.0/22,CDN,no-resolve
+  - IP-CIDR,91.108.16.0/22,CDN,no-resolve
+  - IP-CIDR,91.108.20.0/22,CDN,no-resolve
+  - IP-CIDR,91.108.56.0/22,CDN,no-resolve
+  - IP-CIDR,149.154.160.0/20,CDN,no-resolve
+  - IP-CIDR,149.154.168.0/22,CDN,no-resolve
+  - IP-CIDR,149.154.172.0/22,CDN,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,CDN,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,CDN,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,CDN,no-resolve
 
   # 默认规则
   - MATCH,DIRECT
