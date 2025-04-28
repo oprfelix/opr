@@ -39,8 +39,6 @@ proxies:
   
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-
-  - {name: SSH, server: 152.32.215.18, port: 22, type: ssh, username: ubuntu, password: Xgiojl69fY5WoZs}
   
 proxy-groups:
 - name: CDN
@@ -61,7 +59,6 @@ proxy-groups:
   proxies:
   - HKG
   - JPN
-  - SSH
   icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
 rule-providers:
