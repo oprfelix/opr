@@ -39,6 +39,8 @@ proxies:
   
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+
+  - {name: SSH, server: 152.32.215.18, port: 22, type: ssh, username: ubuntu, password: Xgiojl69fY5WoZs}
   
 proxy-groups:
 - name: CDN
@@ -59,6 +61,7 @@ proxy-groups:
   proxies:
   - HKG
   - JPN
+  - SSH
   icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
 rule-providers:
@@ -88,9 +91,9 @@ rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
   # 特定域名/关键词（走香港 BIZ 代理）
-  - DOMAIN-KEYWORD,linkedin,LLM
-  - DOMAIN-KEYWORD,licdn,LLM
-  - DOMAIN-KEYWORD,protechts,LLM
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protechts,BIZ
   - DOMAIN-KEYWORD,github,BIZ
   - DOMAIN-KEYWORD,cloudflare,BIZ
   - DOMAIN-KEYWORD,discord,LLM
@@ -115,29 +118,29 @@ rules:
   - DOMAIN,chat.openai.com,LLM
 
   # 特定域名后缀（走 VPS1 代理）
-  - DOMAIN-SUFFIX,x.com,LLM
-  - DOMAIN-SUFFIX,grok.com,LLM
-  - DOMAIN-SUFFIX,x.ai,LLM
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,grok.com,BIZ
+  - DOMAIN-SUFFIX,x.ai,BIZ
 
   # 特定域名/关键词（走 CDN 代理）
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-KEYWORD,kickstarter,LLM
 
   # Telegram 相关域名和 IP 规则（走 CDN 代理）
-  - GEOSITE,telegram,CDN
-  - GEOIP,telegram,CDN,no-resolve
-  - IP-CIDR,91.108.4.0/22,CDN,no-resolve
-  - IP-CIDR,91.108.8.0/22,CDN,no-resolve
-  - IP-CIDR,91.108.12.0/22,CDN,no-resolve
-  - IP-CIDR,91.108.16.0/22,CDN,no-resolve
-  - IP-CIDR,91.108.20.0/22,CDN,no-resolve
-  - IP-CIDR,91.108.56.0/22,CDN,no-resolve
-  - IP-CIDR,149.154.160.0/20,CDN,no-resolve
-  - IP-CIDR,149.154.168.0/22,CDN,no-resolve
-  - IP-CIDR,149.154.172.0/22,CDN,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,CDN,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,CDN,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,CDN,no-resolve
+  - GEOSITE,telegram,BIZ
+  - GEOIP,telegram,BIZ,no-resolve
+  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
+  - IP-CIDR,149.154.168.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
 
   # 全球代理规则（走 CDN 代理）
   - GEOSITE,gfw,CDN
