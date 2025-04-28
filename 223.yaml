@@ -76,6 +76,7 @@ rules:
   - RULE-SET,adblock,REJECT
 
   # Google业务
+  - DOMAIN-KEYWORD,googleadservices,CDN
   - DOMAIN-KEYWORD,google,CDN
   - DOMAIN-KEYWORD,youtube,CDN
   - DOMAIN-KEYWORD,facebook,CDN
