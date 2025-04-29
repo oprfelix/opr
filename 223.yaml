@@ -60,6 +60,9 @@ rules:
   # 自定义
   - DOMAIN-KEYWORD,google,CDN
   - DOMAIN-KEYWORD,twi,CDN
+  - DOMAIN-SUFFIX,x.com,CDN
+  - DOMAIN-KEYWORD,facebook,CDN
+  - DOMAIN-KEYWORD,fbcdn,CDN
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
@@ -71,12 +74,11 @@ rules:
   - DOMAIN-KEYWORD,quora,CDN
 
   # Grok
-  - DOMAIN-SUFFIX,x.com,CDN
-  - DOMAIN-SUFFIX,x.ai,CDN
-  - DOMAIN-SUFFIX,grok.com,CDN
+  - DOMAIN-SUFFIX,x.ai,BIZ
+  - DOMAIN-SUFFIX,grok.com,BIZ
 
   # Google Gemini
-  - DOMAIN-KEYWORD,gemini,CDN
+  - DOMAIN-KEYWORD,gemini,LLM
 
   # openAI
   - GEOSITE,openai,LLM                    # OpenAI 相关域名
