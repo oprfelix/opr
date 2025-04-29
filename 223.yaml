@@ -61,57 +61,57 @@ rule-providers:
     interval: 86400
     
 rules:
-- GEOSITE,category-ads-all,REJECT
-- RULE-SET,adblock,REJECT
-- DOMAIN-KEYWORD,googleadservices,CDN
-- DOMAIN-KEYWORD,google,CDN
-- DOMAIN-KEYWORD,youtube,CDN
-- DOMAIN-KEYWORD,facebook,CDN
-- DOMAIN-KEYWORD,lingxing,DIRECT
-- DOMAIN-KEYWORD,apollo,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,linkedin,BIZ
-- DOMAIN-KEYWORD,licdn,BIZ
-- DOMAIN-KEYWORD,protechts,BIZ
-- DOMAIN-KEYWORD,github,BIZ
-- DOMAIN-KEYWORD,cloudflare,BIZ
-- DOMAIN-KEYWORD,discord,LLM
-- DOMAIN-KEYWORD,quora,LLM
-- GEOSITE,geolocation-cn,DIRECT
-- GEOSITE,apple-cn,DIRECT
-- GEOSITE,google-cn,DIRECT
-- GEOSITE,icloud,DIRECT
-- GEOSITE,tld-cn,DIRECT
-- GEOSITE,cn,DIRECT
-- GEOIP,private,DIRECT
-- GEOIP,cn,DIRECT
-- GEOSITE,openai,LLM
-- DOMAIN-SUFFIX,openai.com,LLM
-- DOMAIN-SUFFIX,chatgpt.com,LLM
-- DOMAIN-SUFFIX,auth0.openai.com,LLM
-- DOMAIN,api.openai.com,LLM
-- DOMAIN,chat.openai.com,LLM
-- DOMAIN-SUFFIX,x.com,BIZ
-- DOMAIN-SUFFIX,grok.com,BIZ
-- DOMAIN-SUFFIX,x.ai,BIZ
-- DOMAIN-KEYWORD,tiktok,CDN
-- DOMAIN-KEYWORD,kickstarter,LLM
-- GEOSITE,telegram,BIZ
-- GEOIP,telegram,BIZ,no-resolve
-- IP-CIDR,91.108.4.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.8.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.12.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.16.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.20.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.56.0/22,BIZ,no-resolve
-- IP-CIDR,149.154.160.0/20,BIZ,no-resolve
-- IP-CIDR,149.154.168.0/22,BIZ,no-resolve
-- IP-CIDR,149.154.172.0/22,BIZ,no-resolve
-- IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
-- IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
-- IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
-- GEOSITE,gfw,CDN
-- GEOSITE,greatfire,CDN
-- GEOSITE,geolocation-!cn,CDN
-- MATCH,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - RULE-SET,adblock,REJECT
+  - DOMAIN-KEYWORD,googleadservices,CDN
+  - DOMAIN-KEYWORD,google,CDN
+  - DOMAIN-KEYWORD,youtube,CDN
+  - DOMAIN-KEYWORD,facebook,CDN
+  - DOMAIN-KEYWORD,lingxing,DIRECT
+  - DOMAIN-KEYWORD,apollo,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protechts,BIZ
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,discord,LLM
+  - DOMAIN-KEYWORD,quora,LLM
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,icloud,DIRECT
+  - GEOSITE,tld-cn,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,private,DIRECT
+  - GEOIP,cn,DIRECT
+  - GEOSITE,openai,LLM
+  - DOMAIN-SUFFIX,openai.com,LLM
+  - DOMAIN-SUFFIX,chatgpt.com,LLM
+  - DOMAIN-SUFFIX,auth0.openai.com,LLM
+  - DOMAIN,api.openai.com,LLM
+  - DOMAIN,chat.openai.com,LLM
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,grok.com,BIZ
+  - DOMAIN-SUFFIX,x.ai,BIZ
+  - DOMAIN-KEYWORD,tiktok,CDN
+  - DOMAIN-KEYWORD,kickstarter,LLM
+  - GEOSITE,telegram,BIZ
+  - GEOIP,telegram,BIZ,no-resolve
+  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
+  - IP-CIDR,149.154.168.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
+  - GEOSITE,gfw,CDN
+  - GEOSITE,greatfire,CDN
+  - GEOSITE,geolocation-!cn,CDN
+  - MATCH,DIRECT
