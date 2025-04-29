@@ -1,42 +1,17 @@
-mode: rule
-mixed-port: 7897
-allow-lan: false
-log-level: info
-ipv6: false
-external-controller: 127.0.0.1:9097
-secret: ''
-unified-delay: true
-geodata-mode: true
-tun:
-  enable: false
-  stack: gvisor
-  auto-route: true
-  strict-route: false
-  auto-detect-interface: true
-  dns-hijack:
-  - any:53
-geo-update-interval: 168
-profile:
-  store-selected: true
-external-controller-cors:
-  allow-private-network: true
-  allow-origins:
-  - '*'
-geo-auto-update: true
-geox-url:
-  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
-  geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+mixed-port: 7890
 bind-address: 127.0.0.1
-dns:
-  enable: true
-  listen: 0.0.0.0:1053
-  ipv6: false
-  default-nameserver:
-  - 223.6.6.6
-  nameserver:
-  - https://223.6.6.6/dns-query
-  - 223.6.6.6
-  use-system-hosts: false
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+ipv6: false
+
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 168  # Update every 7 days
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
 proxies:
   
@@ -53,26 +28,30 @@ proxies:
   
 
 proxy-groups:
-- name: CDN
-  type: url-test
-  proxies:
-  - Anycast-1
-  - Anycast-2
-  - Anycast-3
-  - Anycast-4
-  icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-- name: LLM
-  type: url-test
-  proxies:
-  - VPS1
-  - VPS2
-  icon: https://img.icons8.com/?size=100&id=B7YcCJBnKL2M&format=png&color=000000
-- name: BIZ
-  type: url-test
-  proxies:
-  - HKG
-  - JPN
-  icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
+
+  - name: CDN
+    type: url-test              # 自动 url-test 轮询 load-balance 手动 select
+    proxies:
+      - Anycast-1
+      - Anycast-2
+      - Anycast-3
+      - Anycast-4
+    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
+  - name: LLM
+    type: url-test
+    proxies:
+      - VPS1
+      - VPS2
+    icon: https://img.icons8.com/?size=100&id=B7YcCJBnKL2M&format=png&color=000000
+
+  - name: BIZ
+    type: url-test
+    proxies:
+      - HKG
+      - JPN
+    icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
+
 rule-providers:
   adblock:
     type: http
@@ -80,6 +59,7 @@ rule-providers:
     url: https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt
     path: ./ruleset/easylistchina.txt
     interval: 86400
+    
 rules:
 - GEOSITE,category-ads-all,REJECT
 - RULE-SET,adblock,REJECT
