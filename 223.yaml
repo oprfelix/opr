@@ -12,6 +12,11 @@ geo-auto-update: true
 geo-update-interval: 168  # 每周更新一次 Geo 数据（单位：小时）
 geodata-mode: true  # 使用二进制 Geo 数据格式，性能更优
 
+# Geo 数据源
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  
 # DNS 配置
 dns:
   enable: true
@@ -23,10 +28,6 @@ dns:
     - https://223.6.6.6/dns-query  # 主 DNS 服务器（DoH）
     - 223.6.6.6  # 备用 DNS 服务器（明文）
 
-# Geo 数据源
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
 
 proxies:
   
