@@ -30,7 +30,7 @@ proxies:
 proxy-groups:
 
   - name: CDN
-    type: url-test              # 自动 url-test 轮询 load-balance 手动 select
+    type: load-balance              # 自动 url-test 轮询 load-balance 手动 select
     proxies:
       - Anycast-1
       - Anycast-2
