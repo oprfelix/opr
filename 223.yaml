@@ -58,6 +58,8 @@ rules:
   - GEOSITE,category-ads-all,REJECT        # 拦截广告相关域名
 
   # 自定义
+  - DOMAIN-KEYWORD,google,CDN
+  - DOMAIN-KEYWORD,twi,CDN
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
