@@ -1,33 +1,42 @@
-# Clash Meta 配置文件 - 基础和 DNS 设置
-mixed-port: 7890
-bind-address: "127.0.0.1"
-allow-lan: true
 mode: rule
+mixed-port: 7897
+allow-lan: false
 log-level: info
-external-controller: "127.0.0.1:9090"
-ipv6: false  # 禁用 IPv6，减少不必要的解析开销（可根据需要启用）
-
-# Geo 数据自动更新设置
+ipv6: false
+external-controller: 127.0.0.1:9097
+secret: ''
+unified-delay: true
+geodata-mode: true
+tun:
+  enable: false
+  stack: gvisor
+  auto-route: true
+  strict-route: false
+  auto-detect-interface: true
+  dns-hijack:
+  - any:53
+geo-update-interval: 168
+profile:
+  store-selected: true
+external-controller-cors:
+  allow-private-network: true
+  allow-origins:
+  - '*'
 geo-auto-update: true
-geo-update-interval: 168  # 每周更新一次 Geo 数据（单位：小时）
-geodata-mode: true  # 使用二进制 Geo 数据格式，性能更优
-
-# Geo 数据源
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  
-# DNS 配置
+  geoip: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat
+bind-address: 127.0.0.1
 dns:
   enable: true
-  listen: "0.0.0.0:1053"  # DNS 监听地址
-  ipv6: false  # 与全局 IPv6 设置保持一致
+  listen: 0.0.0.0:1053
+  ipv6: false
   default-nameserver:
-    - 223.6.6.6  # 用于初始 DNS 查询的服务器
+  - 223.6.6.6
   nameserver:
-    - https://223.6.6.6/dns-query  # 主 DNS 服务器（DoH）
-    - 223.6.6.6  # 备用 DNS 服务器（明文）
-
+  - https://223.6.6.6/dns-query
+  - 223.6.6.6
+  use-system-hosts: false
 
 proxies:
   
@@ -42,6 +51,7 @@ proxies:
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   
+
 proxy-groups:
 - name: CDN
   type: url-test
@@ -63,89 +73,65 @@ proxy-groups:
   - HKG
   - JPN
   icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
-
 rule-providers:
   adblock:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt"
+    url: https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt
     path: ./ruleset/easylistchina.txt
     interval: 86400
-
-# Clash Meta 配置文件 - 规则部分
 rules:
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT
-  - RULE-SET,adblock,REJECT
-
-  # Google业务
-  - DOMAIN-KEYWORD,googleadservices,CDN
-  - DOMAIN-KEYWORD,google,CDN
-  - DOMAIN-KEYWORD,youtube,CDN
-  - DOMAIN-KEYWORD,facebook,CDN
-
-  # 直接连接特定域名/关键词（高优先级）
-  - DOMAIN-KEYWORD,lingxing,DIRECT
-  - DOMAIN-KEYWORD,apollo,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
-
-  # 特定域名/关键词（走香港 BIZ 代理）
-  - DOMAIN-KEYWORD,linkedin,BIZ
-  - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protechts,BIZ
-  - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,cloudflare,BIZ
-  - DOMAIN-KEYWORD,discord,LLM
-  - DOMAIN-KEYWORD,quora,LLM
-  
-  # 中国大陆相关域名和地理位置（直连）
-  - GEOSITE,geolocation-cn,DIRECT
-  - GEOSITE,apple-cn,DIRECT
-  - GEOSITE,google-cn,DIRECT
-  - GEOSITE,icloud,DIRECT
-  - GEOSITE,tld-cn,DIRECT
-  - GEOSITE,cn,DIRECT
-  - GEOIP,private,DIRECT
-  - GEOIP,cn,DIRECT
-  
-  # OpenAI 相关域名（走 VPS1 代理）
-  - GEOSITE,openai,LLM
-  - DOMAIN-SUFFIX,openai.com,LLM
-  - DOMAIN-SUFFIX,chatgpt.com,LLM
-  - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  - DOMAIN,api.openai.com,LLM
-  - DOMAIN,chat.openai.com,LLM
-
-  # 特定域名后缀（走 VPS1 代理）
-  - DOMAIN-SUFFIX,x.com,BIZ
-  - DOMAIN-SUFFIX,grok.com,BIZ
-  - DOMAIN-SUFFIX,x.ai,BIZ
-
-  # 特定域名/关键词（走 CDN 代理）
-  - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-KEYWORD,kickstarter,LLM
-
-  # Telegram 相关域名和 IP 规则（走 CDN 代理）
-  - GEOSITE,telegram,BIZ
-  - GEOIP,telegram,BIZ,no-resolve
-  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
-  - IP-CIDR,149.154.168.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
-
-  # 全球代理规则（走 CDN 代理）
-  - GEOSITE,gfw,CDN
-  - GEOSITE,greatfire,CDN
-  - GEOSITE,geolocation-!cn,CDN
-
-  # 默认规则（兜底直连）
-  - MATCH,DIRECT
+- GEOSITE,category-ads-all,REJECT
+- RULE-SET,adblock,REJECT
+- DOMAIN-KEYWORD,googleadservices,CDN
+- DOMAIN-KEYWORD,google,CDN
+- DOMAIN-KEYWORD,youtube,CDN
+- DOMAIN-KEYWORD,facebook,CDN
+- DOMAIN-KEYWORD,lingxing,DIRECT
+- DOMAIN-KEYWORD,apollo,DIRECT
+- DOMAIN-KEYWORD,qq,DIRECT
+- DOMAIN-KEYWORD,quanmaitong,DIRECT
+- DOMAIN-KEYWORD,linkedin,BIZ
+- DOMAIN-KEYWORD,licdn,BIZ
+- DOMAIN-KEYWORD,protechts,BIZ
+- DOMAIN-KEYWORD,github,BIZ
+- DOMAIN-KEYWORD,cloudflare,BIZ
+- DOMAIN-KEYWORD,discord,LLM
+- DOMAIN-KEYWORD,quora,LLM
+- GEOSITE,geolocation-cn,DIRECT
+- GEOSITE,apple-cn,DIRECT
+- GEOSITE,google-cn,DIRECT
+- GEOSITE,icloud,DIRECT
+- GEOSITE,tld-cn,DIRECT
+- GEOSITE,cn,DIRECT
+- GEOIP,private,DIRECT
+- GEOIP,cn,DIRECT
+- GEOSITE,openai,LLM
+- DOMAIN-SUFFIX,openai.com,LLM
+- DOMAIN-SUFFIX,chatgpt.com,LLM
+- DOMAIN-SUFFIX,auth0.openai.com,LLM
+- DOMAIN,api.openai.com,LLM
+- DOMAIN,chat.openai.com,LLM
+- DOMAIN-SUFFIX,x.com,BIZ
+- DOMAIN-SUFFIX,grok.com,BIZ
+- DOMAIN-SUFFIX,x.ai,BIZ
+- DOMAIN-KEYWORD,tiktok,CDN
+- DOMAIN-KEYWORD,kickstarter,LLM
+- GEOSITE,telegram,BIZ
+- GEOIP,telegram,BIZ,no-resolve
+- IP-CIDR,91.108.4.0/22,BIZ,no-resolve
+- IP-CIDR,91.108.8.0/22,BIZ,no-resolve
+- IP-CIDR,91.108.12.0/22,BIZ,no-resolve
+- IP-CIDR,91.108.16.0/22,BIZ,no-resolve
+- IP-CIDR,91.108.20.0/22,BIZ,no-resolve
+- IP-CIDR,91.108.56.0/22,BIZ,no-resolve
+- IP-CIDR,149.154.160.0/20,BIZ,no-resolve
+- IP-CIDR,149.154.168.0/22,BIZ,no-resolve
+- IP-CIDR,149.154.172.0/22,BIZ,no-resolve
+- IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
+- IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
+- IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
+- GEOSITE,gfw,CDN
+- GEOSITE,greatfire,CDN
+- GEOSITE,geolocation-!cn,CDN
+- MATCH,DIRECT
