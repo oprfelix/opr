@@ -53,20 +53,11 @@ proxy-groups:
       - JPN
     icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
-rule-providers:
-  adblock:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/easylistchina/easylistchina/master/easylistchina.txt
-    path: ./ruleset/easylistchina.txt
-    interval: 86400  # 每天更新一次（单位：秒）
-
 rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT        # 拦截广告相关域名
-  - RULE-SET,adblock,REJECT                # 拦截外部广告规则集中的域名
 
-  # 自定义优先规则
+  # 自定义
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
@@ -77,10 +68,15 @@ rules:
   - DOMAIN-KEYWORD,discord,CDN
   - DOMAIN-KEYWORD,quora,CDN
 
-  # 大语言模型服务规则
+  # Grok
   - DOMAIN-SUFFIX,x.com,CDN
-  - DOMAIN-SUFFIX,grok.com,CDN
   - DOMAIN-SUFFIX,x.ai,CDN
+  - DOMAIN-SUFFIX,grok.com,CDN
+
+  # Google Gemini
+  - DOMAIN-KEYWORD,gemini,CDN
+
+  # openAI
   - GEOSITE,openai,LLM                    # OpenAI 相关域名
   - DOMAIN-SUFFIX,openai.com,LLM
   - DOMAIN-SUFFIX,chatgpt.com,LLM
@@ -88,12 +84,12 @@ rules:
   - DOMAIN,api.openai.com,LLM
   - DOMAIN,chat.openai.com,LLM
 
-  # GEO路由规则
+  # GEO
   - GEOSITE,gfw,CDN                       # GFW 列表中的域名
   - GEOSITE,greatfire,CDN                 # GreatFire 列表中的域名
   - GEOSITE,geolocation-!cn,CDN           # 非中国地区的域名
 
-  # Telegram 规则
+  # Telegram
   - GEOSITE,telegram,BIZ                  # Telegram 相关域名
   - GEOIP,telegram,BIZ,no-resolve         # Telegram 相关 IP
   - IP-CIDR,91.108.4.0/22,BIZ,no-resolve  # Telegram IP 段
@@ -109,5 +105,5 @@ rules:
   - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
   - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
 
-  # 默认规则
+  # 默认
   - MATCH,DIRECT
