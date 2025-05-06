@@ -87,7 +87,7 @@ rules:
   - DOMAIN-KEYWORD,kickstarter,BIZ
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protechts,BIZ
+  - DOMAIN-KEYWORD,protects,BIZ
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-KEYWORD,github,BIZ
   - DOMAIN-KEYWORD,cloudflare,BIZ
