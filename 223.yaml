@@ -63,6 +63,7 @@ rules:
 
   # 自定义
   - DOMAIN-SUFFIX,voice.telephony.goog,JPN
+  - DOMAIN-SUFFIX,trends.google.com,BIZ
   - DOMAIN-KEYWORD,gemini,JPN
   - DOMAIN-KEYWORD,google,CDN
   - DOMAIN-KEYWORD,youtube,BIZ
