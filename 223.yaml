@@ -21,7 +21,7 @@ proxies:
   - {type: vless, name: Anycast-2, server: helloworld.techtrendparts.com, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {type: vless, name: Anycast-3, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
-  - {type: vless, name: Anycast-x, server: 104.18.180.229, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Anycast-x, server: 104.19.100.4, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
