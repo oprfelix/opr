@@ -81,6 +81,7 @@ rules:
   - DOMAIN-SUFFIX,redd.it,CDN
   - DOMAIN-SUFFIX,preview.redd.it,CDN
   - DOMAIN-KEYWORD,tiktok,CDN
+  - DOMAIN-SUFFIX,akamaized.net,CDN
 
   # 低流量服务
   - DOMAIN-SUFFIX,gemini.google.com,JPN
@@ -101,7 +102,8 @@ rules:
   - DOMAIN-KEYWORD,licdn,BIZ
   - DOMAIN-KEYWORD,protects,BIZ
   - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,quora,BIZ  
+  - DOMAIN-KEYWORD,quora,BIZ
+  - DOMAIN-KEYWORD,qobuz,BIZ
 
   # OpenAI
   - GEOSITE,openai,JPN
