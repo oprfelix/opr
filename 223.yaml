@@ -67,6 +67,7 @@ rules:
   - DOMAIN-KEYWORD,weixin,DIRECT
 
   # 高流量服务 - 使用 CDN 线路
+  - DOMAIN-KEYWORD,whatsapp,JPN
   - DOMAIN-SUFFIX,fbcdn.net,CDN
   - DOMAIN-SUFFIX,cdninstagram.com,CDN
   - DOMAIN-SUFFIX,twimg.com,CDN
