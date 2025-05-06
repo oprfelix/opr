@@ -68,6 +68,33 @@ rules:
   - DOMAIN-KEYWORD,wecaht,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
   
+  # 自定义
+  - DOMAIN-SUFFIX,voice.telephony.goog,JPN
+  - DOMAIN-SUFFIX,trends.google.com,BIZ
+  - DOMAIN-KEYWORD,gemini,JPN
+  - DOMAIN-KEYWORD,google,CDN
+  - DOMAIN-KEYWORD,youtube,BIZ
+  - DOMAIN-SUFFIX,googlevideo.com,CDN
+  - DOMAIN-SUFFIX,ytimg.com,CDN
+  - DOMAIN-KEYWORD,twitter,BIZ
+  - DOMAIN-KEYWORD,twimg,CDN
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,t.co,BIZ
+  - DOMAIN-KEYWORD,yahoo,BIZ
+  - DOMAIN-SUFFIX,redd.com,CDN
+  - DOMAIN-KEYWORD,facebook,BIZ
+  - DOMAIN-KEYWORD,fbcdn,CDN
+  - DOMAIN-KEYWORD,kickstarter,BIZ
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protechts,BIZ
+  - DOMAIN-KEYWORD,tiktok,CDN
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,discord,CDN
+  - DOMAIN-KEYWORD,quora,BIZ
+  - DOMAIN-KEYWORD,ttsmaker,BIZ
+
   # 国内常用平台和服务
   - DOMAIN-KEYWORD,alipay,DIRECT # 支付宝
   - DOMAIN-KEYWORD,taobao,DIRECT # 淘宝
@@ -115,40 +142,10 @@ rules:
   - DOMAIN-KEYWORD,cctv,DIRECT # 央视
   - DOMAIN-KEYWORD,smzdm,DIRECT # 什么值得买
   - DOMAIN-KEYWORD,12306,DIRECT # 铁路12306
-  
-  # 自定义
-  - DOMAIN-SUFFIX,voice.telephony.goog,JPN
-  - DOMAIN-SUFFIX,trends.google.com,BIZ
-  - DOMAIN-KEYWORD,gemini,JPN
-  - DOMAIN-KEYWORD,google,CDN
-  - DOMAIN-KEYWORD,youtube,BIZ
-  - DOMAIN-SUFFIX,googlevideo.com,CDN
-  - DOMAIN-SUFFIX,ytimg.com,CDN
-  - DOMAIN-KEYWORD,twitter,BIZ
-  - DOMAIN-KEYWORD,twimg,CDN
-  - DOMAIN-SUFFIX,x.com,BIZ
-  - DOMAIN-SUFFIX,t.co,BIZ
-  - DOMAIN-KEYWORD,yahoo,BIZ
-  - DOMAIN-SUFFIX,redd.com,CDN
-  - DOMAIN-KEYWORD,facebook,BIZ
-  - DOMAIN-KEYWORD,fbcdn,CDN
-  - DOMAIN-KEYWORD,kickstarter,BIZ
-  - DOMAIN-KEYWORD,linkedin,BIZ
-  - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protechts,BIZ
-  - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,cloudflare,BIZ
-  - DOMAIN-KEYWORD,discord,CDN
-  - DOMAIN-KEYWORD,quora,BIZ
-  - DOMAIN-KEYWORD,ttsmaker,BIZ
 
   # Grok
   - DOMAIN-SUFFIX,x.ai,BIZ
   - DOMAIN-SUFFIX,grok.com,BIZ
-
-  # Google Gemini
-  - DOMAIN-KEYWORD,gemini,LLM
 
   # openAI
   - GEOSITE,openai,JPN                    # OpenAI 相关域名
