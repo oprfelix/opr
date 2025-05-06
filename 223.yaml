@@ -94,12 +94,12 @@ rules:
   - DOMAIN-KEYWORD,gemini,LLM
 
   # openAI
-  - GEOSITE,openai,LLM                    # OpenAI 相关域名
-  - DOMAIN-SUFFIX,openai.com,LLM
-  - DOMAIN-SUFFIX,chatgpt.com,LLM
-  - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  - DOMAIN,api.openai.com,LLM
-  - DOMAIN,chat.openai.com,LLM
+  - GEOSITE,openai,JPN                    # OpenAI 相关域名
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN
 
   # GEO
   - GEOSITE,gfw,CDN                       # GFW 列表中的域名
