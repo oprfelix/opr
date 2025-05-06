@@ -85,6 +85,7 @@ rules:
   - DOMAIN-KEYWORD,cloudflare,BIZ
   - DOMAIN-KEYWORD,discord,CDN
   - DOMAIN-KEYWORD,quora,BIZ
+  - DOMAIN-KEYWORD,ttsmaker,BIZ
 
   # Grok
   - DOMAIN-SUFFIX,x.ai,BIZ
