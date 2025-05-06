@@ -62,13 +62,19 @@ rules:
   - GEOSITE,category-ads-all,REJECT        # 拦截广告相关域名
 
   # 自定义
+  - DOMAIN-SUFFIX,voice.telephony.goog,JPN
+  - DOMAIN-KEYWORD,gemini,JPN
   - DOMAIN-KEYWORD,google,CDN
-  - DOMAIN-KEYWORD,youtube,CDN
-  - DOMAIN-KEYWORD,twitter,CDN
+  - DOMAIN-KEYWORD,youtube,BIZ
+  - DOMAIN-SUFFIX,googlevideo.com,CDN
+  - DOMAIN-SUFFIX,ytimg.com,CDN
+  - DOMAIN-KEYWORD,twitter,BIZ
   - DOMAIN-KEYWORD,twimg,CDN
-  - DOMAIN-SUFFIX,x.com,CDN
-  - DOMAIN-SUFFIX,t.co,CDN
-  - DOMAIN-KEYWORD,facebook,CDN
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,t.co,BIZ
+  - DOMAIN-KEYWORD,yahoo,BIZ
+  - DOMAIN-SUFFIX,redd.com,CDN
+  - DOMAIN-KEYWORD,facebook,BIZ
   - DOMAIN-KEYWORD,fbcdn,CDN
   - DOMAIN-KEYWORD,kickstarter,BIZ
   - DOMAIN-KEYWORD,linkedin,BIZ
