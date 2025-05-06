@@ -59,105 +59,78 @@ proxy-groups:
 
 rules:
   # 广告拦截
-- GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
+  - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
 
-# 优先直联 - 国内常用服务
-- DOMAIN-KEYWORD,aws,DIRECT
-- DOMAIN-KEYWORD,amazon,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,wechat,DIRECT
-- DOMAIN-KEYWORD,weixin,DIRECT
-- DOMAIN-KEYWORD,alipay,DIRECT  # 支付宝
-- DOMAIN-KEYWORD,taobao,DIRECT  # 淘宝
-- DOMAIN-KEYWORD,tmall,DIRECT   # 天猫
-- DOMAIN-KEYWORD,jd,DIRECT     # 京东
-- DOMAIN-KEYWORD,baidu,DIRECT  # 百度
-- DOMAIN-KEYWORD,bilibili,DIRECT  # 哔哩哔哩
-- DOMAIN-KEYWORD,youku,DIRECT  # 优酷
-- DOMAIN-KEYWORD,iqiyi,DIRECT  # 爱奇艺
-- DOMAIN-KEYWORD,tencent,DIRECT  # 腾讯
-- DOMAIN-KEYWORD,netease,DIRECT  # 网易
-- DOMAIN-KEYWORD,163,DIRECT    # 网易（邮箱等）
-- DOMAIN-KEYWORD,weibo,DIRECT  # 微博
-- DOMAIN-KEYWORD,douyin,DIRECT  # 抖音
-- DOMAIN-KEYWORD,kuaishou,DIRECT  # 快手
-- DOMAIN-KEYWORD,ximalaya,DIRECT  # 喜马拉雅
-- DOMAIN-KEYWORD,meituan,DIRECT  # 美团
-- DOMAIN-KEYWORD,xunlei,DIRECT  # 迅雷
-- DOMAIN-KEYWORD,zhihu,DIRECT  # 知乎
-- DOMAIN-KEYWORD,eleme,DIRECT  # 饿了么
-- DOMAIN-KEYWORD,douban,DIRECT  # 豆瓣
-- DOMAIN-SUFFIX,mi.com,DIRECT  # 小米
-- DOMAIN-KEYWORD,xiaomi,DIRECT  # 小米
-- DOMAIN-KEYWORD,dingtalk,DIRECT  # 钉钉
-- DOMAIN-KEYWORD,feishu,DIRECT  # 飞书
+  # 优先直联 - 国内常用服务
+  - DOMAIN-KEYWORD,aws,DIRECT
+  - DOMAIN-KEYWORD,amazon,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
 
-# 常见国内 CDN 和云服务
-- DOMAIN-KEYWORD,aliyun,DIRECT    # 阿里云
-- DOMAIN-KEYWORD,aliyuncs,DIRECT   # 阿里云服务
-- DOMAIN-KEYWORD,qcloud,DIRECT     # 腾讯云
-- DOMAIN-KEYWORD,huaweicloud,DIRECT  # 华为云
-- DOMAIN-KEYWORD,baiduyun,DIRECT   # 百度云
+  # 高流量服务 - 使用 CDN 线路
+  - DOMAIN-SUFFIX,fbcdn.net,CDN
+  - DOMAIN-SUFFIX,cdninstagram.com,CDN
+  - DOMAIN-SUFFIX,twimg.com,CDN
+  - DOMAIN-SUFFIX,video.twimg.com,CDN
+  - DOMAIN-SUFFIX,gstatic.com,CDN
+  - DOMAIN-SUFFIX,googleusercontent.com,CDN
+  - DOMAIN-SUFFIX,ytimg.com,CDN
+  - DOMAIN-SUFFIX,googlevideo.com,CDN
+  - DOMAIN-SUFFIX,redditmedia.com,CDN
+  - DOMAIN-SUFFIX,redd.it,CDN
+  - DOMAIN-SUFFIX,preview.redd.it,CDN
+  - DOMAIN-KEYWORD,tiktok,CDN
 
-# 高流量服务 - 使用 CDN 线路
-- DOMAIN-KEYWORD,gemini,JPN
-- DOMAIN-KEYWORD,google,BIZ
-- DOMAIN-KEYWORD,youtube,BIZ
-- DOMAIN-SUFFIX,googlevideo.com,CDN
-- DOMAIN-SUFFIX,ytimg.com,CDN
-- DOMAIN-KEYWORD,twitter,BIZ
-- DOMAIN-KEYWORD,twimg,CDN
-- DOMAIN-KEYWORD,facebook,CDN
-- DOMAIN-KEYWORD,fbcdn,CDN
-- DOMAIN-KEYWORD,tiktok,CDN
-- DOMAIN-KEYWORD,cloudflare,BIZ
-- DOMAIN-KEYWORD,discord,CDN
-- DOMAIN-SUFFIX,redd.com,CDN
-- DOMAIN-KEYWORD,ttsmaker,BIZ
+  # 低流量服务
+  - DOMAIN-SUFFIX,gemini.google.com,JPN
+  - DOMAIN-SUFFIX,google.com,BIZ
+  - DOMAIN-SUFFIX,youtube.com,BIZ
+  - DOMAIN-SUFFIX,twitter.com,BIZ
+  - DOMAIN-KEYWORD,cloudflare,BIZ
+  - DOMAIN-KEYWORD,ttsmaker,BIZ
+  - DOMAIN-SUFFIX,x.ai,BIZ
+  - DOMAIN-SUFFIX,grok.com,BIZ
+  - DOMAIN-SUFFIX,voice.telephony.goog,BIZ
+  - DOMAIN-SUFFIX,trends.google.com,BIZ
+  - DOMAIN-SUFFIX,x.com,BIZ
+  - DOMAIN-SUFFIX,t.co,BIZ
+  - DOMAIN-KEYWORD,yahoo,BIZ
+  - DOMAIN-KEYWORD,kickstarter,BIZ
+  - DOMAIN-KEYWORD,linkedin,BIZ
+  - DOMAIN-KEYWORD,licdn,BIZ
+  - DOMAIN-KEYWORD,protects,BIZ
+  - DOMAIN-KEYWORD,github,BIZ
+  - DOMAIN-KEYWORD,quora,BIZ  
 
-# 商务和低流量服务
-- DOMAIN-SUFFIX,voice.telephony.goog,BIZ
-- DOMAIN-SUFFIX,trends.google.com,BIZ
-- DOMAIN-SUFFIX,x.com,BIZ
-- DOMAIN-SUFFIX,t.co,BIZ
-- DOMAIN-KEYWORD,yahoo,BIZ
-- DOMAIN-KEYWORD,kickstarter,BIZ
-- DOMAIN-KEYWORD,linkedin,BIZ
-- DOMAIN-KEYWORD,licdn,BIZ
-- DOMAIN-KEYWORD,protects,BIZ
-- DOMAIN-KEYWORD,github,BIZ
-- DOMAIN-KEYWORD,quora,BIZ
-- DOMAIN-SUFFIX,x.ai,BIZ
-- DOMAIN-SUFFIX,grok.com,BIZ
+  # OpenAI
+  - GEOSITE,openai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN,api.openai.com,JPN
+  - DOMAIN,chat.openai.com,JPN  
 
-# OpenAI
-- GEOSITE,openai,JPN
-- DOMAIN-SUFFIX,openai.com,JPN
-- DOMAIN-SUFFIX,chatgpt.com,JPN
-- DOMAIN-SUFFIX,auth0.openai.com,JPN
-- DOMAIN,api.openai.com,JPN
-- DOMAIN,chat.openai.com,JPN
+  # Telegram
+  - GEOSITE,telegram,BIZ
+  - GEOIP,telegram,BIZ,no-resolve
+  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
+  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
+  - IP-CIDR,149.154.168.0/22,BIZ,no-resolve
+  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve  
 
-# Telegram - 商务/低流量，使用 BIZ
-- GEOSITE,telegram,BIZ
-- GEOIP,telegram,BIZ,no-resolve
-- IP-CIDR,91.108.4.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.8.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.12.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.16.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.20.0/22,BIZ,no-resolve
-- IP-CIDR,91.108.56.0/22,BIZ,no-resolve
-- IP-CIDR,149.154.160.0/20,BIZ,no-resolve
-- IP-CIDR,149.154.168.0/22,BIZ,no-resolve
-- IP-CIDR,149.154.172.0/22,BIZ,no-resolve
-- IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
-- IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
-- IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve
+  # GEO - 高流量，使用 CDN
+  - GEOSITE,gfw,CDN
+  - GEOSITE,greatfire,CDN
+  - GEOSITE,geolocation-!cn,CDN
 
-# GEO - 高流量，使用 CDN
-- GEOSITE,gfw,CDN
-- GEOSITE,greatfire,CDN
-- GEOSITE,geolocation-!cn,CDN
-
-# 默认
-- MATCH,DIRECT
+  # 默认
+  - MATCH,DIRECT
