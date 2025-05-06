@@ -61,6 +61,10 @@ rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT        # 拦截广告相关域名
 
+  # 优先直联
+  - DOMAIN-KEYWORD,aws,DIRECT
+  - DOMAIN-KEYWORD,amazon,DIRECT
+  
   # 自定义
   - DOMAIN-SUFFIX,voice.telephony.goog,JPN
   - DOMAIN-SUFFIX,trends.google.com,BIZ
