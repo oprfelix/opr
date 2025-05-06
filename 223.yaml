@@ -63,11 +63,14 @@ rules:
 
   # 自定义
   - DOMAIN-KEYWORD,google,CDN
-  - DOMAIN-KEYWORD,twi,CDN
+  - DOMAIN-KEYWORD,youtube,CDN
+  - DOMAIN-KEYWORD,twitter,CDN
+  - DOMAIN-KEYWORD,twimg,CDN
   - DOMAIN-SUFFIX,x.com,CDN
+  - DOMAIN-SUFFIX,t.co,CDN
   - DOMAIN-KEYWORD,facebook,CDN
   - DOMAIN-KEYWORD,fbcdn,CDN
-  - DOMAIN-KEYWORD,kickstarter,LLM
+  - DOMAIN-KEYWORD,kickstarter,BIZ
   - DOMAIN-KEYWORD,linkedin,BIZ
   - DOMAIN-KEYWORD,licdn,BIZ
   - DOMAIN-KEYWORD,protechts,BIZ
@@ -75,7 +78,7 @@ rules:
   - DOMAIN-KEYWORD,github,BIZ
   - DOMAIN-KEYWORD,cloudflare,BIZ
   - DOMAIN-KEYWORD,discord,CDN
-  - DOMAIN-KEYWORD,quora,CDN
+  - DOMAIN-KEYWORD,quora,BIZ
 
   # Grok
   - DOMAIN-SUFFIX,x.ai,BIZ
