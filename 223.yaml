@@ -49,10 +49,10 @@ proxy-groups:
       - CA-1
       - CA-2
       - CA-3
-      - CST-1
-      - CST-2
-      - CST-3
-      - CST-4
+      - ST-1
+      - ST-2
+      - ST-3
+      - ST-4
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: LLM
