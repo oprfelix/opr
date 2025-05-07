@@ -24,9 +24,9 @@ proxies:
   - {type: vless, name: Alpha-3, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
 
   # Beta
-  - {type: vless, name: Beta-1, server: 172.67.20.26, port: 8443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Beta-2, server: 141.101.121.112, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Beta-3, server: 162.159.249.108, port: 2096, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Beta-1, server: 104.16.62.9, port: 8443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Beta-2, server: 104.16.29.0, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Beta-3, server: 104.16.88.177, port: 2096, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
   # Ultra
   - {type: vless, name: Ultra-1, server: 104.21.230.121, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
