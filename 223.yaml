@@ -17,21 +17,18 @@ geox-url:
 
 proxies:
   # russia.com shopify.com linux.do time.is www.visa.com fbi.gov
-  - {type: vless, name: ACT-1, server: helloworld.fotoman.com, port: 443, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: ACT-2, server: helloworld.techtrendparts.com, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: ACT-3, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: CT-1, server: helloworld.fotoman.com, port: 443, uuid: 2ce767ed-d5f5-4443-962c-eb555f75f0e3, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: CT-2, server: helloworld.techtrendparts.com, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: CT-3, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   
-  - {type: vless, name: CA-1, server: russia.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: CA-2, server: shopify.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: CA-3, server: linux.do, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: CA-4, server: time.is, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: CA-5, server: www.visa.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: CA-6, server: fbi.gov, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: CA-1, server: 162.159.242.236, port: 8443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: CA-2, server: 162.159.242.236, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: CA-3, server: 162.159.242.236, port: 2096, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
 
-  - {type: vless, name: CST-1, server: 104.19.16.97, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: CST-2, server: 104.19.96.246, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: CST-3, server: 172.67.151.102, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: CST-4, server: 172.67.98.153, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: ST-1, server: 104.21.230.121, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: ST-2, server: 104.21.230.121, port: 8443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: ST-3, server: 104.21.230.121, port: 2053, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: ST-4, server: 104.21.230.121, port: 2096, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
   
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
@@ -46,15 +43,12 @@ proxy-groups:
   - name: CDN
     type: load-balance
     proxies:
-      - ACT-1
-      - ACT-2
-      - ACT-3
+      - CT-1
+      - CT-2
+      - CT-3
       - CA-1
       - CA-2
       - CA-3
-      - CA-4
-      - CA-5
-      - CA-6
       - CST-1
       - CST-2
       - CST-3
