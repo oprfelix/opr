@@ -26,13 +26,7 @@ proxies:
   # Beta
   - {type: vless, name: Beta-1, server: 104.16.62.9, port: 8443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {type: vless, name: Beta-2, server: 104.16.29.0, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Beta-3, server: 104.16.88.177, port: 2096, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  
-  # Ultra
-  - {type: vless, name: Ultra-1, server: 104.21.230.121, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Ultra-2, server: 104.21.230.121, port: 8443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Ultra-3, server: 104.21.230.121, port: 2053, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  
+  - {type: vless, name: Beta-3, server: 104.16.88.177, port: 2096, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}} 
   
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: tky.todsm.com}}}
@@ -49,13 +43,9 @@ proxy-groups:
       - Alpha-1
       - Alpha-2
       - Alpha-3
-      - Ultra-1
-      - Ultra-2
-      - Ultra-3
       - Beta-1
       - Beta-2
       - Beta-3
-
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: LLM
