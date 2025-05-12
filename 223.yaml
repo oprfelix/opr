@@ -38,7 +38,8 @@ proxies:
 
   # Alpha
   # russia.com shopify.com linux.do time.is www.visa.com fbi.gov
-  - {type: vless, name: Alpha-a, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: true,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  #- {type: vless, name: Alpha-a, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: Alpha-a, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, tls: true, skip-cert-verify: true, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
   - {type: vless, name: Alpha-b, server: helloworld.techtrendparts.com, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {type: vless, name: Alpha-c, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
 
