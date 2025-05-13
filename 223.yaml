@@ -41,6 +41,7 @@ proxies:
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: tky.todsm.com}}}
   - {name: JPN-2, server: jpn2.todsm.com, port: 56534, type: vless, uuid: ce232d5e-1184-4a0a-932a-d15898b25ee9, tls: true, skip-cert-verify: false, servername: jpn2.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: jpn2.todsm.com}}}
+  - {name: VN, server: vn.todsm.com, port: 30882, type: vless, uuid: bd030c1c-dde8-4ef9-bdb9-b3c0372ac6af, tls: true, skip-cert-verify: false, servername: vn.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: vn.todsm.com}}}
   
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -55,6 +56,7 @@ proxy-groups:
       - Alpha-c
       - IPv4-1
       - IPv4-2
+      - VN
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: LLM
