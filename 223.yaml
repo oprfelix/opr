@@ -120,12 +120,6 @@ proxy-groups:
     icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
 rule-providers:
-  adblock:
-    type: http
-    behavior: domain
-    path: ./ruleset/AdBlock.yaml
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/AdBlock.yaml
-    interval: 86400
   reject:
     type: http
     behavior: domain
@@ -136,7 +130,6 @@ rule-providers:
 rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
-  - RULE-SET,adblock,REJECT # ACL4SSR 广告拦截规则
   - RULE-SET,reject,REJECT # Loyalsoldier 去广告规则
   
   # 优先直联 - 国内常用服务
