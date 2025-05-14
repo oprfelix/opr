@@ -161,7 +161,13 @@ rule-providers:
     url: "https://raw.githubusercontent.com/earoftoast/clash-rules/main/ProgramAD.yaml"
     path: ./rules/ProgramAD.yaml
     interval: 86400
-
+    
+  anti-AD:
+    type: http
+    behavior: domain
+    path: ./rule_provider/anti-AD.yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    interval: 86400
 rules:
   # 广告拦截
   - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
@@ -171,6 +177,7 @@ rules:
   - RULE-SET,EasyListChina,REJECT
   - RULE-SET,EasyPrivacy,REJECT
   - RULE-SET,ProgramAD,REJECT
+  - RULE-SET,anti-AD,REJECT
   
   # 优先直联 - 国内常用服务
   - DOMAIN-KEYWORD,aws,DIRECT
