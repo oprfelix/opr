@@ -26,6 +26,14 @@ geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"     # GeoIP 数据源
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat" # GeoSite 数据源
 
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: redir-host
+  nameserver:
+    - https://223.6.6.6/dns-query
+    - 223.6.6.6
+    
 proxies:
 
   # Alpha
