@@ -28,11 +28,31 @@ geox-url:
 
 dns:
   enable: true
-  listen: 0.0.0.0:1053
-  enhanced-mode: redir-host
+  ipv6: true # 启用 IPv6
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.localhost"
+  default-nameserver:
+    - 114.114.114.114 # 国内公共 DNS
+    - 223.5.5.5 # 阿里公共 DNS，补充国内备用
   nameserver:
-    - https://223.6.6.6/dns-query
-    - 223.6.6.6
+    - https://dns.alidns.com/dns-query # 阿里 DoH
+    - https://223.6.6.6/dns-query # 阿里 DoH 备用
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query # 用于代理的 DNS，保持国内解析
+  fallback:
+    - https://doh.pub/dns-query # 国内备用 DoH
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/8
+      - 127.0.0.0/8
     
 proxies:
 
