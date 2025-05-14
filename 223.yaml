@@ -123,6 +123,7 @@ rules:
   - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
   - RULE-SET,adblock,REJECT # ACL4SSR 广告拦截规则
   - RULE-SET,reject,REJECT # Loyalsoldier 去广告规则
+  - DOMAIN-REGEX,^(.+\.)?(ads|track|analytics|sponsor)\..+$,REJECT
   
   # 优先直联 - 国内常用服务
   - DOMAIN-KEYWORD,aws,DIRECT
@@ -200,66 +201,66 @@ rules:
   - GEOSITE,gfw,CDN
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
-
+  
   # 商业广告白名单 (White-list)
-  - DOMAIN,ads.google.com,DIRECT
-  - DOMAIN,ads.twitter.com,DIRECT
-  - DOMAIN,ads.pinterest.com,DIRECT
-  - DOMAIN,ads.microsoft.com,DIRECT
-  - DOMAIN,cloud.google.com,DIRECT
-  - DOMAIN,developers.google.com,DIRECT
-  - DOMAIN,support.google.com,DIRECT
-  - DOMAIN,ads.apple.com,DIRECT
-  - DOMAIN,ads.amazon.com,DIRECT
-  - DOMAIN,ads.brave.com,DIRECT
-  - DOMAIN,ads.chewy.com,DIRECT
-  - DOMAIN,ads.instacart.com,DIRECT
-  - DOMAIN,ads.jiosaavn.com,DIRECT
-  - DOMAIN,ads.realizeperformance.com,DIRECT
-  - DOMAIN,ads.smartnews.com,DIRECT
-  - DOMAIN,ads.snapchat.com,DIRECT
-  - DOMAIN,ads.spotify.com,DIRECT
-  - DOMAIN,ads.taboola.com,DIRECT
-  - DOMAIN,ads.tiktok.com,DIRECT
-  - DOMAIN,ads.vk.com,DIRECT
-  - DOMAIN,ads.x.com,DIRECT
-  - DOMAIN,ads.yahoo.com,DIRECT
-  - DOMAIN,adv.asahi.com,DIRECT
-  - DOMAIN,adv.gg,DIRECT
-  - DOMAIN,adv.welaika.com,DIRECT
-  - DOMAIN,biz.yelp.com,DIRECT
-  - DOMAIN,dashboard.mgid.com,DIRECT
-  - DOMAIN,adblockplus.org,DIRECT
-  - DOMAIN,wordpress.org,DIRECT
-  - DOMAIN,accounts.google.com,DIRECT
-  - DOMAIN,calendar.google.com,DIRECT
-  - DOMAIN,docs.google.com,DIRECT
-  - DOMAIN,drive.google.com,DIRECT
-  - DOMAIN,mail.google.com,DIRECT
-  - DOMAIN,meet.google.com,DIRECT
-  - DOMAIN,photos.google.com,DIRECT
-  - DOMAIN,console.cloud.google.com,DIRECT
-  - DOMAIN,facebook.com,DIRECT
-  - DOMAIN,instagram.com,DIRECT
-  - DOMAIN,pinterest.com,DIRECT
-  - DOMAIN,reddit.com,DIRECT
-  - DOMAIN,tiktok.com,DIRECT
-  - DOMAIN,twitch.tv,DIRECT
-  - DOMAIN,whatsapp.com,DIRECT
-  - DOMAIN,wikipedia.org,DIRECT
-  - DOMAIN,youtube.com,DIRECT
-  - DOMAIN,x.com,DIRECT
-  - DOMAIN,github.com,DIRECT
-  - DOMAIN,gitlab.com,DIRECT
-  - DOMAIN,netflix.com,DIRECT
-  - DOMAIN,spotify.com,DIRECT
-  - DOMAIN,disneyplus.com,DIRECT
-  - DOMAIN,canva.com,DIRECT
-  - DOMAIN,figma.com,DIRECT
-  - DOMAIN,notion.so,DIRECT
-  - DOMAIN,slack.com,DIRECT
-  - DOMAIN,dropbox.com,DIRECT
-  - DOMAIN,onedrive.live.com,DIRECT
+  - DOMAIN,ads.google.com,BIZ
+  - DOMAIN,ads.twitter.com,BIZ
+  - DOMAIN,ads.pinterest.com,BIZ
+  - DOMAIN,ads.microsoft.com,BIZ
+  - DOMAIN,cloud.google.com,BIZ
+  - DOMAIN,developers.google.com,BIZ
+  - DOMAIN,support.google.com,BIZ
+  - DOMAIN,ads.apple.com,BIZ
+  - DOMAIN,ads.amazon.com,BIZ
+  - DOMAIN,ads.brave.com,BIZ
+  - DOMAIN,ads.chewy.com,BIZ
+  - DOMAIN,ads.instacart.com,BIZ
+  - DOMAIN,ads.jiosaavn.com,BIZ
+  - DOMAIN,ads.realizeperformance.com,BIZ
+  - DOMAIN,ads.smartnews.com,BIZ
+  - DOMAIN,ads.snapchat.com,BIZ
+  - DOMAIN,ads.spotify.com,BIZ
+  - DOMAIN,ads.taboola.com,BIZ
+  - DOMAIN,ads.tiktok.com,BIZ
+  - DOMAIN,ads.vk.com,BIZ
+  - DOMAIN,ads.x.com,BIZ
+  - DOMAIN,ads.yahoo.com,BIZ
+  - DOMAIN,adv.asahi.com,BIZ
+  - DOMAIN,adv.gg,BIZ
+  - DOMAIN,adv.welaika.com,BIZ
+  - DOMAIN,biz.yelp.com,BIZ
+  - DOMAIN,dashboard.mgid.com,BIZ
+  - DOMAIN,adblockplus.org,BIZ
+  - DOMAIN,wordpress.org,BIZ
+  - DOMAIN,accounts.google.com,BIZ
+  - DOMAIN,calendar.google.com,BIZ
+  - DOMAIN,docs.google.com,BIZ
+  - DOMAIN,drive.google.com,BIZ
+  - DOMAIN,mail.google.com,BIZ
+  - DOMAIN,meet.google.com,BIZ
+  - DOMAIN,photos.google.com,BIZ
+  - DOMAIN,console.cloud.google.com,BIZ
+  - DOMAIN,facebook.com,BIZ
+  - DOMAIN,instagram.com,BIZ
+  - DOMAIN,pinterest.com,BIZ
+  - DOMAIN,reddit.com,BIZ
+  - DOMAIN,tiktok.com,BIZ
+  - DOMAIN,twitch.tv,BIZ
+  - DOMAIN,whatsapp.com,BIZ
+  - DOMAIN,wikipedia.org,BIZ
+  - DOMAIN,youtube.com,BIZ
+  - DOMAIN,x.com,BIZ
+  - DOMAIN,github.com,BIZ
+  - DOMAIN,gitlab.com,BIZ
+  - DOMAIN,netflix.com,BIZ
+  - DOMAIN,spotify.com,BIZ
+  - DOMAIN,disneyplus.com,BIZ
+  - DOMAIN,canva.com,BIZ
+  - DOMAIN,figma.com,BIZ
+  - DOMAIN,notion.so,BIZ
+  - DOMAIN,slack.com,BIZ
+  - DOMAIN,dropbox.com,BIZ
+  - DOMAIN,onedrive.live.com,BIZ
 
-  # 默认
+  # 默认直联
   - MATCH,DIRECT
