@@ -28,23 +28,27 @@ geox-url:
 
 dns:
   enable: true
-  ipv6: true # 启用 IPv6
+  ipv6: true
   listen: 0.0.0.0:53
   cache: true
-  cache-size: 4096
-  cache-ttl: 600
+  cache-size: 8192
+  cache-ttl: 300
+  concurrent-query: true # 视版本支持
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 198.18.0.1/15
   fake-ip-filter:
     - "*.lan"
     - "*.local"
     - "*.localhost"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
+    - "+.captive.apple.com"
+    - "+.dns.msftnCSI.com"
   default-nameserver:
-    - 114.114.114.114 # 国内公共 DNS
-    - 223.5.5.5 # 阿里公共 DNS
+    - 114.114.114.114
+    - 223.5.5.5
   nameserver:
+    - https://dns.cfiec.net/dns-query # 新增，需测试延迟
     - https://dns.alidns.com/dns-query
     - https://223.6.6.6/dns-query
   proxy-server-nameserver:
@@ -56,9 +60,10 @@ dns:
     geoip: true
     geoip-code: CN
     ipcidr:
-      - 240.0.0.0/4
       - 0.0.0.0/8
       - 127.0.0.0/8
+  nameserver-policy:
+    "www.google.com,*.facebook.com": https://dns.cfiec.net/dns-query
       
 proxies:
 
