@@ -30,22 +30,28 @@ dns:
   enable: true
   ipv6: true # 启用 IPv6
   listen: 0.0.0.0:53
+  cache: true
+  cache-size: 4096
+  cache-ttl: 600
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*.lan"
     - "*.local"
     - "*.localhost"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
   default-nameserver:
     - 114.114.114.114 # 国内公共 DNS
-    - 223.5.5.5 # 阿里公共 DNS，补充国内备用
+    - 223.5.5.5 # 阿里公共 DNS
   nameserver:
-    - https://dns.alidns.com/dns-query # 阿里 DoH
-    - https://223.6.6.6/dns-query # 阿里 DoH 备用
+    - https://dns.alidns.com/dns-query
+    - https://223.6.6.6/dns-query
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query # 用于代理的 DNS，保持国内解析
+    - https://dns.alidns.com/dns-query
   fallback:
-    - https://doh.pub/dns-query # 国内备用 DoH
+    - https://doh.pub/dns-query
+    - https://dns.tuna.tsinghua.edu.cn/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
