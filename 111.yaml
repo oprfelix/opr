@@ -62,10 +62,10 @@ proxies:
 
   # Alpha
   # russia.com shopify.com linux.do time.is www.visa.com fbi.gov
-  - {type: vless, name: Alpha, server: 190.93.246.220, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: Delta, server: 190.93.246.221, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Gamma, server: 190.93.246.222, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Lambda, server: 190.93.246.223, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: Alpha, server: 190.93.246.178, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: Delta, server: 190.93.246.198, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: Gamma, server: 190.93.246.199, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Lambda, server: 190.93.246.200, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -85,6 +85,10 @@ proxy-groups:
       - Delta
       - Gamma
       - Lambda
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: LLM
@@ -92,6 +96,9 @@ proxy-groups:
     proxies:
       - VPS1
       - VPS2
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=B7YcCJBnKL2M&format=png&color=000000
 
   - name: BIZ
@@ -102,6 +109,9 @@ proxy-groups:
       - JPN
       - JPN-2
      # - VN
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
 rule-providers:
@@ -123,7 +133,6 @@ rules:
   - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
   - RULE-SET,adblock,REJECT # ACL4SSR 广告拦截规则
   - RULE-SET,reject,REJECT # Loyalsoldier 去广告规则
-  - DOMAIN-REGEX,^(.+\.)?(ads|track|analytics|sponsor)\..+$,REJECT
   
   # 优先直联 - 国内常用服务
   - DOMAIN-KEYWORD,aws,DIRECT
@@ -202,5 +211,65 @@ rules:
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
 
-  # 默认直联
+  # 商业广告白名单 (White-list)
+  - DOMAIN,ads.google.com,DIRECT
+  - DOMAIN,ads.twitter.com,DIRECT
+  - DOMAIN,ads.pinterest.com,DIRECT
+  - DOMAIN,ads.microsoft.com,DIRECT
+  - DOMAIN,cloud.google.com,DIRECT
+  - DOMAIN,developers.google.com,DIRECT
+  - DOMAIN,support.google.com,DIRECT
+  - DOMAIN,ads.apple.com,DIRECT
+  - DOMAIN,ads.amazon.com,DIRECT
+  - DOMAIN,ads.brave.com,DIRECT
+  - DOMAIN,ads.chewy.com,DIRECT
+  - DOMAIN,ads.instacart.com,DIRECT
+  - DOMAIN,ads.jiosaavn.com,DIRECT
+  - DOMAIN,ads.realizeperformance.com,DIRECT
+  - DOMAIN,ads.smartnews.com,DIRECT
+  - DOMAIN,ads.snapchat.com,DIRECT
+  - DOMAIN,ads.spotify.com,DIRECT
+  - DOMAIN,ads.taboola.com,DIRECT
+  - DOMAIN,ads.tiktok.com,DIRECT
+  - DOMAIN,ads.vk.com,DIRECT
+  - DOMAIN,ads.x.com,DIRECT
+  - DOMAIN,ads.yahoo.com,DIRECT
+  - DOMAIN,adv.asahi.com,DIRECT
+  - DOMAIN,adv.gg,DIRECT
+  - DOMAIN,adv.welaika.com,DIRECT
+  - DOMAIN,biz.yelp.com,DIRECT
+  - DOMAIN,dashboard.mgid.com,DIRECT
+  - DOMAIN,adblockplus.org,DIRECT
+  - DOMAIN,wordpress.org,DIRECT
+  - DOMAIN,accounts.google.com,DIRECT
+  - DOMAIN,calendar.google.com,DIRECT
+  - DOMAIN,docs.google.com,DIRECT
+  - DOMAIN,drive.google.com,DIRECT
+  - DOMAIN,mail.google.com,DIRECT
+  - DOMAIN,meet.google.com,DIRECT
+  - DOMAIN,photos.google.com,DIRECT
+  - DOMAIN,console.cloud.google.com,DIRECT
+  - DOMAIN,facebook.com,DIRECT
+  - DOMAIN,instagram.com,DIRECT
+  - DOMAIN,pinterest.com,DIRECT
+  - DOMAIN,reddit.com,DIRECT
+  - DOMAIN,tiktok.com,DIRECT
+  - DOMAIN,twitch.tv,DIRECT
+  - DOMAIN,whatsapp.com,DIRECT
+  - DOMAIN,wikipedia.org,DIRECT
+  - DOMAIN,youtube.com,DIRECT
+  - DOMAIN,x.com,DIRECT
+  - DOMAIN,github.com,DIRECT
+  - DOMAIN,gitlab.com,DIRECT
+  - DOMAIN,netflix.com,DIRECT
+  - DOMAIN,spotify.com,DIRECT
+  - DOMAIN,disneyplus.com,DIRECT
+  - DOMAIN,canva.com,DIRECT
+  - DOMAIN,figma.com,DIRECT
+  - DOMAIN,notion.so,DIRECT
+  - DOMAIN,slack.com,DIRECT
+  - DOMAIN,dropbox.com,DIRECT
+  - DOMAIN,onedrive.live.com,DIRECT
+
+  # 默认
   - MATCH,DIRECT
