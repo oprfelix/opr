@@ -1,30 +1,15 @@
 # 基本配置
-mixed-port: 7890                    # 代理监听端口（支持 HTTP 和 SOCKS）
-bind-address: 127.0.0.1             # 绑定地址，仅限本地访问
-allow-lan: true                     # 允许局域网设备连接代理
-mode: rule                          # 路由模式：rule（基于规则路由）
-log-level: info                     # 日志级别：info（记录基本信息）
-external-controller: 127.0.0.1:9090 # 外部控制接口，用于 Clash 仪表板
-ipv6: true                          # 启用 IPv6 支持
+mixed-port: 7890
+bind-address: 127.0.0.1
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+ipv6: true
 
 # 域嗅探配置
-sniffing: true                      # 启用域名嗅探
-concurrent: true                    # 启用并发连接
-
-# TUN 模式配置
-tun:
-  enable: true                      # 启用 TUN 模式
-  stack: system                     # 使用系统网络栈
-  auto-route: true                  # 自动配置路由
-  auto-detect-interface: true       # 自动检测网络接口
-
-# 地理数据配置
-geodata-mode: true                  # 启用 GeoIP 和 GeoSite 数据匹配
-geo-auto-update: true               # 自动更新地理数据
-geo-update-interval: 168            # 地理数据更新间隔（7天，单位：小时）
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"     # GeoIP 数据源
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat" # GeoSite 数据源
+sniffing: true
+concurrent: true
 
 dns:
   enable: true
