@@ -104,6 +104,10 @@ rules:
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
 
+  # Google Voice 通话业务
+  - DOMAIN-SUFFIX,telephony.goog,JPN
+  - DOMAIN-SUFFIX,voice.google.com,JPN
+  
   # 高流量服务 - 使用 CDN 线路
   - DOMAIN-KEYWORD,whatsapp,JPN
   - DOMAIN-SUFFIX,fbcdn.net,CDN
