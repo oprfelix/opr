@@ -75,7 +75,6 @@ proxy-groups:
       - Alpha-a
       - Alpha-b
       - Alpha-c
-      - HKG2
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: LLM
@@ -89,8 +88,10 @@ proxy-groups:
     type: url-test
     proxies:
       - HKG
+      - HKG2
       - JPN
       - JPN-2
+      - VN
     icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
 
 rules:
