@@ -165,8 +165,9 @@ rule-providers:
   anti-AD:
     type: http
     behavior: domain
-    path: ./rule_provider/anti-AD.yaml
-    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    url: "https://anti-ad.net/clash.yaml"
+    # path: ./rule_provider/anti-AD.yaml
+    # url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     interval: 86400
 rules:
   # 广告拦截
