@@ -58,8 +58,8 @@ dns:
       - 0.0.0.0/8
       - 127.0.0.0/8
   nameserver-policy:
-    "www.google.com": https://dns.cfiec.net/dns-query
-    "*.facebook.com": https://dns.cfiec.net/dns-query
+    "www.google.com": https://1.0.0.1/dns-query
+    "*.facebook.com": https://1.0.0.1/dns-query
       
 proxies:
 
