@@ -45,14 +45,12 @@ dns:
     - 114.114.114.114
     - 223.5.5.5
   nameserver:
-    - https://dns.cfiec.net/dns-query # 新增，需测试延迟
     - https://dns.alidns.com/dns-query
     - https://223.6.6.6/dns-query
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
   fallback:
     - https://doh.pub/dns-query
-    - https://dns.tuna.tsinghua.edu.cn/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
