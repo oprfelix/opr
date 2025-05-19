@@ -42,7 +42,6 @@ dns:
     - "+.captive.apple.com"
     - "+.dns.msftnCSI.com"
   default-nameserver:
-    - 4.2.2.2
     - 114.114.114.114
   nameserver:
     - tls://1.1.1.1:853  # Cloudflare 1.1.1.1 DoT
