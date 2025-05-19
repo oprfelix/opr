@@ -6,6 +6,8 @@ mode: rule
 log-level: info
 external-controller: 127.0.0.1:9090
 ipv6: true
+unified-delay: true
+tcp-concurrent: true
 
 # 域嗅探配置
 sniffing:
@@ -17,11 +19,13 @@ sniffing:
 
 # 地理数据配置
 geodata-mode: true                  # 启用 GeoIP 和 GeoSite 数据匹配
+geodata-loader: standard
 geo-auto-update: true               # 自动更新地理数据
 geo-update-interval: 168            # 地理数据更新间隔（7天，单位：小时）
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"     # GeoIP 数据源
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat" # GeoSite 数据源
+  mmdb: "https://testingcf.jsdelivr.net/gh/MerlinKodo/meta-rules-dat@release/country.mmdb"
   
 dns:
   enable: true
