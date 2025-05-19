@@ -27,6 +27,7 @@ dns:
   enable: true
   ipv6: true
   listen: 0.0.0.0:53
+  prefer-h3: true
   cache: true
   cache-size: 8192
   cache-ttl: 300
@@ -41,14 +42,8 @@ dns:
     - "+.msftncsi.com"
     - "+.captive.apple.com"
     - "+.dns.msftnCSI.com"
-    - "+.time.apple.com"
-    - "+.ntp.aliyun.com"
   default-nameserver:
     - 223.6.6.6
-  nameserver:
-    - https://dns.alidns.com/dns-query
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
   nameserver-policy:
     "geosite:cn": https://dns.alidns.com/dns-query
     "geosite:geolocation-!cn": https://1.1.1.1/dns-query
