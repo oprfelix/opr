@@ -43,10 +43,6 @@ dns:
     - "+.dns.msftnCSI.com"
   default-nameserver:
     - 223.6.6.6
-#  nameserver:
-#    - https://dns.alidns.com/dns-query
-#  proxy-server-nameserver:
-#    - https://dns.alidns.com/dns-query
   nameserver-policy:
     "geosite:cn": https://dns.alidns.com/dns-query
     "geosite:geolocation-!cn": https://1.1.1.1/dns-query
