@@ -42,17 +42,16 @@ dns:
     - "+.captive.apple.com"
     - "+.dns.msftnCSI.com"
   default-nameserver:
+    - 4.2.2.2
     - 114.114.114.114
-    - 223.5.5.5
-    - 119.29.29.29
   nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://223.6.6.6/dns-query
-    - https://1.12.12.12/dns-query
+    - tls://1.1.1.1:853  # Cloudflare 1.1.1.1 DoT
+    - tls://1.0.0.1:853  # Cloudflare secondary DoT
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
   fallback:
-    - https://doh.pub/dns-query
+    - tls://8.8.8.8:853  # Google DoT
+    - tls://dns.google:853  # Google DoT (alternate)
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -60,8 +59,8 @@ dns:
       - 0.0.0.0/8
       - 127.0.0.0/8
   nameserver-policy:
-    "www.google.com": https://1.0.0.1/dns-query
-    "*.facebook.com": https://1.0.0.1/dns-query
+    "www.google.com": tls://1.1.1.1:853
+    "*.facebook.com": tls://1.1.1.1:853
       
 proxies:
 
