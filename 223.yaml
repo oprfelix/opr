@@ -42,29 +42,9 @@ dns:
     - "+.captive.apple.com"
     - "+.dns.msftnCSI.com"
   default-nameserver:
-    - 114.114.114.114
     - 223.5.5.5
-    - 119.29.29.29
   nameserver:
-    - https://dns.alidns.com/dns-query
     - https://223.6.6.6/dns-query
-    - https://1.12.12.12/dns-query
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - https://doh.pub/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 0.0.0.0/8
-      - 127.0.0.0/8
-  nameserver-policy:
-    "www.google.com": https://1.0.0.1/dns-query
-    "*.facebook.com": https://1.0.0.1/dns-query
-    "*.youtube.com": https://1.0.0.1/dns-query
-    "*.x.com": https://1.0.0.1/dns-query
-    "*.google.com": https://1.0.0.1/dns-query
       
 proxies:
 
