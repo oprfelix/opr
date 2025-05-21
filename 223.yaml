@@ -193,6 +193,7 @@ rules:
   # 低流量服务
   - DOMAIN-SUFFIX,gemini.google.com,JPN
   - DOMAIN-SUFFIX,google.com,BIZ
+  - DOMAIN-SUFFIX,facebook.com,BIZ
   - DOMAIN-SUFFIX,youtube.com,BIZ
   - DOMAIN-SUFFIX,twitter.com,BIZ
   - DOMAIN-KEYWORD,cloudflare,BIZ
