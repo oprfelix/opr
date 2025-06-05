@@ -123,7 +123,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=B7YcCJBnKL2M&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=6sK2cmPnn5fM&format=png&color=000000
 
   - name: BIZ
     type: url-test
