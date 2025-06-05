@@ -16,12 +16,12 @@ sniffing:
     - http
 
 # 地理数据配置
-geodata-mode: true                  # 启用 GeoIP 和 GeoSite 数据匹配
-geo-auto-update: true               # 自动更新地理数据
-geo-update-interval: 168            # 地理数据更新间隔（7天，单位：小时）
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 168
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"     # GeoIP 数据源
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat" # GeoSite 数据源
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
   
 dns:
   enable: true
@@ -62,25 +62,45 @@ dns:
       - 127.0.0.0/8
       
 proxies:
-
   # Alpha
-  # russia.com shopify.com linux.do time.is www.visa.com fbi.gov 172.64.229.222
-  - {type: vless, name: Alpha, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: Delta, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Gamma, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Lambda, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  
+  - {type: vless, name: Alpha, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: Delta, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: Gamma, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Lambda, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: JPN-2, server: jpn2.todsm.com, port: 56534, type: vless, uuid: ce232d5e-1184-4a0a-932a-d15898b25ee9, tls: true, skip-cert-verify: false, servername: jpn2.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VN, server: vn.todsm.com, port: 30082, type: vless, uuid: bd030c1c-dde8-4ef9-bdb9-b3c0372ac6af, tls: true, skip-cert-verify: true, servername: vn.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: HKG2, server: hkg2.todsm.com, port: 443, type: vless, uuid: d060ef5f-7047-4a0d-a5e1-903d4c602e2f, tls: true, skip-cert-verify: false, servername: hkg2.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  
-proxy-groups:
+  # T2 Proxies
+  - { name: 🇭🇰香港 01, type: trojan, server: hk1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.6df03129.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 02, type: trojan, server: hk2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.24ba0f77.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 03, type: trojan, server: hk3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.0d1f6a51.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 04, type: trojan, server: hk4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.66dc3db5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 05, type: trojan, server: hk5.32160593-06a2-edbf-7f8d-4cd58a6eeb94.52629f87.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 06, type: trojan, server: hk6.32160593-06a2-edbf-7f8d-4cd58a6eeb94.7817bed2.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 07, type: trojan, server: hk7.32160593-06a2-edbf-7f8d-4cd58a6eeb94.8fb10e3d.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇭🇰香港 08, type: trojan, server: hk8.32160593-06a2-edbf-7f8d-4cd58a6eeb94.b12b4427.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇯🇵日本 01, type: trojan, server: jp1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.7adf211e.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇯🇵日本 02, type: trojan, server: jp2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.02444020.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇯🇵日本 03, type: trojan, server: jp3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.5584fc1f.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇯🇵日本 04, type: trojan, server: jp4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.69408ae5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 01, type: trojan, server: sg1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2dde7df3.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 02, type: trojan, server: sg2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2c4b5066.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 03, type: trojan, server: sg3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.d4f84ebb.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 04, type: trojan, server: sg4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2ce203e5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 05, type: trojan, server: sg5.32160593-06a2-edbf-7f8d-4cd58a6eeb94.dede0d54.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 06, type: trojan, server: sg6.32160593-06a2-edbf-7f8d-4cd58a6eeb94.0aca10d1.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 07, type: trojan, server: sg7.32160593-06a2-edbf-7f8d-4cd58a6eeb94.57aaa8ec.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇸🇬新加坡 08, type: trojan, server: sg8.32160593-06a2-edbf-7f8d-4cd58a6eeb94.c586e7c2.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇺🇸美国 01, type: trojan, server: us1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.36a8c922.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇺🇸美国 02, type: trojan, server: us2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2f6cd430.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇺🇸美国 03, type: trojan, server: us3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.47253001.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
+  - { name: 🇺🇸美国 04, type: trojan, server: us4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.30d6a0d0.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
 
+proxy-groups:
   - name: CDN
     type: load-balance
     proxies:
@@ -88,6 +108,7 @@ proxy-groups:
       - Delta
       - Gamma
       - Lambda
+      - T2
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -108,28 +129,55 @@ proxy-groups:
     type: url-test
     proxies:
       - HKG
-     # - HKG2
       - JPN
       - JPN-2
-     # - VN
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
+
+  - name: T2
+    type: url-test
+    proxies:
+      - 🇭🇰香港 01
+      - 🇭🇰香港 02
+      - 🇭🇰香港 03
+      - 🇭🇰香港 04
+      - 🇭🇰香港 05
+      - 🇭🇰香港 06
+      - 🇭🇰香港 07
+      - 🇭🇰香港 08
+      - 🇯🇵日本 01
+      - 🇯🇵日本 02
+      - 🇯🇵日本 03
+      - 🇯🇵日本 04
+      - 🇸🇬新加坡 01
+      - 🇸🇬新加坡 02
+      - 🇸🇬新加坡 03
+      - 🇸🇬新加坡 04
+      - 🇸🇬新加坡 05
+      - 🇸🇬新加坡 06
+      - 🇸🇬新加坡 07
+      - 🇸🇬新加坡 08
+      - 🇺🇸美国 01
+      - 🇺🇸美国 02
+      - 🇺🇸美国 03
+      - 🇺🇸美国 04
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    icon: https://img.icons8.com/?size=100&id=8vKUbzQUWv7I&format=png&color=000000
 
 rules:
-  
   # 优先直联 - 国内常用服务
   - DOMAIN-KEYWORD,aws,DIRECT
   - DOMAIN-KEYWORD,amazon,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
-
   # Google Voice 通话业务
   - DOMAIN-SUFFIX,telephony.goog,JPN
   - DOMAIN-SUFFIX,voice.google.com,JPN
-  
   # 高流量服务 - 使用 CDN 线路
   - DOMAIN-KEYWORD,whatsapp,JPN
   - DOMAIN-SUFFIX,fbcdn.net,CDN
@@ -145,7 +193,6 @@ rules:
   - DOMAIN-SUFFIX,preview.redd.it,CDN
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,akamaized.net,CDN
-
   # 低流量服务
   - DOMAIN-SUFFIX,gemini.google.com,JPN
   - DOMAIN-SUFFIX,google.com,BIZ
@@ -168,7 +215,6 @@ rules:
   - DOMAIN-KEYWORD,github,BIZ
   - DOMAIN-KEYWORD,quora,BIZ
   - DOMAIN-KEYWORD,qobuz,BIZ
-
   # OpenAI
   - GEOSITE,openai,JPN
   - DOMAIN-SUFFIX,openai.com,JPN
@@ -176,7 +222,6 @@ rules:
   - DOMAIN-SUFFIX,auth0.openai.com,JPN
   - DOMAIN,api.openai.com,JPN
   - DOMAIN,chat.openai.com,JPN  
-
   # Telegram
   - GEOSITE,telegram,BIZ
   - GEOIP,telegram,BIZ,no-resolve
@@ -191,11 +236,9 @@ rules:
   - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
   - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
   - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve  
-
   # GEO - 高流量，使用 CDN
   - GEOSITE,gfw,CDN
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
-
   # 默认
   - MATCH,DIRECT
