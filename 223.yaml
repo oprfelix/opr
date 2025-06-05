@@ -134,7 +134,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=P15qxV2IvF7x&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
   - name: T2
     type: url-test
@@ -166,7 +166,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=8vKUbzQUWv7I&format=png&color=000000
+    icon: https://img.icons8.com/?size=100&id=CORdhINRbVXs&format=png&color=000000
 
 rules:
   # 优先直联 - 国内常用服务
