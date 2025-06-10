@@ -71,31 +71,6 @@ proxies:
   - {name: HKG2, server: hkg2.todsm.com, port: 443, type: vless, uuid: d060ef5f-7047-4a0d-a5e1-903d4c602e2f, tls: true, skip-cert-verify: false, servername: hkg2.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  # T2 Proxies
-  - { name: 🇭🇰香港 01, type: trojan, server: hk1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.6df03129.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 02, type: trojan, server: hk2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.24ba0f77.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 03, type: trojan, server: hk3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.0d1f6a51.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 04, type: trojan, server: hk4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.66dc3db5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 05, type: trojan, server: hk5.32160593-06a2-edbf-7f8d-4cd58a6eeb94.52629f87.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 06, type: trojan, server: hk6.32160593-06a2-edbf-7f8d-4cd58a6eeb94.7817bed2.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 07, type: trojan, server: hk7.32160593-06a2-edbf-7f8d-4cd58a6eeb94.8fb10e3d.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇭🇰香港 08, type: trojan, server: hk8.32160593-06a2-edbf-7f8d-4cd58a6eeb94.b12b4427.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇯🇵日本 01, type: trojan, server: jp1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.7adf211e.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇯🇵日本 02, type: trojan, server: jp2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.02444020.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇯🇵日本 03, type: trojan, server: jp3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.5584fc1f.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇯🇵日本 04, type: trojan, server: jp4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.69408ae5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 01, type: trojan, server: sg1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2dde7df3.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 02, type: trojan, server: sg2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2c4b5066.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 03, type: trojan, server: sg3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.d4f84ebb.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 04, type: trojan, server: sg4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2ce203e5.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 05, type: trojan, server: sg5.32160593-06a2-edbf-7f8d-4cd58a6eeb94.dede0d54.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 06, type: trojan, server: sg6.32160593-06a2-edbf-7f8d-4cd58a6eeb94.0aca10d1.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 07, type: trojan, server: sg7.32160593-06a2-edbf-7f8d-4cd58a6eeb94.57aaa8ec.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇸🇬新加坡 08, type: trojan, server: sg8.32160593-06a2-edbf-7f8d-4cd58a6eeb94.c586e7c2.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇺🇸美国 01, type: trojan, server: us1.32160593-06a2-edbf-7f8d-4cd58a6eeb94.36a8c922.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇺🇸美国 02, type: trojan, server: us2.32160593-06a2-edbf-7f8d-4cd58a6eeb94.2f6cd430.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇺🇸美国 03, type: trojan, server: us3.32160593-06a2-edbf-7f8d-4cd58a6eeb94.47253001.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
-  - { name: 🇺🇸美国 04, type: trojan, server: us4.32160593-06a2-edbf-7f8d-4cd58a6eeb94.30d6a0d0.the-best-airport.com, port: 443, password: 5a52d145-2e23-40c7-84fc-2fbd72a6d546, udp: true, sni: new.download.the-best-airport.com, skip-cert-verify: true }
 
 proxy-groups:
   - name: CDN
@@ -105,7 +80,6 @@ proxy-groups:
       - Delta
       - Gamma
       - Lambda
-      - T2
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -132,38 +106,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
-
-  - name: T2
-    type: url-test
-    proxies:
-      - 🇭🇰香港 01
-      - 🇭🇰香港 02
-      - 🇭🇰香港 03
-      - 🇭🇰香港 04
-      - 🇭🇰香港 05
-      - 🇭🇰香港 06
-      - 🇭🇰香港 07
-      - 🇭🇰香港 08
-      - 🇯🇵日本 01
-      - 🇯🇵日本 02
-      - 🇯🇵日本 03
-      - 🇯🇵日本 04
-      - 🇸🇬新加坡 01
-      - 🇸🇬新加坡 02
-      - 🇸🇬新加坡 03
-      - 🇸🇬新加坡 04
-      - 🇸🇬新加坡 05
-      - 🇸🇬新加坡 06
-      - 🇸🇬新加坡 07
-      - 🇸🇬新加坡 08
-      - 🇺🇸美国 01
-      - 🇺🇸美国 02
-      - 🇺🇸美国 03
-      - 🇺🇸美国 04
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    icon: https://img.icons8.com/?size=100&id=CORdhINRbVXs&format=png&color=000000
 
 rules:
   # 优先直联 - 国内常用服务
