@@ -33,6 +33,7 @@ proxies:
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: LA, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: NY, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: "HKTD", type: trojan, server: todo.todsm.com, port: 443, password: 0xtCy6f4oA, client-fingerprint: chrome, alpn: [h2, http/1.1], security: tls}
   
 proxy-groups:
   - name: CDN
@@ -63,6 +64,7 @@ proxy-groups:
     type: url-test
     proxies:
       - HKG
+      - HKTD
       - JPN
     url: https://www.gstatic.com/generate_204
     interval: 300
