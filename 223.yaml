@@ -30,9 +30,7 @@ proxies:
   - {type: vless, name: Gamma, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
   - {type: vless, name: Lambda, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: SG, server: sg.todsm.com, port: 56701, type: vless, uuid: 69a287fe-95d6-4e4d-93ef-73f460a9b752, tls: true, skip-cert-verify: false, servername: sg.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: JPN-2, server: jpn2.todsm.com, port: 56534, type: vless, uuid: ce232d5e-1184-4a0a-932a-d15898b25ee9, tls: true, skip-cert-verify: false, servername: jpn2.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
   - {name: VN, server: vn.todsm.com, port: 30082, type: vless, uuid: bd030c1c-dde8-4ef9-bdb9-b3c0372ac6af, tls: true, skip-cert-verify: true, servername: vn.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: HKG2, server: hkg2.todsm.com, port: 443, type: vless, uuid: d060ef5f-7047-4a0d-a5e1-903d4c602e2f, tls: true, skip-cert-verify: false, servername: hkg2.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
   - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
@@ -66,9 +64,7 @@ proxy-groups:
     type: url-test
     proxies:
       - HKG
-      - SG
       - JPN
-      - JPN-2
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
