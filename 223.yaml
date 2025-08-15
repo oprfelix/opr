@@ -22,6 +22,49 @@ geo-update-interval: 168
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  cache: true
+  cache-size: 8192
+  cache-ttl: 300
+  concurrent-query: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/15
+
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.localhost"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.captive.apple.com"
+    - "+.dns.msftnCSI.com"
+
+  # 主解析 DNS（优先）
+  nameserver:
+    - https://223.6.6.6/dns-query
+
+  # 代理专用 DNS（走代理时用）
+  proxy-server-nameserver:
+    - https://223.6.6.6/dns-query
+
+  # 回退 DNS（仅在主服务器无结果时使用）
+  fallback:
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+
+  # 回退过滤规则
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/8
+      - 127.0.0.0/8
+
      
 proxies:
   # Alpha
