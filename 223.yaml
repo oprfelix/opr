@@ -63,7 +63,6 @@ proxy-groups:
     proxies:
       - HKG
       - JPN
-      - VN
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
