@@ -1,13 +1,13 @@
 # 基本配置
 mixed-port: 7890
-bind-address: 127.0.0.1
+bind-address: 0.0.0.0            # 改为 0.0.0.0，方便局域网设备直接访问
 allow-lan: true
 mode: rule
-log-level: info
-external-controller: 127.0.0.1:9090
+log-level: warning               # 从 info 改为 warning，减少无关日志，提升性能
+external-controller: 0.0.0.0:9090
 ipv6: true
 
-# 域嗅探配置
+# 域嗅探配置（自动判断域名类型并匹配规则）
 sniffing:
   enabled: true
   override-destination: true
@@ -18,10 +18,11 @@ sniffing:
 # 地理数据配置
 geodata-mode: true
 geo-auto-update: true
-geo-update-interval: 168
+geo-update-interval: 168         # 每 7 天更新一次（单位小时）
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+
 
 dns:
   enable: true
@@ -79,8 +80,10 @@ proxies:
   - {name: "HKTD", type: trojan, server: todo.todsm.com, port: 443, password: 0xtCy6f4oA, client-fingerprint: chrome, alpn: [h2, http/1.1], security: tls}
   
 proxy-groups:
+  # 高流量 CDN 节点池（负载均衡）
   - name: CDN
     type: load-balance
+    strategy: round-robin
     proxies:
       - Alpha
       - Delta
@@ -92,6 +95,7 @@ proxy-groups:
       interval: 300
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
+  # AI / 大模型 专用低延迟池
   - name: LLM
     type: url-test
     proxies:
@@ -101,8 +105,10 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
+    lazy: true
     icon: https://img.icons8.com/?size=100&id=6sK2cmPnn5fM&format=png&color=000000
 
+  # 商业/低流量业务池
   - name: BIZ
     type: url-test
     proxies:
@@ -112,20 +118,35 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
+    lazy: true
     icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
+  # 全局回退策略（防止全部节点挂掉）
+  - name: AUTO
+    type: fallback
+    proxies:
+      - CDN
+      - LLM
+      - BIZ
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+
+
 rules:
-  # 优先直联 - 国内常用服务
+  # 1. 优先直连 - 国内常用服务（放在最前，避免被后面规则劫持）
   - DOMAIN-KEYWORD,aws,DIRECT
   - DOMAIN-KEYWORD,amazon,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
-  # Google Voice 通话业务
+
+  # 2. Google Voice 通话业务（优先匹配专用代理）
   - DOMAIN-SUFFIX,telephony.goog,LLM
   - DOMAIN-SUFFIX,voice.google.com,LLM
-  # 高流量服务 - 使用 CDN 线路
-  - DOMAIN-KEYWORD,whatsapp,LLM
+
+  # 3. 高流量服务（CDN 优先走高速线路）
+  - DOMAIN-KEYWORD,whatsapp,CDN
   - DOMAIN-SUFFIX,fbcdn.net,CDN
   - DOMAIN-SUFFIX,cdninstagram.com,CDN
   - DOMAIN-SUFFIX,twimg.com,CDN
@@ -139,7 +160,8 @@ rules:
   - DOMAIN-SUFFIX,preview.redd.it,CDN
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,akamaized.net,CDN
-  # 低流量服务
+
+  # 4. 低流量服务（走普通代理/BIZ）
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-SUFFIX,google.com,BIZ
   - DOMAIN-SUFFIX,facebook.com,BIZ
@@ -161,14 +183,16 @@ rules:
   - DOMAIN-KEYWORD,github,BIZ
   - DOMAIN-KEYWORD,quora,BIZ
   - DOMAIN-KEYWORD,qobuz,BIZ
-  # OpenAI
+
+  # 5. OpenAI 专用代理
   - GEOSITE,openai,LLM
   - DOMAIN-SUFFIX,openai.com,LLM
   - DOMAIN-SUFFIX,chatgpt.com,LLM
   - DOMAIN-SUFFIX,auth0.openai.com,LLM
   - DOMAIN,api.openai.com,LLM
   - DOMAIN,chat.openai.com,LLM  
-  # Telegram
+
+  # 6. Telegram 专用代理
   - GEOSITE,telegram,BIZ
   - GEOIP,telegram,BIZ,no-resolve
   - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
@@ -182,9 +206,11 @@ rules:
   - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
   - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
   - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve  
-  # GEO - 高流量，使用 CDN
+
+  # 7. GEO 分流（高流量 → CDN）
   - GEOSITE,gfw,CDN
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
-  # 默认
+
+  # 8. 默认直连
   - MATCH,DIRECT
