@@ -22,42 +22,7 @@ geo-update-interval: 168
 geox-url:
   geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
   geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  
-dns:
-  enable: true
-  ipv6: true
-  listen: 0.0.0.0:53
-  cache: true
-  cache-size: 8192
-  cache-ttl: 300
-  concurrent-query: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/15
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.captive.apple.com"
-    - "+.dns.msftnCSI.com"
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://223.6.6.6/dns-query
-    - https://1.12.12.12/dns-query
-    - https://doh.pub/dns-query
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - https://doh.pub/dns-query
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/8
-      - 127.0.0.0/8
-      
+     
 proxies:
   # Alpha
   - {type: vless, name: Alpha, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
