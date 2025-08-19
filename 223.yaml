@@ -135,8 +135,6 @@ proxy-groups:
 
 rules:
   # 1. 优先直连 - 国内常用服务（放在最前，避免被后面规则劫持）
-  - DOMAIN-KEYWORD,aws,DIRECT
-  - DOMAIN-KEYWORD,amazon,DIRECT
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
@@ -171,8 +169,6 @@ rules:
   - DOMAIN-KEYWORD,ttsmaker,BIZ
   - DOMAIN-SUFFIX,x.ai,BIZ
   - DOMAIN-SUFFIX,grok.com,BIZ
-  - DOMAIN-SUFFIX,voice.telephony.goog,BIZ
-  - DOMAIN-SUFFIX,trends.google.com,BIZ
   - DOMAIN-SUFFIX,x.com,BIZ
   - DOMAIN-SUFFIX,t.co,BIZ
   - DOMAIN-KEYWORD,yahoo,BIZ
