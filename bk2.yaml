@@ -1,57 +1,63 @@
 # 基本配置
-mixed-port: 7890                    # 代理监听端口（支持 HTTP 和 SOCKS）
-bind-address: 127.0.0.1             # 绑定地址，仅限本地访问
-allow-lan: true                     # 允许局域网设备连接代理
-mode: rule                          # 路由模式：rule（基于规则路由）
-log-level: info                     # 日志级别：info（记录基本信息）
-external-controller: 127.0.0.1:9090 # 外部控制接口，用于 Clash 仪表板
-ipv6: true                          # 启用 IPv6 支持
+mixed-port: 7890
+bind-address: 0.0.0.0            # 改为 0.0.0.0，方便局域网设备直接访问
+allow-lan: true
+mode: rule
+log-level: warning               # 从 info 改为 warning，减少无关日志，提升性能
+external-controller: 0.0.0.0:9090
+ipv6: true
 
-# 域嗅探配置
-sniffing: true                      # 启用域名嗅探
-concurrent: true                    # 启用并发连接
-
-# TUN 模式配置
-tun:
-  enable: true                      # 启用 TUN 模式
-  stack: system                     # 使用系统网络栈
-  auto-route: true                  # 自动配置路由
-  auto-detect-interface: true       # 自动检测网络接口
+# 域嗅探配置（自动判断域名类型并匹配规则）
+sniffing:
+  enabled: true
+  override-destination: true
+  sniff:
+    - tls
+    - http
 
 # 地理数据配置
-geodata-mode: true                  # 启用 GeoIP 和 GeoSite 数据匹配
-geo-auto-update: true               # 自动更新地理数据
-geo-update-interval: 168            # 地理数据更新间隔（7天，单位：小时）
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 168         # 每 7 天更新一次（单位小时）
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"     # GeoIP 数据源
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat" # GeoSite 数据源
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+
 
 dns:
   enable: true
-  ipv6: true # 启用 IPv6
+  ipv6: true
   listen: 0.0.0.0:53
   cache: true
-  cache-size: 4096
-  cache-ttl: 600
+  cache-size: 8192
+  cache-ttl: 300
+  concurrent-query: true
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  fake-ip-range: 198.18.0.1/15
+
   fake-ip-filter:
     - "*.lan"
     - "*.local"
     - "*.localhost"
     - "+.msftconnecttest.com"
     - "+.msftncsi.com"
-  default-nameserver:
-    - 114.114.114.114 # 国内公共 DNS
-    - 223.5.5.5 # 阿里公共 DNS
+    - "+.captive.apple.com"
+    - "+.dns.msftnCSI.com"
+
+  # 主解析 DNS（优先）
   nameserver:
-    - https://dns.alidns.com/dns-query
     - https://223.6.6.6/dns-query
+
+  # 代理专用 DNS（走代理时用）
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
+    - https://223.6.6.6/dns-query
+
+  # 回退 DNS（仅在主服务器无结果时使用）
   fallback:
-    - https://doh.pub/dns-query
-    - https://dns.tuna.tsinghua.edu.cn/dns-query
+    - https://8.8.8.8/dns-query
+    - https://1.1.1.1/dns-query
+
+  # 回退过滤规则
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -59,63 +65,86 @@ dns:
       - 240.0.0.0/4
       - 0.0.0.0/8
       - 127.0.0.0/8
-      
+
+     
 proxies:
-
   # Alpha
-  # russia.com shopify.com linux.do time.is www.visa.com fbi.gov
-  - {type: vless, name: Alpha-a, server: 190.93.246.228, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: Alpha-b, server: 190.93.246.228, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Alpha-c, server: 190.93.246.228, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false,  ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-
-  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: JPN-2, server: jpn2.todsm.com, port: 56534, type: vless, uuid: ce232d5e-1184-4a0a-932a-d15898b25ee9, tls: true, skip-cert-verify: false, servername: jpn2.todsm.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: VN, server: vn.todsm.com, port: 30082, type: vless, uuid: bd030c1c-dde8-4ef9-bdb9-b3c0372ac6af, tls: true, skip-cert-verify: true, servername: vn.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: HKG2, server: hkg2.todsm.com, port: 443, type: vless, uuid: d060ef5f-7047-4a0d-a5e1-903d4c602e2f, tls: true, skip-cert-verify: false, servername: hkg2.todsm.com, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  
-  - {name: VPS1, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: VPS2, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {type: vless, name: Alpha, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: Delta, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: Gamma, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Lambda, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
+  - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: LA, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: NY, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: "HKTD", type: trojan, server: todo.todsm.com, port: 443, password: 0xtCy6f4oA, client-fingerprint: chrome, alpn: [h2, http/1.1], security: tls}
   
 proxy-groups:
-
+  # 高流量 CDN 节点池（负载均衡）
   - name: CDN
     type: load-balance
+    strategy: round-robin
     proxies:
-      - Alpha-a
-      - Alpha-b
-      - Alpha-c
-      - HKG2
+      - Alpha
+      - Delta
+      - Gamma
+      - Lambda
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
+  # AI / 大模型 专用低延迟池
   - name: LLM
     type: url-test
     proxies:
-      - VPS1
-      - VPS2
-    icon: https://img.icons8.com/?size=100&id=B7YcCJBnKL2M&format=png&color=000000
+      - JPN
+      - LA
+      - NY
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://img.icons8.com/?size=100&id=6sK2cmPnn5fM&format=png&color=000000
 
+  # 商业/低流量业务池
   - name: BIZ
     type: url-test
     proxies:
       - HKG
+      - HKTD
       - JPN
-      - JPN-2
-    icon: https://img.icons8.com/?size=100&id=newQ1faBesGc&format=png&color=000000
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
+
+  # 全局回退策略（防止全部节点挂掉）
+  - name: AUTO
+    type: fallback
+    proxies:
+      - CDN
+      - LLM
+      - BIZ
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 100
+
 
 rules:
-  # 广告拦截
-  - GEOSITE,category-ads-all,REJECT  # 拦截广告相关域名
-
-  # 优先直联 - 国内常用服务
-  - DOMAIN-KEYWORD,aws,DIRECT
-  - DOMAIN-KEYWORD,amazon,DIRECT
+  # 1. 优先直连 - 国内常用服务（放在最前，避免被后面规则劫持）
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
 
-  # 高流量服务 - 使用 CDN 线路
-  - DOMAIN-KEYWORD,whatsapp,JPN
+  # 2. Google Voice 通话业务（优先匹配专用代理）
+  - DOMAIN-SUFFIX,telephony.goog,LLM
+  - DOMAIN-SUFFIX,voice.google.com,LLM
+
+  # 3. 高流量服务（CDN 优先走高速线路）
+  - DOMAIN-KEYWORD,whatsapp,CDN
   - DOMAIN-SUFFIX,fbcdn.net,CDN
   - DOMAIN-SUFFIX,cdninstagram.com,CDN
   - DOMAIN-SUFFIX,twimg.com,CDN
@@ -130,17 +159,16 @@ rules:
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,akamaized.net,CDN
 
-  # 低流量服务
-  - DOMAIN-SUFFIX,gemini.google.com,JPN
+  # 4. 低流量服务（走普通代理/BIZ）
+  - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-SUFFIX,google.com,BIZ
+  - DOMAIN-SUFFIX,facebook.com,BIZ
   - DOMAIN-SUFFIX,youtube.com,BIZ
   - DOMAIN-SUFFIX,twitter.com,BIZ
   - DOMAIN-KEYWORD,cloudflare,BIZ
   - DOMAIN-KEYWORD,ttsmaker,BIZ
   - DOMAIN-SUFFIX,x.ai,BIZ
   - DOMAIN-SUFFIX,grok.com,BIZ
-  - DOMAIN-SUFFIX,voice.telephony.goog,BIZ
-  - DOMAIN-SUFFIX,trends.google.com,BIZ
   - DOMAIN-SUFFIX,x.com,BIZ
   - DOMAIN-SUFFIX,t.co,BIZ
   - DOMAIN-KEYWORD,yahoo,BIZ
@@ -152,15 +180,15 @@ rules:
   - DOMAIN-KEYWORD,quora,BIZ
   - DOMAIN-KEYWORD,qobuz,BIZ
 
-  # OpenAI
-  - GEOSITE,openai,JPN
-  - DOMAIN-SUFFIX,openai.com,JPN
-  - DOMAIN-SUFFIX,chatgpt.com,JPN
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN
-  - DOMAIN,api.openai.com,JPN
-  - DOMAIN,chat.openai.com,JPN  
+  # 5. OpenAI 专用代理
+  - GEOSITE,openai,LLM
+  - DOMAIN-SUFFIX,openai.com,LLM
+  - DOMAIN-SUFFIX,chatgpt.com,LLM
+  - DOMAIN-SUFFIX,auth0.openai.com,LLM
+  - DOMAIN,api.openai.com,LLM
+  - DOMAIN,chat.openai.com,LLM  
 
-  # Telegram
+  # 6. Telegram 专用代理
   - GEOSITE,telegram,BIZ
   - GEOIP,telegram,BIZ,no-resolve
   - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
@@ -175,10 +203,10 @@ rules:
   - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
   - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve  
 
-  # GEO - 高流量，使用 CDN
+  # 7. GEO 分流（高流量 → CDN）
   - GEOSITE,gfw,CDN
   - GEOSITE,greatfire,CDN
   - GEOSITE,geolocation-!cn,CDN
 
-  # 默认
+  # 8. 默认直连
   - MATCH,DIRECT
