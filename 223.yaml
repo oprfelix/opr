@@ -1,18 +1,15 @@
 # 基本配置
 mixed-port: 7890
-bind-address: 0.0.0.0            # 改为 0.0.0.0，方便局域网设备直接访问
+bind-address: 0.0.0.0
 allow-lan: true
 mode: rule
-log-level: warning               # 从 info 改为 warning，减少无关日志，提升性能
+log-level: warning
 external-controller: 0.0.0.0:9090
 
 dns:
   enable: true
   listen: 0.0.0.0:53
   cache: true
-  cache-size: 8192
-  cache-ttl: 300
-  concurrent-query: true
      
 proxies:
   # Alpha
