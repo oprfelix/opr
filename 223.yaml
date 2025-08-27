@@ -13,16 +13,12 @@ dns:
      
 proxies:
   # Alpha
-  - {type: vless, name: Alpha, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: Delta, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Gamma, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Lambda, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: HKG, server: work.fotoman.com, port: 36342, type: vless, uuid: 2948257a-90ab-4bf5-995a-62d909e11d40, tls: true, skip-cert-verify: false, servername: work.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2048", headers: {Host: bing.com}}}
-  - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: LA, server: us2.fotoman.com, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: NY, server: us1.fotoman.com, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: "HKTD", type: trojan, server: todo.todsm.com, port: 443, password: 0xtCy6f4oA, client-fingerprint: chrome, alpn: [h2, http/1.1], security: tls}
-  
+  - {type: vless, name: Alpha, server: 104.16.239.116, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {type: vless, name: Delta, server: 198.41.197.15, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {type: vless, name: Gamma, server: 162.159.32.246, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {type: vless, name: Lambda, server: 104.18.177.229, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: JP, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+
 proxy-groups:
   # 高流量 CDN 节点池（负载均衡）
   - name: CDN
@@ -37,32 +33,6 @@ proxy-groups:
       url: https://www.gstatic.com/generate_204
       interval: 300
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-
-  # AI / 大模型 专用低延迟池
-  - name: LLM
-    type: url-test
-    proxies:
-      - JPN
-      - LA
-      - NY
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    lazy: true
-    icon: https://img.icons8.com/?size=100&id=6sK2cmPnn5fM&format=png&color=000000
-
-  # 商业/低流量业务池
-  - name: BIZ
-    type: url-test
-    proxies:
-      - HKG
-      - HKTD
-      - JPN
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    lazy: true
-    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
 rule-providers:
   gfw:
@@ -93,15 +63,15 @@ rule-providers:
     path: ./ruleset/lancidr.yaml
     interval: 86400
 rules:
-  - DOMAIN-KEYWORD,openai,LLM
-  - DOMAIN-KEYWORD,chatgpt,LLM
-  - DOMAIN-KEYWORD,grok,LLM
-  - DOMAIN-KEYWORD,gemini,LLM
+  - DOMAIN-KEYWORD,openai,JP
+  - DOMAIN-KEYWORD,chatgpt,JP
+  - DOMAIN-KEYWORD,grok,JP
+  - DOMAIN-KEYWORD,gemini,JP
 
   # 黑名单列表
   - RULE-SET,gfw,CDN
   - RULE-SET,pName,CDN
-  - RULE-SET,telegramcidr,BIZ
+  - RULE-SET,telegramcidr,CDN
   - RULE-SET,lancidr,DIRECT
 
   # 默认直连
