@@ -86,6 +86,23 @@ rules:
   - DOMAIN,upload.twitter.com,JP
   - DOMAIN,upload.x.com,JP
   
+  # Google Voice 相关域名分流规则
+  - DOMAIN-SUFFIX,voice.google.com,JP
+  - DOMAIN-SUFFIX,googleapis.com,JP
+  - DOMAIN-SUFFIX,gstatic.com,JP
+  - DOMAIN-SUFFIX,google.com,JP
+  - DOMAIN,accounts.google.com,JP
+  - DOMAIN,clients1.google.com,JP
+  - DOMAIN,clients2.google.com,JP
+  - DOMAIN,clients3.google.com,JP
+  - DOMAIN,clients4.google.com,JP
+  - DOMAIN,clients5.google.com,JP
+  - DOMAIN,clients6.google.com,JP
+  - DOMAIN,voice.l.google.com,JP
+  - DOMAIN,voice.googleapis.com,JP
+  - DOMAIN,hangouts.google.com,JP
+  - DOMAIN,meet.google.com,JP
+
   # 黑名单列表
   - RULE-SET,gfw,CDN
   - RULE-SET,pName,CDN
