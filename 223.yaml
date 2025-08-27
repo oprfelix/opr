@@ -86,6 +86,25 @@ rules:
   - DOMAIN,upload.twitter.com,JP
   - DOMAIN,upload.x.com,JP
   
+  # WhatsApp 相关域名分流规则
+  - DOMAIN-SUFFIX,whatsapp.com,JP
+  - DOMAIN-SUFFIX,whatsapp.net,JP
+  - DOMAIN-SUFFIX,scontent.whatsapp.net,JP
+  - DOMAIN-SUFFIX,cdn.whatsapp.net,JP
+  - DOMAIN-SUFFIX,media-mxp1-1.cdn.whatsapp.net,JP
+  - DOMAIN-SUFFIX,mmx-ds.cdn.whatsapp.net,JP
+  - DOMAIN,static.whatsapp.net,JP
+  - DOMAIN,media-*.cdn.whatsapp.net,JP
+  - DOMAIN,media.*.fna.whatsapp.net,JP
+  - DOMAIN-KEYWORD,cdn.whatsapp,JP
+  - DOMAIN,g.whatsapp.net,JP
+  - DOMAIN,v.whatsapp.net,JP
+  - DOMAIN,mmg.whatsapp.net,JP
+  - DOMAIN,pps.whatsapp.net,JP
+  - DOMAIN,web.whatsapp.com,JP
+  - DOMAIN,faq.whatsapp.com,JP
+  - DOMAIN,api.whatsapp.com,JP
+
   # Google Voice 相关域名分流规则
   - DOMAIN-SUFFIX,voice.google.com,JP
   - DOMAIN-SUFFIX,googleapis.com,JP
