@@ -26,8 +26,7 @@ proxies:
 proxy-groups:
   # 高流量 CDN 节点池（负载均衡）
   - name: CDN
-    type: load-balance
-    strategy: round-robin
+    type: url-test
     proxies:
       - Alpha
       - Delta
@@ -79,6 +78,20 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
     path: ./ruleset/telegramcidr.yaml
     interval: 86400
+  
+  pName:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/lancidr.yaml
+    interval: 86400
 rules:
   - DOMAIN-KEYWORD,openai,LLM
   - DOMAIN-KEYWORD,chatgpt,LLM
@@ -87,7 +100,9 @@ rules:
 
   # 黑名单列表
   - RULE-SET,gfw,CDN
+  - RULE-SET,pName,CDN
   - RULE-SET,telegramcidr,BIZ
+  - RULE-SET,lancidr,DIRECT
 
   # 默认直连
   - MATCH,DIRECT
