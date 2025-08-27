@@ -2,6 +2,7 @@
 mixed-port: 7890
 bind-address: 0.0.0.0
 allow-lan: true
+ipv6: true
 mode: rule
 log-level: warning
 external-controller: 0.0.0.0:9090
@@ -10,6 +11,7 @@ dns:
   enable: true
   listen: 0.0.0.0:53
   cache: true
+  ipv6: true
      
 proxies:
   # Alpha
