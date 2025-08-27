@@ -70,10 +70,26 @@ rules:
   - DOMAIN-KEYWORD,grok,JP
   - DOMAIN-KEYWORD,gemini,JP
 
+  # X/Twitter 相关域名分流规则
+  - DOMAIN-SUFFIX,x.com,JP
+  - DOMAIN-SUFFIX,twitter.com,JP
+  - DOMAIN-SUFFIX,t.co,JP
+  - DOMAIN-SUFFIX,twimg.com,JP
+  - DOMAIN,api.twitter.com,JP
+  - DOMAIN,api.x.com,JP
+  - DOMAIN,help.twitter.com,JP
+  - DOMAIN,help.x.com,JP
+  - DOMAIN,ads.twitter.com,JP
+  - DOMAIN,ads.x.com,JP
+  - DOMAIN,cdn.twitter.com,JP
+  - DOMAIN,cdn.x.com,JP
+  - DOMAIN,upload.twitter.com,JP
+  - DOMAIN,upload.x.com,JP
+  
   # 黑名单列表
   - RULE-SET,gfw,CDN
   - RULE-SET,pName,CDN
-  - RULE-SET,telegramcidr,CDN
+  - RULE-SET,telegramcidr,JP
   - RULE-SET,lancidr,DIRECT
 
   # 默认直连
