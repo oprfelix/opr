@@ -5,67 +5,14 @@ allow-lan: true
 mode: rule
 log-level: warning               # 从 info 改为 warning，减少无关日志，提升性能
 external-controller: 0.0.0.0:9090
-ipv6: true
-
-# 域嗅探配置（自动判断域名类型并匹配规则）
-sniffing:
-  enabled: true
-  override-destination: true
-  sniff:
-    - tls
-    - http
-
-# 地理数据配置
-geodata-mode: true
-geo-auto-update: true
-geo-update-interval: 168         # 每 7 天更新一次（单位小时）
-geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-
 
 dns:
   enable: true
-  ipv6: true
   listen: 0.0.0.0:53
   cache: true
   cache-size: 8192
   cache-ttl: 300
   concurrent-query: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/15
-
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.captive.apple.com"
-    - "+.dns.msftnCSI.com"
-
-  # 主解析 DNS（优先）
-  nameserver:
-    - https://223.6.6.6/dns-query
-
-  # 代理专用 DNS（走代理时用）
-  proxy-server-nameserver:
-    - https://223.6.6.6/dns-query
-
-  # 回退 DNS（仅在主服务器无结果时使用）
-  fallback:
-    - https://8.8.8.8/dns-query
-    - https://1.1.1.1/dns-query
-
-  # 回退过滤规则
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/8
-      - 127.0.0.0/8
-
      
 proxies:
   # Alpha
@@ -121,92 +68,29 @@ proxy-groups:
     lazy: true
     icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
-  # 全局回退策略（防止全部节点挂掉）
-  - name: AUTO
-    type: fallback
-    proxies:
-      - CDN
-      - LLM
-      - BIZ
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 100
+rule-providers:
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
 
-
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
+    interval: 86400
 rules:
-  # 1. 优先直连 - 国内常用服务（放在最前，避免被后面规则劫持）
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-KEYWORD,openai,LLM
+  - DOMAIN-KEYWORD,chatgpt,LLM
+  - DOMAIN-KEYWORD,grok,LLM
+  - DOMAIN-KEYWORD,gemini,LLM
 
-  # 2. Google Voice 通话业务（优先匹配专用代理）
-  - DOMAIN-SUFFIX,telephony.goog,LLM
-  - DOMAIN-SUFFIX,voice.google.com,LLM
+  # 黑名单列表
+  - RULE-SET,gfw,CDN
+  - RULE-SET,telegramcidr,BIZ
 
-  # 3. 高流量服务（CDN 优先走高速线路）
-  - DOMAIN-KEYWORD,whatsapp,CDN
-  - DOMAIN-SUFFIX,fbcdn.net,CDN
-  - DOMAIN-SUFFIX,cdninstagram.com,CDN
-  - DOMAIN-SUFFIX,twimg.com,CDN
-  - DOMAIN-SUFFIX,video.twimg.com,CDN
-  - DOMAIN-SUFFIX,gstatic.com,CDN
-  - DOMAIN-SUFFIX,googleusercontent.com,CDN
-  - DOMAIN-SUFFIX,ytimg.com,CDN
-  - DOMAIN-SUFFIX,googlevideo.com,CDN
-  - DOMAIN-SUFFIX,redditmedia.com,CDN
-  - DOMAIN-SUFFIX,redd.it,CDN
-  - DOMAIN-SUFFIX,preview.redd.it,CDN
-  - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-SUFFIX,akamaized.net,CDN
-
-  # 4. 低流量服务（走普通代理/BIZ）
-  - DOMAIN-SUFFIX,gemini.google.com,LLM
-  - DOMAIN-SUFFIX,google.com,BIZ
-  - DOMAIN-SUFFIX,facebook.com,BIZ
-  - DOMAIN-SUFFIX,youtube.com,BIZ
-  - DOMAIN-SUFFIX,twitter.com,BIZ
-  - DOMAIN-KEYWORD,cloudflare,BIZ
-  - DOMAIN-KEYWORD,ttsmaker,BIZ
-  - DOMAIN-SUFFIX,x.ai,BIZ
-  - DOMAIN-SUFFIX,grok.com,BIZ
-  - DOMAIN-SUFFIX,x.com,BIZ
-  - DOMAIN-SUFFIX,t.co,BIZ
-  - DOMAIN-KEYWORD,yahoo,BIZ
-  - DOMAIN-KEYWORD,kickstarter,BIZ
-  - DOMAIN-KEYWORD,linkedin,BIZ
-  - DOMAIN-KEYWORD,licdn,BIZ
-  - DOMAIN-KEYWORD,protects,BIZ
-  - DOMAIN-KEYWORD,github,BIZ
-  - DOMAIN-KEYWORD,quora,BIZ
-  - DOMAIN-KEYWORD,qobuz,BIZ
-
-  # 5. OpenAI 专用代理
-  - GEOSITE,openai,LLM
-  - DOMAIN-SUFFIX,openai.com,LLM
-  - DOMAIN-SUFFIX,chatgpt.com,LLM
-  - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  - DOMAIN,api.openai.com,LLM
-  - DOMAIN,chat.openai.com,LLM  
-
-  # 6. Telegram 专用代理
-  - GEOSITE,telegram,BIZ
-  - GEOIP,telegram,BIZ,no-resolve
-  - IP-CIDR,91.108.4.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.8.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.12.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.16.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.20.0/22,BIZ,no-resolve
-  - IP-CIDR,91.108.56.0/22,BIZ,no-resolve
-  - IP-CIDR,149.154.160.0/20,BIZ,no-resolve
-  - IP-CIDR,149.154.172.0/22,BIZ,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,BIZ,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,BIZ,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,BIZ,no-resolve  
-
-  # 7. GEO 分流（高流量 → CDN）
-  - GEOSITE,gfw,CDN
-  - GEOSITE,greatfire,CDN
-  - GEOSITE,geolocation-!cn,CDN
-
-  # 8. 默认直连
+  # 默认直连
   - MATCH,DIRECT
