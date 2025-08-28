@@ -9,9 +9,20 @@ external-controller: 0.0.0.0:9090
 
 dns:
   enable: true
-  listen: 0.0.0.0:53
-  cache: true
   ipv6: true
+  listen: 0.0.0.0:53
+
+  # 主解析 DNS（优先）
+  nameserver:
+    - 114.114.114.114
+
+  # 代理专用 DNS（走代理时用）
+  proxy-server-nameserver:
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://1.12.12.12/dns-query
      
 proxies:
   # Alpha
