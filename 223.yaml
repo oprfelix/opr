@@ -79,6 +79,12 @@ rules:
   - DOMAIN-SUFFIX,gemini.google.com,JP
   - DOMAIN-SUFFIX,github.com,JP
 
+  # 软件下载
+  - DOMAIN-SUFFIX,appstorrent.ru,CDN
+
+  # Linkedin
+  - DOMAIN-SUFFIX,linkedin.com,JP
+
   # X / Twitter
   - DOMAIN-SUFFIX,x.com,JP
   - DOMAIN-SUFFIX,twitter.com,JP
