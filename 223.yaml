@@ -77,7 +77,7 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,JP
   - DOMAIN-KEYWORD,grok,JP
   - DOMAIN-KEYWORD,gemini,JP
-  - DOMAIN-KEYWORD,github,CDN
+  - DOMAIN-SUFFIX,github.com,JP
 
   # X / Twitter
   - DOMAIN-SUFFIX,x.com,JP
