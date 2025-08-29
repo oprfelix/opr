@@ -74,9 +74,9 @@ rule-providers:
 rules:
   # AI 相关
   - DOMAIN-KEYWORD,openai,JP
-  - DOMAIN-KEYWORD,chatgpt,JP
-  - DOMAIN-KEYWORD,grok,JP
-  - DOMAIN-KEYWORD,gemini,JP
+  - DOMAIN-SUFFIX,chatgpt.com,JP
+  - DOMAIN-SUFFIX,grok.com,JP
+  - DOMAIN-SUFFIX,gemini.google.com,JP
   - DOMAIN-SUFFIX,github.com,JP
 
   # X / Twitter
