@@ -18,25 +18,19 @@ dns:
     - 223.5.5.5
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-    
+
   # 代理专用 DNS（走代理时用）
   proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
     - https://223.6.6.6/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-    - https://1.12.12.12/dns-query
      
 proxies:
-  # Alpha
-  - {type: vless, name: Alpha, server: 104.16.239.116, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {type: vless, name: Delta, server: 198.41.197.15, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {type: vless, name: Gamma, server: 162.159.32.246, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {type: vless, name: Lambda, server: 104.18.177.229, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: JP, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: Alpha, type: vless, server: 104.16.239.116, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Delta, type: vless, server: 198.41.197.15, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Gamma, type: vless, server: 162.159.32.246, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
+  - {name: Lambda, type: vless, server: 104.18.177.229, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: JP, type: vless, server: tky.todsm.com, port: 26197, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, network: ws, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 proxy-groups:
-  # 高流量 CDN 节点池（负载均衡）
   - name: CDN
     type: url-test
     proxies:
@@ -44,48 +38,48 @@ proxy-groups:
       - Delta
       - Gamma
       - Lambda
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
+    url: https://www.gstatic.com/generate_204
+    interval: 300
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
 rule-providers:
   gfw:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
     path: ./ruleset/gfw.yaml
     interval: 86400
 
   telegramcidr:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
     path: ./ruleset/telegramcidr.yaml
     interval: 86400
   
   pName:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
     path: ./ruleset/proxy.yaml
     interval: 86400
 
   lancidr:
     type: http
     behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
     path: ./ruleset/lancidr.yaml
     interval: 86400
+
 rules:
+  # AI 相关
   - DOMAIN-KEYWORD,openai,JP
   - DOMAIN-KEYWORD,chatgpt,JP
   - DOMAIN-KEYWORD,grok,JP
   - DOMAIN-KEYWORD,gemini,JP
   - DOMAIN-KEYWORD,github,CDN
 
-  # X/Twitter 相关域名分流规则
+  # X / Twitter
   - DOMAIN-SUFFIX,x.com,JP
   - DOMAIN-SUFFIX,twitter.com,JP
   - DOMAIN-SUFFIX,t.co,JP
@@ -101,7 +95,7 @@ rules:
   - DOMAIN,upload.twitter.com,JP
   - DOMAIN,upload.x.com,JP
   
-  # WhatsApp 相关域名分流规则
+  # WhatsApp
   - DOMAIN-SUFFIX,whatsapp.com,JP
   - DOMAIN-SUFFIX,whatsapp.net,JP
   - DOMAIN-SUFFIX,scontent.whatsapp.net,JP
@@ -120,7 +114,7 @@ rules:
   - DOMAIN,faq.whatsapp.com,JP
   - DOMAIN,api.whatsapp.com,JP
 
-  # Google Voice 相关域名分流规则
+  # Google Voice
   - DOMAIN-SUFFIX,voice.google.com,JP
   - DOMAIN-SUFFIX,googleapis.com,JP
   - DOMAIN-SUFFIX,gstatic.com,JP
