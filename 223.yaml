@@ -34,11 +34,9 @@ dns:
   nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-    - https://dns.google/dns-query
   proxy-server-nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-    - https://dns.google/dns-query
 
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
