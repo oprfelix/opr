@@ -37,8 +37,8 @@ dns:
 
   # 主解析 DNS（优先）
   nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - https://223.6.6.6/dns-query
+    - https://1.12.12.12/dns-query
 
   # 代理专用 DNS（走代理时用）
   proxy-server-nameserver:
