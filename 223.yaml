@@ -81,35 +81,35 @@ rule-providers:
 
 rules:
   # AI 相关
-  - DOMAIN-KEYWORD,openai,JP
-  - DOMAIN-SUFFIX,chatgpt.com,JP
-  - DOMAIN-SUFFIX,grok.com,JP
-  - DOMAIN-SUFFIX,gemini.google.com,JP
-  - DOMAIN-SUFFIX,github.com,JP
+  - DOMAIN-KEYWORD,openai,CDN
+  - DOMAIN-SUFFIX,chatgpt.com,CDN
+  - DOMAIN-SUFFIX,grok.com,CDN
+  - DOMAIN-SUFFIX,gemini.google.com,CDN
+  - DOMAIN-SUFFIX,github.com,CDN
 
   # 软件下载
   - DOMAIN-SUFFIX,appstorrent.ru,CDN
 
   # Linkedin
-  - DOMAIN-SUFFIX,linkedin.com,JP
+  - DOMAIN-SUFFIX,linkedin.com,CDN
 
   # X / Twitter
-  - DOMAIN-SUFFIX,x.com,JP
-  - DOMAIN-SUFFIX,twitter.com,JP
-  - DOMAIN-SUFFIX,t.co,JP
-  - DOMAIN-SUFFIX,twimg.com,JP
+  - DOMAIN-SUFFIX,x.com,CDN
+  - DOMAIN-SUFFIX,twitter.com,CDN
+  - DOMAIN-SUFFIX,t.co,CDN
+  - DOMAIN-SUFFIX,twimg.com,CDN
   
   # Google Voice
-  - DOMAIN-SUFFIX,voice.google.com,JP
-  - DOMAIN,voice.l.google.com,JP
-  - DOMAIN,voice.googleapis.com,JP
-  - DOMAIN,hangouts.google.com,JP
-  - DOMAIN,meet.google.com,JP
+  - DOMAIN-SUFFIX,voice.google.com,CDN
+  - DOMAIN,voice.l.google.com,CDN
+  - DOMAIN,voice.googleapis.com,CDN
+  - DOMAIN,hangouts.google.com,CDN
+  - DOMAIN,meet.google.com,CDN
 
   # 黑名单列表
   - RULE-SET,gfw,CDN
   - RULE-SET,pName,CDN
-  - RULE-SET,telegramcidr,JP
+  - RULE-SET,telegramcidr,CDN
 
   # 默认直连
   - RULE-SET,lancidr,DIRECT
