@@ -15,10 +15,7 @@ dns:
   # 主解析 DNS（优先）
   nameserver:
     - 114.114.114.114
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-
+    - 223.6.6.6
   # 代理专用 DNS（走代理时用）
   proxy-server-nameserver:
     - https://223.6.6.6/dns-query
