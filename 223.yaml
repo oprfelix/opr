@@ -1,13 +1,11 @@
-# 基本配置
 mixed-port: 7890
-bind-address: 0.0.0.0            # 改为 0.0.0.0，方便局域网设备直接访问
+bind-address: 0.0.0.0
 allow-lan: true
 mode: rule
-log-level: warning               # 从 info 改为 warning，减少无关日志，提升性能
+log-level: error
 external-controller: 0.0.0.0:9090
-ipv6: true
+ipv6: false
 
-# 域嗅探配置（自动判断域名类型并匹配规则）
 sniffing:
   enabled: true
   override-destination: true
@@ -17,15 +15,14 @@ sniffing:
 
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   listen: 0.0.0.0:53
   cache: true
-  cache-size: 8192
-  cache-ttl: 300
+  cache-size: 4096
+  cache-ttl: 600
   concurrent-query: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
-
   fake-ip-filter:
     - "*.lan"
     - "*.local"
@@ -34,40 +31,33 @@ dns:
     - "+.msftncsi.com"
     - "+.captive.apple.com"
     - "+.dns.msftnCSI.com"
-
-  # 主解析 DNS（优先）
   nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-
-  # 代理专用 DNS（走代理时用）
+    - https://dns.google/dns-query
   proxy-server-nameserver:
     - https://223.6.6.6/dns-query
-     
+    - https://1.12.12.12/dns-query
+    - https://dns.google/dns-query
+
 proxies:
-  - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Delta, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: Lambda, type: vless, server: 190.93.246.19, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: true, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Zeta, type: vless, server: helloworld.techtrendparts.com, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: true, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.todsm.com}}}
-  - {name: Sigma, type: vless, server: 104.19.113.54, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: true, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/?ed=2560", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Delta-Merged, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+  - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 proxy-groups:
   - name: CDN
     type: url-test
     proxies:
       - Alpha
-      - Delta
+      - Delta-Merged
       - Gamma
-      - Lambda
       - Beta
-      - Zeta
       - Theta
-      - Sigma
-    url: https://www.gstatic.com/generate_204
-    interval: 300
+    url: https://www.google.com/generate_204
+    interval: 600
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
 rule-providers:
@@ -76,61 +66,22 @@ rule-providers:
     behavior: domain
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
     path: ./ruleset/gfw.yaml
-    interval: 86400
-
+    interval: 604800
   telegramcidr:
     type: http
     behavior: ipcidr
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
     path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-  
-  pName:
-    type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./ruleset/proxy.yaml
-    interval: 86400
-
+    interval: 604800
   lancidr:
     type: http
     behavior: ipcidr
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
     path: ./ruleset/lancidr.yaml
-    interval: 86400
+    interval: 604800
 
 rules:
-  # AI 相关
-  - DOMAIN-KEYWORD,openai,CDN
-  - DOMAIN-SUFFIX,chatgpt.com,CDN
-  - DOMAIN-SUFFIX,grok.com,CDN
-  - DOMAIN-SUFFIX,gemini.google.com,CDN
-  - DOMAIN-SUFFIX,github.com,CDN
-
-  # 软件下载
-  - DOMAIN-SUFFIX,appstorrent.ru,CDN
-
-  # Linkedin
-  - DOMAIN-SUFFIX,linkedin.com,CDN
-
-  # X / Twitter
-  - DOMAIN-SUFFIX,x.com,CDN
-  - DOMAIN-SUFFIX,twitter.com,CDN
-  - DOMAIN-SUFFIX,t.co,CDN
-  - DOMAIN-SUFFIX,twimg.com,CDN
-  
-  # Google Voice
-  - DOMAIN-SUFFIX,voice.google.com,CDN
-  - DOMAIN,voice.l.google.com,CDN
-  - DOMAIN,voice.googleapis.com,CDN
-  - DOMAIN,hangouts.google.com,CDN
-  - DOMAIN,meet.google.com,CDN
-
-  # 黑名单列表
   - RULE-SET,gfw,CDN
-  - RULE-SET,pName,CDN
   - RULE-SET,telegramcidr,CDN
-
-  # 默认直连
   - RULE-SET,lancidr,DIRECT
   - MATCH,DIRECT
