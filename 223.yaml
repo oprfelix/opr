@@ -97,6 +97,7 @@ rule-providers:
 rules:
   # Github 服务
   - DOMAIN-SUFFIX,github.com,JPN
+  - DOMAIN-SUFFIX,github.io,JPN
   
   # Google 服务
   - DOMAIN-SUFFIX,telephony.goog,JPN
