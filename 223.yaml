@@ -34,11 +34,11 @@ dns:
   nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
   proxy-server-nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
 
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
@@ -79,9 +79,20 @@ rule-providers:
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
     path: ./ruleset/lancidr.yaml
     interval: 604800
+  private:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
 
 rules:
+  # 黑名单规则
   - RULE-SET,gfw,CDN
   - RULE-SET,telegramcidr,CDN
+  - RULE-SET,private,CDN
+
+  # 直联规则
+  - DOMAIN-KEYWORD,icloud,DIRECT
   - RULE-SET,lancidr,DIRECT
   - MATCH,DIRECT
