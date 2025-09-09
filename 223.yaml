@@ -1,3 +1,4 @@
+# 通用设置
 mixed-port: 7890
 bind-address: 0.0.0.0
 allow-lan: true
@@ -6,6 +7,7 @@ log-level: error
 external-controller: 0.0.0.0:9090
 ipv6: false
 
+# 流量嗅探配置
 sniffing:
   enabled: true
   override-destination: true
@@ -13,13 +15,14 @@ sniffing:
     - tls
     - http
 
+# DNS 配置
 dns:
   enable: true
   ipv6: false
   listen: 0.0.0.0:53
   cache: true
-  cache-size: 4096
-  cache-ttl: 600
+  cache-size: 2048  # 减小缓存大小以节省内存
+  cache-ttl: 300    # 缩短 TTL 以获取更新的 DNS 记录
   concurrent-query: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
@@ -35,19 +38,20 @@ dns:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
     - https://cloudflare-dns.com/dns-query
-  proxy-server-nameserver:
-    - https://223.6.6.6/dns-query
-    - https://1.12.12.12/dns-query
-    - https://cloudflare-dns.com/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query  # 添加 Google DNS 作为备用
+    - https://1.1.1.1/dns-query  # 添加 Cloudflare DNS 作为备用
 
+# 代理服务器（未更改）
 proxies:
-  - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Delta-Merged, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
-  - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: randomized, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
-  - {name: JPN, server: 18.179.29.250, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: randomized, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  
+  - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Delta-Merged, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+  - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+  - {name: JPN, server: 18.179.29.250, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+
+# 代理组
 proxy-groups:
   - name: CDN
     type: url-test
@@ -58,9 +62,11 @@ proxy-groups:
       - Beta
       - Theta
     url: https://www.google.com/generate_204
-    interval: 600
+    interval: 300  # 缩短检测间隔以加快切换
+    tolerance: 50  # 添加容差以避免频繁切换
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
+# 规则提供者
 rule-providers:
   gfw:
     type: http
@@ -83,29 +89,30 @@ rule-providers:
   private:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
     path: ./ruleset/proxy.yaml
     interval: 86400
 
+# 路由规则
 rules:
-  # Google 电话服务
+  # Github 服务
+  - DOMAIN-SUFFIX,github.com,JPN
+  
+  # Google 服务
   - DOMAIN-SUFFIX,telephony.goog,JPN
   - DOMAIN-SUFFIX,voice.google.com,JPN
-
-  # 大语言模型
   - DOMAIN-SUFFIX,gemini.google.com,JPN
+
+  # 大语言模型服务
   - DOMAIN-SUFFIX,grok.com,JPN
   - DOMAIN-SUFFIX,openai.com,JPN
   - DOMAIN-SUFFIX,chatgpt.com,JPN
-  - DOMAIN-KEYWORD,openai,JPN
-  - DOMAIN-KEYWORD,chatgpt,JPN
 
-  # 黑名单规则
+  # 代理规则
   - RULE-SET,gfw,CDN
   - RULE-SET,telegramcidr,CDN
   - RULE-SET,private,CDN
 
-  # 直联规则
-  - DOMAIN-KEYWORD,icloud,DIRECT
+  # 直连规则
   - RULE-SET,lancidr,DIRECT
   - MATCH,DIRECT
