@@ -97,7 +97,6 @@ rule-providers:
 rules:
   # Github 服务
   - DOMAIN-SUFFIX,github.com,JPN
-  - DOMAIN-SUFFIX,github.io,JPN
   
   # Google 服务
   - DOMAIN-SUFFIX,telephony.goog,JPN
@@ -106,6 +105,7 @@ rules:
 
   # 大语言模型服务
   - DOMAIN-SUFFIX,grok.com,JPN
+  - DOMAIN-SUFFIX,grokusercontent.com,JPN
   - DOMAIN-SUFFIX,openai.com,JPN
   - DOMAIN-SUFFIX,chatgpt.com,JPN
 
