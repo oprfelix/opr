@@ -5,7 +5,7 @@ allow-lan: true
 mode: rule
 log-level: error
 external-controller: 0.0.0.0:9090
-ipv6: false
+ipv6: true
 
 # 流量嗅探配置
 sniffing:
@@ -18,29 +18,12 @@ sniffing:
 # DNS 配置
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   listen: 0.0.0.0:53
-  cache: true
-  cache-size: 2048  # 减小缓存大小以节省内存
-  cache-ttl: 300    # 缩短 TTL 以获取更新的 DNS 记录
-  concurrent-query: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/15
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "+.captive.apple.com"
-    - "+.dns.msftnCSI.com"
+  
   nameserver:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
-    - https://cloudflare-dns.com/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query  # 添加 Google DNS 作为备用
-    - https://1.1.1.1/dns-query  # 添加 Cloudflare DNS 作为备用
 
 # 代理服务器（未更改）
 proxies:
