@@ -78,6 +78,7 @@ rule-providers:
 
 # 路由规则
 rules:
+  
   # Github 服务
   - DOMAIN-SUFFIX,github.com,JPN
   
@@ -98,5 +99,16 @@ rules:
   - RULE-SET,private,CDN
 
   # 直连规则
+  - DOMAIN-KEYWORD,amazon,DIRECT
+  - DOMAIN-KEYWORD,jd,DIRECT
+  - DOMAIN-KEYWORD,goofish,DIRECT
+  - DOMAIN-KEYWORD,tmall,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,bacnk,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,quanmaitong,DIRECT
+  - DOMAIN-KEYWORD,xiaohongshu,DIRECT
+  - DOMAIN-KEYWORD,douyin,DIRECT
   - RULE-SET,lancidr,DIRECT
   - MATCH,DIRECT
