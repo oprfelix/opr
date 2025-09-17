@@ -90,7 +90,6 @@ rules:
   - DOMAIN-KEYWORD,quanmaitong,DIRECT
   - DOMAIN-KEYWORD,xiaohongshu,DIRECT
   - DOMAIN-KEYWORD,douyin,DIRECT
-  - RULE-SET,lancidr,DIRECT
 
   # Github 服务
   - DOMAIN-SUFFIX,github.com,JPN
@@ -112,4 +111,5 @@ rules:
   - RULE-SET,private,CDN
 
   # 通配
+  - RULE-SET,lancidr,DIRECT
   - MATCH,DIRECT
