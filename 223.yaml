@@ -25,7 +25,7 @@ dns:
     - https://223.6.6.6/dns-query
     - https://1.12.12.12/dns-query
 
-# 代理服务器（未更改）
+# 代理服务器
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
   - {name: Delta-Merged, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
@@ -45,71 +45,34 @@ proxy-groups:
       - Beta
       - Theta
     url: https://www.google.com/generate_204
-    interval: 300  # 缩短检测间隔以加快切换
-    tolerance: 50  # 添加容差以避免频繁切换
+    interval: 300
+    tolerance: 50
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
 # 规则提供者
 rule-providers:
-  gfw:
+  cname:
     type: http
     behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
-    path: ./ruleset/gfw.yaml
-    interval: 604800
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
-    path: ./ruleset/telegramcidr.yaml
-    interval: 604800
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/direct.yaml
+    interval: 86400
   lancidr:
     type: http
     behavior: ipcidr
     url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
     path: ./ruleset/lancidr.yaml
     interval: 604800
-  private:
+  cncidr:
     type: http
-    behavior: domain
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
-    path: ./ruleset/proxy.yaml
+    behavior: ipcidr
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/cncidr.yaml
     interval: 86400
 
 # 路由规则
 rules:
-  # 直联
-  - DOMAIN-KEYWORD,amazon,DIRECT
-  - DOMAIN-KEYWORD,jd,DIRECT
-  - DOMAIN-KEYWORD,goofish,DIRECT
-  - DOMAIN-KEYWORD,tmall,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,bacnk,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,quanmaitong,DIRECT
-  - DOMAIN-KEYWORD,xiaohongshu,DIRECT
-  - DOMAIN-KEYWORD,douyin,DIRECT
-
-  # Github 服务
-  - DOMAIN-SUFFIX,github.com,JPN
-  
-  # Google 服务
-  - DOMAIN-SUFFIX,telephony.goog,JPN
-  - DOMAIN-SUFFIX,voice.google.com,JPN
-  - DOMAIN-SUFFIX,gemini.google.com,JPN
-
-  # 大语言模型服务
-  - DOMAIN-SUFFIX,grok.com,JPN
-  - DOMAIN-SUFFIX,grokusercontent.com,JPN
-  - DOMAIN-SUFFIX,openai.com,JPN
-  - DOMAIN-SUFFIX,chatgpt.com,JPN
-
-  # 代理规则
-  - RULE-SET,gfw,CDN
-  - RULE-SET,telegramcidr,CDN
-  - RULE-SET,private,CDN
-
-  # 通配
+  - RULE-SET,cname,DIRECT
+  - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
-  - MATCH,DIRECT
+  - MATCH,CDN
