@@ -72,6 +72,20 @@ rule-providers:
 
 # 路由规则
 rules:
+  #大语言模型
+  - DOMAIN-KEYWORD,openai,JPN
+  - DOMAIN-KEYWORD,grok,JPN
+  - DOMAIN-KEYWORD,chatgpt,JPN
+  - DOMAIN-KEYWORD,gemini,JPN
+  - DOMAIN-SUFFIX,x.ai,JPN
+  - DOMAIN-SUFFIX,openai.com,JPN
+  - DOMAIN-SUFFIX,chatgpt.com,JPN
+  - DOMAIN-SUFFIX,grok.com,JPN
+  - DOMAIN-SUFFIX,gemini.google.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+
+  # 规则集
   - RULE-SET,cname,DIRECT
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
