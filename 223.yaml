@@ -15,18 +15,6 @@ sniffing:
     - tls
     - http
 
-# DNS 配置
-dns:
-  enable: true
-  ipv6: true
-  listen: 0.0.0.0:53
-  
- # nameserver:
- #   - 1.0.0.1
- #   - 8.8.4.4
- #   - 223.6.6.6
- #   - 119.29.29.29
-
 # 代理服务器
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
@@ -39,7 +27,7 @@ proxies:
 # 代理组
 proxy-groups:
   - name: CDN
-    type: url-test
+    type: load-balance # url-test
     proxies:
       - Alpha
       - Delta-Merged
@@ -84,7 +72,6 @@ rules:
   - DOMAIN-SUFFIX,chatgpt.com,JPN
   - DOMAIN-SUFFIX,grok.com,JPN
   - DOMAIN-SUFFIX,gemini.google.com,JPN
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN
   - DOMAIN-SUFFIX,auth0.openai.com,JPN
 
   # 规则集
