@@ -22,8 +22,10 @@ dns:
   listen: 0.0.0.0:53
   
   nameserver:
-    - https://223.6.6.6/dns-query
-    - https://1.12.12.12/dns-query
+    - 1.0.0.1
+    - 8.8.4.4
+    - 223.6.6.6
+    - 119.29.29.29
 
 # 代理服务器
 proxies:
