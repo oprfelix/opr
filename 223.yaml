@@ -62,6 +62,7 @@ rule-providers:
 
 # 路由规则
 rules:
+  - DOMAIN-KEYWORD,linkedin,JPN
   #大语言模型
   - DOMAIN-KEYWORD,openai,JPN
   - DOMAIN-KEYWORD,grok,JPN
