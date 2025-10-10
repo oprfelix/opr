@@ -15,6 +15,27 @@ sniffing:
     - tls
     - http
 
+# DNS 配置
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:53  # DNS 监听地址和端口
+  enhanced-mode: fake-ip  # 启用 Fake-IP 模式，提高性能
+  fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围
+  default-nameserver:  # 默认 DNS，用于解析 Fake-IP
+    - 114.114.114.114
+    - 223.5.5.5
+  nameserver:  # 主 DNS 服务器列表
+    - 114.114.114.114  # 国内 DNS
+    - 8.8.8.8  # Google DNS
+  fallback:  # 备用 DNS 服务器（用于防污染）
+    - 8.8.8.8
+    - 1.1.1.1
+    - tls://dns.google  # DoT 加密 DNS
+  nameserver-policy:  # DNS 分流策略
+    'geosite:cn': 114.114.114.114  # 中国域名使用国内 DNS
+    '+.google.com': 8.8.8.8  # Google 域名使用国外 DNS
+
 # 代理服务器
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
