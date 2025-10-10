@@ -63,6 +63,12 @@ rule-providers:
 # 路由规则
 rules:
   - DOMAIN-KEYWORD,linkedin,JPN
+  - DOMAIN-KEYWORD,licdn,JPN
+  - DOMAIN-SUFFIX,x.com,JPN
+  - DOMAIN-SUFFIX,t.co,JPN
+  - DOMAIN-KEYWORD,yahoo,JPN
+  - DOMAIN-KEYWORD,kickstarter,JPN
+  - DOMAIN-KEYWORD,tiktok,CDN
   #大语言模型
   - DOMAIN-KEYWORD,openai,JPN
   - DOMAIN-KEYWORD,grok,JPN
@@ -74,7 +80,10 @@ rules:
   - DOMAIN-SUFFIX,grok.com,JPN
   - DOMAIN-SUFFIX,gemini.google.com,JPN
   - DOMAIN-SUFFIX,auth0.openai.com,JPN
-
+  #常用站点
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
   # 规则集
   - RULE-SET,cname,DIRECT
   - RULE-SET,cncidr,DIRECT
