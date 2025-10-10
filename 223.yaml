@@ -23,6 +23,8 @@ proxies:
   - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
   - {name: JPN, server: 18.179.29.250, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: US2, server: 137.220.49.212, port: 17468, type: vless, uuid: 2c383049-92d5-4599-d086-2d0eb404cae9, tls: true, skip-cert-verify: false, servername: us2.fotoman.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
+  - {name: US1, server: 107.173.140.91, port: 46456, type: vless, uuid: fbad8872-178b-4ecd-ca92-1b85e68ba0c5, tls: true, skip-cert-verify: false, servername: us1.fotoman.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
 
 # 代理组
 proxy-groups:
@@ -38,6 +40,18 @@ proxy-groups:
     interval: 300
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+
+  - name: LLM
+    type: url-test
+    proxies:
+      - US1
+      - US2
+      - JPN
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
 # 规则提供者
 rule-providers:
@@ -62,24 +76,24 @@ rule-providers:
 
 # 路由规则
 rules:
-  - DOMAIN-KEYWORD,linkedin,JPN
-  - DOMAIN-KEYWORD,licdn,JPN
-  - DOMAIN-SUFFIX,x.com,JPN
-  - DOMAIN-SUFFIX,t.co,JPN
-  - DOMAIN-KEYWORD,yahoo,JPN
-  - DOMAIN-KEYWORD,kickstarter,JPN
+  - DOMAIN-KEYWORD,linkedin,LLM
+  - DOMAIN-KEYWORD,licdn,LLM
+  - DOMAIN-SUFFIX,x.com,LLM
+  - DOMAIN-SUFFIX,t.co,LLM
+  - DOMAIN-KEYWORD,yahoo,LLM
+  - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,tiktok,CDN
   #大语言模型
-  - DOMAIN-KEYWORD,openai,JPN
-  - DOMAIN-KEYWORD,grok,JPN
-  - DOMAIN-KEYWORD,chatgpt,JPN
-  - DOMAIN-KEYWORD,gemini,JPN
-  - DOMAIN-SUFFIX,x.ai,JPN
-  - DOMAIN-SUFFIX,openai.com,JPN
-  - DOMAIN-SUFFIX,chatgpt.com,JPN
-  - DOMAIN-SUFFIX,grok.com,JPN
-  - DOMAIN-SUFFIX,gemini.google.com,JPN
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN
+  - DOMAIN-KEYWORD,openai,LLM
+  - DOMAIN-KEYWORD,grok,LLM
+  - DOMAIN-KEYWORD,chatgpt,LLM
+  - DOMAIN-KEYWORD,gemini,LLM
+  - DOMAIN-SUFFIX,x.ai,LLM
+  - DOMAIN-SUFFIX,openai.com,LLM
+  - DOMAIN-SUFFIX,chatgpt.com,LLM
+  - DOMAIN-SUFFIX,grok.com,LLM
+  - DOMAIN-SUFFIX,gemini.google.com,LLM
+  - DOMAIN-SUFFIX,auth0.openai.com,LLM
   #常用站点
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
