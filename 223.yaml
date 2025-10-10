@@ -131,6 +131,8 @@ rules:
   # CDN/JPN 补充
   - DOMAIN-KEYWORD,cloudflare,JPN
   - DOMAIN-KEYWORD,tiktok,CDN
+  - DOMAIN-SUFFIX,oaiusercontent.com,LA2
+  - DOMAIN-KEYWORD,sora,LA2
   
   # 兜底：未匹配走CDN
   - MATCH,CDN
