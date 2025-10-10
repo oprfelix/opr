@@ -97,15 +97,18 @@ rule-providers:
 
 # 路由规则
 rules:
-  - DOMAIN-KEYWORD,linkedin,LLM
-  - DOMAIN-KEYWORD,licdn,LLM
-  - DOMAIN-SUFFIX,x.com,LLM
-  - DOMAIN-SUFFIX,t.co,LLM
-  - DOMAIN-KEYWORD,yahoo,LLM
-  - DOMAIN-KEYWORD,kickstarter,LLM
-  - DOMAIN-KEYWORD,cloudflare,JPN
-  - DOMAIN-KEYWORD,tiktok,CDN
-  #大语言模型
+  # 规则集（优先直连国内/局域网）
+  - RULE-SET,cname,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  
+  # 常用站点直连（国内高频，避免代理）
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-KEYWORD,amazon,CDN
+  
+  # 大语言模型（AI服务走LLM组）
   - DOMAIN-KEYWORD,openai,LLM
   - DOMAIN-KEYWORD,grok,LLM
   - DOMAIN-KEYWORD,chatgpt,LLM
@@ -116,12 +119,18 @@ rules:
   - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  #常用站点
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,weixin,DIRECT
-  # 规则集
-  - RULE-SET,cname,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - RULE-SET,lancidr,DIRECT
+  
+  # 特定站点
+  - DOMAIN-KEYWORD,linkedin,LLM
+  - DOMAIN-KEYWORD,licdn,LLM
+  - DOMAIN-SUFFIX,x.com,LLM
+  - DOMAIN-SUFFIX,t.co,LLM
+  - DOMAIN-KEYWORD,yahoo,LLM
+  - DOMAIN-KEYWORD,kickstarter,LLM
+  
+  # CDN/JPN 补充
+  - DOMAIN-KEYWORD,cloudflare,JPN
+  - DOMAIN-KEYWORD,tiktok,CDN
+  
+  # 兜底：未匹配走CDN
   - MATCH,CDN
