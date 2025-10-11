@@ -7,6 +7,18 @@ log-level: error
 external-controller: 0.0.0.0:9090
 ipv6: true
 
+# TUN 模式配置（强制启用 TUN 透明代理）
+tun:
+  enable: true
+  stack: system  # 使用系统 TUN 栈，兼容性更好
+  dns-hijack:
+    - any:53  # 劫持所有 DNS 查询到本地 53 端口
+  auto-route: true  # 自动配置路由表
+  auto-detect-interface: true  # 自动检测网络接口
+  strict-route: true  # 严格路由模式，避免路由泄漏
+  mtu: 1500  # MTU 值，保持默认
+  udp-fragment: true  # UDP 分片支持
+
 # 流量嗅探配置
 sniffing:
   enabled: true
@@ -44,9 +56,8 @@ proxies:
   - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
   - {name: JPN, server: tky.todsm.com, port: 26197, type: vless, uuid: bced37a5-b0c7-4d9b-f4f5-19c01076fd87, tls: true, udp: false, skip-cert-verify: false, servername: tky.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: bing.com}}}
-  - {name: LA1, server: la1.todsm.com, port: 443, type: vless, uuid: 58ae9d54-11d7-4d8a-b427-aefa9586eb7b, tls: true, udp: false, skip-cert-verify: false, sni: la1.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: la1.todsm.com}}}
-  - {name: LA2, server: la2.todsm.com, port: 443, type: vless, uuid: 71bce005-1df5-43fc-8a39-501c6a62874e, tls: true, udp: false, skip-cert-verify: false, sni: la2.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: la2.todsm.com}}}
- 
+  - {name: JPN255, server: 45.76.220.255, port: 37399, type: vless, uuid: a3f5eefc-2f74-4758-a9ed-fd5a17a01c7b, tls: true, udp: false, skip-cert-verify: false, sni: la1.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: la1.todsm.com}}}
+
 # 代理组
 proxy-groups:
   - name: CDN
@@ -65,8 +76,7 @@ proxy-groups:
   - name: LLM
     type: url-test
     proxies:
-      - LA1
-      - LA2
+      - JPN255
       - JPN
     url: https://www.gstatic.com/generate_204
     interval: 300
@@ -131,8 +141,8 @@ rules:
   # CDN/JPN 补充
   - DOMAIN-KEYWORD,cloudflare,JPN
   - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-SUFFIX,oaiusercontent.com,LA2
-  - DOMAIN-KEYWORD,sora,LA2
+  - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
+  - DOMAIN-KEYWORD,sora,JPN255
   
   # 兜底：未匹配走CDN
   - MATCH,CDN
