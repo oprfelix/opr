@@ -63,7 +63,7 @@ proxies:
 # 代理组
 proxy-groups:
   - name: CDN
-    type: load-balance # url-test
+    type: url-test # load-balance # url-test
     proxies:
       - Alpha
       - Delta-Merged
@@ -114,10 +114,19 @@ rules:
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
   
-  # 常用站点直连（国内高频，避免代理）
+  # 常用站点直连
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+
+  # 特定站点
+  - DOMAIN-KEYWORD,linkedin,LLM
+  - DOMAIN-KEYWORD,licdn,LLM
+  - DOMAIN-SUFFIX,x.com,LLM
+  - DOMAIN-SUFFIX,t.co,LLM
+  - DOMAIN-KEYWORD,yahoo,LLM
+  - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
   
   # 大语言模型（AI服务走LLM组）
@@ -131,14 +140,6 @@ rules:
   - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  
-  # 特定站点
-  - DOMAIN-KEYWORD,linkedin,LLM
-  - DOMAIN-KEYWORD,licdn,LLM
-  - DOMAIN-SUFFIX,x.com,LLM
-  - DOMAIN-SUFFIX,t.co,LLM
-  - DOMAIN-KEYWORD,yahoo,LLM
-  - DOMAIN-KEYWORD,kickstarter,LLM
   
   # CDN/JPN 补充
   - DOMAIN-KEYWORD,cloudflare,JPN250
