@@ -62,6 +62,7 @@ dns:
     '+.github.com': 8.8.8.8
     '+.telegram.org': 8.8.8.8
     '+.pornhub.com': 8.8.8.8
+    '+.sora.com': 8.8.8.8
 
 # 代理服务器
 proxies:
