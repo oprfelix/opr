@@ -149,17 +149,17 @@ rules:
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
   - DOMAIN-KEYWORD,sora,JPN255
-  
-  # 规则集（优先直连国内/局域网）
-  - RULE-SET,cname,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - RULE-SET,lancidr,DIRECT
-  
+
   # 常用站点直连
   - DOMAIN-KEYWORD,qq,DIRECT
   - DOMAIN-KEYWORD,wechat,DIRECT
   - DOMAIN-KEYWORD,weixin,DIRECT
   - DOMAIN-SUFFIX,jd.com,DIRECT
+  
+  # 规则集（优先直连国内/局域网）
+  - RULE-SET,cname,DIRECT
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,lancidr,DIRECT
   
   # 兜底：未匹配走CDN
   - MATCH,CDN
