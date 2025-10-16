@@ -48,8 +48,20 @@ dns:
     - tls://dns.google  # DoT 加密 DNS
   nameserver-policy:  # DNS 分流策略
     'geosite:cn': 114.114.114.114  # 中国域名使用国内 DNS
-    '+.google.com': 8.8.8.8  # Google 域名使用国外 DNS
-    '+.linkedin.com': 8.8.8.8  # Linkedin 域名使用国外 DNS
+    '+.google.com': 8.8.8.8
+    '+.linkedin.com': 8.8.8.8
+    '+.x.com': 8.8.8.8
+    '+.tiktok.com': 8.8.8.8
+    '+.youtube.com': 8.8.8.8
+    '+.bing.com': 8.8.8.8
+    '+.facebook.com': 8.8.8.8
+    '+.netflix.com': 8.8.8.8
+    '+.twitter.com': 8.8.8.8
+    '+.reddit.com': 8.8.8.8
+    '+.whatsapp.com': 8.8.8.8
+    '+.github.com': 8.8.8.8
+    '+.telegram.org': 8.8.8.8
+    '+.pornhub.com': 8.8.8.8
 
 # 代理服务器
 proxies:
