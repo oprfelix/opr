@@ -48,6 +48,8 @@ dns:
     - 1.1.1.1
     - tls://dns.google  # DoT 加密 DNS
   nameserver-policy:  # DNS 分流策略
+    'geosite:geolocation-cn': 223.6.6.6  # 中国大陆域名用阿里 DNS
+    'geosite:geolocation-!cn': 8.8.8.8   # 非中国大陆域名用 Google DNS
     '+.google.com': 8.8.8.8
     '+.linkedin.com': 8.8.8.8
     '+.x.com': 8.8.8.8
