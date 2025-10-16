@@ -49,6 +49,7 @@ dns:
   nameserver-policy:  # DNS 分流策略
     'geosite:cn': 114.114.114.114  # 中国域名使用国内 DNS
     '+.google.com': 8.8.8.8  # Google 域名使用国外 DNS
+    '+.linkedin.com': 8.8.8.8  # Linkedin 域名使用国外 DNS
 
 # 代理服务器
 proxies:
