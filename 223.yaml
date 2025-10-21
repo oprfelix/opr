@@ -152,6 +152,9 @@ rules:
   - DOMAIN-KEYWORD,jd,DIRECT
   - DOMAIN-KEYWORD,tmall,DIRECT
   - DOMAIN-KEYWORD,taobao,DIRECT
+  # 按IP地址直联
+  - RULE-SET,cncidr,DIRECT
+  - RULE-SET,lancidr,DIRECT
   # 指定代理
   - DOMAIN-KEYWORD,linkedin,LLM
   - DOMAIN-KEYWORD,licdn,LLM
@@ -185,10 +188,8 @@ rules:
   - DOMAIN-KEYWORD,weixin,DIRECT
   - DOMAIN-SUFFIX,jd.com,DIRECT
   
-  # 规则集（优先直连国内/局域网）
+  # 按域名直联
   - RULE-SET,cname,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - RULE-SET,lancidr,DIRECT
   
   # 兜底：未匹配走CDN
   - MATCH,CDN
