@@ -147,6 +147,7 @@ rule-providers:
 rules:
   # 特定站点
   - DOMAIN-KEYWORD,shopline,DIRECT
+  - DOMAIN-KEYWORD,keepa,DIRECT
   - DOMAIN-KEYWORD,linkedin,LLM
   - DOMAIN-KEYWORD,licdn,LLM
   - DOMAIN-SUFFIX,x.com,LLM
