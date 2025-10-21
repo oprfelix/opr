@@ -152,10 +152,14 @@ rules:
   - DOMAIN-KEYWORD,jd,DIRECT
   - DOMAIN-KEYWORD,tmall,DIRECT
   - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
   # 按IP地址直联
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
-  # 指定代理
+  # 按规则指定线路
   - DOMAIN-KEYWORD,linkedin,LLM
   - DOMAIN-KEYWORD,licdn,LLM
   - DOMAIN-SUFFIX,x.com,LLM
@@ -163,8 +167,6 @@ rules:
   - DOMAIN-KEYWORD,yahoo,LLM
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
-  
-  # 大语言模型（AI服务走LLM组）
   - DOMAIN-KEYWORD,openai,LLM
   - DOMAIN-KEYWORD,grok,LLM
   - DOMAIN-KEYWORD,chatgpt,LLM
@@ -175,21 +177,11 @@ rules:
   - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-SUFFIX,auth0.openai.com,LLM
-  
-  # CDN/JPN 补充
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
   - DOMAIN-KEYWORD,sora,JPN255
-
-  # 常用站点直连
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,weixin,DIRECT
-  - DOMAIN-SUFFIX,jd.com,DIRECT
-  
   # 按域名直联
   - RULE-SET,cname,DIRECT
-  
-  # 兜底：未匹配走CDN
+  # 通配
   - MATCH,CDN
