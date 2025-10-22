@@ -83,7 +83,7 @@ dns:
 # ==============================
 proxies:
   - {name: Alpha, type: vless, server: 190.93.246.55, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Delta-Merged, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Delta, type: vless, server: 190.93.246.99, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
   - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
   - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
@@ -98,7 +98,7 @@ proxy-groups:
     type: url-test # load-balance # url-test
     proxies:
       - Alpha
-      - Delta-Merged
+      - Delta
       - Gamma
       - Beta
       - Theta
