@@ -164,10 +164,13 @@ rules:
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
 
+  # Grok 独立访问域名
+  - DOMAIN-SUFFIX,x.ai,JPN250
+  - DOMAIN-SUFFIX,grok.com,JPN250
+  
   # Twitter/X 主域名及子域名
   - DOMAIN-SUFFIX,twitter.com,JPN250
   - DOMAIN-SUFFIX,x.com,JPN250
-  - DOMAIN-SUFFIX,x.ai,JPN250
   
   # Twitter/X 独立 CDN 和相关域名
   - DOMAIN-SUFFIX,twimg.com,JPN250
@@ -198,10 +201,8 @@ rules:
   - DOMAIN-KEYWORD,yahoo,LLM
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
-  - DOMAIN-KEYWORD,grok,LLM
   - DOMAIN-KEYWORD,gemini,LLM
   
-  - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
