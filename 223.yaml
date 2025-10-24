@@ -194,6 +194,18 @@ rules:
   # 其他常见相关域名（可选，覆盖认证和辅助服务）
   - DOMAIN-SUFFIX,auth0.openai.com,JPN250  # 认证服务
   - DOMAIN,chatgpt.com,JPN250  # ChatGPT 短域名（重定向到 openai.com）
+
+  # Google Gemini Web 接口及子域名（覆盖 gemini.google.com 的所有子服务）
+  - DOMAIN-SUFFIX,gemini.google.com,JPN250
+  
+  # AI Studio（API 密钥管理和生成工具）
+  - DOMAIN-SUFFIX,aistudio.google.com,JPN250
+  
+  # API 文档和开发者资源
+  - DOMAIN-SUFFIX,ai.google.dev,JPN250
+  
+  # Gemini API 核心端点（生成内容、流式等）
+  - DOMAIN,generativelanguage.googleapis.com,JPN250
   
   # 按规则指定线路
   - DOMAIN-KEYWORD,linkedin,LLM
@@ -201,9 +213,6 @@ rules:
   - DOMAIN-KEYWORD,yahoo,LLM
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
-  - DOMAIN-KEYWORD,gemini,LLM
-  
-  - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
