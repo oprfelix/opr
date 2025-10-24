@@ -206,6 +206,25 @@ rules:
   
   # Gemini API 核心端点（生成内容、流式等）
   - DOMAIN,generativelanguage.googleapis.com,JPN250
+
+  # YouTube 主域名及子域名（覆盖 www.youtube.com、m.youtube.com 等）
+  - DOMAIN-SUFFIX,youtube.com,Delta
+  
+  # YouTube 短链接域名
+  - DOMAIN-SUFFIX,youtu.be,Delta
+  
+  # YouTube 图片和缩略图 CDN
+  - DOMAIN-SUFFIX,ytimg.com,Delta
+  
+  # YouTube 视频流域名（核心视频内容）
+  - DOMAIN-SUFFIX,googlevideo.com,Delta
+  
+  # 嵌入式 YouTube（无 Cookie 版本）
+  - DOMAIN-SUFFIX,youtube-nocookie.com,Delta
+  
+  # 其他常见相关域名（可选，覆盖广告和统计）
+  - DOMAIN-SUFFIX,yt.be,Delta  # 备用短链接
+  - DOMAIN-SUFFIX,ggpht.com,Delta  # Google 图片代理，常用于 YouTube 缩略图
   
   # 按规则指定线路
   - DOMAIN-KEYWORD,linkedin,LLM
