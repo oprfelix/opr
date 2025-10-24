@@ -184,6 +184,13 @@ rules:
   # 其他常见相关域名（可选，覆盖 API 和统计）
   - DOMAIN,twitterudc.com,JPN250
   - DOMAIN,twitterstat.com,JPN250
+
+  # OpenAI/ChatGPT 主域名及子域名（覆盖 chat.openai.com、api.openai.com 等）
+  - DOMAIN-SUFFIX,openai.com,JPN250
+  
+  # 其他常见相关域名（可选，覆盖认证和辅助服务）
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN250  # 认证服务
+  - DOMAIN,chatgpt.com,JPN250  # ChatGPT 短域名（重定向到 openai.com）
   
   # 按规则指定线路
   - DOMAIN-KEYWORD,linkedin,LLM
@@ -191,16 +198,11 @@ rules:
   - DOMAIN-KEYWORD,yahoo,LLM
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
-  - DOMAIN-KEYWORD,openai,LLM
   - DOMAIN-KEYWORD,grok,LLM
-  - DOMAIN-KEYWORD,chatgpt,LLM
   - DOMAIN-KEYWORD,gemini,LLM
   
-  - DOMAIN-SUFFIX,openai.com,LLM
-  - DOMAIN-SUFFIX,chatgpt.com,LLM
   - DOMAIN-SUFFIX,grok.com,LLM
   - DOMAIN-SUFFIX,gemini.google.com,LLM
-  - DOMAIN-SUFFIX,auth0.openai.com,LLM
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
