@@ -147,6 +147,7 @@ rule-providers:
 rules:
 
   # 按规则指定线路
+  - DOMAIN-SUFFIX,alicdn.com,DIRECT
   - DOMAIN-KEYWORD,linkedin,LLM
   - DOMAIN-KEYWORD,licdn,LLM
   - DOMAIN-KEYWORD,yahoo,LLM
@@ -175,7 +176,7 @@ rules:
   - DOMAIN-KEYWORD,weixin,DIRECT
   - DOMAIN-SUFFIX,jd.com,DIRECT
   - DOMAIN-SUFFIX,komoot.com,DIRECT
-  - DOMAIN-SUFFIX,alicdn.com,DIRECT
+
   # 按IP地址直联
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
