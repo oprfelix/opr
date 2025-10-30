@@ -145,6 +145,36 @@ rule-providers:
 # 路由规则
 # ==============================
 rules:
+  # Grok 独立访问域名
+  - DOMAIN-SUFFIX,x.ai,JPN250
+  - DOMAIN-SUFFIX,grok.com,JPN250
+  
+  # Twitter/X 主域名及子域名
+  - DOMAIN-SUFFIX,twitter.com,JPN250
+  - DOMAIN-SUFFIX,x.com,JPN250
+  
+  # Twitter/X 独立 CDN 和相关域名
+  - DOMAIN-SUFFIX,twimg.com,JPN250
+  - DOMAIN-SUFFIX,t.co,JPN250
+  - DOMAIN-SUFFIX,pbs.twimg.com,JPN250
+  - DOMAIN-SUFFIX,video.twimg.com,JPN250
+  - DOMAIN-SUFFIX,ton.twimg.com,JPN250
+  - DOMAIN-SUFFIX,syndication.twimg.com,JPN250
+  - DOMAIN,analytics.twitter.com,JPN250
+  - DOMAIN,api.twitter.com,JPN250
+  - DOMAIN,ads.twitter.com,JPN250
+  - DOMAIN,abs.twimg.com,JPN250  # 如果使用 Twitter 资产 CDN
+
+  # 其他常见相关域名（可选，覆盖 API 和统计）
+  - DOMAIN-SUFFIX,twitterudc.com,JPN250
+  - DOMAIN-SUFFIX,twitterstat.com,JPN250
+
+  # OpenAI/ChatGPT 主域名及子域名（覆盖 chat.openai.com、api.openai.com 等）
+  - DOMAIN-SUFFIX,openai.com,JPN250
+  
+  # 其他常见相关域名（可选，覆盖认证和辅助服务）
+  - DOMAIN-SUFFIX,auth0.openai.com,JPN250  # 认证服务
+  - DOMAIN-SUFFIX,chatgpt.com,JPN250  # ChatGPT 短域名（重定向到 openai.com）
 
   # 按规则指定线路
   - DOMAIN-SUFFIX,alicdn.com,DIRECT
@@ -177,40 +207,10 @@ rules:
   - DOMAIN-SUFFIX,jd.com,DIRECT
   - DOMAIN-SUFFIX,komoot.com,DIRECT
 
+
   # 按IP地址直联
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
-
-  # Grok 独立访问域名
-  - DOMAIN-SUFFIX,x.ai,JPN250
-  - DOMAIN-SUFFIX,grok.com,JPN250
-  
-  # Twitter/X 主域名及子域名
-  - DOMAIN-SUFFIX,twitter.com,JPN250
-  - DOMAIN-SUFFIX,x.com,JPN250
-  
-  # Twitter/X 独立 CDN 和相关域名
-  - DOMAIN-SUFFIX,twimg.com,JPN250
-  - DOMAIN-SUFFIX,t.co,JPN250
-  - DOMAIN-SUFFIX,pbs.twimg.com,JPN250
-  - DOMAIN-SUFFIX,video.twimg.com,JPN250
-  - DOMAIN-SUFFIX,ton.twimg.com,JPN250
-  - DOMAIN-SUFFIX,syndication.twimg.com,JPN250
-  - DOMAIN,analytics.twitter.com,JPN250
-  - DOMAIN,api.twitter.com,JPN250
-  - DOMAIN,ads.twitter.com,JPN250
-  - DOMAIN,abs.twimg.com,JPN250  # 如果使用 Twitter 资产 CDN
-
-  # 其他常见相关域名（可选，覆盖 API 和统计）
-  - DOMAIN,twitterudc.com,JPN250
-  - DOMAIN,twitterstat.com,JPN250
-
-  # OpenAI/ChatGPT 主域名及子域名（覆盖 chat.openai.com、api.openai.com 等）
-  - DOMAIN-SUFFIX,openai.com,JPN250
-  
-  # 其他常见相关域名（可选，覆盖认证和辅助服务）
-  - DOMAIN-SUFFIX,auth0.openai.com,JPN250  # 认证服务
-  - DOMAIN,chatgpt.com,JPN250  # ChatGPT 短域名（重定向到 openai.com）
   
   # YouTube 主域名及子域名（覆盖 www.youtube.com、m.youtube.com 等）
   - DOMAIN-SUFFIX,youtube.com,Delta
