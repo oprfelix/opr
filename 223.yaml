@@ -188,8 +188,9 @@ rules:
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
-  - DOMAIN-SUFFIX,oaiusercontent.com,JPN255
-  - DOMAIN-KEYWORD,sora,JPN255
+  - DOMAIN-SUFFIX,oaiusercontent.com,JPN250
+  - DOMAIN-SUFFIX,  oaistatic.com,JPN250
+  - DOMAIN-KEYWORD,sora,JPN250
   
   # 指定直联
   - DOMAIN-KEYWORD,shopline,DIRECT
