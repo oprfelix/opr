@@ -145,6 +145,35 @@ rule-providers:
 # 路由规则
 # ==============================
 rules:
+  # 按域名直联
+  - RULE-SET,cname,DIRECT
+  - DOMAIN-KEYWORD,shopline,DIRECT
+  - DOMAIN-KEYWORD,keepa,DIRECT
+  - DOMAIN-KEYWORD,slickdeals,DIRECT
+  - DOMAIN-KEYWORD,dealnews,DIRECT
+  - DOMAIN-KEYWORD,garmin,DIRECT
+  - DOMAIN-KEYWORD,goofish,DIRECT
+  - DOMAIN-KEYWORD,jd,DIRECT
+  - DOMAIN-KEYWORD,tmall,DIRECT
+  - DOMAIN-KEYWORD,taobao,DIRECT
+  - DOMAIN-KEYWORD,qq,DIRECT
+  - DOMAIN-KEYWORD,wechat,DIRECT
+  - DOMAIN-KEYWORD,weixin,DIRECT
+  - DOMAIN-SUFFIX,jd.com,DIRECT
+  - DOMAIN-SUFFIX,komoot.com,DIRECT
+  # 国内券商
+  - DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
+  - DOMAIN-SUFFIX,citics.com,DIRECT
+  - DOMAIN-SUFFIX,gtja.com.cn,DIRECT
+  - DOMAIN-SUFFIX,htsec.com,DIRECT
+  - DOMAIN-SUFFIX,gf.com.cn,DIRECT
+  - DOMAIN-SUFFIX,cmschina.com,DIRECT
+  - DOMAIN-SUFFIX,htsec.com.cn,DIRECT
+  - DOMAIN-SUFFIX,dfzq.com.cn,DIRECT
+  - DOMAIN-SUFFIX,emer.com.cn,DIRECT
+  - DOMAIN-SUFFIX,china-galaxy.com,DIRECT
+  - DOMAIN-SUFFIX,999001.com,DIRECT
+  
   # Grok 独立访问域名
   - DOMAIN-SUFFIX,x.ai,JPN250
   - DOMAIN-SUFFIX,grok.com,JPN250
@@ -191,23 +220,6 @@ rules:
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN250
   - DOMAIN-SUFFIX,  oaistatic.com,JPN250
   - DOMAIN-KEYWORD,sora,JPN250
-  
-  # 指定直联
-  - DOMAIN-KEYWORD,shopline,DIRECT
-  - DOMAIN-KEYWORD,keepa,DIRECT
-  - DOMAIN-KEYWORD,slickdeals,DIRECT
-  - DOMAIN-KEYWORD,dealnews,DIRECT
-  - DOMAIN-KEYWORD,garmin,DIRECT
-  - DOMAIN-KEYWORD,goofish,DIRECT
-  - DOMAIN-KEYWORD,jd,DIRECT
-  - DOMAIN-KEYWORD,tmall,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,weixin,DIRECT
-  - DOMAIN-SUFFIX,jd.com,DIRECT
-  - DOMAIN-SUFFIX,komoot.com,DIRECT
-
 
   # 按IP地址直联
   - RULE-SET,cncidr,DIRECT
@@ -232,7 +244,5 @@ rules:
   - DOMAIN-SUFFIX,yt.be,Delta  # 备用短链接
   - DOMAIN-SUFFIX,ggpht.com,Delta  # Google 图片代理，常用于 YouTube 缩略图
 
-  # 按域名直联
-  - RULE-SET,cname,DIRECT
   # 通配
   - MATCH,CDN
