@@ -177,6 +177,8 @@ rules:
   # Grok 独立访问域名
   - DOMAIN-SUFFIX,x.ai,JPN250
   - DOMAIN-SUFFIX,grok.com,JPN250
+
+  - DOMAIN-SUFFIX,perplexity.ai,JPN250
   
   # Twitter/X 主域名及子域名
   - DOMAIN-SUFFIX,twitter.com,JPN250
