@@ -146,7 +146,6 @@ rule-providers:
 # ==============================
 rules:
   # 按域名直联
-  - RULE-SET,cname,DIRECT
   - DOMAIN-KEYWORD,shopline,DIRECT
   - DOMAIN-KEYWORD,keepa,DIRECT
   - DOMAIN-KEYWORD,slickdeals,DIRECT
@@ -220,7 +219,7 @@ rules:
   - DOMAIN-KEYWORD,cloudflare,JPN250
   - DOMAIN-KEYWORD,tiktok,CDN
   - DOMAIN-SUFFIX,oaiusercontent.com,JPN250
-  - DOMAIN-SUFFIX,  oaistatic.com,JPN250
+  - DOMAIN-SUFFIX,oaistatic.com,JPN250
   - DOMAIN-KEYWORD,sora,JPN250
 
   # 按IP地址直联
@@ -245,6 +244,7 @@ rules:
   # 其他常见相关域名（可选，覆盖广告和统计）
   - DOMAIN-SUFFIX,yt.be,Delta  # 备用短链接
   - DOMAIN-SUFFIX,ggpht.com,Delta  # Google 图片代理，常用于 YouTube 缩略图
-
+  
+  - RULE-SET,cname,DIRECT
   # 通配
   - MATCH,CDN
