@@ -184,7 +184,7 @@ rules:
   
   # Twitter/X 独立 CDN 和相关域名
   - DOMAIN-SUFFIX,twimg.com,LLM
-  - DOMAIN-SUFFIX,t.co,JPN2LLM50
+  - DOMAIN-SUFFIX,t.co,LLM
   - DOMAIN-SUFFIX,pbs.twimg.com,LLM
   - DOMAIN-SUFFIX,video.twimg.com,LLM
   - DOMAIN-SUFFIX,ton.twimg.com,LLM
