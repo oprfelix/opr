@@ -217,6 +217,7 @@ rules:
   - DOMAIN-KEYWORD,kickstarter,LLM
   - DOMAIN-KEYWORD,amazon,CDN
   - DOMAIN-KEYWORD,gemini,LLM
+  - DOMAIN-SUFFIX,loader.fo,CDN
   
   - DOMAIN-SUFFIX,gemini.google.com,LLM
   - DOMAIN-KEYWORD,cloudflare,LLM
