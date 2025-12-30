@@ -152,6 +152,8 @@ rules:
   - DOMAIN-SUFFIX,perplexity.ai,LLM
   - DOMAIN-SUFFIX,auth.grokipedia.com,LLM
   - DOMAIN-KEYWORD,grok,LLM
+  # 其它
+  - DOMAIN-SUFFIX,apollo.io,LLM
   # 按域名直联
   - DOMAIN-KEYWORD,monday,DIRECT
   - DOMAIN-KEYWORD,todesk,DIRECT
