@@ -89,7 +89,7 @@ proxies:
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 # ai专用通道
-  - name: "Trojan-TCP-44926"
+  - name: "Trojan-TCP"
     type: trojan
     server: 45.76.220.255
     port: 44926
@@ -102,6 +102,21 @@ proxies:
     alpn:
       - h2
       - http/1.1
+      
+  - name: "VLESS-REALITY"
+    type: vless
+    server: xai.todsm.com
+    port: 19996
+    uuid: 833a7999-f857-4196-bb07-7005a7390a74
+    udp: true
+    tls: true
+    network: tcp
+    flow: xtls-rprx-vision             # 对应链接中的 flow=xtls-rprx-vision
+    servername: xai.todsm.com          # 对应链接中的 sni
+    reality-opts:
+      public-key: 3ln_aNfomy1b6dgwxu_AvNji78rq5x9CaQJ5iTdT8TE  # 对应 pbk
+      short-id: 6ba85179e30d4fc2                               # 对应 sid
+    client-fingerprint: chrome         # 对应 fp=chrome
       
 # ==============================
 # 代理组
@@ -120,16 +135,16 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-#  - name: Trojan-TCP-44926
-#    type: url-test
-#    proxies:
-#      - JPN255
-#      - JPN250
-#    url: https://www.gstatic.com/generate_204
-#    interval: 300
-#    tolerance: 50
-#    lazy: true
-#    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
+  - name: Trojan-TCP-44926
+    type: url-test
+    proxies:
+      - Trojan-TCP
+      - VLESS-REALITY
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
 # ==============================
 # 规则提供者
