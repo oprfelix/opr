@@ -87,6 +87,7 @@ proxies:
   - {name: Gamma, type: vless, server: 190.93.246.61, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
   - {name: Beta, type: vless, server: helloworld.fotoman.com, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+
 # ai专用通道
   - name: "Trojan-TCP-44926"
     type: trojan
@@ -100,8 +101,8 @@ proxies:
     client-fingerprint: chrome    # 对应 fp=chrome
     alpn:
       - h2
-      - http/1.1 {name: JPN255, server: 45.76.220.255, port: 37399, type: vless, uuid: a3f5eefc-2f74-4758-a9ed-fd5a17a01c7b, tls: true, udp: false, skip-cert-verify: false, sni: la1.todsm.com, client-fingerprint: chrome, network: ws, ws-opts: {path: "/?ed=2560", headers: {Host: la1.todsm.com}}}
-
+      - http/1.1
+      
 # ==============================
 # 代理组
 # ==============================
@@ -119,16 +120,16 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: Trojan-TCP-44926
-    type: url-test
-    proxies:
-      - JPN255
-      - JPN250
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    lazy: true
-    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
+#  - name: Trojan-TCP-44926
+#    type: url-test
+#    proxies:
+#      - JPN255
+#      - JPN250
+#    url: https://www.gstatic.com/generate_204
+#    interval: 300
+#    tolerance: 50
+#    lazy: true
+#    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
 # ==============================
 # 规则提供者
