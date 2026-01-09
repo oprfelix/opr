@@ -153,9 +153,9 @@ proxy-groups:
   - name: TCP-44926
     type: url-test
     proxies:
-      - Trojan-TCP
+    #  - Trojan-TCP
       - VLESS-REALITY-XAI
-      - VLESS-REALITY-AGI
+    #  - VLESS-REALITY-AGI
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -190,35 +190,53 @@ rule-providers:
 # ==============================
 rules:
     
-  # ai服务分组
-  - DOMAIN-KEYWORD,gemini,TCP-44926
-  - DOMAIN-SUFFIX,gemini.google.com,TCP-44926
-  - DOMAIN-SUFFIX,x.ai,TCP-44926
-  - DOMAIN-SUFFIX,grok.com,TCP-44926
-  - DOMAIN-SUFFIX,perplexity.ai,TCP-44926
-  - DOMAIN-SUFFIX,auth.grokipedia.com,TCP-44926
-  - DOMAIN-KEYWORD,grok,TCP-44926
-  - DOMAIN-SUFFIX,openai.com,TCP-44926
-  - DOMAIN-SUFFIX,auth0.openai.com,TCP-44926
-  - DOMAIN-SUFFIX,chatgpt.com,TCP-44926
-  - DOMAIN-SUFFIX,oaiusercontent.com,TCP-44926
-  - DOMAIN-SUFFIX,oaistatic.com,TCP-44926
-  - DOMAIN-KEYWORD,sora,TCP-44926
+# ==============================
+# AI / LLM Services
+# ==============================
+- DOMAIN-SUFFIX,openai.com,TCP-44926
+- DOMAIN-SUFFIX,auth0.openai.com,TCP-44926
+- DOMAIN-SUFFIX,chatgpt.com,TCP-44926
+- DOMAIN-SUFFIX,oaistatic.com,TCP-44926
+- DOMAIN-SUFFIX,oaiusercontent.com,TCP-44926
+- DOMAIN-SUFFIX,sora.com,TCP-44926
 
-  # 其它
-  - DOMAIN-SUFFIX,apollo.io,TCP-44926
-  - DOMAIN-KEYWORD,linkedin,TCP-44926
-  - DOMAIN-KEYWORD,licdn,TCP-44926
-  - DOMAIN-KEYWORD,yahoo,TCP-44926
-  - DOMAIN-KEYWORD,kickstarter,TCP-44926
-  - DOMAIN-KEYWORD,cloudflare,TCP-44926
-  - DOMAIN-KEYWORD,tiktok,CDN
+- DOMAIN-SUFFIX,x.ai,TCP-44926
+- DOMAIN-SUFFIX,grok.com,TCP-44926
+- DOMAIN-SUFFIX,auth.grokipedia.com,TCP-44926
 
-  # 按规则直联
-  - DOMAIN-SUFFIX,komoot.com,DIRECT
-  - RULE-SET,cncidr,DIRECT
-  - RULE-SET,lancidr,DIRECT
-  - RULE-SET,cname,DIRECT
+- DOMAIN-SUFFIX,perplexity.ai,TCP-44926
+- DOMAIN-SUFFIX,gemini.google.com,TCP-44926
 
-  # 通配
-  - MATCH,CDN
+# 兜底 keyword（仅保留必要）
+- DOMAIN-KEYWORD,openai,TCP-44926
+- DOMAIN-KEYWORD,grok,TCP-44926
+- DOMAIN-KEYWORD,sora,TCP-44926
+
+# ==============================
+# Overseas SaaS / Social
+# ==============================
+- DOMAIN-SUFFIX,linkedin.com,TCP-44926
+- DOMAIN-SUFFIX,licdn.com,TCP-44926
+- DOMAIN-SUFFIX,apollo.io,TCP-44926
+- DOMAIN-SUFFIX,kickstarter.com,TCP-44926
+- DOMAIN-SUFFIX,yahoo.com,TCP-44926
+# ==============================
+# Media / CDN
+# ==============================
+- DOMAIN-SUFFIX,tiktok.com,CDN
+- DOMAIN-SUFFIX,tiktokcdn.com,CDN
+- DOMAIN-SUFFIX,byteoversea.com,CDN
+# ==============================
+# Force DIRECT
+# ==============================
+- DOMAIN-SUFFIX,komoot.com,DIRECT
+# ==============================
+# Mainland China
+# ==============================
+- RULE-SET,cncidr,DIRECT
+- RULE-SET,lancidr,DIRECT
+- RULE-SET,cname,DIRECT
+# ==============================
+# Fallback
+# ==============================
+- MATCH,CDN
