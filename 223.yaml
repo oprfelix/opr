@@ -153,9 +153,9 @@ proxy-groups:
   - name: TCP-44926
     type: url-test
     proxies:
-    #  - Trojan-TCP
+      - Trojan-TCP
       - VLESS-REALITY-XAI
-    #  - VLESS-REALITY-AGI
+      - VLESS-REALITY-AGI
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
