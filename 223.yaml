@@ -190,112 +190,35 @@ rule-providers:
 # ==============================
 rules:
     
-  # Grok 独立访问域名
+  # ai服务分组
+  - DOMAIN-KEYWORD,gemini,TCP-44926
+  - DOMAIN-SUFFIX,gemini.google.com,TCP-44926
   - DOMAIN-SUFFIX,x.ai,TCP-44926
   - DOMAIN-SUFFIX,grok.com,TCP-44926
   - DOMAIN-SUFFIX,perplexity.ai,TCP-44926
   - DOMAIN-SUFFIX,auth.grokipedia.com,TCP-44926
   - DOMAIN-KEYWORD,grok,TCP-44926
-  # 其它
-  - DOMAIN-SUFFIX,apollo.io,TCP-44926
-  # 按域名直联
-  - DOMAIN-KEYWORD,monday,DIRECT
-  - DOMAIN-KEYWORD,todesk,DIRECT
-  - DOMAIN-KEYWORD,shopline,DIRECT
-  - DOMAIN-KEYWORD,keepa,DIRECT
-  - DOMAIN-KEYWORD,slickdeals,DIRECT
-  - DOMAIN-KEYWORD,dealnews,DIRECT
-  - DOMAIN-KEYWORD,garmin,DIRECT
-  - DOMAIN-KEYWORD,goofish,DIRECT
-  - DOMAIN-KEYWORD,jd,DIRECT
-  - DOMAIN-KEYWORD,tmall,DIRECT
-  - DOMAIN-KEYWORD,taobao,DIRECT
-  - DOMAIN-KEYWORD,qq,DIRECT
-  - DOMAIN-KEYWORD,wechat,DIRECT
-  - DOMAIN-KEYWORD,weixin,DIRECT
-  - DOMAIN-SUFFIX,jd.com,DIRECT
-  - DOMAIN-SUFFIX,komoot.com,DIRECT
-  # 国内券商
-  - DOMAIN-SUFFIX,10jqka.com.cn,DIRECT
-  - DOMAIN-SUFFIX,citics.com,DIRECT
-  - DOMAIN-SUFFIX,gtja.com.cn,DIRECT
-  - DOMAIN-SUFFIX,htsec.com,DIRECT
-  - DOMAIN-SUFFIX,gf.com.cn,DIRECT
-  - DOMAIN-SUFFIX,cmschina.com,DIRECT
-  - DOMAIN-SUFFIX,htsec.com.cn,DIRECT
-  - DOMAIN-SUFFIX,dfzq.com.cn,DIRECT
-  - DOMAIN-SUFFIX,emer.com.cn,DIRECT
-  - DOMAIN-SUFFIX,china-galaxy.com,DIRECT
-  - DOMAIN-SUFFIX,999001.com,DIRECT
-  
-  # Twitter/X 主域名及子域名
-  - DOMAIN-SUFFIX,twitter.com,TCP-44926
-  - DOMAIN-SUFFIX,x.com,TCP-44926
-  
-  # Twitter/X 独立 CDN 和相关域名
-  - DOMAIN-SUFFIX,twimg.com,TCP-44926
-  - DOMAIN-SUFFIX,t.co,TCP-44926
-  - DOMAIN-SUFFIX,pbs.twimg.com,TCP-44926
-  - DOMAIN-SUFFIX,video.twimg.com,TCP-44926
-  - DOMAIN-SUFFIX,ton.twimg.com,TCP-44926
-  - DOMAIN-SUFFIX,syndication.twimg.com,TCP-44926
-  - DOMAIN,analytics.twitter.com,TCP-44926
-  - DOMAIN,api.twitter.com,TCP-44926
-  - DOMAIN,ads.twitter.com,TCP-44926
-  - DOMAIN,abs.twimg.com,TCP-44926  # 如果使用 Twitter 资产 CDN
-
-  # 其他常见相关域名（可选，覆盖 API 和统计）
-  - DOMAIN-SUFFIX,twitterudc.com,TCP-44926
-  - DOMAIN-SUFFIX,twitterstat.com,TCP-44926
-
-  # OpenAI/ChatGPT 主域名及子域名（覆盖 chat.openai.com、api.openai.com 等）
   - DOMAIN-SUFFIX,openai.com,TCP-44926
-  
-  # 其他常见相关域名（可选，覆盖认证和辅助服务）
-  - DOMAIN-SUFFIX,auth0.openai.com,TCP-44926  # 认证服务
-  - DOMAIN-SUFFIX,chatgpt.com,TCP-44926  # ChatGPT 短域名（重定向到 openai.com）
-
-  # 按规则指定线路
-  - DOMAIN-SUFFIX,alicdn.com,DIRECT
-  - DOMAIN-KEYWORD,linkedin,TCP-44926
-  - DOMAIN-KEYWORD,licdn,TCP-44926
-  - DOMAIN-KEYWORD,yahoo,TCP-44926
-  - DOMAIN-KEYWORD,kickstarter,TCP-44926
-  - DOMAIN-KEYWORD,amazon,CDN
-  - DOMAIN-KEYWORD,gemini,TCP-44926
-  - DOMAIN-SUFFIX,loader.fo,TCP-44926
-  
-  - DOMAIN-SUFFIX,gemini.google.com,TCP-44926
-  - DOMAIN-KEYWORD,cloudflare,TCP-44926
-  - DOMAIN-KEYWORD,tiktok,CDN
+  - DOMAIN-SUFFIX,auth0.openai.com,TCP-44926
+  - DOMAIN-SUFFIX,chatgpt.com,TCP-44926
   - DOMAIN-SUFFIX,oaiusercontent.com,TCP-44926
   - DOMAIN-SUFFIX,oaistatic.com,TCP-44926
   - DOMAIN-KEYWORD,sora,TCP-44926
 
-  # 按IP地址直联
+  # 其它
+  - DOMAIN-SUFFIX,apollo.io,TCP-44926
+  - DOMAIN-KEYWORD,linkedin,TCP-44926
+  - DOMAIN-KEYWORD,licdn,TCP-44926
+  - DOMAIN-KEYWORD,yahoo,TCP-44926
+  - DOMAIN-KEYWORD,kickstarter,TCP-44926
+  - DOMAIN-KEYWORD,cloudflare,TCP-44926
+  - DOMAIN-KEYWORD,tiktok,CDN
+
+  # 按规则直联
+  - DOMAIN-SUFFIX,komoot.com,DIRECT
   - RULE-SET,cncidr,DIRECT
   - RULE-SET,lancidr,DIRECT
-  
-  # YouTube 主域名及子域名（覆盖 www.youtube.com、m.youtube.com 等）
-  - DOMAIN-SUFFIX,youtube.com,Delta
-  
-  # YouTube 短链接域名
-  - DOMAIN-SUFFIX,youtu.be,Delta
-  
-  # YouTube 图片和缩略图 CDN
-  - DOMAIN-SUFFIX,ytimg.com,Delta
-  
-  # YouTube 视频流域名（核心视频内容）
-  - DOMAIN-SUFFIX,googlevideo.com,Delta
-  
-  # 嵌入式 YouTube（无 Cookie 版本）
-  - DOMAIN-SUFFIX,youtube-nocookie.com,Delta
-  
-  # 其他常见相关域名（可选，覆盖广告和统计）
-  - DOMAIN-SUFFIX,yt.be,Delta  # 备用短链接
-  - DOMAIN-SUFFIX,ggpht.com,Delta  # Google 图片代理，常用于 YouTube 缩略图
-  
   - RULE-SET,cname,DIRECT
-  
+
   # 通配
   - MATCH,CDN
