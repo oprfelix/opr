@@ -205,7 +205,7 @@ rules:
 - DOMAIN-SUFFIX,auth.grokipedia.com,TCP-44926
 
 - DOMAIN-SUFFIX,perplexity.ai,TCP-44926
-- DOMAIN-SUFFIX,gemini.google.com,TCP-44926
+- DOMAIN-SUFFIX,gemini.google.com,Trojan-TCP
 
 # 兜底 keyword（仅保留必要）
 - DOMAIN-KEYWORD,openai,TCP-44926
@@ -215,6 +215,8 @@ rules:
 # ==============================
 # Overseas SaaS / Social
 # ==============================
+- DOMAIN-SUFFIX,gitHub.com,VLESS-REALITY-XAI
+- DOMAIN-KEYWORD,gitHub,VLESS-REALITY-XAI
 - DOMAIN-SUFFIX,linkedin.com,TCP-44926
 - DOMAIN-SUFFIX,licdn.com,TCP-44926
 - DOMAIN-SUFFIX,apollo.io,TCP-44926
