@@ -103,7 +103,7 @@ proxies:
       - h2
       - http/1.1
       
-  - name: "VLESS-REALITY"
+  - name: "VLESS-REALITY-XAI"
     type: vless
     server: xai.todsm.com
     port: 19996
@@ -117,7 +117,22 @@ proxies:
       public-key: 3ln_aNfomy1b6dgwxu_AvNji78rq5x9CaQJ5iTdT8TE  # 对应 pbk
       short-id: 6ba85179e30d4fc2                               # 对应 sid
     client-fingerprint: chrome         # 对应 fp=chrome
-      
+
+  - name: "VLESS-REALITY-AGI"
+    type: vless
+    server: agi.todsm.com
+    port: 24785
+    uuid: 7f375cd3-6f1c-4668-af87-9eb4d0d33f57
+    udp: true
+    tls: true
+    network: tcp
+    flow: xtls-rprx-vision
+    servername: agi.todsm.com
+    reality-opts:
+      public-key: GsrvA5SAG6BSeGmpX4K-itGJNJHMYH3vTBSHZuKwHUU
+      short-id: 6ba85179e30d4fc2
+    client-fingerprint: chrome
+    
 # ==============================
 # 代理组
 # ==============================
@@ -138,8 +153,9 @@ proxy-groups:
   - name: TCP-44926
     type: url-test
     proxies:
-    #  - Trojan-TCP
-      - VLESS-REALITY
+      - Trojan-TCP
+      - VLESS-REALITY-XAI
+      - VLESS-REALITY-AGI
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
