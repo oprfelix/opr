@@ -89,7 +89,7 @@ proxies:
   - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 # ai专用通道
-  - name: "Trojan-TCP"
+  - name: "Trojan-TCP-AI"
     type: trojan
     server: 45.76.220.255
     port: 44926
@@ -150,10 +150,10 @@ proxy-groups:
     tolerance: 50
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: TCP-44926
+  - name: TCP
     type: url-test
     proxies:
-      - Trojan-TCP
+      - Trojan-TCP-AI
       - VLESS-REALITY-XAI
       - VLESS-REALITY-AGI
     url: https://www.gstatic.com/generate_204
@@ -211,35 +211,35 @@ rules:
 # ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-SUFFIX,openai.com,TCP-44926
-- DOMAIN-SUFFIX,auth0.openai.com,TCP-44926
-- DOMAIN-SUFFIX,chatgpt.com,TCP-44926
-- DOMAIN-SUFFIX,oaistatic.com,TCP-44926
-- DOMAIN-SUFFIX,oaiusercontent.com,TCP-44926
-- DOMAIN-SUFFIX,sora.com,TCP-44926
+- DOMAIN-SUFFIX,openai.com,TCP
+- DOMAIN-SUFFIX,auth0.openai.com,TCP
+- DOMAIN-SUFFIX,chatgpt.com,TCP
+- DOMAIN-SUFFIX,oaistatic.com,TCP
+- DOMAIN-SUFFIX,oaiusercontent.com,TCP
+- DOMAIN-SUFFIX,sora.com,TCP
 
-- DOMAIN-SUFFIX,x.ai,TCP-44926
-- DOMAIN-SUFFIX,grok.com,TCP-44926
-- DOMAIN-SUFFIX,auth.grokipedia.com,TCP-44926
+- DOMAIN-SUFFIX,x.ai,TCP
+- DOMAIN-SUFFIX,grok.com,TCP
+- DOMAIN-SUFFIX,auth.grokipedia.com,TCP
 
-- DOMAIN-SUFFIX,perplexity.ai,TCP-44926
+- DOMAIN-SUFFIX,perplexity.ai,TCP
 - DOMAIN-SUFFIX,gemini.google.com,Trojan-TCP
 
 # 兜底 keyword（仅保留必要）
-- DOMAIN-KEYWORD,openai,TCP-44926
-- DOMAIN-KEYWORD,grok,TCP-44926
-- DOMAIN-KEYWORD,sora,TCP-44926
+- DOMAIN-KEYWORD,openai,TCP
+- DOMAIN-KEYWORD,grok,TCP
+- DOMAIN-KEYWORD,sora,TCP
 
 # ==============================
 # Overseas SaaS / Social
 # ==============================
 - DOMAIN-SUFFIX,gitHub.com,VLESS-REALITY-XAI
 - DOMAIN-KEYWORD,gitHub,VLESS-REALITY-XAI
-- DOMAIN-SUFFIX,linkedin.com,TCP-44926
-- DOMAIN-SUFFIX,licdn.com,TCP-44926
-- DOMAIN-SUFFIX,apollo.io,TCP-44926
-- DOMAIN-SUFFIX,kickstarter.com,TCP-44926
-- DOMAIN-SUFFIX,yahoo.com,TCP-44926
+- DOMAIN-SUFFIX,linkedin.com,TCP
+- DOMAIN-SUFFIX,licdn.com,TCP
+- DOMAIN-SUFFIX,apollo.io,TCP
+- DOMAIN-SUFFIX,kickstarter.com,TCP
+- DOMAIN-SUFFIX,yahoo.com,TCP
 # ==============================
 # Media / CDN
 # ==============================
