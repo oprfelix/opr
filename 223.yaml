@@ -189,7 +189,14 @@ rule-providers:
 # 路由规则
 # ==============================
 rules:
-    
+# ==============================
+# Google Voice
+# ==============================
+- DOMAIN-SUFFIX,voice.google.com,VLESS-REALITY-AGI
+- DOMAIN-SUFFIX,telephony.goog,VLESS-REALITY-AGI
+- DOMAIN-SUFFIX,googleapis.com,VLESS-REALITY-AGI
+- DOMAIN-SUFFIX,l.google.com,VLESS-REALITY-AGI
+- DOMAIN-SUFFIX,accounts.google.com,VLESS-REALITY-AGI
 # ==============================
 # AI / LLM Services
 # ==============================
