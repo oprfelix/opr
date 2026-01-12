@@ -250,6 +250,8 @@ rules:
 # Force DIRECT
 # ==============================
 - DOMAIN-SUFFIX,komoot.com,DIRECT
+- DOMAIN-SUFFIX,abchina.com,DIRECT #农业银行
+- DOMAIN-SUFFIX,ecitic.com,DIRECT  #中信银行
 # ==============================
 # Mainland China
 # ==============================
