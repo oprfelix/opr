@@ -256,7 +256,8 @@ rules:
 - DOMAIN-SUFFIX,jd.com,DIRECT          #京东商城
 - DOMAIN-SUFFIX,keepa.com,DIRECT       #keepa
 - DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
-- DOMAIN-SUFFIX,shopline.com,DIRECT    #全麦通
+- DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
+- DOMAIN-KEYWORD,shopline,DIRECT       #shopline
 # ==============================
 # Mainland China
 # ==============================
