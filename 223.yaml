@@ -258,7 +258,7 @@ rules:
 - DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
 - DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
 - DOMAIN-KEYWORD,shopline,DIRECT       #shopline
-- DOMAIN,loader.fo,VLESS-REALITY-AGI。 #YouTube下载器
+- DOMAIN,loader.fo,VLESS-REALITY-AGI   #YouTube下载器
 # ==============================
 # Mainland China
 # ==============================
