@@ -240,6 +240,8 @@ rules:
 - DOMAIN-SUFFIX,apollo.io,TCP
 - DOMAIN-SUFFIX,kickstarter.com,TCP
 - DOMAIN-SUFFIX,yahoo.com,TCP
+- DOMAIN-SUFFIX,reddit.com,TCP
+- DOMAIN-SUFFIX,redd.it,CDN
 # ==============================
 # Media / CDN
 # ==============================
