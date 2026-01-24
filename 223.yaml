@@ -242,6 +242,7 @@ rules:
 - DOMAIN-SUFFIX,yahoo.com,TCP
 - DOMAIN-SUFFIX,reddit.com,TCP
 - DOMAIN-SUFFIX,redd.it,CDN
+- DOMAIN-KEYWORD,redd,CDN
 # ==============================
 # Media / CDN
 # ==============================
