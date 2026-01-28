@@ -262,6 +262,10 @@ rules:
 - DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
 - DOMAIN-KEYWORD,myshopline,DIRECT     #shopline
 - DOMAIN,loader.fo,VLESS-REALITY-AGI   #YouTube下载器
+- DOMAIN,discord.com,VLESS-REALITY-AGI
+- DOMAIN-KEYWORD,discord,VLESS-REALITY-AGI
+- DOMAIN-KEYWORD,hcaptcha,VLESS-REALITY-AGI
+- DOMAIN,claude.ai,VLESS-REALITY-AGI
 # ==============================
 # Mainland China
 # ==============================
