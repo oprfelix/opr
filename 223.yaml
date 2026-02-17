@@ -222,27 +222,11 @@ rules:
 - DOMAIN-SUFFIX,grok.com,TCP
 - DOMAIN-SUFFIX,auth.grokipedia.com,TCP
 
-- DOMAIN-SUFFIX,perplexity.ai,TCP
-- DOMAIN-SUFFIX,gemini.google.com,TCP
-
-# 兜底 keyword（仅保留必要）
-- DOMAIN-KEYWORD,openai,TCP
-- DOMAIN-KEYWORD,grok,TCP
-- DOMAIN-KEYWORD,sora,TCP
-
 # ==============================
 # Overseas SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,gitHub.com,VLESS-REALITY-XAI
-- DOMAIN-KEYWORD,gitHub,VLESS-REALITY-XAI
 - DOMAIN-SUFFIX,linkedin.com,TCP
 - DOMAIN-SUFFIX,licdn.com,TCP
-- DOMAIN-SUFFIX,apollo.io,TCP
-- DOMAIN-SUFFIX,kickstarter.com,TCP
-- DOMAIN-SUFFIX,yahoo.com,TCP
-- DOMAIN-SUFFIX,reddit.com,TCP
-- DOMAIN-SUFFIX,redd.it,CDN
-- DOMAIN-KEYWORD,redd,CDN
 # ==============================
 # Media / CDN
 # ==============================
@@ -261,11 +245,6 @@ rules:
 - DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
 - DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
 - DOMAIN-KEYWORD,myshopline,DIRECT     #shopline
-- DOMAIN,loader.fo,VLESS-REALITY-AGI   #YouTube下载器
-- DOMAIN,discord.com,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,discord,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,hcaptcha,VLESS-REALITY-AGI
-- DOMAIN,claude.ai,VLESS-REALITY-AGI
 # ==============================
 # Mainland China
 # ==============================
