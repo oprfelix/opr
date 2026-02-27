@@ -190,43 +190,24 @@ rule-providers:
 # ==============================
 rules:
 # ==============================
-# Google Voice
-# ==============================
-- DOMAIN,voice.google.com,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,voice.google.com,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,google-voice,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,telephony.goog,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,googleapis.com,VLESS-REALITY-AGI
-- DOMAIN,lens.l.google.com,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,accounts.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt1-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt2-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt3-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt4-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt5-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt6-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt7-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt8-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,mtalk.google.com,VLESS-REALITY-AGI
-# ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-SUFFIX,openai.com,TCP
-- DOMAIN-SUFFIX,auth0.openai.com,TCP
-- DOMAIN-SUFFIX,chatgpt.com,TCP
-- DOMAIN-SUFFIX,oaistatic.com,TCP
-- DOMAIN-SUFFIX,oaiusercontent.com,TCP
-- DOMAIN-SUFFIX,sora.com,TCP
+- DOMAIN-SUFFIX,openai.com,CDN
+- DOMAIN-SUFFIX,auth0.openai.com,CDN
+- DOMAIN-SUFFIX,chatgpt.com,CDN
+- DOMAIN-SUFFIX,oaistatic.com,CDN
+- DOMAIN-SUFFIX,oaiusercontent.com,CDN
+- DOMAIN-SUFFIX,sora.com,CDN
 
-- DOMAIN-SUFFIX,x.ai,TCP
-- DOMAIN-SUFFIX,grok.com,TCP
-- DOMAIN-SUFFIX,auth.grokipedia.com,TCP
+- DOMAIN-SUFFIX,x.ai,CDN
+- DOMAIN-SUFFIX,grok.com,CDN
+- DOMAIN-SUFFIX,auth.grokipedia.com,CDN
 
 # ==============================
 # Overseas SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,linkedin.com,TCP
-- DOMAIN-SUFFIX,licdn.com,TCP
+- DOMAIN-SUFFIX,linkedin.com,CDN
+- DOMAIN-SUFFIX,licdn.com,CDN
 # ==============================
 # Media / CDN
 # ==============================
@@ -237,14 +218,13 @@ rules:
 # Force DIRECT
 # ==============================
 - DOMAIN-SUFFIX,komoot.com,DIRECT
-- DOMAIN-SUFFIX,abchina.com,DIRECT     #农业银行
-- DOMAIN-SUFFIX,abchina.com.cn,DIRECT  #农业银行
 - DOMAIN-SUFFIX,ecitic.com,DIRECT      #中信银行
 - DOMAIN-SUFFIX,jd.com,DIRECT          #京东商城
 - DOMAIN-SUFFIX,keepa.com,DIRECT       #keepa
 - DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
 - DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
 - DOMAIN-KEYWORD,myshopline,DIRECT     #shopline
+- DOMAIN-KEYWORD,shopline,DIRECT       #shopline
 # ==============================
 # Mainland China
 # ==============================
