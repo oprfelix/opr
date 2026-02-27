@@ -192,16 +192,18 @@ rules:
 # ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-SUFFIX,openai.com,CDN
-- DOMAIN-SUFFIX,auth0.openai.com,CDN
-- DOMAIN-SUFFIX,chatgpt.com,CDN
-- DOMAIN-SUFFIX,oaistatic.com,CDN
-- DOMAIN-SUFFIX,oaiusercontent.com,CDN
-- DOMAIN-SUFFIX,sora.com,CDN
+- DOMAIN-SUFFIX,openai.com,TCP
+- DOMAIN-SUFFIX,auth0.openai.com,TCP
+- DOMAIN-SUFFIX,chatgpt.com,TCP
+- DOMAIN-SUFFIX,oaistatic.com,TCP
+- DOMAIN-SUFFIX,oaiusercontent.com,TCP
+- DOMAIN-SUFFIX,sora.com,TCP
 
-- DOMAIN-SUFFIX,x.ai,CDN
-- DOMAIN-SUFFIX,grok.com,CDN
-- DOMAIN-SUFFIX,auth.grokipedia.com,CDN
+- DOMAIN-SUFFIX,x.ai,TCP
+- DOMAIN-SUFFIX,grok.com,TCP
+- DOMAIN-SUFFIX,auth.grokipedia.com,TCP
+
+- DOMAIN-SUFFIX,perplexity.ai,TCP
 
 # ==============================
 # Overseas SaaS / Social
