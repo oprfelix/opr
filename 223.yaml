@@ -162,67 +162,31 @@ proxy-groups:
     lazy: true
     icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
-# ==============================
-# 规则提供者
-# ==============================
-rule-providers:
-  google:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
-    path: ./ruleset/google.yaml
-    interval: 86400
-  gfw:
-    type: http
-    behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
-    path: ./ruleset/gfw.yaml
-    interval: 86400
-  telegramcidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
-    path: ./ruleset/telegramcidr.yaml
-    interval: 86400
-
-# ==============================
-# 路由规则
-# ==============================
 rules:
 # ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-SUFFIX,openai.com,TCP
-- DOMAIN-SUFFIX,auth0.openai.com,TCP
-- DOMAIN-SUFFIX,chatgpt.com,TCP
-- DOMAIN-SUFFIX,oaistatic.com,TCP
-- DOMAIN-SUFFIX,oaiusercontent.com,TCP
-- DOMAIN-SUFFIX,sora.com,TCP
-
+- DOMAIN-KEYWORD,gemini,TCP
+- DOMAIN-KEYWORD,perplexity,TCP
+- DOMAIN-KEYWORD,chatgpt,TCP
+- DOMAIN-KEYWORD,openai,TCP
+- DOMAIN-KEYWORD,grok,TCP
 - DOMAIN-SUFFIX,x.ai,TCP
-- DOMAIN-SUFFIX,grok.com,TCP
-- DOMAIN-SUFFIX,auth.grokipedia.com,TCP
-
-- DOMAIN-SUFFIX,perplexity.ai,TCP
-
 # ==============================
 # SaaS / Social
 # ==============================
 - DOMAIN-SUFFIX,linkedin.com,TCP
 - DOMAIN-SUFFIX,licdn.com,TCP
 # ==============================
-# Media
+# DIRECT
 # ==============================
-- DOMAIN-SUFFIX,tiktok.com,CDN
-- DOMAIN-SUFFIX,tiktokcdn.com,CDN
-- DOMAIN-SUFFIX,byteoversea.com,CDN
-# ==============================
-# Proxy Rule
-# ==============================
-- RULE-SET,google,CDN
-- RULE-SET,gfw,CDN
-- RULE-SET,telegramcidr,CDN
+- DOMAIN-KEYWORD,weixin,DIRECT
+- DOMAIN-KEYWORD,wechat,DIRECT
+- DOMAIN-KEYWORD,qq,DIRECT
+- DOMAIN-KEYWORD,tmall,DIRECT
+- DOMAIN-KEYWORD,taobao,DIRECT
+- DOMAIN-SUFFIX,jd.com,DIRECT
 # ==============================
 # Fallback
 # ==============================
-- MATCH,DIRECT
+- MATCH,CDN
