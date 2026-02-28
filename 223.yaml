@@ -10,30 +10,6 @@ external-controller: 0.0.0.0:9090
 ipv6: true
 
 # ==============================
-# TUN 模式
-# ==============================
-tun:
-  enable: true
-  stack: gvisor  # 更推荐 gVisor 隔离性强、兼容性好
-  dns-hijack:
-    - any:53  # 劫持所有 DNS 查询到本地 53 端口
-  auto-route: true  # 自动配置路由表
-  auto-detect-interface: true  # 自动检测网络接口
-  strict-route: true  # 严格路由模式，避免路由泄漏
-  mtu: 1500  # MTU 值，保持默认
-  udp-fragment: true  # UDP 分片支持
-
-# ==============================
-# 流量嗅探
-# ==============================
-sniffing:
-  enabled: true
-  override-destination: true
-  sniff:
-    - tls
-    - http
-
-# ==============================
 # DNS 配置
 # ==============================
 dns:
@@ -45,38 +21,12 @@ dns:
   default-nameserver:  # 默认 DNS，用于解析 Fake-IP
     - 114.114.114.114 # 骨干网 DNS
   nameserver:  # 主 DNS 服务器列表
-    - 223.5.5.5  # 阿里公共 DNS
     - 223.6.6.6  # 阿里公共 DNS
-    - 1.12.12.12 # 腾讯 DNSPod
     - 119.29.29.29 # DNSPod DNS
     - 8.8.8.8  # Google DNS
     - 1.1.1.1  # Cloudflare DNS
   fallback:  # 备用 DNS 服务器（用于防污染）
-    - 8.8.8.8
-    - 1.1.1.1
     - tls://dns.google  # DoT 加密 DNS
-  nameserver-policy:  # DNS 分流策略
-    'geosite:geolocation-cn': 223.6.6.6  # 中国大陆域名用阿里 DNS
-    'geosite:geolocation-!cn': 8.8.8.8   # 非中国大陆域名用 Google DNS
-    '+.google.com': 8.8.8.8
-    '+.linkedin.com': 8.8.8.8
-    '+.x.com': 8.8.8.8
-    '+.tiktok.com': 8.8.8.8
-    '+.youtube.com': 8.8.8.8
-    '+.bing.com': 8.8.8.8
-    '+.facebook.com': 8.8.8.8
-    '+.netflix.com': 8.8.8.8
-    '+.twitter.com': 8.8.8.8
-    '+.reddit.com': 8.8.8.8
-    '+.whatsapp.com': 8.8.8.8
-    '+.github.com': 8.8.8.8
-    '+.telegram.org': 8.8.8.8
-    '+.pornhub.com': 8.8.8.8
-    '+.sora.com': 8.8.8.8
-    '+.fast.com': 8.8.8.8
-    '+.openai.com': 8.8.8.8
-    '+.chatgpt.com': 8.8.8.8
-    '+.grok.com': 8.8.8.8
 
 # ==============================
 # 代理服务器 190.93.246.68
