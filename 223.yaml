@@ -191,6 +191,7 @@ rules:
 - DOMAIN-KEYWORD,komoot,DIRECT
 - DOMAIN-KEYWORD,garmin,DIRECT
 - DOMAIN-KEYWORD,wahoo,DIRECT
+- DOMAIN-KEYWORD,maskfog,DIRECT
 # ==============================
 # Fallback
 # ==============================
