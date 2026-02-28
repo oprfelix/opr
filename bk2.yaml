@@ -79,14 +79,14 @@ dns:
     '+.grok.com': 8.8.8.8
 
 # ==============================
-# 代理服务器
+# 代理服务器 190.93.246.68
 # ==============================
 proxies:
-  - {name: Alpha, type: vless, server: 190.93.246.68, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Delta, type: vless, server: 190.93.246.98, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Gamma, type: vless, server: 172.64.38.160, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
-  - {name: Beta, type: vless, server: 190.93.246.122, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Theta, type: vless, server: helloworld.todsm.com, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+  - {name: Alpha, type: vless, server: 162.159.39.146, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Delta, type: vless, server: 108.162.198.5, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
+  - {name: Gamma, type: vless, server: 172.64.52.199, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
+  - {name: Beta, type: vless, server: 162.159.44.147, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
+  - {name: Theta, type: vless, server: 172.64.53.47, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 # ai专用通道
   - name: "Trojan-TCP-AI"
@@ -190,25 +190,6 @@ rule-providers:
 # ==============================
 rules:
 # ==============================
-# Google Voice
-# ==============================
-- DOMAIN,voice.google.com,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,voice.google.com,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,google-voice,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,telephony.goog,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,googleapis.com,VLESS-REALITY-AGI
-- DOMAIN,lens.l.google.com,VLESS-REALITY-AGI
-- DOMAIN-SUFFIX,accounts.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt1-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt2-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt3-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt4-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt5-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt6-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt7-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,alt8-mtalk.google.com,VLESS-REALITY-AGI
-- DOMAIN,mtalk.google.com,VLESS-REALITY-AGI
-# ==============================
 # AI / LLM Services
 # ==============================
 - DOMAIN-SUFFIX,openai.com,TCP
@@ -223,26 +204,12 @@ rules:
 - DOMAIN-SUFFIX,auth.grokipedia.com,TCP
 
 - DOMAIN-SUFFIX,perplexity.ai,TCP
-- DOMAIN-SUFFIX,gemini.google.com,TCP
-
-# 兜底 keyword（仅保留必要）
-- DOMAIN-KEYWORD,openai,TCP
-- DOMAIN-KEYWORD,grok,TCP
-- DOMAIN-KEYWORD,sora,TCP
 
 # ==============================
 # Overseas SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,gitHub.com,VLESS-REALITY-XAI
-- DOMAIN-KEYWORD,gitHub,VLESS-REALITY-XAI
 - DOMAIN-SUFFIX,linkedin.com,TCP
 - DOMAIN-SUFFIX,licdn.com,TCP
-- DOMAIN-SUFFIX,apollo.io,TCP
-- DOMAIN-SUFFIX,kickstarter.com,TCP
-- DOMAIN-SUFFIX,yahoo.com,TCP
-- DOMAIN-SUFFIX,reddit.com,TCP
-- DOMAIN-SUFFIX,redd.it,CDN
-- DOMAIN-KEYWORD,redd,CDN
 # ==============================
 # Media / CDN
 # ==============================
@@ -253,19 +220,13 @@ rules:
 # Force DIRECT
 # ==============================
 - DOMAIN-SUFFIX,komoot.com,DIRECT
-- DOMAIN-SUFFIX,abchina.com,DIRECT     #农业银行
-- DOMAIN-SUFFIX,abchina.com.cn,DIRECT  #农业银行
 - DOMAIN-SUFFIX,ecitic.com,DIRECT      #中信银行
 - DOMAIN-SUFFIX,jd.com,DIRECT          #京东商城
 - DOMAIN-SUFFIX,keepa.com,DIRECT       #keepa
 - DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
 - DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
 - DOMAIN-KEYWORD,myshopline,DIRECT     #shopline
-- DOMAIN,loader.fo,VLESS-REALITY-AGI   #YouTube下载器
-- DOMAIN,discord.com,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,discord,VLESS-REALITY-AGI
-- DOMAIN-KEYWORD,hcaptcha,VLESS-REALITY-AGI
-- DOMAIN,claude.ai,VLESS-REALITY-AGI
+- DOMAIN-KEYWORD,shopline,DIRECT       #shopline
 # ==============================
 # Mainland China
 # ==============================
