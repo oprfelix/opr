@@ -166,23 +166,23 @@ proxy-groups:
 # 规则提供者
 # ==============================
 rule-providers:
-  cname:
+  google:
     type: http
     behavior: domain
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
-    path: ./ruleset/direct.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt"
+    path: ./ruleset/google.yaml
     interval: 86400
-  lancidr:
+  gfw:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt"
+    path: ./ruleset/gfw.yaml
+    interval: 86400
+  telegramcidr:
     type: http
     behavior: ipcidr
-    url: https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
-    path: ./ruleset/lancidr.yaml
-    interval: 604800
-  cncidr:
-    type: http
-    behavior: ipcidr
-    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
-    path: ./ruleset/cncidr.yaml
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/telegramcidr.yaml
     interval: 86400
 
 # ==============================
@@ -206,34 +206,23 @@ rules:
 - DOMAIN-SUFFIX,perplexity.ai,TCP
 
 # ==============================
-# Overseas SaaS / Social
+# SaaS / Social
 # ==============================
 - DOMAIN-SUFFIX,linkedin.com,TCP
 - DOMAIN-SUFFIX,licdn.com,TCP
 # ==============================
-# Media / CDN
+# Media
 # ==============================
 - DOMAIN-SUFFIX,tiktok.com,CDN
 - DOMAIN-SUFFIX,tiktokcdn.com,CDN
 - DOMAIN-SUFFIX,byteoversea.com,CDN
 # ==============================
-# Force DIRECT
+# Proxy Rule
 # ==============================
-- DOMAIN-SUFFIX,komoot.com,DIRECT
-- DOMAIN-SUFFIX,ecitic.com,DIRECT      #中信银行
-- DOMAIN-SUFFIX,jd.com,DIRECT          #京东商城
-- DOMAIN-SUFFIX,keepa.com,DIRECT       #keepa
-- DOMAIN-SUFFIX,quanmaitong.com,DIRECT #全麦通
-- DOMAIN-SUFFIX,shopline.com,DIRECT    #shopline
-- DOMAIN-KEYWORD,myshopline,DIRECT     #shopline
-- DOMAIN-KEYWORD,shopline,DIRECT       #shopline
-# ==============================
-# Mainland China
-# ==============================
-- RULE-SET,cncidr,DIRECT
-- RULE-SET,lancidr,DIRECT
-- RULE-SET,cname,DIRECT
+- RULE-SET,google,CDN
+- RULE-SET,gfw,CDN
+- RULE-SET,telegramcidr,CDN
 # ==============================
 # Fallback
 # ==============================
-- MATCH,CDN
+- MATCH,DIRECT
