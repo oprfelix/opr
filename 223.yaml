@@ -208,8 +208,8 @@ rules:
 # ==============================
 # Overseas SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,linkedin.com,CDN
-- DOMAIN-SUFFIX,licdn.com,CDN
+- DOMAIN-SUFFIX,linkedin.com,TCP
+- DOMAIN-SUFFIX,licdn.com,TCP
 # ==============================
 # Media / CDN
 # ==============================
