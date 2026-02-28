@@ -186,6 +186,8 @@ rules:
 - DOMAIN-KEYWORD,tmall,DIRECT
 - DOMAIN-KEYWORD,taobao,DIRECT
 - DOMAIN-SUFFIX,jd.com,DIRECT
+- DOMAIN-KEYWORD,douyin,DIRECT
+- DOMAIN-KEYWORD,xiaohongshu,DIRECT
 # ==============================
 # Fallback
 # ==============================
