@@ -188,6 +188,9 @@ rules:
 - DOMAIN-SUFFIX,jd.com,DIRECT
 - DOMAIN-KEYWORD,douyin,DIRECT
 - DOMAIN-KEYWORD,xiaohongshu,DIRECT
+- DOMAIN-KEYWORD,komoot,DIRECT
+- DOMAIN-KEYWORD,garmin,DIRECT
+- DOMAIN-KEYWORD,wahoo,DIRECT
 # ==============================
 # Fallback
 # ==============================
