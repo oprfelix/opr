@@ -151,6 +151,14 @@ rules:
 - DOMAIN-KEYWORD,wahoo,DIRECT
 - DOMAIN-KEYWORD,maskfog,DIRECT
 - DOMAIN-KEYWORD,163,DIRECT
+- DOMAIN-KEYWORD,youku,DIRECT
+- DOMAIN-KEYWORD,iqiyi,DIRECT
+- DOMAIN-KEYWORD,qqmusic,DIRECT
+- DOMAIN-KEYWORD,alipay,DIRECT
+- DOMAIN-KEYWORD,meituan,DIRECT
+- DOMAIN-KEYWORD,bilibili,DIRECT
+- DOMAIN-KEYWORD,pinduoduo,DIRECT
+- DOMAIN-KEYWORD,weibo,DIRECT
 # ==============================
 # Fallback
 # ==============================
