@@ -7,7 +7,7 @@ allow-lan: true
 mode: rule
 log-level: error
 external-controller: 0.0.0.0:9090
-ipv6: true
+ipv6: false
 
 # ==============================
 # DNS 配置
