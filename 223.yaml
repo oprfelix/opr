@@ -26,16 +26,17 @@ dns:
   fallback:
     - tls://dns.google  # DoT 加密 DNS
   fake-ip-filter: 
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
     - '*.stun.*.*'
     - '+.stun.*.*'
     - '+.stun.*.*.*'
     - '*.msftconnecttest.com'
     - '*.msftncsi.com'
     - 'lens.l.google.com'
+  fallback-filter:
+  geoip: true
+  geoip-code: CN
+  ipcidr:
+    - 240.0.0.0/4
 
 # ==============================
 # 代理服务器 190.93.246.68
