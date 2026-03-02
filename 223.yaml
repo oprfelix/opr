@@ -26,6 +26,9 @@ dns:
     - system # 使用 iOS 系统 DNS
   fallback:  # 备用 DNS 服务器（用于防污染）
     - tls://dns.google  # DoT 加密 DNS
+  fake-ip-filter: 
+    # Google Voices
+    - 'lens.l.google.com'
 
 # ==============================
 # 代理服务器 190.93.246.68
