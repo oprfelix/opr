@@ -106,8 +106,7 @@ proxy-groups:
       - Beta
       - Theta
     url: https://www.google.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 600
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
   - name: TCP
@@ -117,8 +116,7 @@ proxy-groups:
       - VLESS-REALITY-XAI
       - VLESS-REALITY-AGI
     url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
+    interval: 600
     lazy: true
     icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
