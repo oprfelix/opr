@@ -33,10 +33,10 @@ dns:
     - '*.msftncsi.com'
     - 'lens.l.google.com'
   fallback-filter:
-  geoip: true
-  geoip-code: CN
-  ipcidr:
-    - 240.0.0.0/4
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
 # ==============================
 # 代理服务器 190.93.246.68
