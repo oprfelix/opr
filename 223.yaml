@@ -22,9 +22,9 @@ dns:
     - 223.5.5.5
   nameserver:  # 主 DNS 服务器列表
     - https://dns.alidns.com/dns-query
-    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
   fallback:
-    - tls://dns.google  # DoT 加密 DNS
+    - https://dns.google/dns-query
   fake-ip-filter: 
     - '*.stun.*.*'
     - '+.stun.*.*'
