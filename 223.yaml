@@ -124,18 +124,18 @@ rules:
 # ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-KEYWORD,gemini,TCP
-- DOMAIN-KEYWORD,perplexity,TCP
-- DOMAIN-KEYWORD,chatgpt,TCP
-- DOMAIN-KEYWORD,openai,TCP
-- DOMAIN-KEYWORD,grok,TCP
-- DOMAIN-SUFFIX,x.ai,TCP
+- DOMAIN-KEYWORD,gemini,CDN
+- DOMAIN-KEYWORD,perplexity,CDN
+- DOMAIN-KEYWORD,chatgpt,CDN
+- DOMAIN-KEYWORD,openai,CDN
+- DOMAIN-KEYWORD,grok,CDN
+- DOMAIN-SUFFIX,x.ai,CDN
 - DOMAIN-KEYWORD,google,CDN
 # ==============================
 # SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,linkedin.com,TCP
-- DOMAIN-SUFFIX,licdn.com,TCP
+- DOMAIN-SUFFIX,linkedin.com,CDN
+- DOMAIN-SUFFIX,licdn.com,CDN
 # ==============================
 # DIRECT
 # ==============================
