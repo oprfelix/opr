@@ -49,7 +49,7 @@ proxies:
   - {name: Theta, type: vless, server: 190.93.246.68, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 # ai专用通道
-  - name: "LLM"
+  - name: "LLM1"
     type: vless
     server: 107.173.140.91
     port: 10104
@@ -63,6 +63,22 @@ proxies:
     skip-cert-verify: true
     reality-opts:
       public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
+      short-id: ""
+
+    - name: "LLM2"
+    type: vless
+    server: 89.117.172.45
+    port: 41314
+    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
+    network: tcp
+    udp: true
+    tls: true
+    servername: www.paypal.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    skip-cert-verify: true
+    reality-opts:
+      public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
       short-id: ""
       
 # ==============================
@@ -80,6 +96,15 @@ proxy-groups:
     url: https://www.google.com/generate_204
     interval: 600
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
+    
+  - name: LLM
+    type: url-test # load-balance # url-test
+    proxies:
+      - LLM1
+      - LLM2
+    url: https://www.google.com/generate_204
+    interval: 600
+    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
 rules:
 # ==============================
