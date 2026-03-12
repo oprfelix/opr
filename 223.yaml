@@ -57,13 +57,14 @@ proxies:
     network: tcp
     udp: true
     tls: true
-    servername: www.paypal.com           # sni
-    flow: xtls-rprx-vision               # 核心 flow
-    client-fingerprint: chrome           # fp=chrome，推荐保留（uTLS 指纹）
-    skip-cert-verify: true               # Reality 不验证证书，必须 true
+    servername: www.paypal.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    skip-cert-verify: true
     reality-opts:
-      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg   # pbk
+      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
       short-id: ""
+      
 # ==============================
 # 代理组
 # ==============================
