@@ -65,21 +65,21 @@ proxies:
       public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
       short-id: ""
 
-    - name: "LLM2"
-      type: vless
-      server: 89.117.172.45
-      port: 41314
-      uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-      network: tcp
-      udp: true
-      tls: true
-      servername: www.paypal.com
-      flow: xtls-rprx-vision
-      client-fingerprint: chrome
-      skip-cert-verify: true
-      reality-opts:
-        public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
-        short-id: ""
+  - name: "LLM2"
+    type: vless
+    server: 89.117.172.45
+    port: 41314
+    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
+    network: tcp
+    udp: true
+    tls: true
+    servername: www.paypal.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    skip-cert-verify: true
+    reality-opts:
+      public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
+      short-id: ""
       
 # ==============================
 # 代理组
