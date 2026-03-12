@@ -49,49 +49,26 @@ proxies:
   - {name: Theta, type: vless, server: 190.93.246.68, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
 # ai专用通道
-  - name: "Trojan-TCP-AI"
-    type: trojan
-    server: 45.76.220.255
-    port: 44926
-    password: zConwdwyDR          # 对应链接中的密码部分
-    udp: true
-    sni: ai.todsm.com             # 对应链接中的 sni
-    skip-cert-verify: false
-    network: tcp
-    client-fingerprint: chrome    # 对应 fp=chrome
-    alpn:
-      - h2
-      - http/1.1
-      
-  - name: "VLESS-REALITY-XAI"
+  - name: "LLM"
     type: vless
-    server: xai.todsm.com
-    port: 19996
-    uuid: 833a7999-f857-4196-bb07-7005a7390a74
+    server: 107.173.140.91
+    port: 10104
+    uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
+    network: tcp
     udp: true
     tls: true
-    network: tcp
-    flow: xtls-rprx-vision             # 对应链接中的 flow=xtls-rprx-vision
-    servername: xai.todsm.com          # 对应链接中的 sni
+    servername: www.paypal.com          # 即 sni / serverName，必须和链接里一致
+    flow: xtls-rprx-vision               # 核心 flow，必须填写这个
+    client-fingerprint: chrome           # fp=chrome，推荐保留（uTLS 指纹）
+    skip-cert-verify: true               # Reality 不验证证书，必须 true
     reality-opts:
-      public-key: 3ln_aNfomy1b6dgwxu_AvNji78rq5x9CaQJ5iTdT8TE  # 对应 pbk
-      short-id: 6ba85179e30d4fc2                               # 对应 sid
-    client-fingerprint: chrome         # 对应 fp=chrome
-
-  - name: "VLESS-REALITY-AGI"
-    type: vless
-    server: agi.todsm.com
-    port: 24785
-    uuid: 7f375cd3-6f1c-4668-af87-9eb4d0d33f57
-    udp: true
-    tls: true
-    network: tcp
-    flow: xtls-rprx-vision
-    servername: agi.todsm.com
-    reality-opts:
-      public-key: GsrvA5SAG6BSeGmpX4K-itGJNJHMYH3vTBSHZuKwHUU
-      short-id: 6ba85179e30d4fc2
-    client-fingerprint: chrome
+      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg   # pbk 值，直接复制
+      short-id: ""                       # 你的链接没带 sid，所以留空（或不写这一行也行）
+    # 可选参数，根据需要加（大多数情况默认就够用）
+    # packet-encoding: xudp              # 如果 UDP 游戏/视频卡顿，可以试试加这个（mihomo 支持 xudp）
+    # alpn:
+    #   - h2
+    #   - http/1.1
     
 # ==============================
 # 代理组
@@ -109,33 +86,22 @@ proxy-groups:
     interval: 600
     icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
 
-  - name: TCP
-    type: url-test
-    proxies:
-      - Trojan-TCP-AI
-      - VLESS-REALITY-XAI
-      - VLESS-REALITY-AGI
-    url: https://www.gstatic.com/generate_204
-    interval: 600
-    lazy: true
-    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
-
 rules:
 # ==============================
 # AI / LLM Services
 # ==============================
-- DOMAIN-KEYWORD,gemini,CDN
-- DOMAIN-KEYWORD,perplexity,CDN
-- DOMAIN-KEYWORD,chatgpt,CDN
-- DOMAIN-KEYWORD,openai,CDN
-- DOMAIN-KEYWORD,grok,CDN
-- DOMAIN-SUFFIX,x.ai,CDN
+- DOMAIN-KEYWORD,gemini,LLM
+- DOMAIN-KEYWORD,perplexity,LLM
+- DOMAIN-KEYWORD,chatgpt,LLM
+- DOMAIN-KEYWORD,openai,LLM
+- DOMAIN-KEYWORD,grok,LLM
+- DOMAIN-SUFFIX,x.ai,LLM
 - DOMAIN-KEYWORD,google,CDN
 # ==============================
 # SaaS / Social
 # ==============================
-- DOMAIN-SUFFIX,linkedin.com,CDN
-- DOMAIN-SUFFIX,licdn.com,CDN
+- DOMAIN-SUFFIX,linkedin.com,LLM
+- DOMAIN-SUFFIX,licdn.com,LLM
 # ==============================
 # DIRECT
 # ==============================
