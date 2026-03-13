@@ -168,6 +168,8 @@ rules:
 
 # 电商工具
 - DOMAIN-KEYWORD,helium10,DIRECT
+- DOMAIN-KEYWORD,Sorttime,DIRECT
+- DOMAIN-KEYWORD,semrush,DIRECT
 - DOMAIN-KEYWORD,quanmaitong,DIRECT
 
 # 中国APP
