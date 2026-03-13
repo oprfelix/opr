@@ -126,6 +126,8 @@ rules:
 # ==============================
 # DIRECT
 # ==============================
+- DOMAIN-KEYWORD,helium10,DIRECT
+- DOMAIN-KEYWORD,quanmaitong,DIRECT
 - DOMAIN-KEYWORD,weixin,DIRECT
 - DOMAIN-KEYWORD,wechat,DIRECT
 - DOMAIN-KEYWORD,qq,DIRECT
