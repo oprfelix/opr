@@ -153,7 +153,11 @@ proxy-groups:
 
 # ---------------- Rules ----------------
 rules:
-
+# Google Translate
+- DOMAIN-SUFFIX,translate.google.com,LLM2
+- DOMAIN-SUFFIX,translate.googleapis.com,LLM2
+- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM2
+- DOMAIN-SUFFIX,translate.goog,LLM2
 # AI
 - DOMAIN-KEYWORD,openai,LLM2
 - DOMAIN-KEYWORD,chatgpt,LLM2
