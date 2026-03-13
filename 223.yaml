@@ -56,7 +56,7 @@ tun:
   auto-route: true
   dns-hijack:
     - any:53
-  mtu: 9000
+  mtu: 1500
 
 # ---------------- Proxies ----------------
 proxies:
