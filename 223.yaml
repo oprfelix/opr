@@ -7,6 +7,7 @@ allow-lan: true
 mode: rule
 log-level: error
 external-controller: 0.0.0.0:9090
+ipv6: false
 
 # ==============================
 # DNS 配置
@@ -16,7 +17,7 @@ dns:
   prefer-h3: true
   ipv6: false
   ipv6-timeout: 300
-  nameserver:  # 域名解析服务器
+  nameserver:  # 主 DNS 服务器列表
     - 223.5.5.5
     - 119.29.29.29
     - 8.8.8.8
@@ -89,7 +90,7 @@ dns:
     - +.bilivideo.com
     - +.market.xiaomi.com
     - WORKGROUP
-  default-nameserver:  # 默认域名解析服务器
+  default-nameserver:  # 默认 DNS，用于解析 Fake-IP
     - 223.5.5.5
     - 119.29.29.29
     - 8.8.8.8
@@ -97,6 +98,9 @@ dns:
     - 1.0.0.1
     - 1.1.1.1
     - system
+  fallback:
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
 
 # ==============================
 # 代理服务器 190.93.246.68
@@ -147,6 +151,7 @@ proxies:
 proxy-groups:
   - name: CDN
     type: url-test # load-balance # url-test
+    tolerance: 50
     proxies:
       - Alpha
       - Delta
@@ -159,6 +164,7 @@ proxy-groups:
     
   - name: LLM
     type: url-test # load-balance # url-test
+    tolerance: 50
     proxies:
       - LLM1
       - LLM2
@@ -171,14 +177,12 @@ rules:
 # AI / LLM Services
 # ==============================
 - DOMAIN-KEYWORD,gemini,LLM2
-- DOMAIN-KEYWORD,github,LLM1
 - DOMAIN-KEYWORD,perplexity,LLM2
 - DOMAIN-KEYWORD,chatgpt,LLM2
 - DOMAIN-KEYWORD,openai,LLM2
 - DOMAIN-KEYWORD,grok,LLM2
 - DOMAIN-SUFFIX,x.ai,LLM2
 - DOMAIN-SUFFIX,x.com,LLM2
-- DOMAIN-KEYWORD,google,CDN
 # ==============================
 # SaaS / Social
 # ==============================
