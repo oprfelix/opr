@@ -33,8 +33,6 @@ dns:
     - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
     - quic://dns.adguard.com:784
     - system
-  proxy-server-nameserver:
-    - 223.6.6.6
   fallback-filter:
     geoip: true
     geoip-code: CN
