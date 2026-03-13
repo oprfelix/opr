@@ -1,22 +1,29 @@
-# ==============================
-# 基础设置
-# ==============================
 mixed-port: 7890
-bind-address: 0.0.0.0
 allow-lan: true
+bind-address: 0.0.0.0
 mode: rule
 log-level: error
-external-controller: 0.0.0.0:9090
 ipv6: false
+external-controller: 127.0.0.1:9090
+secret: a1927b089fc365a3
+unified-delay: true
 
-# ==============================
-# DNS 配置
-# ==============================
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+tcp-concurrent: true
+global-client-fingerprint: chrome
+
+# ---------------- DNS ----------------
 dns:
   enable: true
-  prefer-h3: true
+  listen: 0.0.0.0:53
   ipv6: false
-  ipv6-timeout: 300
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 172.19.0.1/16
+
   nameserver:  # 主 DNS 服务器列表
     - 223.5.5.5
     - 119.29.29.29
@@ -33,164 +40,137 @@ dns:
     - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
     - quic://dns.adguard.com:784
     - system
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-  listen: 0.0.0.0:53  # DNS 监听地址和端口
-  enhanced-mode: fake-ip  # 启用 Fake-IP 模式，提高性能
-  fake-ip-range: 198.18.0.1/16  # Fake-IP 地址范围
-  fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time-ios.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - '*.time.edu.cn'
-    - '*.ntp.org.cn'
-    - '*.pool.ntp.org'
-    - +.services.googleapis.cn
-    - +.push.apple.com
-    - time1.cloud.tencent.com
-    - localhost.ptlogin2.qq.com
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-    - lens.l.google.com
-    - '*.n.n.srv.nintendo.net'
-    - +.stun.playstation.net
-    - xbox.*.*.microsoft.com
-    - '*.*.xboxlive.com'
-    - '*.msftncsi.com'
-    - '*.msftconnecttest.com'
-    - '*.mcdn.bilivideo.cn'
-    - +.bilibili.com
-    - +.bilicdn.com
-    - +.bilivideo.com
-    - +.market.xiaomi.com
-    - WORKGROUP
-  default-nameserver:  # 默认 DNS，用于解析 Fake-IP
-    - 223.5.5.5
-    - 119.29.29.29
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.0.0.1
-    - 1.1.1.1
-    - system
+
   fallback:
     - https://dns.google/dns-query
     - https://cloudflare-dns.com/dns-query
 
-# ==============================
-# 代理服务器 190.93.246.68
-# ==============================
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+
+# ---------------- TUN ----------------
+tun:
+  enable: true
+  stack: gVisor
+  auto-route: true
+  dns-hijack:
+    - any:53
+  mtu: 9000
+
+# ---------------- Proxies ----------------
 proxies:
-  - {name: Alpha, type: vless, server: 190.93.246.18, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Delta, type: vless, server: 190.93.246.28, port: 443, uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25, network: ws, tls: true, udp: false, sni: helloworld.techtrendparts.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.techtrendparts.com}}}
-  - {name: Gamma, type: vless, server: 190.93.246.38, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
-  - {name: Beta, type: vless, server: 190.93.246.48, port: 443, uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951, network: ws, tls: true, udp: false, sni: helloworld.fotoman.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.fotoman.com}}}
-  - {name: Theta, type: vless, server: 190.93.246.68, port: 443, uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f, network: ws, tls: true, udp: false, sni: helloworld.todsm.com, client-fingerprint: chrome, skip-cert-verify: false, ws-opts: {path: "/", headers: {Host: helloworld.todsm.com}}}
 
-# ai专用通道
-  - name: "LLM1"
-    type: vless
-    server: 107.173.140.91
-    port: 10104
-    uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
-    network: tcp
-    udp: true
-    tls: true
-    servername: www.paypal.com
-    flow: xtls-rprx-vision
-    client-fingerprint: chrome
-    skip-cert-verify: true
-    reality-opts:
-      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
-      short-id: ""
+- name: Alpha
+  type: vless
+  server: 190.93.246.18
+  port: 443
+  uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+  network: ws
+  tls: true
+  servername: helloworld.fotoman.com
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: helloworld.fotoman.com
 
-  - name: "LLM2"
-    type: vless
-    server: 89.117.172.45
-    port: 41314
-    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-    network: tcp
-    udp: true
-    tls: true
-    servername: www.paypal.com
-    flow: xtls-rprx-vision
-    client-fingerprint: chrome
-    skip-cert-verify: true
-    reality-opts:
-      public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
-      short-id: ""
-      
-# ==============================
-# 代理组
-# ==============================
+- name: Delta
+  type: vless
+  server: 190.93.246.28
+  port: 443
+  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+  network: ws
+  tls: true
+  servername: helloworld.techtrendparts.com
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: helloworld.techtrendparts.com
+
+- name: Gamma
+  type: vless
+  server: 190.93.246.38
+  port: 443
+  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+  network: ws
+  tls: true
+  servername: helloworld.todsm.com
+  client-fingerprint: chrome
+  ws-opts:
+    path: /
+    headers:
+      Host: helloworld.todsm.com
+
+- name: LLM1
+  type: vless
+  server: 107.173.140.91
+  port: 10104
+  uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
+  network: tcp
+  tls: true
+  flow: xtls-rprx-vision
+  servername: www.paypal.com
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
+
+- name: LLM2
+  type: vless
+  server: 89.117.172.45
+  port: 41314
+  uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
+  network: tcp
+  tls: true
+  flow: xtls-rprx-vision
+  servername: www.paypal.com
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
+
+# ---------------- Proxy Groups ----------------
 proxy-groups:
-  - name: CDN
-    type: url-test # load-balance # url-test
-    tolerance: 50
-    proxies:
-      - Alpha
-      - Delta
-      - Gamma
-      - Beta
-      - Theta
-    url: https://www.google.com/generate_204
-    interval: 600
-    icon: https://img.icons8.com/?size=100&id=S4NxkowMF95E&format=png&color=000000
-    
-  - name: LLM
-    type: url-test # load-balance # url-test
-    tolerance: 50
-    proxies:
-      - LLM1
-      - LLM2
-    url: https://www.google.com/generate_204
-    interval: 600
-    icon: https://img.icons8.com/?size=100&id=FWpoGgZY6IsM&format=png&color=000000
 
+- name: CDN
+  type: url-test
+  url: https://www.google.com/generate_204
+  interval: 600
+  tolerance: 50
+  proxies:
+    - Alpha
+    - Delta
+    - Gamma
+
+- name: LLM
+  type: url-test
+  url: https://www.google.com/generate_204
+  interval: 600
+  tolerance: 50
+  proxies:
+    - LLM1
+    - LLM2
+
+# ---------------- Rules ----------------
 rules:
-# ==============================
-# AI / LLM Services
-# ==============================
+
+# AI
+- DOMAIN-KEYWORD,openai,LLM2
+- DOMAIN-KEYWORD,chatgpt,LLM2
 - DOMAIN-KEYWORD,gemini,LLM2
 - DOMAIN-KEYWORD,perplexity,LLM2
-- DOMAIN-KEYWORD,chatgpt,LLM2
-- DOMAIN-KEYWORD,openai,LLM2
 - DOMAIN-KEYWORD,grok,LLM2
 - DOMAIN-SUFFIX,x.ai,LLM2
-- DOMAIN-SUFFIX,x.com,LLM2
-# ==============================
-# SaaS / Social
-# ==============================
-- DOMAIN-SUFFIX,linkedin.com,LLM
-- DOMAIN-SUFFIX,licdn.com,LLM
-# ==============================
-# DIRECT
-# ==============================
+
+# LinkedIn
+- DOMAIN-SUFFIX,linkedin.com,LLM1
+- DOMAIN-SUFFIX,licdn.com,LLM1
+
+# 电商工具
 - DOMAIN-KEYWORD,helium10,DIRECT
 - DOMAIN-KEYWORD,quanmaitong,DIRECT
+
+# 中国APP
 - DOMAIN-KEYWORD,weixin,DIRECT
 - DOMAIN-KEYWORD,wechat,DIRECT
 - DOMAIN-KEYWORD,qq,DIRECT
@@ -199,9 +179,6 @@ rules:
 - DOMAIN-SUFFIX,jd.com,DIRECT
 - DOMAIN-KEYWORD,douyin,DIRECT
 - DOMAIN-KEYWORD,xiaohongshu,DIRECT
-- DOMAIN-KEYWORD,komoot,DIRECT
-- DOMAIN-KEYWORD,garmin,DIRECT
-- DOMAIN-KEYWORD,wahoo,DIRECT
 - DOMAIN-KEYWORD,maskfog,DIRECT
 - DOMAIN-KEYWORD,163,DIRECT
 - DOMAIN-KEYWORD,youku,DIRECT
@@ -212,8 +189,14 @@ rules:
 - DOMAIN-KEYWORD,bilibili,DIRECT
 - DOMAIN-KEYWORD,pinduoduo,DIRECT
 - DOMAIN-KEYWORD,weibo,DIRECT
-# ==============================
-# Fallback
-# ==============================
+
+# Garmin / 骑行
+- DOMAIN-KEYWORD,garmin,DIRECT
+- DOMAIN-KEYWORD,wahoo,DIRECT
+- DOMAIN-KEYWORD,komoot,DIRECT
+
+# CN IP
 - GEOIP,CN,DIRECT
+
+# 默认
 - MATCH,CDN
