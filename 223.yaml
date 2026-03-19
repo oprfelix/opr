@@ -159,6 +159,7 @@ rules:
 - DOMAIN-SUFFIX,translate.googleusercontent.com,LLM2
 - DOMAIN-SUFFIX,translate.goog,LLM2
 # AI
+- DOMAIN-KEYWORD,anthropic,LLM2
 - DOMAIN-KEYWORD,claude,LLM2
 - DOMAIN-KEYWORD,openai,LLM2
 - DOMAIN-KEYWORD,chatgpt,LLM2
