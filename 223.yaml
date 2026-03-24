@@ -128,6 +128,19 @@ proxies:
   reality-opts:
     public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
 
+- name: LLM3
+  type: vless
+  server: 149.30.232.205
+  port: 2418
+  uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b
+  network: tcp
+  tls: true
+  flow: xtls-rprx-vision
+  servername: www.amazon.com
+  client-fingerprint: chrome
+  reality-opts:
+    public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ
+    
 # ---------------- Proxy Groups ----------------
 proxy-groups:
 
@@ -149,29 +162,30 @@ proxy-groups:
   proxies:
     - LLM1
     - LLM2
+    - LLM2
 
 # ---------------- Rules ----------------
 rules:
 # Google Translate
-- DOMAIN-SUFFIX,translate.google.com,LLM2
-- DOMAIN-SUFFIX,translate.googleapis.com,LLM2
-- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM2
-- DOMAIN-SUFFIX,translate.goog,LLM2
+- DOMAIN-SUFFIX,translate.google.com,LLM3
+- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
+- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
+- DOMAIN-SUFFIX,translate.goog,LLM3
 - DOMAIN-SUFFIX,googleusercontent.com,LLM1
  
 # AI
-- DOMAIN-KEYWORD,anthropic,LLM2
-- DOMAIN-KEYWORD,claude,LLM2
-- DOMAIN-KEYWORD,openai,LLM2
-- DOMAIN-KEYWORD,chatgpt,LLM2
-- DOMAIN-KEYWORD,gemini,CDN
-- DOMAIN-KEYWORD,perplexity,LLM2
-- DOMAIN-KEYWORD,grok,LLM2
-- DOMAIN-SUFFIX,x.ai,LLM2
+- DOMAIN-KEYWORD,anthropic,LLM3
+- DOMAIN-KEYWORD,claude,LLM3
+- DOMAIN-KEYWORD,openai,LLM3
+- DOMAIN-KEYWORD,chatgpt,LLM3
+- DOMAIN-KEYWORD,gemini,LLM3
+- DOMAIN-KEYWORD,perplexity,LLM3
+- DOMAIN-KEYWORD,grok,LLM3
+- DOMAIN-SUFFIX,x.ai,LLM3
 
 # LinkedIn
-- DOMAIN-SUFFIX,linkedin.com,LLM1
-- DOMAIN-SUFFIX,licdn.com,LLM1
+- DOMAIN-SUFFIX,linkedin.com,LLM3
+- DOMAIN-SUFFIX,licdn.com,LLM3
 
 # 电商工具
 - DOMAIN-KEYWORD,helium10,DIRECT
