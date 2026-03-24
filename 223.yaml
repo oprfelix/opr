@@ -171,7 +171,7 @@ rules:
 - DOMAIN-SUFFIX,translate.googleapis.com,LLM3
 - DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
 - DOMAIN-SUFFIX,translate.goog,LLM3
-- DOMAIN-SUFFIX,googleusercontent.com,LLM1
+- DOMAIN-SUFFIX,googleusercontent.com,CDN
  
 # AI
 - DOMAIN-KEYWORD,anthropic,LLM2
