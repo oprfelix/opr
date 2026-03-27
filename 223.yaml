@@ -23,13 +23,6 @@ dns:
   prefer-h3: true
   enhanced-mode: fake-ip
   fake-ip-range: 172.19.0.1/16
-  fake-ip-filter:     # ← 新增，避免这些域名走 fake-ip，直接真实解析
-    - "*.claude.ai"
-    - "*.anthropic.com"
-    - "*.openai.com"
-    - "*.grok.com"   
-    - "*.x.ai"   
-    - "gemini.google.com"
 
   nameserver:  # 主 DNS 服务器列表
 #    - 223.5.5.5
