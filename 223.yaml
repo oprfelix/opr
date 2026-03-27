@@ -185,8 +185,14 @@ rules:
 - DOMAIN-SUFFIX,claude.ai,LLM2
 - DOMAIN-SUFFIX,anthropic.com,LLM2
 - DOMAIN-SUFFIX,claudeusercontent.com,LLM2    # Claude 生成内容域名
+- DOMAIN-SUFFIX,statsig.anthropic.com,LLM2
+- DOMAIN-SUFFIX,usefathom.com,LLM2
 - DOMAIN-KEYWORD,anthropic,LLM2
 - DOMAIN-KEYWORD,claude,LLM2
+# Anthropic 自有 IP 段（ASN399358，最可靠）
+- IP-CIDR,160.79.104.0/23,LLM2
+- IP-CIDR,160.79.104.0/21,LLM2
+- IP-CIDR6,2607:6bc0::/48,LLM2
 
 # OpenAI / ChatGPT
 - DOMAIN-SUFFIX,openai.com,LLM2
