@@ -27,6 +27,8 @@ dns:
     - "*.claude.ai"
     - "*.anthropic.com"
     - "*.openai.com"
+    - "*.grok.com"   
+    - "*.x.ai"           
 
   nameserver:  # 主 DNS 服务器列表
 #    - 223.5.5.5
@@ -163,7 +165,6 @@ proxy-groups:
   url: https://www.google.com/generate_204
   interval: 600
   tolerance: 50
-  lazy: true
   proxies:
     - LLM1
     - LLM2
@@ -179,7 +180,7 @@ rules:
 - DOMAIN-SUFFIX,googleusercontent.com,CDN
  
 # AI
-# Claude / Anthropic —— 把所有关联域名都锁定到 LLM2（或 LLM 组）
+# Claude / Anthropic 
 - DOMAIN-SUFFIX,claude.ai,LLM2
 - DOMAIN-SUFFIX,anthropic.com,LLM2
 - DOMAIN-SUFFIX,claudeusercontent.com,LLM2    # Claude 生成内容域名
@@ -195,8 +196,12 @@ rules:
 
 - DOMAIN-KEYWORD,gemini,LLM2
 - DOMAIN-KEYWORD,perplexity,LLM3
+
+# Grok / xAI
+- DOMAIN-SUFFIX,grok.com,LLM2
+- DOMAIN-SUFFIX,x.ai,LLM2 
+- DOMAIN-SUFFIX,xai.com,LLM2
 - DOMAIN-KEYWORD,grok,LLM2
-- DOMAIN-SUFFIX,x.ai,LLM3
 
 # LinkedIn
 - DOMAIN-SUFFIX,linkedin.com,LLM3
