@@ -28,7 +28,8 @@ dns:
     - "*.anthropic.com"
     - "*.openai.com"
     - "*.grok.com"   
-    - "*.x.ai"           
+    - "*.x.ai"   
+    - "gemini.google.com"
 
   nameserver:  # 主 DNS 服务器列表
 #    - 223.5.5.5
@@ -194,7 +195,12 @@ rules:
 - DOMAIN-KEYWORD,openai,LLM2
 - DOMAIN-KEYWORD,chatgpt,LLM2
 
-- DOMAIN-KEYWORD,gemini,LLM2
+# Gemini / Google AI
+- DOMAIN-SUFFIX,gemini.google.com,CDN
+- DOMAIN-SUFFIX,aistudio.google.com,CDN
+- DOMAIN-SUFFIX,generativelanguage.googleapis.com,CDN
+- DOMAIN-KEYWORD,gemini,CDN
+
 - DOMAIN-KEYWORD,perplexity,LLM3
 
 # Grok / xAI
