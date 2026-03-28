@@ -166,6 +166,9 @@ proxy-groups:
 
 # ---------------- Rules ----------------
 rules:
+# Google Voice
+- DOMAIN-SUFFIX,voice.google.com,LLM3
+
 # Google Translate
 - DOMAIN-SUFFIX,translate.google.com,LLM3
 - DOMAIN-SUFFIX,translate.googleapis.com,LLM3
