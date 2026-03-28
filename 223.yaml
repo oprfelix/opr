@@ -200,6 +200,8 @@ rules:
 - DOMAIN-SUFFIX,generativelanguage.googleapis.com,CDN
 - DOMAIN-KEYWORD,gemini,CDN
 
+# Perplexity
+- DOMAIN-SUFFIX,perplexity.ai,LLM3
 - DOMAIN-KEYWORD,perplexity,LLM3
 
 # Grok / xAI
