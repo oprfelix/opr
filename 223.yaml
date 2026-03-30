@@ -24,235 +24,33 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 172.19.0.1/16
 
-  nameserver:  # 主 DNS 服务器列表
-#    - 223.5.5.5
-#    - 119.29.29.29
-    - 8.8.8.8
-    - 8.8.4.4
-    - 1.0.0.1
-    - 1.1.1.1
-#    - tls://223.5.5.5:853
-    - tls://8.8.8.8
-    - tls://8.8.4.4
-    - tls://1.0.0.1
-    - tls://1.1.1.1
-#    - https://dns.alidns.com/dns-query#h3=true
-    - https://mozilla.cloudflare-dns.com/dns-query#DNS&h3=true
-#    - system
-
-  fallback:
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
-
+  nameserver:
+    - 223.5.5.5
   fallback-filter:
     geoip: true
     geoip-code: CN
-
-# ---------------- TUN ----------------
-tun:
-  enable: true
-  stack: gVisor
-  auto-route: true
-  dns-hijack:
-    - any:53
-  mtu: 1500
 
 # ---------------- Proxies ----------------
 proxies:
 
 - name: Alpha
   type: vless
-  server: 190.93.246.18
+  server: 192.168.1.1
   port: 443
-  uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+  uuid: 351r3c90-7fef-4fr0-bccc-vee0bn0ca151
   network: ws
   tls: true
-  servername: helloworld.fotoman.com
+  servername: google.com
   client-fingerprint: chrome
   ws-opts:
     path: /
     headers:
-      Host: helloworld.fotoman.com
+      Host: gogole.com
 
-- name: Delta
-  type: vless
-  server: 190.93.246.28
-  port: 443
-  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
-  network: ws
-  tls: true
-  servername: helloworld.techtrendparts.com
-  client-fingerprint: chrome
-  ws-opts:
-    path: /
-    headers:
-      Host: helloworld.techtrendparts.com
 
-- name: Gamma
-  type: vless
-  server: 190.93.246.38
-  port: 443
-  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
-  network: ws
-  tls: true
-  servername: helloworld.todsm.com
-  client-fingerprint: chrome
-  ws-opts:
-    path: /
-    headers:
-      Host: helloworld.todsm.com
-
-- name: LLM1
-  type: vless
-  server: 107.173.140.91
-  port: 10104
-  uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
-  network: tcp
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.paypal.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
-
-- name: LLM2
-  type: vless
-  server: 89.117.172.45
-  port: 41314
-  uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-  network: tcp
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.paypal.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
-
-- name: LLM3
-  type: vless
-  server: 149.30.232.205
-  port: 2418
-  uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b
-  network: tcp
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.amazon.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ
-    
-# ---------------- Proxy Groups ----------------
-proxy-groups:
-
-- name: CDN
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - Alpha
-    - Delta
-    - Gamma
-
-- name: LLM
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - LLM1
-    - LLM2
-    - LLM3
 
 # ---------------- Rules ----------------
 rules:
-# Google Voice
-- DOMAIN-SUFFIX,voice.google.com,LLM3
-
-# Google Translate
-- DOMAIN-SUFFIX,translate.google.com,LLM3
-- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
-- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
-- DOMAIN-SUFFIX,translate.goog,LLM3
-- DOMAIN-SUFFIX,googleusercontent.com,CDN
- 
-# AI
-# Claude / Anthropic 
-- DOMAIN-SUFFIX,claude.ai,LLM2
-- DOMAIN-SUFFIX,anthropic.com,LLM2
-- DOMAIN-SUFFIX,claudeusercontent.com,LLM2    # Claude 生成内容域名
-- DOMAIN-SUFFIX,statsig.anthropic.com,LLM2
-- DOMAIN-SUFFIX,usefathom.com,LLM2
-- DOMAIN-KEYWORD,anthropic,LLM2
-- DOMAIN-KEYWORD,claude,LLM2
-# Anthropic 自有 IP 段（ASN399358，最可靠）
-- IP-CIDR,160.79.104.0/23,LLM2
-- IP-CIDR,160.79.104.0/21,LLM2
-- IP-CIDR6,2607:6bc0::/48,LLM2
-
-# OpenAI / ChatGPT
-- DOMAIN-SUFFIX,openai.com,LLM2
-- DOMAIN-SUFFIX,oaistatic.com,LLM2
-- DOMAIN-SUFFIX,oaiusercontent.com,LLM2
-- DOMAIN-KEYWORD,openai,LLM2
-- DOMAIN-KEYWORD,chatgpt,LLM2
-
-# Gemini / Google AI
-- DOMAIN-SUFFIX,gemini.google.com,CDN
-- DOMAIN-SUFFIX,aistudio.google.com,CDN
-- DOMAIN-SUFFIX,generativelanguage.googleapis.com,CDN
-- DOMAIN-KEYWORD,gemini,CDN
-
-# Perplexity
-- DOMAIN-SUFFIX,perplexity.ai,LLM3
-- DOMAIN-KEYWORD,perplexity,LLM3
-
-# Grok / xAI
-- DOMAIN-SUFFIX,grok.com,LLM2
-- DOMAIN-SUFFIX,x.ai,LLM2 
-- DOMAIN-SUFFIX,xai.com,LLM2
-- DOMAIN-KEYWORD,grok,LLM2
-
-# LinkedIn
-- DOMAIN-SUFFIX,linkedin.com,LLM3
-- DOMAIN-SUFFIX,licdn.com,LLM3
-
-# 电商工具
-- DOMAIN-KEYWORD,helium10,DIRECT
-- DOMAIN-KEYWORD,myshopline,DIRECT
-- DOMAIN-KEYWORD,shopline,DIRECT
-- DOMAIN-KEYWORD,Sortime,DIRECT
-- DOMAIN-KEYWORD,semrush,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,amazon,DIRECT
-- DOMAIN-KEYWORD,fiverr,LLM3
-- DOMAIN-KEYWORD,referazon,LLM3
-
-# 中国APP
-- DOMAIN-KEYWORD,weixin,DIRECT
-- DOMAIN-KEYWORD,wechat,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,tmall,DIRECT
-- DOMAIN-KEYWORD,taobao,DIRECT
-- DOMAIN-SUFFIX,jd.com,DIRECT
-- DOMAIN-KEYWORD,douyin,DIRECT
-- DOMAIN-KEYWORD,xiaohongshu,DIRECT
-- DOMAIN-KEYWORD,maskfog,DIRECT
-- DOMAIN-KEYWORD,163,DIRECT
-- DOMAIN-KEYWORD,youku,DIRECT
-- DOMAIN-KEYWORD,iqiyi,DIRECT
-- DOMAIN-KEYWORD,qqmusic,DIRECT
-- DOMAIN-KEYWORD,alipay,DIRECT
-- DOMAIN-KEYWORD,meituan,DIRECT
-- DOMAIN-KEYWORD,bilibili,DIRECT
-- DOMAIN-KEYWORD,pinduoduo,DIRECT
-- DOMAIN-KEYWORD,weibo,DIRECT
-
-# Garmin / 骑行
-- DOMAIN-KEYWORD,garmin,DIRECT
-- DOMAIN-KEYWORD,wahoo,DIRECT
-- DOMAIN-KEYWORD,komoot,DIRECT
-
 # CN IP
 - GEOIP,CN,DIRECT
 
