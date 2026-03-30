@@ -33,7 +33,7 @@ dns:
 # ---------------- Proxies ----------------
 proxies:
 
-- name: Alpha
+- name: 已失效
   type: vless
   server: 192.168.1.1
   port: 443
@@ -55,4 +55,4 @@ rules:
 - GEOIP,CN,DIRECT
 
 # 默认
-- MATCH,CDN
+- MATCH,已失效
