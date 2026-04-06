@@ -185,16 +185,14 @@ rules:
 
 # OpenAI / ChatGPT
 - DOMAIN-SUFFIX,openai.com,LLM2
+- DOMAIN-SUFFIX,chatgpt.com,LLM2
 - DOMAIN-SUFFIX,oaistatic.com,LLM2
 - DOMAIN-SUFFIX,oaiusercontent.com,LLM2
-- DOMAIN-KEYWORD,openai,LLM2
-- DOMAIN-KEYWORD,chatgpt,LLM2
 
 # Gemini / Google AI
 - DOMAIN-SUFFIX,gemini.google.com,CDN
 - DOMAIN-SUFFIX,aistudio.google.com,CDN
 - DOMAIN-SUFFIX,generativelanguage.googleapis.com,CDN
-- DOMAIN-KEYWORD,gemini,CDN
 
 # Perplexity
 - DOMAIN-SUFFIX,perplexity.ai,LLM3
@@ -204,7 +202,6 @@ rules:
 - DOMAIN-SUFFIX,grok.com,LLM2
 - DOMAIN-SUFFIX,x.ai,LLM2 
 - DOMAIN-SUFFIX,xai.com,LLM2
-- DOMAIN-KEYWORD,grok,LLM2
 
 # LinkedIn
 - DOMAIN-SUFFIX,linkedin.com,LLM3
