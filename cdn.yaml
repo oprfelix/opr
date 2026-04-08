@@ -68,6 +68,7 @@ tun:
 # 代理节点
 # CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
 # LLM 组节点：LLM1 / LLM2 / LLM3（VLESS + XTLS-Vision + Reality）
+# 190.93.246.41
 # ================================================================
 proxies:
 
@@ -88,7 +89,7 @@ proxies:
 
 - name: Delta
   type: vless
-  server: 108.162.194.142
+  server: 172.64.52.60
   port: 443
   uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
   network: ws
@@ -102,7 +103,7 @@ proxies:
 
 - name: Gamma
   type: vless
-  server: 190.93.246.138
+  server: 172.64.53.134
   port: 443
   uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
   network: ws
