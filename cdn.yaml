@@ -74,7 +74,7 @@ proxies:
 # ---------- CDN 节点 ----------
 - name: Alpha
   type: vless
-  server: 190.93.246.128
+  server: 162.159.45.55
   port: 443
   uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
   network: ws
@@ -88,7 +88,7 @@ proxies:
 
 - name: Delta
   type: vless
-  server: 190.93.246.238
+  server: 108.162.194.142
   port: 443
   uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
   network: ws
