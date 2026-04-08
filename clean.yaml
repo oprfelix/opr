@@ -15,9 +15,14 @@ profile:
 tcp-concurrent: true
 global-client-fingerprint: chrome
 
-# ---------------- Proxies ----------------
+# ================================================================
+# 代理节点
+# CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
+# LLM 组节点：LLM1 / LLM2 / LLM3（VLESS + XTLS-Vision + Reality）
+# ================================================================
 proxies:
 
+# ---------- CDN 节点 ----------
 - name: Alpha
   type: vless
   server: 190.93.246.18
@@ -60,6 +65,7 @@ proxies:
     headers:
       Host: helloworld.todsm.com
 
+# ---------- LLM 节点 ----------
 - name: LLM1
   type: vless
   server: 107.173.140.91
@@ -99,7 +105,12 @@ proxies:
   reality-opts:
     public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ
 
-# ---------------- Proxy Groups ----------------
+# ================================================================
+# 代理组
+# CDN：自动选速最快的 CDN 节点（Alpha/Delta/Gamma）
+# LLM：自动选速最快的 LLM 节点（LLM1/LLM2），用于 AI 服务
+# 说明：interval=600 每10分钟测速一次，tolerance=50 延迟差50ms内不切换
+# ================================================================
 proxy-groups:
 
 - name: CDN
@@ -120,14 +131,31 @@ proxy-groups:
   proxies:
     - LLM1
     - LLM2
- #   - LLM3
+ #   - LLM3                           # 备用，需要时取消注释
 
-# ---------------- Rules ----------------
+# ================================================================
+# 规则匹配顺序说明：
+# 1. 直连白名单（最高优先级，防止被后面 IP 段误匹配）
+# 2. 直连域名关键词（国内 APP / 电商工具）
+# 3. 直连 IP 段（国内运营商 / 云厂商）
+# 4. 代理域名规则（各 AI 服务 / 工具）
+# 5. 代理 IP 段（各服务自有 IP）
+# 6. GEOSITE / GEOIP 兜底
+# 7. MATCH 默认出口
+# ================================================================
 rules:
-# 直连优先
+
+# ----------------------------------------------------------------
+# 直连白名单（优先级最高）
+# 说明：本地可直接访问，无需代理；放最前防止被 Cloudflare IP 段误匹配
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
 
+# ----------------------------------------------------------------
 # 电商工具
+# 直连：helium10 / shopline / semrush / amazon 等
+# 代理：fiverr / referazon（需要境外访问）
+# ----------------------------------------------------------------
 - DOMAIN-KEYWORD,helium10,DIRECT
 - DOMAIN-KEYWORD,myshopline,DIRECT
 - DOMAIN-KEYWORD,shopline,DIRECT
@@ -138,34 +166,10 @@ rules:
 - DOMAIN-KEYWORD,fiverr,LLM3
 - DOMAIN-KEYWORD,referazon,LLM3
 
-# 中国电信
-- IP-CIDR,61.128.0.0/10,DIRECT
-- IP-CIDR,119.96.0.0/11,DIRECT
-- IP-CIDR,171.8.0.0/13,DIRECT
-
-# 中国联通
-- IP-CIDR,60.12.0.0/14,DIRECT
-- IP-CIDR,106.0.0.0/8,DIRECT
-- IP-CIDR,125.32.0.0/11,DIRECT
-
-# 中国移动
-- IP-CIDR,111.0.0.0/8,DIRECT
-- IP-CIDR,117.128.0.0/10,DIRECT
-- IP-CIDR,183.192.0.0/11,DIRECT
-
-# 阿里云
-- IP-CIDR,47.52.0.0/16,DIRECT
-- IP-CIDR,101.200.0.0/16,DIRECT
-
-# 腾讯云
-- IP-CIDR,43.132.0.0/16,DIRECT
-- IP-CIDR,119.28.0.0/16,DIRECT
-
-# 华为云
-- IP-CIDR,114.115.0.0/16,DIRECT
-- IP-CIDR,139.159.0.0/16,DIRECT
-
-# 中国APP
+# ----------------------------------------------------------------
+# 中国 APP（直连）
+# 说明：需放在 Cloudflare IP 段之前，防止含 qq/163 等关键词的域名被误匹配
+# ----------------------------------------------------------------
 - DOMAIN-KEYWORD,weixin,DIRECT
 - DOMAIN-KEYWORD,wechat,DIRECT
 - DOMAIN-KEYWORD,qq,DIRECT
@@ -185,12 +189,39 @@ rules:
 - DOMAIN-KEYWORD,pinduoduo,DIRECT
 - DOMAIN-KEYWORD,weibo,DIRECT
 
-# Garmin /骑行工具
+# ----------------------------------------------------------------
+# 运动 / 骑行工具（直连）
+# ----------------------------------------------------------------
 - DOMAIN-KEYWORD,garmin,DIRECT
 - DOMAIN-KEYWORD,wahoo,DIRECT
 - DOMAIN-KEYWORD,komoot,DIRECT
 
-# Google Voice /谷歌电话
+# ----------------------------------------------------------------
+# 国内运营商 IP 段（直连）
+# 说明：手动列出加速匹配，GEOIP,CN 会在底部兜底覆盖其余 CN IP
+# 如需更新请参考：https://github.com/17mon/china_ip_list
+# ----------------------------------------------------------------
+- IP-CIDR,61.128.0.0/10,DIRECT       # 中国电信
+- IP-CIDR,119.96.0.0/11,DIRECT
+- IP-CIDR,171.8.0.0/13,DIRECT
+- IP-CIDR,60.12.0.0/14,DIRECT        # 中国联通
+- IP-CIDR,106.0.0.0/8,DIRECT
+- IP-CIDR,125.32.0.0/11,DIRECT
+- IP-CIDR,111.0.0.0/8,DIRECT         # 中国移动
+- IP-CIDR,117.128.0.0/10,DIRECT
+- IP-CIDR,183.192.0.0/11,DIRECT
+- IP-CIDR,47.52.0.0/16,DIRECT        # 阿里云
+- IP-CIDR,101.200.0.0/16,DIRECT
+- IP-CIDR,43.132.0.0/16,DIRECT       # 腾讯云
+- IP-CIDR,119.28.0.0/16,DIRECT
+- IP-CIDR,114.115.0.0/16,DIRECT      # 华为云
+- IP-CIDR,139.159.0.0/16,DIRECT
+
+# ----------------------------------------------------------------
+# Google Voice / 谷歌电话（LLM3）
+# 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 LLM3
+# 已移除 Google 通用 IP 段，域名规则足够覆盖 Voice 主要请求
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,voice.google.com,LLM3
 - DOMAIN-SUFFIX,hangouts.google.com,LLM3
 - DOMAIN-SUFFIX,talkgadget.google.com,LLM3
@@ -200,19 +231,30 @@ rules:
 - DOMAIN-SUFFIX,alt2-mtalk.google.com,LLM3
 - DOMAIN-SUFFIX,alt3-mtalk.google.com,LLM3
 - DOMAIN-SUFFIX,alt4-mtalk.google.com,LLM3
-- IP-CIDR,74.125.0.0/16,LLM3
-- IP-CIDR,64.233.160.0/19,LLM3
-- IP-CIDR,142.250.0.0/15,LLM3
 
-# Claude / Anthropic
+# ----------------------------------------------------------------
+# Google Translate（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,translate.google.com,LLM3
+- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
+- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
+- DOMAIN-SUFFIX,translate.goog,LLM3
+
+# ----------------------------------------------------------------
+# Claude / Anthropic（LLM 自动选速）
+# IP 段：Anthropic 自有 IP（ASN399358），精准可靠
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,claude.ai,LLM
 - DOMAIN-SUFFIX,anthropic.com,LLM
 - DOMAIN-SUFFIX,claudeusercontent.com,LLM
 - DOMAIN-SUFFIX,usefathom.com,LLM
-- IP-CIDR,160.79.104.0/21,LLM
+- IP-CIDR,160.79.104.0/21,LLM        # Anthropic 自有 IP 段
 - IP-CIDR6,2607:6bc0::/48,LLM
 
-# OpenAI / ChatGPT
+# ----------------------------------------------------------------
+# OpenAI / ChatGPT（LLM 自动选速）
+# IP 段：Microsoft Azure 专用段，较精准
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,openai.com,LLM
 - DOMAIN-SUFFIX,chatgpt.com,LLM
 - DOMAIN-SUFFIX,oaistatic.com,LLM
@@ -220,60 +262,74 @@ rules:
 - DOMAIN-SUFFIX,api.openai.com,LLM
 - DOMAIN-SUFFIX,cdn.openai.com,LLM
 - DOMAIN-SUFFIX,auth0.openai.com,LLM
-- IP-CIDR,13.107.238.0/24,LLM
+- IP-CIDR,13.107.238.0/24,LLM        # Azure OpenAI 专用段
 - IP-CIDR,13.107.239.0/24,LLM
 
-# Gemini / Google AI
+# ----------------------------------------------------------------
+# Gemini / Google AI（Alpha 固定节点）
+# 说明：固定走 Alpha 避免被 Google 标记；googleusercontent 放此处
+# 因为 Gemini 生成内容会用到该域名
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,gemini.google.com,Alpha
-- DOMAIN-SUFFIX,googleusercontent.com,CDN
 - DOMAIN-SUFFIX,aistudio.google.com,Alpha
 - DOMAIN-SUFFIX,generativelanguage.googleapis.com,Alpha
 - DOMAIN-SUFFIX,ai.google.dev,Alpha
 - DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,Alpha
 - DOMAIN-SUFFIX,notebooklm.google.com,Alpha
 - DOMAIN-SUFFIX,labs.google,Alpha
+- DOMAIN-SUFFIX,googleusercontent.com,CDN
 - DOMAIN-KEYWORD,gemini,Alpha
 
-# Perplexity
+# ----------------------------------------------------------------
+# Perplexity（LLM3）
+# 说明：子域名已被父域名 perplexity.ai 覆盖，无需单独列出
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,perplexity.ai,LLM3
-- DOMAIN-SUFFIX,www.perplexity.ai,LLM3
-- DOMAIN-SUFFIX,api.perplexity.ai,LLM3
-- DOMAIN-SUFFIX,labs.perplexity.ai,LLM3
-- DOMAIN-SUFFIX,cdn.perplexity.ai,LLM3
-- DOMAIN-SUFFIX,backend.perplexity.ai,LLM3
 - DOMAIN-KEYWORD,perplexity,LLM3
 
-# Grok / xAI
+# ----------------------------------------------------------------
+# Grok / xAI（LLM 自动选速）
+# 注意：IP 段为 Cloudflare 通用段，可能误匹配其他网站
+# 如出现非预期流量走代理，可删除两条 IP-CIDR
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,grok.com,LLM
 - DOMAIN-SUFFIX,x.ai,LLM
 - DOMAIN-SUFFIX,xai.com,LLM
 - DOMAIN-SUFFIX,api.x.ai,LLM
 - DOMAIN-SUFFIX,assets.grok.com,LLM
-- IP-CIDR,104.18.0.0/16,LLM
-- IP-CIDR,172.64.0.0/13,LLM
+- IP-CIDR,104.18.0.0/16,LLM          # Cloudflare 通用段（可能误匹配）
+- IP-CIDR,172.64.0.0/13,LLM          # Cloudflare 通用段（可能误匹配）
 
-# LinkedIn
+# ----------------------------------------------------------------
+# LinkedIn（LLM3）
+# IP 段：LinkedIn 自有段 + Microsoft Azure，较精准
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,linkedin.com,LLM3
 - DOMAIN-SUFFIX,licdn.com,LLM3
 - DOMAIN-SUFFIX,linkedincdn.com,LLM3
 - DOMAIN-SUFFIX,linkedin.cn,LLM3
 - DOMAIN-SUFFIX,lnkd.in,LLM3
 - DOMAIN-SUFFIX,learningcontainer.com,LLM3
-- IP-CIDR,108.174.0.0/20,LLM3
-- IP-CIDR,185.63.144.0/22,LLM3
-- IP-CIDR,13.107.42.0/24,LLM3
+- IP-CIDR,108.174.0.0/20,LLM3        # LinkedIn 自有 IP
+- IP-CIDR,185.63.144.0/22,LLM3       # LinkedIn 自有 IP
+- IP-CIDR,13.107.42.0/24,LLM3        # Microsoft Azure（LinkedIn 专用）
 
-# Apollo.io
+# ----------------------------------------------------------------
+# Apollo.io（LLM3）
+# IP 段：Google Cloud，GCP 池较大可能误匹配，如有问题可删除
+# ----------------------------------------------------------------
 - DOMAIN-SUFFIX,apollo.io,LLM3
 - DOMAIN-SUFFIX,apolloapi.io,LLM3
 - DOMAIN-SUFFIX,apollocdn.io,LLM3
-- IP-CIDR,34.102.0.0/16,LLM3
-- IP-CIDR,34.110.0.0/16,LLM3
+- IP-CIDR,34.102.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
+- IP-CIDR,34.110.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
 
-# CN 域名
+# ----------------------------------------------------------------
+# 兜底规则
+# GEOSITE,CN → 覆盖国内主流域名（数万条，自动更新）
+# GEOIP,CN   → 覆盖所有中国大陆 IP 段
+# MATCH       → 其余所有流量走 CDN 组
+# ----------------------------------------------------------------
 - GEOSITE,CN,DIRECT
-# CN IP
 - GEOIP,CN,DIRECT
-
-# 默认
 - MATCH,CDN
