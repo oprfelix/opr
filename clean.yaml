@@ -19,13 +19,14 @@ global-client-fingerprint: chrome
 # 代理节点
 # CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
 # LLM 组节点：LLM1 / LLM2 / LLM3（VLESS + XTLS-Vision + Reality）
+# 190.93.246.41
 # ================================================================
 proxies:
 
 # ---------- CDN 节点 ----------
 - name: Alpha
   type: vless
-  server: 190.93.246.18
+  server: 162.159.39.72
   port: 443
   uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
   network: ws
@@ -39,7 +40,7 @@ proxies:
 
 - name: Delta
   type: vless
-  server: 190.93.246.28
+  server: 172.64.52.122
   port: 443
   uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
   network: ws
@@ -53,7 +54,7 @@ proxies:
 
 - name: Gamma
   type: vless
-  server: 190.93.246.38
+  server: 108.162.198.76
   port: 443
   uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
   network: ws
@@ -266,19 +267,11 @@ rules:
 - IP-CIDR,13.107.239.0/24,LLM
 
 # ----------------------------------------------------------------
-# Gemini / Google AI（Alpha 固定节点）
-# 说明：固定走 Alpha 避免被 Google 标记；googleusercontent 放此处
-# 因为 Gemini 生成内容会用到该域名
+# Gemini / Google AI（CDN 自动选速）
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,Alpha
-- DOMAIN-SUFFIX,aistudio.google.com,Alpha
-- DOMAIN-SUFFIX,generativelanguage.googleapis.com,Alpha
-- DOMAIN-SUFFIX,ai.google.dev,Alpha
-- DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,Alpha
-- DOMAIN-SUFFIX,notebooklm.google.com,Alpha
-- DOMAIN-SUFFIX,labs.google,Alpha
-- DOMAIN-SUFFIX,googleusercontent.com,CDN
-- DOMAIN-KEYWORD,gemini,Alpha
+- DOMAIN-SUFFIX,gemini.google.com,CDN
+- DOMAIN-SUFFIX,aistudio.google.com,CDN
+- DOMAIN-SUFFIX,ai.google.dev,CDN
 
 # ----------------------------------------------------------------
 # Perplexity（LLM3）
