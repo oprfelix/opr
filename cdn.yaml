@@ -320,15 +320,14 @@ rules:
 # 说明：固定走 Alpha 避免被 Google 标记；googleusercontent 放此处
 # 因为 Gemini 生成内容会用到该域名
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,Alpha
-- DOMAIN-SUFFIX,aistudio.google.com,Alpha
-- DOMAIN-SUFFIX,generativelanguage.googleapis.com,Alpha
-- DOMAIN-SUFFIX,ai.google.dev,Alpha
-- DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,Alpha
-- DOMAIN-SUFFIX,notebooklm.google.com,Alpha
-- DOMAIN-SUFFIX,labs.google,Alpha
+- DOMAIN-SUFFIX,gemini.google.com,CDN
+- DOMAIN-SUFFIX,aistudio.google.com,CDN
+- DOMAIN-SUFFIX,generativelanguage.googleapis.com,CDN
+- DOMAIN-SUFFIX,ai.google.dev,CDN
+- DOMAIN-SUFFIX,alkalimakersuite-pa.clients6.google.com,CDN
+- DOMAIN-SUFFIX,notebooklm.google.com,CDN
+- DOMAIN-SUFFIX,labs.google,CDN
 - DOMAIN-SUFFIX,googleusercontent.com,CDN
-- DOMAIN-KEYWORD,gemini,Alpha
 
 # ----------------------------------------------------------------
 # Perplexity（LLM3）
