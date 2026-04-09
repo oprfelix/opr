@@ -16,17 +16,56 @@ tcp-concurrent: true
 global-client-fingerprint: chrome
 
 # ================================================================
-# 代理节点
-# CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
-# LLM 组节点：LLM1 / LLM2 / LLM3（VLESS + XTLS-Vision + Reality）
-# 190.93.246.41
+# DNS 配置
+# ================================================================
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  ipv6: false
+  prefer-h3: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 172.19.0.0/16
+
+  fake-ip-filter:
+    - "*.lan"
+    - "+.stun.*.*"
+    - "+.stun.*.*.*"
+    - localhost.ptlogin2.qq.com
+
+  nameserver:
+    - 1.1.1.1      # Cloudflare
+    - 223.5.5.5    # 阿里云 DNS
+
+  fallback:
+    - https://1.0.0.1/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/8
+
+# ================================================================
+# TUN 模式
+# ================================================================
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  dns-hijack:
+    - any:53
+  mtu: 1500
+
+# ================================================================
+# 代理节点（与原配置完全一致）
 # ================================================================
 proxies:
 
 # ---------- CDN 节点 ----------
 - name: Alpha
   type: vless
-  server: 162.159.39.72
+  server: 172.66.208.146
   port: 443
   uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
   network: ws
@@ -40,21 +79,21 @@ proxies:
 
 - name: Delta
   type: vless
-  server: 172.64.52.122
+  server: 8.35.211.251
   port: 443
-  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+  uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
   network: ws
   tls: true
-  servername: helloworld.techtrendparts.com
+  servername: ddns.hayoovant.com
   client-fingerprint: chrome
   ws-opts:
     path: /
     headers:
-      Host: helloworld.techtrendparts.com
+      Host: ddns.hayoovant.com
 
 - name: Gamma
   type: vless
-  server: 108.162.198.76
+  server: 104.27.26.10
   port: 443
   uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
   network: ws
@@ -108,9 +147,6 @@ proxies:
 
 # ================================================================
 # 代理组
-# CDN：自动选速最快的 CDN 节点（Alpha/Delta/Gamma）
-# LLM：自动选速最快的 LLM 节点（LLM1/LLM2），用于 AI 服务
-# 说明：interval=600 每10分钟测速一次，tolerance=50 延迟差50ms内不切换
 # ================================================================
 proxy-groups:
 
@@ -135,93 +171,36 @@ proxy-groups:
  #   - LLM3                           # 备用，需要时取消注释
 
 # ================================================================
+# 黑名单模式规则
+#
 # 规则匹配顺序说明：
-# 1. 直连白名单（最高优先级，防止被后面 IP 段误匹配）
-# 2. 直连域名关键词（国内 APP / 电商工具）
-# 3. 直连 IP 段（国内运营商 / 云厂商）
-# 4. 代理域名规则（各 AI 服务 / 工具）
-# 5. 代理 IP 段（各服务自有 IP）
-# 6. GEOSITE / GEOIP 兜底
-# 7. MATCH 默认出口
+# 1. 局域网 / 本地地址 → 直连（最高优先，防止代理本地流量）
+# 2. 代理直连白名单例外（如 challenges.cloudflare.com）
+# 3. 需要代理的域名黑名单（AI / 工具 / 社媒）
+# 4. 需要代理的 IP 段黑名单
+# 5. GEOSITE,!CN → 兜底：非中国域名走 CDN（可选，按需开启）
+# 6. MATCH → 默认直连（黑名单模式核心）
 # ================================================================
 rules:
 
 # ----------------------------------------------------------------
-# 直连白名单（优先级最高）
-# 说明：本地可直接访问，无需代理；放最前防止被 Cloudflare IP 段误匹配
+# 局域网 / 保留地址（直连）
+# 说明：防止本地流量误走代理
+# ----------------------------------------------------------------
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT       # CGNAT
+- IP-CIDR,240.0.0.0/4,DIRECT         # 保留地址
+
+# ----------------------------------------------------------------
+# 直连例外（代理黑名单之前的白名单豁免）
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
 
 # ----------------------------------------------------------------
-# 电商工具
-# 直连：helium10 / shopline / semrush / amazon 等
-# 代理：fiverr / referazon（需要境外访问）
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,helium10,DIRECT
-- DOMAIN-KEYWORD,myshopline,DIRECT
-- DOMAIN-KEYWORD,shopline,DIRECT
-- DOMAIN-KEYWORD,Sortime,DIRECT
-- DOMAIN-KEYWORD,semrush,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,amazon,DIRECT
-- DOMAIN-KEYWORD,fiverr,LLM3
-- DOMAIN-KEYWORD,referazon,LLM3
-
-# ----------------------------------------------------------------
-# 中国 APP（直连）
-# 说明：需放在 Cloudflare IP 段之前，防止含 qq/163 等关键词的域名被误匹配
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,weixin,DIRECT
-- DOMAIN-KEYWORD,wechat,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,tmall,DIRECT
-- DOMAIN-KEYWORD,taobao,DIRECT
-- DOMAIN-SUFFIX,jd.com,DIRECT
-- DOMAIN-KEYWORD,douyin,DIRECT
-- DOMAIN-KEYWORD,xiaohongshu,DIRECT
-- DOMAIN-KEYWORD,maskfog,DIRECT
-- DOMAIN-KEYWORD,163,DIRECT
-- DOMAIN-KEYWORD,youku,DIRECT
-- DOMAIN-KEYWORD,iqiyi,DIRECT
-- DOMAIN-KEYWORD,qqmusic,DIRECT
-- DOMAIN-KEYWORD,alipay,DIRECT
-- DOMAIN-KEYWORD,meituan,DIRECT
-- DOMAIN-KEYWORD,bilibili,DIRECT
-- DOMAIN-KEYWORD,pinduoduo,DIRECT
-- DOMAIN-KEYWORD,weibo,DIRECT
-
-# ----------------------------------------------------------------
-# 运动 / 骑行工具（直连）
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,garmin,DIRECT
-- DOMAIN-KEYWORD,wahoo,DIRECT
-- DOMAIN-KEYWORD,komoot,DIRECT
-
-# ----------------------------------------------------------------
-# 国内运营商 IP 段（直连）
-# 说明：手动列出加速匹配，GEOIP,CN 会在底部兜底覆盖其余 CN IP
-# 如需更新请参考：https://github.com/17mon/china_ip_list
-# ----------------------------------------------------------------
-- IP-CIDR,61.128.0.0/10,DIRECT       # 中国电信
-- IP-CIDR,119.96.0.0/11,DIRECT
-- IP-CIDR,171.8.0.0/13,DIRECT
-- IP-CIDR,60.12.0.0/14,DIRECT        # 中国联通
-- IP-CIDR,106.0.0.0/8,DIRECT
-- IP-CIDR,125.32.0.0/11,DIRECT
-- IP-CIDR,111.0.0.0/8,DIRECT         # 中国移动
-- IP-CIDR,117.128.0.0/10,DIRECT
-- IP-CIDR,183.192.0.0/11,DIRECT
-- IP-CIDR,47.52.0.0/16,DIRECT        # 阿里云
-- IP-CIDR,101.200.0.0/16,DIRECT
-- IP-CIDR,43.132.0.0/16,DIRECT       # 腾讯云
-- IP-CIDR,119.28.0.0/16,DIRECT
-- IP-CIDR,114.115.0.0/16,DIRECT      # 华为云
-- IP-CIDR,139.159.0.0/16,DIRECT
-
-# ----------------------------------------------------------------
 # Google Voice / 谷歌电话（LLM3）
-# 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 LLM3
-# 已移除 Google 通用 IP 段，域名规则足够覆盖 Voice 主要请求
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,voice.google.com,LLM3
 - DOMAIN-SUFFIX,hangouts.google.com,LLM3
@@ -243,18 +222,16 @@ rules:
 
 # ----------------------------------------------------------------
 # Claude / Anthropic（LLM 自动选速）
-# IP 段：Anthropic 自有 IP（ASN399358），精准可靠
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,claude.ai,LLM
 - DOMAIN-SUFFIX,anthropic.com,LLM
 - DOMAIN-SUFFIX,claudeusercontent.com,LLM
 - DOMAIN-SUFFIX,usefathom.com,LLM
-- IP-CIDR,160.79.104.0/21,LLM        # Anthropic 自有 IP 段
+- IP-CIDR,160.79.104.0/21,LLM
 - IP-CIDR6,2607:6bc0::/48,LLM
 
 # ----------------------------------------------------------------
 # OpenAI / ChatGPT（LLM 自动选速）
-# IP 段：Microsoft Azure 专用段，较精准
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,openai.com,LLM
 - DOMAIN-SUFFIX,chatgpt.com,LLM
@@ -263,7 +240,7 @@ rules:
 - DOMAIN-SUFFIX,api.openai.com,LLM
 - DOMAIN-SUFFIX,cdn.openai.com,LLM
 - DOMAIN-SUFFIX,auth0.openai.com,LLM
-- IP-CIDR,13.107.238.0/24,LLM        # Azure OpenAI 专用段
+- IP-CIDR,13.107.238.0/24,LLM
 - IP-CIDR,13.107.239.0/24,LLM
 
 # ----------------------------------------------------------------
@@ -275,27 +252,24 @@ rules:
 
 # ----------------------------------------------------------------
 # Perplexity（LLM3）
-# 说明：子域名已被父域名 perplexity.ai 覆盖，无需单独列出
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,perplexity.ai,LLM3
 - DOMAIN-KEYWORD,perplexity,LLM3
 
 # ----------------------------------------------------------------
 # Grok / xAI（LLM 自动选速）
-# 注意：IP 段为 Cloudflare 通用段，可能误匹配其他网站
-# 如出现非预期流量走代理，可删除两条 IP-CIDR
+# 注意：IP 段为 Cloudflare 通用段，黑名单模式下影响更大，建议按需启用
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,grok.com,LLM
 - DOMAIN-SUFFIX,x.ai,LLM
 - DOMAIN-SUFFIX,xai.com,LLM
 - DOMAIN-SUFFIX,api.x.ai,LLM
 - DOMAIN-SUFFIX,assets.grok.com,LLM
-- IP-CIDR,104.18.0.0/16,LLM          # Cloudflare 通用段（可能误匹配）
-- IP-CIDR,172.64.0.0/13,LLM          # Cloudflare 通用段（可能误匹配）
+# - IP-CIDR,104.18.0.0/16,LLM        # ⚠️ 黑名单模式下此段影响范围极广，已注释
+# - IP-CIDR,172.64.0.0/13,LLM        # ⚠️ 同上，建议仅在域名规则不足时启用
 
 # ----------------------------------------------------------------
 # LinkedIn（LLM3）
-# IP 段：LinkedIn 自有段 + Microsoft Azure，较精准
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,linkedin.com,LLM3
 - DOMAIN-SUFFIX,licdn.com,LLM3
@@ -303,26 +277,34 @@ rules:
 - DOMAIN-SUFFIX,linkedin.cn,LLM3
 - DOMAIN-SUFFIX,lnkd.in,LLM3
 - DOMAIN-SUFFIX,learningcontainer.com,LLM3
-- IP-CIDR,108.174.0.0/20,LLM3        # LinkedIn 自有 IP
-- IP-CIDR,185.63.144.0/22,LLM3       # LinkedIn 自有 IP
-- IP-CIDR,13.107.42.0/24,LLM3        # Microsoft Azure（LinkedIn 专用）
+- IP-CIDR,108.174.0.0/20,LLM3
+- IP-CIDR,185.63.144.0/22,LLM3
+- IP-CIDR,13.107.42.0/24,LLM3
 
 # ----------------------------------------------------------------
 # Apollo.io（LLM3）
-# IP 段：Google Cloud，GCP 池较大可能误匹配，如有问题可删除
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,apollo.io,LLM3
 - DOMAIN-SUFFIX,apolloapi.io,LLM3
 - DOMAIN-SUFFIX,apollocdn.io,LLM3
-- IP-CIDR,34.102.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
-- IP-CIDR,34.110.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
+- IP-CIDR,34.102.0.0/16,LLM3
+- IP-CIDR,34.110.0.0/16,LLM3
 
 # ----------------------------------------------------------------
-# 兜底规则
-# GEOSITE,CN → 覆盖国内主流域名（数万条，自动更新）
-# GEOIP,CN   → 覆盖所有中国大陆 IP 段
-# MATCH       → 其余所有流量走 CDN 组
+# 电商工具（需代理部分）
 # ----------------------------------------------------------------
-- GEOSITE,CN,DIRECT
-- GEOIP,CN,DIRECT
-- MATCH,CDN
+- DOMAIN-KEYWORD,fiverr,LLM3
+- DOMAIN-KEYWORD,referazon,LLM3
+
+# ----------------------------------------------------------------
+# GEOSITE 黑名单兜底（可选）
+# 说明：将 GFW 封锁域名列表中的域名走 CDN，比 MATCH 直连更精准
+# 如不需要可注释掉，直接让 MATCH 兜底直连即可
+# ----------------------------------------------------------------
+- GEOSITE,GFW,CDN
+
+# ----------------------------------------------------------------
+# 默认直连（黑名单模式核心）
+# 说明：所有未匹配规则的流量默认直连，与白名单模式的 MATCH,CDN 相反
+# ----------------------------------------------------------------
+- MATCH,DIRECT
