@@ -42,7 +42,7 @@ proxies:
 
 proxy-groups:
 
-- name: Orion
+- name: Hecate
   type: url-test
   url: https://www.google.com/generate_204
   interval: 600
@@ -70,7 +70,7 @@ proxy-groups:
 # 2. 代理直连白名单例外（如 challenges.cloudflare.com）
 # 3. 需要代理的域名黑名单（AI / 工具 / 社媒）
 # 4. 需要代理的 IP 段黑名单
-# 5. GEOSITE,!CN → 兜底：非中国域名走 Orion（可选，按需开启）
+# 5. GEOSITE,!CN → 兜底：非中国域名走 Hecate（可选，按需开启）
 # 6. MATCH → 默认直连（黑名单模式核心）
 # ================================================================
 rules:
@@ -130,17 +130,17 @@ rules:
 - DOMAIN-SUFFIX,oaistatic.com,LLM
 - DOMAIN-SUFFIX,oaiusercontent.com,LLM
 - DOMAIN-SUFFIX,api.openai.com,LLM
-- DOMAIN-SUFFIX,Orion.openai.com,LLM
+- DOMAIN-SUFFIX,Hecate.openai.com,LLM
 - DOMAIN-SUFFIX,auth0.openai.com,LLM
 - IP-CIDR,13.107.238.0/24,LLM
 - IP-CIDR,13.107.239.0/24,LLM
 
 # ----------------------------------------------------------------
-# Gemini / Google AI（Orion 自动选速）
+# Gemini / Google AI（Hecate 自动选速）
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,Orion
-- DOMAIN-SUFFIX,aistudio.google.com,Orion
-- DOMAIN-SUFFIX,ai.google.dev,Orion
+- DOMAIN-SUFFIX,gemini.google.com,Hecate
+- DOMAIN-SUFFIX,aistudio.google.com,Hecate
+- DOMAIN-SUFFIX,ai.google.dev,Hecate
 
 # ----------------------------------------------------------------
 # Perplexity（LLM3）
@@ -164,8 +164,8 @@ rules:
 # LinkedIn（LLM3）
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,linkedin.com,LLM3
-- DOMAIN-SUFFIX,liOrion.com,LLM3
-- DOMAIN-SUFFIX,linkedinOrion.com,LLM3
+- DOMAIN-SUFFIX,licdn.com,LLM3
+- DOMAIN-SUFFIX,linkedincdn.com,LLM3
 - DOMAIN-SUFFIX,linkedin.cn,LLM3
 - DOMAIN-SUFFIX,lnkd.in,LLM3
 - DOMAIN-SUFFIX,learningcontainer.com,LLM3
@@ -178,7 +178,7 @@ rules:
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,apollo.io,LLM3
 - DOMAIN-SUFFIX,apolloapi.io,LLM3
-- DOMAIN-SUFFIX,apolloOrion.io,LLM3
+- DOMAIN-SUFFIX,apollocdn.io,LLM3
 - IP-CIDR,34.102.0.0/16,LLM3
 - IP-CIDR,34.110.0.0/16,LLM3
 
@@ -190,13 +190,13 @@ rules:
 
 # ----------------------------------------------------------------
 # GEOSITE 黑名单兜底（可选）
-# 说明：将 GFW 封锁域名列表中的域名走 Orion，比 MATCH 直连更精准
+# 说明：将 GFW 封锁域名列表中的域名走 Hecate，比 MATCH 直连更精准
 # 如不需要可注释掉，直接让 MATCH 兜底直连即可
 # ----------------------------------------------------------------
-- GEOSITE,GFW,Orion
+- GEOSITE,GFW,Hecate
 
 # ----------------------------------------------------------------
 # 默认直连（黑名单模式核心）
-# 说明：所有未匹配规则的流量默认直连，与白名单模式的 MATCH,Orion 相反
+# 说明：所有未匹配规则的流量默认直连，与白名单模式的 MATCH,Hecate 相反
 # ----------------------------------------------------------------
 - MATCH,DIRECT
