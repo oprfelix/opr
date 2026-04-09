@@ -1,0 +1,200 @@
+dns:
+  enable: true
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 114.114.114.114
+  use-hosts: true
+  nameserver:
+    - https://sm2.doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - 8.8.4.4
+    - 208.67.220.220
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+      - 127.0.0.1/32
+      - 0.0.0.0/32
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
+proxies:
+- {name: Apollo, server: 8.35.211.250, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
+- {name: Artemis, server: 8.35.211.251, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
+- {name: Zeus, server: 8.35.211.201, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
+- {name: LLM1, server: 107.173.140.91, port: 10104, type: vless, uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg}}
+- {name: LLM2, server: 89.117.172.45, port: 41314, type: vless, uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU}}
+- {name: LLM3, server: 149.30.232.205, port: 2418, type: vless, uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.amazon.com, client-fingerprint: chrome, reality-opts: {public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ}}
+
+proxy-groups:
+
+- name: Orion
+  type: url-test
+  url: https://www.google.com/generate_204
+  interval: 600
+  tolerance: 50
+  proxies:
+    - Apollo
+    - Artemis
+    - Zeus
+
+- name: LLM
+  type: url-test
+  url: https://www.google.com/generate_204
+  interval: 600
+  tolerance: 50
+  proxies:
+    - LLM1
+    - LLM2
+ #   - LLM3                           # 备用，需要时取消注释
+
+# ================================================================
+# 黑名单模式规则
+#
+# 规则匹配顺序说明：
+# 1. 局域网 / 本地地址 → 直连（最高优先，防止代理本地流量）
+# 2. 代理直连白名单例外（如 challenges.cloudflare.com）
+# 3. 需要代理的域名黑名单（AI / 工具 / 社媒）
+# 4. 需要代理的 IP 段黑名单
+# 5. GEOSITE,!CN → 兜底：非中国域名走 Orion（可选，按需开启）
+# 6. MATCH → 默认直连（黑名单模式核心）
+# ================================================================
+rules:
+
+# ----------------------------------------------------------------
+# 局域网 / 保留地址（直连）
+# 说明：防止本地流量误走代理
+# ----------------------------------------------------------------
+- IP-CIDR,127.0.0.0/8,DIRECT
+- IP-CIDR,10.0.0.0/8,DIRECT
+- IP-CIDR,172.16.0.0/12,DIRECT
+- IP-CIDR,192.168.0.0/16,DIRECT
+- IP-CIDR,100.64.0.0/10,DIRECT       # CGNAT
+- IP-CIDR,240.0.0.0/4,DIRECT         # 保留地址
+
+# ----------------------------------------------------------------
+# 直连例外（代理黑名单之前的白名单豁免）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
+
+# ----------------------------------------------------------------
+# Google Voice / 谷歌电话（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,voice.google.com,LLM3
+- DOMAIN-SUFFIX,hangouts.google.com,LLM3
+- DOMAIN-SUFFIX,talkgadget.google.com,LLM3
+- DOMAIN-SUFFIX,phoneservice.google.com,LLM3
+- DOMAIN-SUFFIX,mtalk.google.com,LLM3
+- DOMAIN-SUFFIX,alt1-mtalk.google.com,LLM3
+- DOMAIN-SUFFIX,alt2-mtalk.google.com,LLM3
+- DOMAIN-SUFFIX,alt3-mtalk.google.com,LLM3
+- DOMAIN-SUFFIX,alt4-mtalk.google.com,LLM3
+
+# ----------------------------------------------------------------
+# Google Translate（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,translate.google.com,LLM3
+- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
+- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
+- DOMAIN-SUFFIX,translate.goog,LLM3
+
+# ----------------------------------------------------------------
+# Claude / Anthropic（LLM 自动选速）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,claude.ai,LLM
+- DOMAIN-SUFFIX,anthropic.com,LLM
+- DOMAIN-SUFFIX,claudeusercontent.com,LLM
+- DOMAIN-SUFFIX,usefathom.com,LLM
+- IP-CIDR,160.79.104.0/21,LLM
+- IP-CIDR6,2607:6bc0::/48,LLM
+
+# ----------------------------------------------------------------
+# OpenAI / ChatGPT（LLM 自动选速）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,openai.com,LLM
+- DOMAIN-SUFFIX,chatgpt.com,LLM
+- DOMAIN-SUFFIX,oaistatic.com,LLM
+- DOMAIN-SUFFIX,oaiusercontent.com,LLM
+- DOMAIN-SUFFIX,api.openai.com,LLM
+- DOMAIN-SUFFIX,Orion.openai.com,LLM
+- DOMAIN-SUFFIX,auth0.openai.com,LLM
+- IP-CIDR,13.107.238.0/24,LLM
+- IP-CIDR,13.107.239.0/24,LLM
+
+# ----------------------------------------------------------------
+# Gemini / Google AI（Orion 自动选速）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,gemini.google.com,Orion
+- DOMAIN-SUFFIX,aistudio.google.com,Orion
+- DOMAIN-SUFFIX,ai.google.dev,Orion
+
+# ----------------------------------------------------------------
+# Perplexity（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,perplexity.ai,LLM3
+- DOMAIN-KEYWORD,perplexity,LLM3
+
+# ----------------------------------------------------------------
+# Grok / xAI（LLM 自动选速）
+# 注意：IP 段为 Cloudflare 通用段，黑名单模式下影响更大，建议按需启用
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,grok.com,LLM
+- DOMAIN-SUFFIX,x.ai,LLM
+- DOMAIN-SUFFIX,xai.com,LLM
+- DOMAIN-SUFFIX,api.x.ai,LLM
+- DOMAIN-SUFFIX,assets.grok.com,LLM
+# - IP-CIDR,104.18.0.0/16,LLM        # ⚠️ 黑名单模式下此段影响范围极广，已注释
+# - IP-CIDR,172.64.0.0/13,LLM        # ⚠️ 同上，建议仅在域名规则不足时启用
+
+# ----------------------------------------------------------------
+# LinkedIn（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,linkedin.com,LLM3
+- DOMAIN-SUFFIX,liOrion.com,LLM3
+- DOMAIN-SUFFIX,linkedinOrion.com,LLM3
+- DOMAIN-SUFFIX,linkedin.cn,LLM3
+- DOMAIN-SUFFIX,lnkd.in,LLM3
+- DOMAIN-SUFFIX,learningcontainer.com,LLM3
+- IP-CIDR,108.174.0.0/20,LLM3
+- IP-CIDR,185.63.144.0/22,LLM3
+- IP-CIDR,13.107.42.0/24,LLM3
+
+# ----------------------------------------------------------------
+# Apollo.io（LLM3）
+# ----------------------------------------------------------------
+- DOMAIN-SUFFIX,apollo.io,LLM3
+- DOMAIN-SUFFIX,apolloapi.io,LLM3
+- DOMAIN-SUFFIX,apolloOrion.io,LLM3
+- IP-CIDR,34.102.0.0/16,LLM3
+- IP-CIDR,34.110.0.0/16,LLM3
+
+# ----------------------------------------------------------------
+# 电商工具（需代理部分）
+# ----------------------------------------------------------------
+- DOMAIN-KEYWORD,fiverr,LLM3
+- DOMAIN-KEYWORD,referazon,LLM3
+
+# ----------------------------------------------------------------
+# GEOSITE 黑名单兜底（可选）
+# 说明：将 GFW 封锁域名列表中的域名走 Orion，比 MATCH 直连更精准
+# 如不需要可注释掉，直接让 MATCH 兜底直连即可
+# ----------------------------------------------------------------
+- GEOSITE,GFW,Orion
+
+# ----------------------------------------------------------------
+# 默认直连（黑名单模式核心）
+# 说明：所有未匹配规则的流量默认直连，与白名单模式的 MATCH,Orion 相反
+# ----------------------------------------------------------------
+- MATCH,DIRECT
