@@ -33,9 +33,9 @@ log-level: info
 external-controller: 127.0.0.1:9090
 
 proxies:
-- {name: Apollo, server: 8.35.211.250, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
+- {name: Apollo, server: 8.35.211.7, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
 - {name: Artemis, server: 8.35.211.251, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
-- {name: Zeus, server: 8.35.211.201, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
+- {name: Zeus, server: 8.35.211.21, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
 - {name: LLM1, server: 107.173.140.91, port: 10104, type: vless, uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg}}
 - {name: LLM2, server: 89.117.172.45, port: 41314, type: vless, uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU}}
 - {name: LLM3, server: 149.30.232.205, port: 2418, type: vless, uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.amazon.com, client-fingerprint: chrome, reality-opts: {public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ}}
