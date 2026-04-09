@@ -37,6 +37,7 @@ dns:
     - localhost.ptlogin2.qq.com
 
   nameserver:
+    - 1.1.1.1            # Cloudflare
     - 223.5.5.5          # 阿里云 DNS（IP直连）
     - 119.29.29.29       # 腾讯云 DNS（IP直连）
     - 114.114.114.114    # 骨干网 DNS（IP直连）
@@ -90,17 +91,17 @@ proxies:
 
 - name: Delta
   type: vless
-  server: 172.64.52.122
+  server: 8.35.211.251
   port: 443
-  uuid: e02a245e-5548-4bfc-888a-f4eb0bbb6b25
+  uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
   network: ws
   tls: true
-  servername: helloworld.techtrendparts.com
+  servername: ddns.hayoovant.com
   client-fingerprint: chrome
   ws-opts:
     path: /
     headers:
-      Host: helloworld.techtrendparts.com
+      Host: ddns.hayoovant.com
 
 - name: Gamma
   type: vless
