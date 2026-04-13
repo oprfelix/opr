@@ -1,202 +1,229 @@
+mixed-port: 10808
+allow-lan: false
+bind-address: 127.0.0.1
+mode: rule
+log-level: warning
+ipv6: true
+
+# Clash API (对应 configPre.json 的 clash_api)
+external-controller: 127.0.0.1:10814
+
+# TUN 模式 (对应 configPre.json 的 tun-in inbound)
+tun:
+  enable: true
+  stack: gvisor
+  device: utun65
+  mtu: 9000
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+
+# DNS 配置 (对应 configPre.json 的 dns 段)
 dns:
   enable: true
-  default-nameserver:
-    - 1.1.1.1
-    - 223.5.5.5
-    - 119.29.29.29
-    - 114.114.114.114
-  use-hosts: true
+  ipv6: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - localhost.ptlogin2.qq.com
+  # 对应 hosts_dns 的 predefined 静态解析
+  hosts:
+    dns.google: [8.8.8.8, 8.8.4.4]
+    dns.alidns.com: [223.5.5.5, 223.6.6.6]
+    cloudflare-dns.com: [104.16.249.249, 104.16.248.249]
+    one.one.one.one: [1.1.1.1, 1.0.0.1]
+    dns.quad9.net: [9.9.9.9, 149.112.112.112]
+    dot.pub: [1.12.12.12, 120.53.53.53]
+    doh.pub: [1.12.12.12, 120.53.53.53]
   nameserver:
-    - https://1.1.1.1/dns-query
-    - https://sm2.doh.pub/dns-query
+    # direct_dns → 阿里 DoH (对应 configPre.json direct_dns)
     - https://dns.alidns.com/dns-query
   fallback:
-    - 8.8.4.4
-    - 208.67.220.220
+    # remote_dns → Cloudflare DoH，走代理 (对应 configPre.json remote_dns)
+    - https://cloudflare-dns.com/dns-query#proxy
   fallback-filter:
     geoip: true
     geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 127.0.0.1/32
-      - 0.0.0.0/32
     domain:
-      - '+.google.com'
-      - '+.facebook.com'
-      - '+.youtube.com'
+      - cloudflare-dns.com
+      - one.one.one.one
+      - dns.google
+      - adguard-dns.com
+      - opendns.com
+      - umbrella.com
+      - quad9.net
+      - yandex.net
+      - api.ip.sb
+  nameserver-policy:
+    # GFW / greatfire 走远程 DNS
+    "geosite:gfw,greatfire": "https://cloudflare-dns.com/dns-query#proxy"
+    "geosite:google": "https://cloudflare-dns.com/dns-query#proxy"
+    # 私有地址走本地 DNS
+    "geosite:private": "https://dns.alidns.com/dns-query"
 
-port: 7890
-socks-port: 7891
-allow-lan: true
-mode: rule
-log-level: info
-external-controller: 127.0.0.1:9090
-
+# ===== 代理节点 (仅保留 8.35.211.x 段) =====
 proxies:
-- {name: Apollo, server: 8.35.211.7, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
-- {name: Artemis, server: 8.35.211.251, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
-- {name: Zeus, server: 8.35.211.21, port: 443, type: vless, uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b, tls: true, skip-cert-verify: false, servername: ddns.hayoovant.com, client-fingerprint: chrome, network: ws, ws-opts: {path: /, headers: {Host: ddns.hayoovant.com}}}
-- {name: LLM1, server: 107.173.140.91, port: 10104, type: vless, uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg}}
-- {name: LLM2, server: 89.117.172.45, port: 41314, type: vless, uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.paypal.com, client-fingerprint: chrome, reality-opts: {public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU}}
-- {name: LLM3, server: 149.30.232.205, port: 2418, type: vless, uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b, network: tcp, tls: true, flow: xtls-rprx-vision, servername: www.amazon.com, client-fingerprint: chrome, reality-opts: {public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ}}
+  - name: "Zeus"
+    type: vless
+    server: 8.35.211.251
+    port: 443
+    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    network: ws
+    tls: true
+    servername: ddns.hayoovant.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: ddns.hayoovant.com
 
+  - name: "Athena"
+    type: vless
+    server: 8.35.211.202
+    port: 443
+    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    network: ws
+    tls: true
+    servername: ddns.hayoovant.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: ddns.hayoovant.com
+
+  - name: "Apollo"
+    type: vless
+    server: 8.35.211.106
+    port: 443
+    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    network: ws
+    tls: true
+    servername: ddns.hayoovant.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: ddns.hayoovant.com
+
+  - name: "Hermes"
+    type: vless
+    server: 8.35.211.102
+    port: 443
+    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    network: ws
+    tls: true
+    servername: ddns.hayoovant.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: ddns.hayoovant.com
+
+
+
+# ===== 代理组 =====
 proxy-groups:
+  - name: "PROXY"
+    type: select
+    proxies:
+      - Auto-Best
+      - Zeus
+      - Athena
+      - Apollo
+      - Hermes
+      - DIRECT
 
-- name: Hecate
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - Apollo
-    - Artemis
-    - Zeus
+  - name: "Auto-Best"
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - Zeus
+      - Athena
+      - Apollo
+      - Hermes
 
-- name: LLM
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - LLM1
-    - LLM2
- #   - LLM3                           # 备用，需要时取消注释
-
-# ================================================================
-# 黑名单模式规则
-#
-# 规则匹配顺序说明：
-# 1. 局域网 / 本地地址 → 直连（最高优先，防止代理本地流量）
-# 2. 代理直连白名单例外（如 challenges.cloudflare.com）
-# 3. 需要代理的域名黑名单（AI / 工具 / 社媒）
-# 4. 需要代理的 IP 段黑名单
-# 5. GEOSITE,!CN → 兜底：非中国域名走 Hecate（可选，按需开启）
-# 6. MATCH → 默认直连（黑名单模式核心）
-# ================================================================
+# ===== 路由规则 =====
+# 严格对应 configPre.json 的 route.rules 顺序
 rules:
+  # 1. 防止代理进程流量回环 (对应 process_name outbound:direct)
+  - PROCESS-NAME,v2ray,DIRECT
+  - PROCESS-NAME,xray,DIRECT
+  - PROCESS-NAME,mihomo,DIRECT
+  - PROCESS-NAME,clash,DIRECT
+  - PROCESS-NAME,sing-box,DIRECT
+  - PROCESS-NAME,hysteria,DIRECT
+  - PROCESS-NAME,naive,DIRECT
+  - PROCESS-NAME,naiveproxy,DIRECT
+  - PROCESS-NAME,tuic-client,DIRECT
+  - PROCESS-NAME,tuic,DIRECT
+  - PROCESS-NAME,juicity-client,DIRECT
+  - PROCESS-NAME,juicity,DIRECT
+  - PROCESS-NAME,brook,DIRECT
+  - PROCESS-NAME,overtls,DIRECT
+  - PROCESS-NAME,shadowquic,DIRECT
+  - PROCESS-NAME,mieru,DIRECT
 
-# ----------------------------------------------------------------
-# 局域网 / 保留地址（直连）
-# 说明：防止本地流量误走代理
-# ----------------------------------------------------------------
-- IP-CIDR,127.0.0.0/8,DIRECT
-- IP-CIDR,10.0.0.0/8,DIRECT
-- IP-CIDR,172.16.0.0/12,DIRECT
-- IP-CIDR,192.168.0.0/16,DIRECT
-- IP-CIDR,100.64.0.0/10,DIRECT       # CGNAT
-- IP-CIDR,240.0.0.0/4,DIRECT         # 保留地址
+  # 2. 拒绝 UDP/443 (QUIC) (对应 network:udp port:443 action:reject)
+  - AND,((NETWORK,udp),(DST-PORT,443)),REJECT
 
-# ----------------------------------------------------------------
-# 直连例外（代理黑名单之前的白名单豁免）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
+  # 3. 代理 api.ip.sb
+  - DOMAIN-KEYWORD,api.ip.sb,PROXY
 
-# ----------------------------------------------------------------
-# Google Voice / 谷歌电话（LLM3）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,voice.google.com,LLM3
-- DOMAIN-SUFFIX,hangouts.google.com,LLM3
-- DOMAIN-SUFFIX,talkgadget.google.com,LLM3
-- DOMAIN-SUFFIX,phoneservice.google.com,LLM3
-- DOMAIN-SUFFIX,mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt1-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt2-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt3-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt4-mtalk.google.com,LLM3
+  # 4. Google 走代理
+  - GEOSITE,google,PROXY
 
-# ----------------------------------------------------------------
-# Google Translate（LLM3）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,translate.google.com,LLM3
-- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
-- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
-- DOMAIN-SUFFIX,translate.goog,LLM3
+  # 5. 私有地址直连
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOSITE,private,DIRECT
 
-# ----------------------------------------------------------------
-# Claude / Anthropic（LLM 自动选速）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,claude.ai,LLM
-- DOMAIN-SUFFIX,anthropic.com,LLM
-- DOMAIN-SUFFIX,claudeusercontent.com,LLM
-- DOMAIN-SUFFIX,usefathom.com,LLM
-- IP-CIDR,160.79.104.0/21,LLM
-- IP-CIDR6,2607:6bc0::/48,LLM
+  # 6. 已知 DNS 服务器 IP 走代理
+  - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
+  - IP-CIDR,1.0.0.1/32,PROXY,no-resolve
+  - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
+  - IP-CIDR,8.8.4.4/32,PROXY,no-resolve
+  - IP-CIDR,9.9.9.9/32,PROXY,no-resolve
+  - IP-CIDR,149.112.112.112/32,PROXY,no-resolve
+  - IP-CIDR,208.67.222.222/32,PROXY,no-resolve
+  - IP-CIDR,208.67.220.220/32,PROXY,no-resolve
+  - IP-CIDR,94.140.14.14/32,PROXY,no-resolve
+  - IP-CIDR,94.140.15.15/32,PROXY,no-resolve
+  - IP-CIDR,77.88.8.8/32,PROXY,no-resolve
+  - IP-CIDR,77.88.8.1/32,PROXY,no-resolve
+  - IP-CIDR6,2606:4700:4700::1111/128,PROXY,no-resolve
+  - IP-CIDR6,2606:4700:4700::1001/128,PROXY,no-resolve
+  - IP-CIDR6,2001:4860:4860::8888/128,PROXY,no-resolve
+  - IP-CIDR6,2001:4860:4860::8844/128,PROXY,no-resolve
 
-# ----------------------------------------------------------------
-# OpenAI / ChatGPT（LLM 自动选速）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,openai.com,LLM
-- DOMAIN-SUFFIX,chatgpt.com,LLM
-- DOMAIN-SUFFIX,oaistatic.com,LLM
-- DOMAIN-SUFFIX,oaiusercontent.com,LLM
-- DOMAIN-SUFFIX,api.openai.com,LLM
-- DOMAIN-SUFFIX,Hecate.openai.com,LLM
-- DOMAIN-SUFFIX,auth0.openai.com,LLM
-- IP-CIDR,13.107.238.0/24,LLM
-- IP-CIDR,13.107.239.0/24,LLM
+  # 7. 知名 DNS 域名走代理
+  - DOMAIN-SUFFIX,cloudflare-dns.com,PROXY
+  - DOMAIN-SUFFIX,one.one.one.one,PROXY
+  - DOMAIN-SUFFIX,dns.google,PROXY
+  - DOMAIN-SUFFIX,adguard-dns.com,PROXY
+  - DOMAIN-SUFFIX,opendns.com,PROXY
+  - DOMAIN-SUFFIX,umbrella.com,PROXY
+  - DOMAIN-SUFFIX,quad9.net,PROXY
+  - DOMAIN-SUFFIX,yandex.net,PROXY
 
-# ----------------------------------------------------------------
-# Gemini / Google AI（Hecate 自动选速）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,Hecate
-- DOMAIN-SUFFIX,aistudio.google.com,Hecate
-- DOMAIN-SUFFIX,ai.google.dev,Hecate
+  # 8. 主要境外 IP 段走代理
+  - GEOIP,facebook,PROXY,no-resolve
+  - GEOIP,google,PROXY,no-resolve
+  - GEOIP,netflix,PROXY,no-resolve
+  - GEOIP,telegram,PROXY,no-resolve
+  - GEOIP,twitter,PROXY,no-resolve
 
-# ----------------------------------------------------------------
-# Perplexity（LLM3）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,perplexity.ai,LLM3
-- DOMAIN-KEYWORD,perplexity,LLM3
+  # 9. GFW / greatfire 走代理
+  - GEOSITE,gfw,PROXY
+  - GEOSITE,greatfire,PROXY
 
-# ----------------------------------------------------------------
-# Grok / xAI（LLM 自动选速）
-# 注意：IP 段为 Cloudflare 通用段，黑名单模式下影响更大，建议按需启用
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,grok.com,LLM
-- DOMAIN-SUFFIX,x.ai,LLM
-- DOMAIN-SUFFIX,xai.com,LLM
-- DOMAIN-SUFFIX,api.x.ai,LLM
-- DOMAIN-SUFFIX,assets.grok.com,LLM
-# - IP-CIDR,104.18.0.0/16,LLM        # ⚠️ 黑名单模式下此段影响范围极广，已注释
-# - IP-CIDR,172.64.0.0/13,LLM        # ⚠️ 同上，建议仅在域名规则不足时启用
+  # 10. BT 直连 (对应 protocol:bittorrent outbound:direct)
+  - GEOSITE,category-ads-all,REJECT
 
-# ----------------------------------------------------------------
-# LinkedIn（LLM3）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,linkedin.com,LLM3
-- DOMAIN-SUFFIX,licdn.com,LLM3
-- DOMAIN-SUFFIX,linkedincdn.com,LLM3
-- DOMAIN-SUFFIX,linkedin.cn,LLM3
-- DOMAIN-SUFFIX,lnkd.in,LLM3
-- DOMAIN-SUFFIX,learningcontainer.com,LLM3
-- IP-CIDR,108.174.0.0/20,LLM3
-- IP-CIDR,185.63.144.0/22,LLM3
-- IP-CIDR,13.107.42.0/24,LLM3
-
-# ----------------------------------------------------------------
-# Apollo.io（LLM3）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,apollo.io,LLM3
-- DOMAIN-SUFFIX,apolloapi.io,LLM3
-- DOMAIN-SUFFIX,apollocdn.io,LLM3
-- IP-CIDR,34.102.0.0/16,LLM3
-- IP-CIDR,34.110.0.0/16,LLM3
-
-# ----------------------------------------------------------------
-# 电商工具（需代理部分）
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,fiverr,LLM3
-- DOMAIN-KEYWORD,referazon,LLM3
-
-# ----------------------------------------------------------------
-# GEOSITE 黑名单兜底（可选）
-# 说明：将 GFW 封锁域名列表中的域名走 Hecate，比 MATCH 直连更精准
-# 如不需要可注释掉，直接让 MATCH 兜底直连即可
-# ----------------------------------------------------------------
-- GEOSITE,GFW,Hecate
-
-# ----------------------------------------------------------------
-# 默认直连（黑名单模式核心）
-# 说明：所有未匹配规则的流量默认直连，与白名单模式的 MATCH,Hecate 相反
-# ----------------------------------------------------------------
-- MATCH,DIRECT
+  # 11. 兜底：全部走代理 (对应 configPre.json route.final: proxy)
+  - MATCH,PROXY
