@@ -66,7 +66,7 @@ dns:
     # 私有地址走本地 DNS
     "geosite:private": "https://dns.alidns.com/dns-query"
 
-# ===== 代理节点 (仅保留 8.35.211.x 段) =====
+# ===== 代理节点 (190.93.246.41 段) =====
 proxies:
   - name: "Zeus"
     type: vless
@@ -84,7 +84,7 @@ proxies:
 
   - name: "Athena"
     type: vless
-    server: 8.35.211.202
+    server: 190.93.246.41
     port: 443
     uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
     network: ws
@@ -112,7 +112,7 @@ proxies:
 
   - name: "Hermes"
     type: vless
-    server: 8.35.211.102
+    server: 190.93.246.122
     port: 443
     uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
     network: ws
