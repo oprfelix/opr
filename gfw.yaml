@@ -69,7 +69,7 @@ tun:
 # ================================================================
 # 代理节点
 # CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
-# LLM 组节点：LLM1 / LLM2 / LLM3（VLESS + XTLS-Vision + Reality）
+# LLM 组节点：LLM1 / LLM2 / AWS-SG（VLESS + XTLS-Vision + Reality）
 # 190.93.246.41
 # ================================================================
 proxies:
@@ -141,19 +141,6 @@ proxies:
   servername: de.todsm.com
   udp: true
 
-- name: LLM3
-  type: vless
-  server: 149.30.232.205
-  port: 2418
-  uuid: 54d86651-77b7-48c7-841b-6b7060e4ef6b
-  network: tcp
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.amazon.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ
-
 - name: AWS-SG
   type: vless
   server: sp.todsm.com
@@ -191,7 +178,6 @@ proxy-groups:
     - LLM1
     - LLM2
  #   - AWS-SG
- #   - LLM3                           # 备用，需要时取消注释
 
 # ================================================================
 # 规则匹配顺序说明：
@@ -223,8 +209,8 @@ rules:
 - DOMAIN-KEYWORD,semrush,DIRECT
 - DOMAIN-KEYWORD,quanmaitong,DIRECT
 - DOMAIN-KEYWORD,amazon,DIRECT
-- DOMAIN-KEYWORD,fiverr,LLM3
-- DOMAIN-KEYWORD,referazon,LLM3
+- DOMAIN-KEYWORD,fiverr,AWS-SG
+- DOMAIN-KEYWORD,referazon,AWS-SG
 
 # ----------------------------------------------------------------
 # 中国 APP（直连）
@@ -278,8 +264,8 @@ rules:
 - IP-CIDR,139.159.0.0/16,DIRECT
 
 # ----------------------------------------------------------------
-# Google Voice / 谷歌电话（LLM3）
-# 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 LLM3
+# Google Voice / 谷歌电话（AWS-SG）
+# 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 AWS-SG
 # 已移除 Google 通用 IP 段，域名规则足够覆盖 Voice 主要请求
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,voice.google.com,AWS-SG
@@ -293,7 +279,7 @@ rules:
 - DOMAIN-SUFFIX,alt4-mtalk.google.com,AWS-SG
 
 # ----------------------------------------------------------------
-# Google Translate（LLM3）
+# Google Translate（AWS-SG）
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,translate.google.com,AWS-SG
 - DOMAIN-SUFFIX,translate.googleapis.com,AWS-SG
@@ -333,7 +319,7 @@ rules:
 - DOMAIN-SUFFIX,ai.google.dev,AWS-SG
 
 # ----------------------------------------------------------------
-# Perplexity（LLM3）
+# Perplexity（AWS-SG）
 # 说明：子域名已被父域名 perplexity.ai 覆盖，无需单独列出
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,perplexity.ai,AWS-SG
@@ -351,7 +337,7 @@ rules:
 - DOMAIN-SUFFIX,assets.grok.com,AWS-SG
 
 # ----------------------------------------------------------------
-# LinkedIn（LLM3）
+# LinkedIn（AWS-SG）
 # IP 段：LinkedIn 自有段 + Microsoft Azure，较精准
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,linkedin.com,AWS-SG
@@ -365,7 +351,7 @@ rules:
 - IP-CIDR,13.107.42.0/24,AWS-SG        # Microsoft Azure（LinkedIn 专用）
 
 # ----------------------------------------------------------------
-# Apollo.io（LLM3）
+# Apollo.io（AWS-SG）
 # IP 段：Google Cloud，GCP 池较大可能误匹配，如有问题可删除
 # ----------------------------------------------------------------
 - DOMAIN-SUFFIX,apollo.io,AWS-SG
