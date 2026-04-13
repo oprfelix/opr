@@ -192,7 +192,7 @@ proxy-groups:
   proxies:
     - LLM1
     - LLM2
-    - AWS-SG
+ #   - AWS-SG
  #   - LLM3                           # 备用，需要时取消注释
 
 # ================================================================
@@ -284,97 +284,97 @@ rules:
 # 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 LLM3
 # 已移除 Google 通用 IP 段，域名规则足够覆盖 Voice 主要请求
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,voice.google.com,LLM3
-- DOMAIN-SUFFIX,hangouts.google.com,LLM3
-- DOMAIN-SUFFIX,talkgadget.google.com,LLM3
-- DOMAIN-SUFFIX,phoneservice.google.com,LLM3
-- DOMAIN-SUFFIX,mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt1-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt2-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt3-mtalk.google.com,LLM3
-- DOMAIN-SUFFIX,alt4-mtalk.google.com,LLM3
+- DOMAIN-SUFFIX,voice.google.com,AWS-SG
+- DOMAIN-SUFFIX,hangouts.google.com,AWS-SG
+- DOMAIN-SUFFIX,talkgadget.google.com,AWS-SG
+- DOMAIN-SUFFIX,phoneservice.google.com,AWS-SG
+- DOMAIN-SUFFIX,mtalk.google.com,AWS-SG
+- DOMAIN-SUFFIX,alt1-mtalk.google.com,AWS-SG
+- DOMAIN-SUFFIX,alt2-mtalk.google.com,AWS-SG
+- DOMAIN-SUFFIX,alt3-mtalk.google.com,AWS-SG
+- DOMAIN-SUFFIX,alt4-mtalk.google.com,AWS-SG
 
 # ----------------------------------------------------------------
 # Google Translate（LLM3）
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,translate.google.com,LLM3
-- DOMAIN-SUFFIX,translate.googleapis.com,LLM3
-- DOMAIN-SUFFIX,translate.googleusercontent.com,LLM3
-- DOMAIN-SUFFIX,translate.goog,LLM3
+- DOMAIN-SUFFIX,translate.google.com,AWS-SG
+- DOMAIN-SUFFIX,translate.googleapis.com,AWS-SG
+- DOMAIN-SUFFIX,translate.googleusercontent.com,AWS-SG
+- DOMAIN-SUFFIX,translate.goog,AWS-SG
 
 # ----------------------------------------------------------------
 # Claude / Anthropic（LLM 自动选速）
 # IP 段：Anthropic 自有 IP（ASN399358），精准可靠
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,claude.ai,LLM
-- DOMAIN-SUFFIX,anthropic.com,LLM
-- DOMAIN-SUFFIX,claudeusercontent.com,LLM
-- DOMAIN-SUFFIX,usefathom.com,LLM
-- IP-CIDR,160.79.104.0/21,LLM        # Anthropic 自有 IP 段
-- IP-CIDR6,2607:6bc0::/48,LLM
+- DOMAIN-SUFFIX,claude.ai,AWS-SG
+- DOMAIN-SUFFIX,anthropic.com,AWS-SG
+- DOMAIN-SUFFIX,claudeusercontent.com,AWS-SG
+- DOMAIN-SUFFIX,usefathom.com,AWS-SG
+- IP-CIDR,160.79.104.0/21,AWS-SG        # Anthropic 自有 IP 段
+- IP-CIDR6,2607:6bc0::/48,AWS-SG
 
 # ----------------------------------------------------------------
 # OpenAI / ChatGPT（LLM 自动选速）
 # IP 段：Microsoft Azure 专用段，较精准
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,openai.com,LLM
-- DOMAIN-SUFFIX,chatgpt.com,LLM
-- DOMAIN-SUFFIX,oaistatic.com,LLM
-- DOMAIN-SUFFIX,oaiusercontent.com,LLM
-- DOMAIN-SUFFIX,api.openai.com,LLM
-- DOMAIN-SUFFIX,cdn.openai.com,LLM
-- DOMAIN-SUFFIX,auth0.openai.com,LLM
-- IP-CIDR,13.107.238.0/24,LLM        # Azure OpenAI 专用段
-- IP-CIDR,13.107.239.0/24,LLM
+- DOMAIN-SUFFIX,openai.com,AWS-SG
+- DOMAIN-SUFFIX,chatgpt.com,AWS-SG
+- DOMAIN-SUFFIX,oaistatic.com,AWS-SG
+- DOMAIN-SUFFIX,oaiusercontent.com,AWS-SG
+- DOMAIN-SUFFIX,api.openai.com,AWS-SG
+- DOMAIN-SUFFIX,cdn.openai.com,AWS-SG
+- DOMAIN-SUFFIX,auth0.openai.com,AWS-SG
+- IP-CIDR,13.107.238.0/24,AWS-SG        # Azure OpenAI 专用段
+- IP-CIDR,13.107.239.0/24,AWS-SG
 
 # ----------------------------------------------------------------
 # Gemini / Google AI（CDN 自动选速）
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,CDN
-- DOMAIN-SUFFIX,aistudio.google.com,CDN
-- DOMAIN-SUFFIX,ai.google.dev,CDN
+- DOMAIN-SUFFIX,gemini.google.com,AWS-SG
+- DOMAIN-SUFFIX,aistudio.google.com,AWS-SG
+- DOMAIN-SUFFIX,ai.google.dev,AWS-SG
 
 # ----------------------------------------------------------------
 # Perplexity（LLM3）
 # 说明：子域名已被父域名 perplexity.ai 覆盖，无需单独列出
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,perplexity.ai,LLM3
-- DOMAIN-KEYWORD,perplexity,LLM3
+- DOMAIN-SUFFIX,perplexity.ai,AWS-SG
+- DOMAIN-KEYWORD,perplexity,AWS-SG
 
 # ----------------------------------------------------------------
 # Grok / xAI（LLM 自动选速）
 # 注意：IP 段为 Cloudflare 通用段，可能误匹配其他网站
 # 如出现非预期流量走代理，可删除两条 IP-CIDR
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,grok.com,LLM
-- DOMAIN-SUFFIX,x.ai,LLM
-- DOMAIN-SUFFIX,xai.com,LLM
-- DOMAIN-SUFFIX,api.x.ai,LLM
-- DOMAIN-SUFFIX,assets.grok.com,LLM
+- DOMAIN-SUFFIX,grok.com,AWS-SG
+- DOMAIN-SUFFIX,x.ai,AWS-SG
+- DOMAIN-SUFFIX,xai.com,AWS-SG
+- DOMAIN-SUFFIX,api.x.ai,AWS-SG
+- DOMAIN-SUFFIX,assets.grok.com,AWS-SG
 
 # ----------------------------------------------------------------
 # LinkedIn（LLM3）
 # IP 段：LinkedIn 自有段 + Microsoft Azure，较精准
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,linkedin.com,LLM3
-- DOMAIN-SUFFIX,licdn.com,LLM3
-- DOMAIN-SUFFIX,linkedincdn.com,LLM3
-- DOMAIN-SUFFIX,linkedin.cn,LLM3
-- DOMAIN-SUFFIX,lnkd.in,LLM3
-- DOMAIN-SUFFIX,learningcontainer.com,LLM3
-- IP-CIDR,108.174.0.0/20,LLM3        # LinkedIn 自有 IP
-- IP-CIDR,185.63.144.0/22,LLM3       # LinkedIn 自有 IP
-- IP-CIDR,13.107.42.0/24,LLM3        # Microsoft Azure（LinkedIn 专用）
+- DOMAIN-SUFFIX,linkedin.com,AWS-SG
+- DOMAIN-SUFFIX,licdn.com,AWS-SG
+- DOMAIN-SUFFIX,linkedincdn.com,AWS-SG
+- DOMAIN-SUFFIX,linkedin.cn,AWS-SG
+- DOMAIN-SUFFIX,lnkd.in,AWS-SG
+- DOMAIN-SUFFIX,learningcontainer.com,AWS-SG
+- IP-CIDR,108.174.0.0/20,AWS-SG        # LinkedIn 自有 IP
+- IP-CIDR,185.63.144.0/22,AWS-SG       # LinkedIn 自有 IP
+- IP-CIDR,13.107.42.0/24,AWS-SG        # Microsoft Azure（LinkedIn 专用）
 
 # ----------------------------------------------------------------
 # Apollo.io（LLM3）
 # IP 段：Google Cloud，GCP 池较大可能误匹配，如有问题可删除
 # ----------------------------------------------------------------
-- DOMAIN-SUFFIX,apollo.io,LLM3
-- DOMAIN-SUFFIX,apolloapi.io,LLM3
-- DOMAIN-SUFFIX,apollocdn.io,LLM3
-- IP-CIDR,34.102.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
-- IP-CIDR,34.110.0.0/16,LLM3         # GCP（可能误匹配其他 GCP 用户）
+- DOMAIN-SUFFIX,apollo.io,AWS-SG
+- DOMAIN-SUFFIX,apolloapi.io,AWS-SG
+- DOMAIN-SUFFIX,apollocdn.io,AWS-SG
+- IP-CIDR,34.102.0.0/16,AWS-SG         # GCP（可能误匹配其他 GCP 用户）
+- IP-CIDR,34.110.0.0/16,AWS-SG         # GCP（可能误匹配其他 GCP 用户）
 
 # ----------------------------------------------------------------
 # 兜底规则
