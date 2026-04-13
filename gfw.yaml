@@ -351,8 +351,6 @@ rules:
 - DOMAIN-SUFFIX,xai.com,LLM
 - DOMAIN-SUFFIX,api.x.ai,LLM
 - DOMAIN-SUFFIX,assets.grok.com,LLM
-- IP-CIDR,104.18.0.0/16,LLM          # Cloudflare 通用段（可能误匹配）
-- IP-CIDR,172.64.0.0/13,LLM          # Cloudflare 通用段（可能误匹配）
 
 # ----------------------------------------------------------------
 # LinkedIn（LLM3）
