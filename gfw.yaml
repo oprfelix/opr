@@ -159,11 +159,12 @@ proxies:
 
 - name: AWS-SG
   type: vless
-  server: 13.213.44.125
+  server: sp.todsm.com
   port: 443
   uuid: 20053e1d-2d69-41fa-824e-74e7fc498ab1
   network: tcp
-  tls: false
+  tls: true
+  servername: sp.todsm.com
   udp: true
 
 # ================================================================
