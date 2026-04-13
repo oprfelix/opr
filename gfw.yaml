@@ -133,16 +133,13 @@ proxies:
 
 - name: LLM2
   type: vless
-  server: 89.117.172.45
-  port: 41314
+  server: de.todsm.com
+  port: 443
   uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
   network: tcp
   tls: true
-  flow: xtls-rprx-vision
-  servername: www.paypal.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: Un4xlQta-8GDcIxB0UaovxnE4Bq9Jm5xZfAVUc3hwTU
+  servername: de.todsm.com
+  udp: true
 
 - name: LLM3
   type: vless
