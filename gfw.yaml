@@ -157,6 +157,15 @@ proxies:
   reality-opts:
     public-key: JcxqZbgdNWPQBYKXgnkAMB-uFOo0aWWfz-FpDTHZSmQ
 
+- name: AWS-SG
+  type: vless
+  server: 13.213.44.125
+  port: 443
+  uuid: 20053e1d-2d69-41fa-824e-74e7fc498ab1
+  network: tcp
+  tls: false
+  udp: true
+
 # ================================================================
 # 代理组
 # CDN：自动选速最快的 CDN 节点（Alpha/Delta/Gamma）
@@ -183,6 +192,7 @@ proxy-groups:
   proxies:
     - LLM1
     - LLM2
+    - AWS-SG
  #   - LLM3                           # 备用，需要时取消注释
 
 # ================================================================
