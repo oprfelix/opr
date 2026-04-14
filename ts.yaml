@@ -5,10 +5,10 @@ mode: rule
 log-level: warning
 ipv6: true
 
-# Clash API (对应 configPre.json 的 clash_api)
+# Clash 外部控制接口
 external-controller: 127.0.0.1:10814
 
-# TUN 模式 (对应 configPre.json 的 tun-in inbound)
+# TUN 透明代理
 tun:
   enable: true
   stack: gvisor
@@ -20,7 +20,7 @@ tun:
   dns-hijack:
     - any:53
 
-# DNS 配置 (对应 configPre.json 的 dns 段)
+# DNS
 dns:
   enable: true
   ipv6: true
@@ -31,7 +31,8 @@ dns:
     - "*.lan"
     - "*.local"
     - localhost.ptlogin2.qq.com
-  # 对应 hosts_dns 的 predefined 静态解析
+
+  # 静态域名解析（绕过 fake-ip，防止 DoH 服务器自身被劫持）
   hosts:
     dns.google: [8.8.8.8, 8.8.4.4]
     dns.alidns.com: [223.5.5.5, 223.6.6.6]
@@ -40,12 +41,16 @@ dns:
     dns.quad9.net: [9.9.9.9, 149.112.112.112]
     dot.pub: [1.12.12.12, 120.53.53.53]
     doh.pub: [1.12.12.12, 120.53.53.53]
+
+  # 默认 DNS：阿里 DoH，用于国内域名直连解析
   nameserver:
-    # direct_dns → 阿里 DoH (对应 configPre.json direct_dns)
     - https://dns.alidns.com/dns-query
+
+  # 备用 DNS：Cloudflare DoH，经代理，用于境外域名解析
   fallback:
-    # remote_dns → Cloudflare DoH，走代理 (对应 configPre.json remote_dns)
     - https://cloudflare-dns.com/dns-query#proxy
+
+  # fallback 触发条件：解析结果为非中国 IP 时启用备用 DNS
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -59,15 +64,17 @@ dns:
       - quad9.net
       - yandex.net
       - api.ip.sb
+
+  # 策略 DNS：特定域名强制指定解析服务器
   nameserver-policy:
-    # GFW / greatfire 走远程 DNS
     "geosite:gfw,greatfire": "https://cloudflare-dns.com/dns-query#proxy"
     "geosite:google": "https://cloudflare-dns.com/dns-query#proxy"
-    # 私有地址走本地 DNS
     "geosite:private": "https://dns.alidns.com/dns-query"
 
-# ===== 代理节点 (190.93.246.41 段) =====
+# ===== 代理节点 =====
+
 proxies:
+  # -- 主力组：WS+TLS，CDN 中转 --
   - name: "Zeus"
     type: vless
     server: 8.35.211.251
@@ -124,10 +131,72 @@ proxies:
       headers:
         Host: ddns.hayoovant.com
 
+  - name: "Dionysus"
+    type: vless
+    server: 104.27.26.10
+    port: 443
+    uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+    network: ws
+    tls: true
+    servername: helloworld.todsm.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: helloworld.todsm.com
 
+  - name: "Artemis"
+    type: vless
+    server: 172.66.208.146
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    network: ws
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: helloworld.fotoman.com
+
+  # -- 备用组：暂不参与流量转发 --
+  - name: "Ares"
+    type: vless
+    server: 107.173.140.91
+    port: 10104
+    uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
+    network: tcp
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.paypal.com
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
+
+  - name: "Poseidon"
+    type: vless
+    server: de.todsm.com
+    port: 443
+    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
+    network: tcp
+    tls: true
+    servername: de.todsm.com
+    udp: true
+
+  - name: "Hephaestus"
+    type: vless
+    server: sp.todsm.com
+    port: 443
+    uuid: 20053e1d-2d69-41fa-824e-74e7fc498ab1
+    network: tcp
+    tls: true
+    servername: sp.todsm.com
+    udp: true
 
 # ===== 代理组 =====
+
 proxy-groups:
+  # 手动选择出口，默认走自动测速组
   - name: "PROXY"
     type: select
     proxies:
@@ -136,8 +205,11 @@ proxy-groups:
       - Athena
       - Apollo
       - Hermes
+      - Dionysus 
+      - Artemis  
       - DIRECT
 
+  # 自动选择延迟最低节点，每 5 分钟测速一次
   - name: "Auto-Best"
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -148,12 +220,22 @@ proxy-groups:
       - Athena
       - Apollo
       - Hermes
+      - Dionysus 
+      - Artemis 
+
+  # 备用节点池，默认 REJECT 隔离，不参与实际流量
+  - name: "Olympus-Reserve"
+    type: select
+    proxies:
+      - REJECT
+      - Ares
+      - Poseidon
+      - Hephaestus
 
 # ===== 路由规则 =====
-# 严格对应 configPre.json 的 route.rules 顺序
+
 rules:
-  
-  # 1. 防止代理进程流量回环 (对应 process_name outbound:direct)
+  # 防止代理进程流量回环
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT
   - PROCESS-NAME,mihomo,DIRECT
@@ -171,20 +253,20 @@ rules:
   - PROCESS-NAME,shadowquic,DIRECT
   - PROCESS-NAME,mieru,DIRECT
 
-  # 2. 拒绝 UDP/443 (QUIC) (对应 network:udp port:443 action:reject)
+  # 屏蔽 UDP/443 (QUIC)，避免绕过代理
   - AND,((NETWORK,udp),(DST-PORT,443)),REJECT
 
-  # 3. 代理 api.ip.sb
+  # 代理出口 IP 查询服务
   - DOMAIN-KEYWORD,api.ip.sb,PROXY
 
-  # 4. Google 走代理
+  # Google 服务走代理
   - GEOSITE,google,PROXY
 
-  # 5. 私有地址直连
+  # 私有地址直连
   - GEOIP,private,DIRECT,no-resolve
   - GEOSITE,private,DIRECT
 
-  # 6. 已知 DNS 服务器 IP 走代理
+  # 知名 DNS 服务器 IP 走代理（防止 DNS 请求被墙）
   - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
   - IP-CIDR,1.0.0.1/32,PROXY,no-resolve
   - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
@@ -202,7 +284,7 @@ rules:
   - IP-CIDR6,2001:4860:4860::8888/128,PROXY,no-resolve
   - IP-CIDR6,2001:4860:4860::8844/128,PROXY,no-resolve
 
-  # 7. 知名 DNS 域名走代理
+  # 知名 DNS 服务域名走代理
   - DOMAIN-SUFFIX,cloudflare-dns.com,PROXY
   - DOMAIN-SUFFIX,one.one.one.one,PROXY
   - DOMAIN-SUFFIX,dns.google,PROXY
@@ -212,19 +294,19 @@ rules:
   - DOMAIN-SUFFIX,quad9.net,PROXY
   - DOMAIN-SUFFIX,yandex.net,PROXY
 
-  # 8. 主要境外 IP 段走代理
+  # 主要境外平台 IP 走代理
   - GEOIP,facebook,PROXY,no-resolve
   - GEOIP,google,PROXY,no-resolve
   - GEOIP,netflix,PROXY,no-resolve
   - GEOIP,telegram,PROXY,no-resolve
   - GEOIP,twitter,PROXY,no-resolve
 
-  # 9. GFW / greatfire 走代理
+  # GFW / greatfire 名单走代理
   - GEOSITE,gfw,PROXY
   - GEOSITE,greatfire,PROXY
 
-  # 10. BT 直连 (对应 protocol:bittorrent outbound:direct)
+  # 广告域名拦截
   - GEOSITE,category-ads-all,REJECT
 
-  # 11. 兜底：全部走代理 (对应 configPre.json route.final: proxy)
+  # 其余流量走代理
   - MATCH,PROXY
