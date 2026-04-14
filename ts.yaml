@@ -160,7 +160,7 @@ proxies:
         Host: helloworld.fotoman.com
 
   # -- 备用组：暂不参与流量转发 --
-  - name: "Ares"
+  - name: "JUN"
     type: vless
     server: 107.173.140.91
     port: 10104
@@ -173,7 +173,7 @@ proxies:
     reality-opts:
       public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
 
-  - name: "Poseidon"
+  - name: "ETHERNET"
     type: vless
     server: de.todsm.com
     port: 443
@@ -181,9 +181,9 @@ proxies:
     network: tcp
     tls: true
     servername: de.todsm.com
-    udp: true
+    client-fingerprint: chrome
 
-  - name: "Hephaestus"
+  - name: "AWSP"
     type: vless
     server: sp.todsm.com
     port: 443
@@ -191,7 +191,7 @@ proxies:
     network: tcp
     tls: true
     servername: sp.todsm.com
-    udp: true
+    client-fingerprint: chrome
 
 # ===== 代理组 =====
 
@@ -228,9 +228,9 @@ proxy-groups:
     type: select
     proxies:
       - REJECT
-      - Ares
-      - Poseidon
-      - Hephaestus
+      - JUN
+      - ETHERNET
+      - AWSP
 
 # ===== 路由规则 =====
 
