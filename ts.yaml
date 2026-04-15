@@ -32,7 +32,6 @@ dns:
     - "*.local"
     - localhost.ptlogin2.qq.com
 
-  # 静态域名解析（绕过 fake-ip，防止 DoH 服务器自身被劫持）
   hosts:
     dns.google: [8.8.8.8, 8.8.4.4]
     dns.alidns.com: [223.5.5.5, 223.6.6.6]
@@ -42,15 +41,12 @@ dns:
     dot.pub: [1.12.12.12, 120.53.53.53]
     doh.pub: [1.12.12.12, 120.53.53.53]
 
-  # 默认 DNS：阿里 DoH，用于国内域名直连解析
   nameserver:
     - https://dns.alidns.com/dns-query
 
-  # 备用 DNS：Cloudflare DoH，经代理，用于境外域名解析
   fallback:
     - https://cloudflare-dns.com/dns-query#proxy
 
-  # fallback 触发条件：解析结果为非中国 IP 时启用备用 DNS
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -65,7 +61,6 @@ dns:
       - yandex.net
       - api.ip.sb
 
-  # 策略 DNS：特定域名强制指定解析服务器
   nameserver-policy:
     "geosite:gfw,greatfire": "https://cloudflare-dns.com/dns-query#proxy"
     "geosite:google": "https://cloudflare-dns.com/dns-query#proxy"
@@ -74,7 +69,6 @@ dns:
 # ===== 代理节点 =====
 
 proxies:
-  # -- 主力组：WS+TLS，CDN 中转 --
   - name: "Zeus"
     type: vless
     server: 8.35.211.251
@@ -159,7 +153,6 @@ proxies:
       headers:
         Host: helloworld.fotoman.com
 
-  # -- 备用组：暂不参与流量转发 --
   - name: "JUN"
     type: vless
     server: 107.173.140.91
@@ -196,7 +189,6 @@ proxies:
 # ===== 代理组 =====
 
 proxy-groups:
-  # 手动选择出口，默认走自动测速组
   - name: "PROXY"
     type: select
     proxies:
@@ -205,11 +197,10 @@ proxy-groups:
       - Athena
       - Apollo
       - Hermes
-      - Dionysus 
-      - Artemis  
+      - Dionysus
+      - Artemis
       - DIRECT
 
-  # 自动选择延迟最低节点，每 5 分钟测速一次
   - name: "Auto-Best"
     type: url-test
     url: http://www.gstatic.com/generate_204
@@ -220,10 +211,16 @@ proxy-groups:
       - Athena
       - Apollo
       - Hermes
-      - Dionysus 
-      - Artemis 
+      - Dionysus
+      - Artemis
 
-  # 备用节点池，默认 REJECT 隔离，不参与实际流量
+  # JUN 专用组，供 Claude 使用
+  - name: "Claude-JUN"
+    type: select
+    proxies:
+      - JUN
+      - Auto-Best
+
   - name: "Olympus-Reserve"
     type: select
     proxies:
@@ -235,6 +232,14 @@ proxy-groups:
 # ===== 路由规则 =====
 
 rules:
+  # Claude 网络请求走 JUN 节点
+  - PROCESS-NAME,Claude,Claude-JUN
+
+  # Claude Cowork 本地虚拟机直连
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+
   # 防止代理进程流量回环
   - PROCESS-NAME,v2ray,DIRECT
   - PROCESS-NAME,xray,DIRECT
@@ -253,10 +258,10 @@ rules:
   - PROCESS-NAME,shadowquic,DIRECT
   - PROCESS-NAME,mieru,DIRECT
 
-  # 屏蔽 UDP/443 (QUIC)，避免绕过代理
+  # 屏蔽 UDP/443 (QUIC)
   - AND,((NETWORK,udp),(DST-PORT,443)),REJECT
 
-  # 代理出口 IP 查询服务
+  # 代理出口 IP 查询
   - DOMAIN-KEYWORD,api.ip.sb,PROXY
 
   # Google 服务走代理
@@ -266,7 +271,7 @@ rules:
   - GEOIP,private,DIRECT,no-resolve
   - GEOSITE,private,DIRECT
 
-  # 知名 DNS 服务器 IP 走代理（防止 DNS 请求被墙）
+  # 知名 DNS 服务器 IP 走代理
   - IP-CIDR,1.1.1.1/32,PROXY,no-resolve
   - IP-CIDR,1.0.0.1/32,PROXY,no-resolve
   - IP-CIDR,8.8.8.8/32,PROXY,no-resolve
