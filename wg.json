@@ -1,105 +1,121 @@
 {
+  // ==============================
+  // 日志配置
+  // ==============================
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "level": "warn",       // 日志级别：warn（只记录警告及以上）
+    "timestamp": true      // 日志中显示时间戳
   },
 
+  // ==============================
+  // DNS 配置
+  // ==============================
   "dns": {
     "servers": [
       {
-        "tag": "google",
+        "tag": "google",              // Google DoH，用于境外域名解析
         "address": "https://8.8.8.8/dns-query",
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "cloudflare",
+        "tag": "cloudflare",          // Cloudflare DoH，备用境外 DNS
         "address": "https://1.1.1.1/dns-query",
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "direct-dns",
+        "tag": "direct-dns",          // 阿里 DoH，用于境内域名解析，走直连
         "address": "https://223.5.5.5/dns-query",
-        "detour": "direct-out",
+        "detour": "direct-out",       // 强制走直连出口
         "strategy": "prefer_ipv4"
       }
     ],
     "rules": [
       {
+        // 用于解析代理节点自身域名，避免代理未连接时 DNS 死循环
         "outbound": "any",
         "server": "direct-dns"
       },
       {
+        // 国内域名使用境内 DNS 解析
         "rule_set": "geosite-cn",
         "server": "direct-dns"
       },
       {
+        // 境外域名使用 Google DNS 解析
         "rule_set": "geosite-geolocation-!cn",
         "server": "google"
       }
     ],
-    "final": "google",
-    "independent_cache": true
+    "final": "google",            // 未匹配规则默认用 Google DNS
+    "independent_cache": true     // 各 DNS 服务器独立缓存，互不干扰
   },
 
+  // ==============================
+  // 入站配置
+  // ==============================
   "inbounds": [
     {
-      "type": "tun",
+      "type": "tun",                          // TUN 模式，接管系统全局流量
       "tag": "tun-in",
       "address": [
-        "172.19.0.1/30",
-        "fdfe:dcba:9876::1/126"
+        "172.19.0.1/30",                      // IPv4 TUN 接口地址
+        "fdfe:dcba:9876::1/126"               // IPv6 TUN 接口地址
       ],
-      "auto_route": true,
-      "strict_route": true,
-      "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": true
+      "auto_route": true,                     // 自动添加路由表
+      "strict_route": true,                   // 严格路由，防止流量泄漏
+      "stack": "system",                      // 使用系统网络栈
+      "sniff": true,                          // 开启协议嗅探（识别域名）
+      "sniff_override_destination": true      // 用嗅探结果覆盖目标地址（用于域名路由）
     }
   ],
 
+  // ==============================
+  // 端点配置（WireGuard）
+  // ==============================
   "endpoints": [
     {
       "type": "wireguard",
-      "tag": "LLM-WG",
+      "tag": "LLM-WG",                        // 专用于 LLM 流量的 WireGuard 隧道
       "address": [
-        "10.0.0.2/32"
+        "10.0.0.2/32"                         // 本机在 WireGuard 网络中的地址
       ],
-      "private_key": "4E8WW05lzodksKH+Y/hn+XM/7tOfyLYR12BXQZbEU1U=",
-      "mtu": 1420,
+      "private_key": "4E8WW05lzodksKH+Y/hn+XM/7tOfyLYR12BXQZbEU1U=",  // 本机私钥（勿泄露）
+      "mtu": 1420,                            // MTU，标准 WireGuard 推荐值
       "peers": [
         {
-          "address": "13.213.44.125",
-          "port": 51820,
-          "public_key": "fPOuDyxijX6mb1lsqbkYyyKowrlUC/bGRvKqTNb7+Us=",
+          "address": "13.213.44.125",         // 服务端 IP（AWS 新加坡）
+          "port": 51820,                      // 服务端端口（WireGuard 默认）
+          "public_key": "fPOuDyxijX6mb1lsqbkYyyKowrlUC/bGRvKqTNb7+Us=",  // 服务端公钥
           "allowed_ips": [
-            "0.0.0.0/0",
-            "::/0"
+            "0.0.0.0/0",                      // 允许所有 IPv4 流量通过
+            "::/0"                            // 允许所有 IPv6 流量通过
           ],
-          "persistent_keepalive_interval": 25
+          "persistent_keepalive_interval": 25 // 每 25 秒发送心跳，保持 NAT 穿透
         }
       ]
     }
   ],
 
+  // ==============================
+  // 出站配置
+  // ==============================
   "outbounds": [
     {
+      // CDN 节点选择器，可手动切换三个 VLESS 节点
       "type": "selector",
       "tag": "CDN",
-      "outbounds": [
-        "CDN-1",
-        "CDN-2",
-        "CDN-3"
-      ],
+      "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
       "default": "CDN-1"
     },
     {
+      // LLM 专用出口，固定走 WireGuard 隧道
       "type": "selector",
       "tag": "LLM",
-      "outbounds": [
-        "LLM-WG"
-      ],
+      "outbounds": ["LLM-WG"],
       "default": "LLM-WG"
     },
+
+    // ---------- CDN-1：VLESS + WebSocket + TLS ----------
     {
       "type": "vless",
       "tag": "CDN-1",
@@ -108,20 +124,20 @@
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
       "tls": {
         "enabled": true,
-        "server_name": "ddns.hayoovant.com",
+        "server_name": "ddns.hayoovant.com",  // SNI，用于 TLS 握手
         "utls": {
           "enabled": true,
-          "fingerprint": "chrome"
+          "fingerprint": "chrome"             // 伪装为 Chrome 的 TLS 指纹
         }
       },
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "ddns.hayoovant.com"
-        }
+        "headers": { "Host": "ddns.hayoovant.com" }
       }
     },
+
+    // ---------- CDN-2：VLESS + WebSocket + TLS ----------
     {
       "type": "vless",
       "tag": "CDN-2",
@@ -139,11 +155,11 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "helloworld.todsm.com"
-        }
+        "headers": { "Host": "helloworld.todsm.com" }
       }
     },
+
+    // ---------- CDN-3：VLESS + WebSocket + TLS ----------
     {
       "type": "vless",
       "tag": "CDN-3",
@@ -161,21 +177,24 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "helloworld.fotoman.com"
-        }
+        "headers": { "Host": "helloworld.fotoman.com" }
       }
     },
+
     {
       "type": "direct",
-      "tag": "direct-out"
+      "tag": "direct-out"   // 直连出口，用于国内流量和 DNS
     }
   ],
 
+  // ==============================
+  // 路由配置
+  // ==============================
   "route": {
+    // ---------- 规则集（远程订阅，每 7 天自动更新）----------
     "rule_set": [
       {
-        "tag": "geosite-cn",
+        "tag": "geosite-cn",            // 国内域名列表
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
@@ -183,7 +202,7 @@
         "update_interval": "7d"
       },
       {
-        "tag": "geoip-cn",
+        "tag": "geoip-cn",              // 国内 IP 段列表
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
@@ -191,7 +210,7 @@
         "update_interval": "7d"
       },
       {
-        "tag": "geosite-geolocation-!cn",
+        "tag": "geosite-geolocation-!cn",   // 境外域名列表（非国内）
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
@@ -199,27 +218,31 @@
         "update_interval": "7d"
       }
     ],
+
+    // ---------- 路由规则（按顺序匹配，先匹配先生效）----------
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff"               // 第一步：对所有流量做协议/域名嗅探
       },
       {
         "protocol": "dns",
-        "action": "hijack-dns"
+        "action": "hijack-dns"          // 劫持 DNS 请求，交由内部 DNS 模块处理
       },
       {
         "ip_is_private": true,
-        "action": "direct"
+        "action": "direct"              // 私有 IP（局域网）直连
       },
       {
         "rule_set": "geosite-cn",
-        "action": "direct"
+        "action": "direct"              // 国内域名直连
       },
       {
         "rule_set": "geoip-cn",
-        "action": "direct"
+        "action": "direct"              // 国内 IP 直连
       },
       {
+        // LLM 服务商关键词匹配，走专用 WireGuard 隧道
+        // 如需新增服务商，在此列表追加关键词即可
         "domain_keyword": [
           "openai", "anthropic", "claude", "gemini", "mistral",
           "groq", "cohere", "perplexity", "deepseek", "grok"
@@ -230,24 +253,29 @@
       {
         "rule_set": "geosite-geolocation-!cn",
         "action": "route",
-        "outbound": "CDN"
+        "outbound": "CDN"               // 境外域名走 CDN 代理
       }
     ],
-    "final": "CDN",
-    "auto_detect_interface": true
+
+    "final": "CDN",                     // 未匹配任何规则时，默认走 CDN 代理
+    "auto_detect_interface": true       // 自动检测出口网络接口
   },
 
+  // ==============================
+  // 实验性功能
+  // ==============================
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db"
+      "path": "cache.db"          // 缓存文件路径（存储 DNS 缓存、规则集等）
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "secret": "",
+      // Clash 兼容 API，可用 MetaCubeX / Yacd 等面板管理
+      "external_controller": "127.0.0.1:9090",   // 面板监听地址（仅本机可访问）
+      "external_ui": "ui",                        // 前端静态文件目录
+      "secret": "",                               // API 鉴权密钥（建议生产环境设置）
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
-      "external_ui_download_detour": "CDN"
+      "external_ui_download_detour": "CDN"        // 下载面板文件走 CDN 代理
     }
   }
-}a
+}
