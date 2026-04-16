@@ -29,7 +29,7 @@
           "groq", "cohere", "perplexity", "grok", "x.ai"
         ],
         "server": "llm-dns"
-      },
+      }
     ],
     "final": "direct-dns",
     "independent_cache": true
@@ -172,61 +172,61 @@
         "outbound": "LLM"
       },
       {
-        "ip_cidr": [
-          "14.17.5.0/24",
-          "91.108.4.0/22",
-          "91.108.8.0/22",
-          "91.108.12.0/22",
-          "91.108.16.0/22",
-          "91.108.20.0/22",
-          "91.108.56.0/22",
-          "91.105.192.0/23",
-          "149.154.160.0/20",
-          "185.76.151.0/24",
-          "2001:b28f::/32",
-          "2001:67c:4e8::/48",
-          "2a0a:f280::/32",
-          "8.8.8.8/32",
-          "8.8.4.4/32",
-          "1.1.1.1/32",
-          "1.0.0.1/32",
-          "208.67.222.222/32",
-          "208.67.220.220/32",
-          "9.9.9.9/32",
-          "149.112.112.112/32",
-          "31.13.24.0/21",
-          "31.13.64.0/18",
-          "66.220.144.0/20",
-          "69.63.176.0/20",
-          "69.171.224.0/19",
-          "74.119.76.0/22",
-          "103.4.96.0/22",
-          "129.134.0.0/16",
-          "157.240.0.0/16",
-          "173.252.64.0/18",
-          "204.15.20.0/22",
-          "104.244.42.0/24",
-          "104.244.43.0/24",
-          "199.16.156.0/22",
-          "199.59.148.0/22",
-          "199.96.56.0/21"
+        "rule_set": ["geoip-cn"],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "rule_set": ["geosite-geolocation-!cn"],
+        "invert": true,
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "rule_set": [
+          "geosite-category-ads-all"
         ],
+        "action": "reject"
+      },
+      {
+        "rule_set": ["geoip-cn"],
+        "invert": true,
         "action": "route",
         "outbound": "PROXY"
       },
+
+// ==================== 手动直联规则 ====================
       {
-        "domain_keyword": [
-          "google.com", "google.com.hk", "youtu.be", "youtube.com", "ytimg.com", "googlevideo.com", "ggpht.com", "gmail.com", "duckduckgo.com",
-          "facebook.com", "fbcdn.net", "instagram.com", "cdninstagram.com", "whatsapp.com", "whatsapp.net",
-          "twitter.com", "x.com", "twimg.com", "t.co",
-          "telegram.org", "t.me", "discord.com", "discord.gg", "line.me", "reddit.com", "pinterest.com", "linkedin.com", "tiktok.com",
-          "github.com", "githubusercontent.com", "docker.com", "docker.io", "wikipedia.org", "wikimedia.org", "medium.com", "dropbox.com", "mega.nz",
-          "netflix.com", "nflximg.com", "nflxvideo.net", "spotify.com", "twitch.tv", "twitchcdn.net", "hbo.com", "disneyplus.com", "hulu.com", "steamcommunity.com",
-          "nytimes.com", "nyt.com", "bbc.com", "wsj.com", "bloomberg.com", "reuters.com", "economist.com",
-          "binance.com", "coinbase.com", "okx.com", "coinmarketcap.com", "yahoo.com", "redd.it"
+        "domain_suffix": [
+          "apollo.io", "apollo"
         ],
         "action": "route",
-        "outbound": "PROXY"
+        "outbound": "DIRECT"
+      }
+// ==================== 手动直联规则结束 =================
+
+    ],
+    "rule_set": [
+      {
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
+        "download_detour": "PROXY"
+      },
+      {
+        "tag": "geosite-category-ads-all",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
+        "download_detour": "PROXY"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "PROXY"
       }
     ],
     "final": "DIRECT",
