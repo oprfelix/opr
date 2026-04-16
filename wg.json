@@ -163,14 +163,43 @@
         "ip_is_private": true,
         "action": "direct"
       },
+// ==================== 规则01 ====================
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "mistral",
-          "groq", "cohere", "perplexity", "grok", "x.ai"
+          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
+          "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "action": "route",
         "outbound": "LLM"
       },
+      
+      {
+        "domain_keyword": [
+          "linked", "licdn", "lnkd"
+        ],
+        "action": "route",
+        "outbound": "PROXY"
+      },
+
+      {
+        "ip_cidr": [
+          "108.174.0.0/20",
+          "185.63.144.0/22",
+          "13.107.42.0/24"
+        ],
+        "action": "route",
+        "outbound": "LLM"
+      },
+
+      {
+        "ip_cidr": [
+          "13.107.238.0/24",
+          "13.107.239.0/24"
+        ],
+        "action": "route",
+        "outbound": "LLM"
+      },
+// ==================== 规则01 ====================
       {
         "rule_set": ["geoip-cn"],
         "action": "route",
@@ -195,15 +224,15 @@
         "outbound": "PROXY"
       },
 
-// ==================== 手动直联规则 ====================
+// ==================== 规则02 ====================
       {
         "domain_suffix": [
-          "apollo.io", "apollo"
+          "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
         ],
         "action": "route",
         "outbound": "DIRECT"
       }
-// ==================== 手动直联规则结束 =================
+// ==================== 规则02 ====================
 
     ],
     "rule_set": [
