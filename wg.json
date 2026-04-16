@@ -25,8 +25,8 @@
       },
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "mistral",
-          "groq", "cohere", "perplexity", "grok", "x.ai"
+          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
+          "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "server": "llm-dns"
       }
