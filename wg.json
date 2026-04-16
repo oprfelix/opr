@@ -226,6 +226,21 @@
         "outbound": "LLM"
       },
       {
+        "domain_suffix": [
+          "qq.com",
+          "wechat.com",
+          "weixin.qq.com"
+        ],
+        "action": "direct"
+      },
+      {
+        "domain_keyword": [
+          "wechat",
+          "weixin"
+        ],
+        "action": "direct"
+      },
+      {
         "rule_set": "geosite-tencent",
         "action": "direct"
       },
