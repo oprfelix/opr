@@ -25,15 +25,30 @@
       {
         "tag": "direct-dns",          // 阿里 DoH，用于境内域名解析，走直连
         "address": "https://223.5.5.5/dns-query",
-        "detour": "direct-out",       // 强制走直连出口
+        "detour": "direct-out",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        // [新增] LLM 专用 DNS，强制走 WireGuard 隧道，防止 DNS 泄露
+        "tag": "llm-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "LLM-WG",
         "strategy": "prefer_ipv4"
       }
     ],
     "rules": [
       {
-        // 用于解析代理节点自身域名，避免代理未连接时 DNS 死循环
+        // 解析代理节点自身域名，避免代理未连接时 DNS 死循环
         "outbound": "any",
         "server": "direct-dns"
+      },
+      {
+        // [新增] LLM 域名的 DNS 查询强制走 WireGuard，与数据流量出口保持一致
+        "domain_keyword": [
+          "openai", "anthropic", "claude", "gemini", "mistral",
+          "groq", "cohere", "perplexity", "grok", "x.ai"
+        ],
+        "server": "llm-dns"
       },
       {
         // 国内域名使用境内 DNS 解析
@@ -124,10 +139,10 @@
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
       "tls": {
         "enabled": true,
-        "server_name": "ddns.hayoovant.com",  // SNI，用于 TLS 握手
+        "server_name": "ddns.hayoovant.com",
         "utls": {
           "enabled": true,
-          "fingerprint": "chrome"             // 伪装为 Chrome 的 TLS 指纹
+          "fingerprint": "chrome"
         }
       },
       "transport": {
@@ -233,6 +248,21 @@
         "action": "direct"              // 私有 IP（局域网）直连
       },
       {
+        // 腾讯核心服务强制直连（QQ、微信、企业微信等）
+        // 单独列出是为了维护清晰，方便日后调整
+        "domain_suffix": [
+          "qq.com",
+          "weixin.qq.com",
+          "wx.qq.com",
+          "wechat.com",
+          "weixin.com",
+          "qpic.cn",       // 微信图片 CDN
+          "qlogo.cn",      // 微信头像 CDN
+          "myqcloud.com"   // 腾讯云 CDN（微信文件传输常用）
+        ],
+        "action": "direct"
+      },
+      {
         "rule_set": "geosite-cn",
         "action": "direct"              // 国内域名直连
       },
@@ -245,7 +275,7 @@
         // 如需新增服务商，在此列表追加关键词即可
         "domain_keyword": [
           "openai", "anthropic", "claude", "gemini", "mistral",
-          "groq", "cohere", "perplexity", "deepseek", "grok"
+          "groq", "cohere", "perplexity", "grok", "x.ai"
         ],
         "action": "route",
         "outbound": "LLM"
