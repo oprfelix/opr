@@ -6,14 +6,15 @@
   "dns": {
     "servers": [
       {
-        "tag": "google",
-        "address": "https://8.8.8.8/dns-query",
+        "tag": "direct-dns",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "direct-dns",
-        "address": "https://223.5.5.5/dns-query",
-        "detour": "direct-out",
+        "tag": "llm-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "LLM-WG",
         "strategy": "prefer_ipv4"
       }
     ],
@@ -23,15 +24,14 @@
         "server": "direct-dns"
       },
       {
-        "rule_set": "geosite-cn",
-        "server": "direct-dns"
+        "domain_keyword": [
+          "openai", "anthropic", "claude", "gemini", "mistral",
+          "groq", "cohere", "perplexity", "grok", "x.ai"
+        ],
+        "server": "llm-dns"
       },
-      {
-        "rule_set": "geosite-geolocation-!cn",
-        "server": "google"
-      }
     ],
-    "final": "google",
+    "final": "direct-dns",
     "independent_cache": true
   },
   "inbounds": [
@@ -57,7 +57,7 @@
         "10.0.0.2/32"
       ],
       "private_key": "4E8WW05lzodksKH+Y/hn+XM/7tOfyLYR12BXQZbEU1U=",
-      "mtu": 1280,
+      "mtu": 1420,
       "peers": [
         {
           "address": "13.213.44.125",
@@ -75,20 +75,14 @@
   "outbounds": [
     {
       "type": "selector",
-      "tag": "CDN",
-      "outbounds": [
-        "CDN-1",
-        "CDN-2",
-        "CDN-3"
-      ],
+      "tag": "PROXY",
+      "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
       "default": "CDN-1"
     },
     {
       "type": "selector",
       "tag": "LLM",
-      "outbounds": [
-        "LLM-WG"
-      ],
+      "outbounds": ["LLM-WG"],
       "default": "LLM-WG"
     },
     {
@@ -108,9 +102,7 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "ddns.hayoovant.com"
-        }
+        "headers": { "Host": "ddns.hayoovant.com" }
       }
     },
     {
@@ -130,9 +122,7 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "helloworld.todsm.com"
-        }
+        "headers": { "Host": "helloworld.todsm.com" }
       }
     },
     {
@@ -152,41 +142,19 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": {
-          "Host": "helloworld.fotoman.com"
-        }
+        "headers": { "Host": "helloworld.fotoman.com" }
       }
     },
     {
       "type": "direct",
-      "tag": "direct-out"
+      "tag": "DIRECT"
     }
   ],
   "route": {
-    "rule_set": [
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "CDN"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "CDN"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
-        "download_detour": "CDN"
-      }
-    ],
     "rules": [
+      {
+        "action": "sniff"
+      },
       {
         "protocol": "dns",
         "action": "hijack-dns"
@@ -197,35 +165,71 @@
       },
       {
         "domain_keyword": [
-          "openai",
-          "anthropic",
-          "claude",
-          "gemini",
-          "mistral",
-          "groq",
-          "cohere",
-          "perplexity",
-          "deepseek",
-          "grok"
+          "openai", "anthropic", "claude", "gemini", "mistral",
+          "groq", "cohere", "perplexity", "grok", "x.ai"
         ],
         "action": "route",
         "outbound": "LLM"
       },
       {
-        "rule_set": "geosite-cn",
-        "action": "direct"
-      },
-      {
-        "rule_set": "geoip-cn",
-        "action": "direct"
-      },
-      {
-        "rule_set": "geosite-geolocation-!cn",
+        "ip_cidr": [
+          "14.17.5.0/24",
+          "91.108.4.0/22",
+          "91.108.8.0/22",
+          "91.108.12.0/22",
+          "91.108.16.0/22",
+          "91.108.20.0/22",
+          "91.108.56.0/22",
+          "91.105.192.0/23",
+          "149.154.160.0/20",
+          "185.76.151.0/24",
+          "2001:b28f::/32",
+          "2001:67c:4e8::/48",
+          "2a0a:f280::/32",
+          "8.8.8.8/32",
+          "8.8.4.4/32",
+          "1.1.1.1/32",
+          "1.0.0.1/32",
+          "208.67.222.222/32",
+          "208.67.220.220/32",
+          "9.9.9.9/32",
+          "149.112.112.112/32",
+          "31.13.24.0/21",
+          "31.13.64.0/18",
+          "66.220.144.0/20",
+          "69.63.176.0/20",
+          "69.171.224.0/19",
+          "74.119.76.0/22",
+          "103.4.96.0/22",
+          "129.134.0.0/16",
+          "157.240.0.0/16",
+          "173.252.64.0/18",
+          "204.15.20.0/22",
+          "104.244.42.0/24",
+          "104.244.43.0/24",
+          "199.16.156.0/22",
+          "199.59.148.0/22",
+          "199.96.56.0/21"
+        ],
         "action": "route",
-        "outbound": "CDN"
+        "outbound": "PROXY"
+      },
+      {
+        "domain_keyword": [
+          "google.com", "google.com.hk", "youtu.be", "youtube.com", "ytimg.com", "googlevideo.com", "ggpht.com", "gmail.com", "duckduckgo.com",
+          "facebook.com", "fbcdn.net", "instagram.com", "cdninstagram.com", "whatsapp.com", "whatsapp.net",
+          "twitter.com", "x.com", "twimg.com", "t.co",
+          "telegram.org", "t.me", "discord.com", "discord.gg", "line.me", "reddit.com", "pinterest.com", "linkedin.com", "tiktok.com",
+          "github.com", "githubusercontent.com", "docker.com", "docker.io", "wikipedia.org", "wikimedia.org", "medium.com", "dropbox.com", "mega.nz",
+          "netflix.com", "nflximg.com", "nflxvideo.net", "spotify.com", "twitch.tv", "twitchcdn.net", "hbo.com", "disneyplus.com", "hulu.com", "steamcommunity.com",
+          "nytimes.com", "nyt.com", "bbc.com", "wsj.com", "bloomberg.com", "reuters.com", "economist.com",
+          "binance.com", "coinbase.com", "okx.com", "coinmarketcap.com", "yahoo.com", "redd.it"
+        ],
+        "action": "route",
+        "outbound": "PROXY"
       }
     ],
-    "final": "CDN",
+    "final": "DIRECT",
     "auto_detect_interface": true
   },
   "experimental": {
@@ -238,7 +242,7 @@
       "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
-      "external_ui_download_detour": "CDN"
+      "external_ui_download_detour": "PROXY"
     }
   }
 }
