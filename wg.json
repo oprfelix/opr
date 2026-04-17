@@ -27,7 +27,7 @@
       },
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
+          "openai", "anthropic", "claude", "mistral",
           "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "server": "proxy-dns" // AI 相关域名使用 proxy-dns 解析
@@ -176,7 +176,7 @@
 // ==================== 规则01：AI 相关分流 ====================
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
+          "openai", "anthropic", "claude", "mistral",
           "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "action": "route",
