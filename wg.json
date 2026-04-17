@@ -12,9 +12,9 @@
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "llm-dns",
+        "tag": "proxy-dns",
         "address": "https://8.8.8.8/dns-query",
-        "detour": "LLM-WG",
+        "detour": "PROXY",
         "strategy": "prefer_ipv4"
       }
     ],
@@ -27,7 +27,7 @@
         "domain_keyword": [
           "openai", "anthropic", "claude", "mistral", "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
-        "server": "llm-dns"
+        "server": "proxy-dns"
       }
     ],
     "final": "direct-dns",
