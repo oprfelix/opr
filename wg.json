@@ -225,10 +225,8 @@
           "oaiusercontent.com",
           "claude.ai",
           "anthropic.com",
-          "auth0.com",
           "x.ai",
           "grok.com",
-          "x.com",
           "perplexity.ai"
         ],
         "action": "route",
