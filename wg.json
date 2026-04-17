@@ -1,54 +1,62 @@
 {
+  // 日志配置
   "log": {
-    "level": "warn",
-    "timestamp": true
+    "level": "warn", // 日志级别：仅显示警告及错误
+    "timestamp": true // 在日志中显示时间戳
   },
+  // DNS 配置
   "dns": {
     "servers": [
       {
         "tag": "direct-dns",
-        "address": "https://223.5.5.5/dns-query",
-        "detour": "DIRECT",
+        "address": "https://223.5.5.5/dns-query", // 阿里 DNS (DoH)
+        "detour": "DIRECT", // 直连访问
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "llm-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "detour": "LLM-WG",
+        "tag": "proxy-dns",
+        "address": "https://8.8.8.8/dns-query", // Google DNS (DoH)
+        "detour": "PROXY", // 修改：通过 PROXY 出站解析，不再通过 LLM-WG
         "strategy": "prefer_ipv4"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "direct-dns"
+        "server": "direct-dns" // 默认所有出站优先使用直连 DNS
       },
       {
         "domain_keyword": [
           "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
           "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
-        "server": "llm-dns"
+        "server": "proxy-dns" // AI 相关域名使用 proxy-dns 解析
+      },
+      {
+        "rule_set": ["geosite-geolocation-!cn"],
+        "server": "proxy-dns" // 中国以外的域名使用 proxy-dns 解析
       }
     ],
     "final": "direct-dns",
-    "independent_cache": true
+    "independent_cache": true // 启用独立缓存
   },
+  // 入站设置
   "inbounds": [
     {
-      "type": "tun",
+      "type": "tun", // TUN 模式（虚拟网卡）
       "tag": "tun-in",
       "address": [
         "172.19.0.1/30",
         "fdfe:dcba:9876::1/126"
       ],
-      "auto_route": true,
-      "strict_route": true,
-      "stack": "system",
-      "sniff": true,
+      "auto_route": true, // 自动设置路由表
+      "strict_route": true, // 强制所有流量通过 TUN
+      "stack": "system", // 使用系统网络栈
+      "sniff": true, // 启用流量嗅探（识别域名）
       "sniff_override_destination": true
     }
   ],
+  // 终端节点配置（如 WireGuard）
   "endpoints": [
     {
       "type": "wireguard",
@@ -72,15 +80,16 @@
       ]
     }
   ],
+  // 出站节点配置
   "outbounds": [
     {
-      "type": "selector",
+      "type": "selector", // 选择器：手动切换 CDN 节点
       "tag": "PROXY",
       "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
       "default": "CDN-1"
     },
     {
-      "type": "selector",
+      "type": "selector", // 选择器：LLM 专用出站
       "tag": "LLM",
       "outbounds": ["LLM-WG"],
       "default": "LLM-WG"
@@ -150,20 +159,21 @@
       "tag": "DIRECT"
     }
   ],
+  // 路由分流配置
   "route": {
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff" // 执行流量嗅探
       },
       {
         "protocol": "dns",
-        "action": "hijack-dns"
+        "action": "hijack-dns" // 劫持 DNS 请求到内部服务器
       },
       {
         "ip_is_private": true,
-        "action": "direct"
+        "action": "direct" // 私有 IP（局域网）直接连接
       },
-// ==================== 规则01 ====================
+// ==================== 规则01：AI 相关分流 ====================
       {
         "domain_keyword": [
           "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
@@ -199,32 +209,32 @@
         "action": "route",
         "outbound": "LLM"
       },
-// ==================== 规则01 ====================
+// ==================== 规则01：结束 ====================
       {
         "rule_set": ["geoip-cn"],
         "action": "route",
-        "outbound": "DIRECT"
+        "outbound": "DIRECT" // 中国大陆 IP 直连
       },
       {
         "rule_set": ["geosite-geolocation-!cn"],
         "invert": true,
         "action": "route",
-        "outbound": "DIRECT"
+        "outbound": "DIRECT" // 如果不是非中国区网站，则直连（兜底国内逻辑）
       },
       {
         "rule_set": [
           "geosite-category-ads-all"
         ],
-        "action": "reject"
+        "action": "reject" // 拒绝/拦截广告
       },
       {
         "rule_set": ["geoip-cn"],
         "invert": true,
         "action": "route",
-        "outbound": "PROXY"
+        "outbound": "PROXY" // 非中国 IP 走代理
       },
 
-// ==================== 规则02 ====================
+// ==================== 规则02：白名单直连 ====================
       {
         "domain_suffix": [
           "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
@@ -232,9 +242,10 @@
         "action": "route",
         "outbound": "DIRECT"
       }
-// ==================== 规则02 ====================
+// ==================== 规则02：结束 ====================
 
     ],
+    // 远程规则集定义
     "rule_set": [
       {
         "tag": "geosite-geolocation-!cn",
@@ -258,18 +269,19 @@
         "download_detour": "PROXY"
       }
     ],
-    "final": "DIRECT",
-    "auto_detect_interface": true
+    "final": "DIRECT", // 最终默认行为：直连
+    "auto_detect_interface": true // 自动检测网卡
   },
+  // 实验性功能及 Clash API
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db"
+      "path": "cache.db" // 启用缓存文件以提高性能
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "external_ui": "ui",
-      "secret": "",
+      "external_controller": "127.0.0.1:9090", // 控制台地址
+      "external_ui": "ui", // 界面目录
+      "secret": "", // API 密钥
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
       "external_ui_download_detour": "PROXY"
     }
