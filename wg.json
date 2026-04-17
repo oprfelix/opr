@@ -172,6 +172,17 @@
         "action": "direct"
       },
       {
+        "rule_set": ["geoip-cn"],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "rule_set": ["geosite-geolocation-!cn"],
+        "invert": true,
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
         "rule_set": ["geosite-category-ads-all"],
         "action": "reject"
       },
@@ -189,11 +200,6 @@
         "domain_suffix": [
           "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
         ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "rule_set": ["geoip-cn"],
         "action": "route",
         "outbound": "DIRECT"
       },
