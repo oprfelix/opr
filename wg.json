@@ -191,14 +191,34 @@
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
-          "oaiusercontent.com"
+          "oaiusercontent.com",
+          "claude.ai",
+          "anthropic.com",
+          "cloudfront.net",
+          "auth0.com",
+          "x.ai",
+          "grok.com",
+          "x.com",
+          "twimg.com",
+          "perplexity.ai",
+          "vercel.app"
         ],
         "action": "route",
         "outbound": "LLM"
       },
       {
-        "domain_suffix": [
-          "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
+        "domain_keyword": [
+          "apollo", 
+          "helium10", 
+          "myshopline", 
+          "shopline", 
+          "Sortime", 
+          "semrush", 
+          "quanmaitong", 
+          "sif", 
+          "garmin", 
+          "wahoo", 
+          "komoot"
         ],
         "action": "route",
         "outbound": "DIRECT"
