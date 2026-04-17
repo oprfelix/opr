@@ -69,8 +69,29 @@
     {
       "type": "selector",
       "tag": "LLM",
-      "outbounds": ["LLM-WG"],
-      "default": "LLM-WG"
+      "outbounds": ["LLM-US-REALITY", "LLM-WG"],
+      "default": "LLM-US-REALITY"
+    },
+    {
+      "type": "vless",
+      "tag": "LLM-US-REALITY",
+      "server": "107.173.140.91",
+      "server_port": 10104,
+      "uuid": "27081bfd-e334-417e-a7da-73a8b52a4c33",
+      "flow": "xtls-rprx-vision",
+      "tls": {
+        "enabled": true,
+        "server_name": "www.paypal.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg",
+          "short_id": ""
+        }
+      }
     },
     {
       "type": "vless",
@@ -151,39 +172,37 @@
         "action": "direct"
       },
       {
-        "rule_set": ["geoip-cn"],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "rule_set": ["geosite-geolocation-!cn"],
-        "invert": true,
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "rule_set": [
-          "geosite-category-ads-all"
-        ],
+        "rule_set": ["geosite-category-ads-all"],
         "action": "reject"
       },
-
       {
-        "rule_set": ["geoip-cn"],
-        "invert": true,
+        "domain_suffix": [
+          "chatgpt.com",
+          "openai.com",
+          "oaistatic.com",
+          "oaiusercontent.com"
+        ],
         "action": "route",
-        "outbound": "PROXY"
+        "outbound": "LLM"
       },
-
       {
         "domain_suffix": [
           "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
         ],
         "action": "route",
         "outbound": "DIRECT"
+      },
+      {
+        "rule_set": ["geoip-cn"],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "rule_set": ["geoip-cn"],
+        "invert": true,
+        "action": "route",
+        "outbound": "PROXY"
       }
-
-
     ],
     "rule_set": [
       {
