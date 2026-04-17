@@ -63,14 +63,30 @@
     {
       "type": "selector",
       "tag": "PROXY",
+      "outbounds": ["CDN-AUTO", "CDN-1", "CDN-2", "CDN-3"],
+      "default": "CDN-AUTO"
+    },
+    {
+      "type": "urltest",
+      "tag": "CDN-AUTO",
       "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
-      "default": "CDN-1"
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
     },
     {
       "type": "selector",
       "tag": "LLM",
-      "outbounds": ["LLM-US-REALITY", "LLM-WG"],
-      "default": "LLM-US-REALITY"
+      "outbounds": ["LLM-AUTO", "LLM-US-REALITY", "LLM-WG", "LLM-DE-VLESS"],
+      "default": "LLM-AUTO"
+    },
+    {
+      "type": "urltest",
+      "tag": "LLM-AUTO",
+      "outbounds": ["LLM-US-REALITY", "LLM-WG", "LLM-DE-VLESS"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
     },
     {
       "type": "vless",
@@ -90,6 +106,21 @@
           "enabled": true,
           "public_key": "6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg",
           "short_id": ""
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "LLM-DE-VLESS",
+      "server": "de.todsm.com",
+      "server_port": 443,
+      "uuid": "93a32eb7-a2ba-4716-a640-ba8fa7de0350",
+      "tls": {
+        "enabled": true,
+        "server_name": "de.todsm.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
         }
       }
     },
@@ -208,16 +239,16 @@
       },
       {
         "domain_keyword": [
-          "apollo", 
-          "helium10", 
-          "myshopline", 
-          "shopline", 
-          "Sortime", 
-          "semrush", 
-          "quanmaitong", 
-          "sif", 
-          "garmin", 
-          "wahoo", 
+          "apollo",
+          "helium10",
+          "myshopline",
+          "shopline",
+          "Sortime",
+          "semrush",
+          "quanmaitong",
+          "sif",
+          "garmin",
+          "wahoo",
           "komoot"
         ],
         "action": "route",
