@@ -225,14 +225,11 @@
           "oaiusercontent.com",
           "claude.ai",
           "anthropic.com",
-          "cloudfront.net",
           "auth0.com",
           "x.ai",
           "grok.com",
           "x.com",
-          "twimg.com",
-          "perplexity.ai",
-          "vercel.app"
+          "perplexity.ai"
         ],
         "action": "route",
         "outbound": "LLM"
