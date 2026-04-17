@@ -1,61 +1,53 @@
 {
-  // 日志设置：用于排查连接问题
   "log": {
-    "level": "warn", // 日志级别，设置为 warn 减少磁盘写入并过滤无用信息
-    "timestamp": true // 开启时间戳，方便定位故障发生时间
+    "level": "warn",
+    "timestamp": true
   },
-  // DNS 调度中心：处理域名解析与防污染
   "dns": {
     "servers": [
       {
         "tag": "direct-dns",
-        "address": "https://223.5.5.5/dns-query", // 阿里 DoH，用于国内域名直连解析
-        "detour": "DIRECT", // 强制走本地网络，确保解析速度最快
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "proxy-dns",
-        "address": "https://8.8.8.8/dns-query", // Google DoH，用于海外/AI域名解析
-        "detour": "PROXY", // 核心修改：流量加密通过代理发出，彻底解决解析污染
+        "tag": "llm-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "LLM-WG",
         "strategy": "prefer_ipv4"
       }
     ],
     "rules": [
       {
         "outbound": "any",
-        "server": "direct-dns" // 默认规则：优先使用国内 DNS
+        "server": "direct-dns"
       },
       {
         "domain_keyword": [
           "openai", "anthropic", "claude", "mistral", "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
-        "server": "proxy-dns" // AI 类域名强制走远程 DNS 解析
-      },
-      {
-        "rule_set": ["geosite-geolocation-!cn"],
-        "server": "proxy-dns" // 非中国大陆域名强制走远程 DNS 解析
+        "server": "llm-dns"
       }
     ],
-    "final": "direct-dns", // 默认兜底 DNS
-    "independent_cache": true // 开启独立缓存，提高二次访问解析速度
+    "final": "direct-dns",
+    "independent_cache": true
   },
-  // 入站协议：接管系统流量
   "inbounds": [
     {
-      "type": "tun", // 虚拟网卡模式，接管整机流量
+      "type": "tun",
       "tag": "tun-in",
       "address": [
         "172.19.0.1/30",
         "fdfe:dcba:9876::1/126"
       ],
-      "auto_route": true, // 自动修改系统路由表
-      "strict_route": true, // 严格路由，防止流量泄露
-      "stack": "system", // 使用系统网络栈，稳定性较好
-      "sniff": true, // 开启流量嗅探，用于识别 TLS 域名进行精确分流
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "sniff": true,
       "sniff_override_destination": true
     }
   ],
-  // 协议端点：定义 WireGuard 等特殊通道
   "endpoints": [
     {
       "type": "wireguard",
@@ -79,16 +71,15 @@
       ]
     }
   ],
-  // 出站节点：流量发送的目的地
   "outbounds": [
     {
-      "type": "selector", // 手动选择器：用于日常网页浏览
+      "type": "selector",
       "tag": "PROXY",
       "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
       "default": "CDN-1"
     },
     {
-      "type": "selector", // AI 专用出站：通过指定 WireGuard 落地
+      "type": "selector",
       "tag": "LLM",
       "outbounds": ["LLM-WG"],
       "default": "LLM-WG"
@@ -158,27 +149,26 @@
       "tag": "DIRECT"
     }
   ],
-  // 路由引擎：流量分流的核心逻辑
   "route": {
     "rules": [
       {
-        "action": "sniff" // 嗅探流量以获取域名信息进行分流
+        "action": "sniff"
       },
       {
         "protocol": "dns",
-        "action": "hijack-dns" // 劫持所有标准 DNS 请求到内部 DNS 调度中心
+        "action": "hijack-dns"
       },
       {
         "ip_is_private": true,
-        "action": "direct" // 私有网段流量不走代理，直接连接
+        "action": "direct"
       },
-// ==================== AI 流量规则专区 ====================
+// ==================== 规则01 ====================
       {
         "domain_keyword": [
           "openai", "anthropic", "claude", "mistral", "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "action": "route",
-        "outbound": "LLM" // AI 域名统一通过 LLM-WG 出站
+        "outbound": "LLM"
       },
       
       {
@@ -186,7 +176,7 @@
           "linked", "licdn", "lnkd"
         ],
         "action": "route",
-        "outbound": "PROXY" // 职场社交流量走 PROXY 出站
+        "outbound": "PROXY"
       },
 
       {
@@ -196,7 +186,7 @@
           "13.107.42.0/24"
         ],
         "action": "route",
-        "outbound": "LLM" // 特定 AI 服务 IP 段走 LLM-WG
+        "outbound": "LLM"
       },
 
       {
@@ -207,43 +197,42 @@
         "action": "route",
         "outbound": "LLM"
       },
-// ==================== 常规分流规则 ====================
+// ==================== 规则01 ====================
       {
         "rule_set": ["geoip-cn"],
         "action": "route",
-        "outbound": "DIRECT" // 中国大陆 IP 直接连接
+        "outbound": "DIRECT"
       },
       {
         "rule_set": ["geosite-geolocation-!cn"],
         "invert": true,
         "action": "route",
-        "outbound": "DIRECT" // 逻辑取反：若不在非中国库中，默认直连（增强国内访问）
+        "outbound": "DIRECT"
       },
       {
         "rule_set": [
           "geosite-category-ads-all"
         ],
-        "action": "reject" // 广告拦截规则
+        "action": "reject"
       },
       {
         "rule_set": ["geoip-cn"],
         "invert": true,
         "action": "route",
-        "outbound": "PROXY" // 识别为国外 IP 的流量走代理
+        "outbound": "PROXY"
       },
 
-// ==================== 个人白名单：强制直连 ====================
+// ==================== 规则02 ====================
       {
         "domain_suffix": [
           "apollo.io", "apollo", "helium10", "myshopline", "shopline", "Sortime", "semrush", "quanmaitong", "sif.com", "garmin", "wahoo", "komoot"
         ],
         "action": "route",
-        "outbound": "DIRECT" // 指定办公及运动品牌域名直连，保证低延迟
+        "outbound": "DIRECT"
       }
-// ==================== 规则结束 ====================
+// ==================== 规则02 ====================
 
     ],
-    // 远程资源库：自动更新规则集
     "rule_set": [
       {
         "tag": "geosite-geolocation-!cn",
@@ -267,19 +256,18 @@
         "download_detour": "PROXY"
       }
     ],
-    "final": "DIRECT", // 兜底策略：未匹配规则流量直连
-    "auto_detect_interface": true // 自动识别本地网卡，防止回环
+    "final": "DIRECT",
+    "auto_detect_interface": true
   },
-  // 实验性增强功能
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db" // 记录解析结果，减少后续连接建立时间
+      "path": "cache.db"
     },
     "clash_api": {
-      "external_controller": "127.0.0.1:9090", // 面板控制端口
-      "external_ui": "ui", // 指定 UI 文件存放目录
-      "secret": "", // API 验证密钥
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
       "external_ui_download_detour": "PROXY"
     }
