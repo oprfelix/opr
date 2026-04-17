@@ -27,8 +27,7 @@
       },
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
-          "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
+          "openai", "anthropic", "claude", "mistral", "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "server": "proxy-dns" // AI 类域名强制走远程 DNS 解析
       },
@@ -176,8 +175,7 @@
 // ==================== AI 流量规则专区 ====================
       {
         "domain_keyword": [
-          "openai", "anthropic", "claude", "gemini", "aistudio.google.com", "ai.google.dev", "mistral",
-          "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
+          "openai", "anthropic", "claude", "mistral", "groq", "cohere", "perplexity", "grok", "x.ai", "xai.com", "chatgpt", "oaistatic", "oaiusercontent"
         ],
         "action": "route",
         "outbound": "LLM" // AI 域名统一通过 LLM-WG 出站
