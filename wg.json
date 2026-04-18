@@ -270,7 +270,7 @@
         "action": "reject"
       },
       {
-        "domain_keyword": ["tidal"],
+        "domain_keyword": ["tidal", "qobuz"],
         "action": "route",
         "outbound": "PROXY"
       },  
@@ -278,6 +278,7 @@
         "domain_keyword": [
           "apollo",
           "helium10",
+          "amazon",
           "myshopline",
           "shopline",
           "Sortime",
