@@ -13,7 +13,7 @@
       },
       {
         "tag": "fallback-dns",
-        "address": "https://223.5.5.5/dns-query",
+        "address": "https://dns.alidns.com/dns-query",
         "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },  
