@@ -12,6 +12,12 @@
         "strategy": "prefer_ipv4"
       },
       {
+        "tag": "fallback-dns",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "DIRECT",
+        "strategy": "prefer_ipv4"
+      },  
+      {
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
         "detour": "PROXY",
@@ -20,7 +26,7 @@
     ],
     "rules": [
       {
-        "outbound": ["PROXY", "LLM"],
+        "outbound": ["PROXY", "DIRECT", "LLM"],
         "server": "direct-dns"
       },
       {
@@ -28,7 +34,7 @@
         "server": "global-dns"
       }
     ],
-    "final": "direct-dns",
+    "final": "fallback-dns",
     "independent_cache": true
   },   
   "inbounds": [
@@ -157,7 +163,7 @@
     {
       "type": "vless",
       "tag": "CDN-2",
-      "server": "104.27.26.10",
+      "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
       "tls": {
@@ -177,7 +183,7 @@
     {
       "type": "vless",
       "tag": "CDN-3",
-      "server": "172.66.208.146",
+      "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
       "tls": {
