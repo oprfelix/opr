@@ -7,14 +7,15 @@
     "servers": [
       {
         "tag": "direct-dns",
-        "address": "223.5.5.5",
+        "address": "https://dns.alidns.com/dns-query",
+        "address_resolver": "mydns",
         "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },
       {
         "tag": "fallback-dns",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "direct-dns",
+        "address": "https://doh.pub/dns-query",
+        "address_resolver": "mydns",
         "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },  
@@ -22,6 +23,12 @@
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
         "detour": "PROXY",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "tag": "mydns",
+        "address": "223.5.5.5",
+        "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       }
     ],
