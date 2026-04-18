@@ -13,7 +13,8 @@
       },
       {
         "tag": "fallback-dns",
-        "address": "https://223.5.5.5/dns-query",
+        "address": "h3://dns.alidns.com/dns-query",
+        "address_resolver": "direct-dns",
         "detour": "DIRECT",
         "strategy": "prefer_ipv4"
       },  
@@ -37,7 +38,20 @@
     "final": "fallback-dns",
     "independent_cache": true
   },   
+  "ntp": {
+      "enabled": true,
+      "server": "time.apple.com",
+      "server_port": 123,
+      "interval": "30m",
+      "detour": "DIRECT"
+    },   
   "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
+    },    
     {
       "type": "tun",
       "tag": "tun-in",
