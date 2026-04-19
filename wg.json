@@ -236,11 +236,34 @@
         "action": "hijack-dns"
       },
       {
+        "rule_set": ["geosite-category-ads-all"],
+        "action": "reject"
+      },
+      {
         "ip_is_private": true,
         "action": "direct"
       },
       {
         "rule_set": ["geoip-cn"],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_keyword": [
+          "apollo",
+          "helium10",
+          "amazon",
+          "myshopline",
+          "shopline",
+          "Sortime",
+          "semrush",
+          "quanmaitong",
+          "sif",
+          "garmin",
+          "wahoo",
+          "qpic",
+          "komoot"
+        ],
         "action": "route",
         "outbound": "DIRECT"
       },
@@ -266,32 +289,9 @@
         "outbound": "DIRECT"
       },
       {
-        "rule_set": ["geosite-category-ads-all"],
-        "action": "reject"
-      },
-      {
         "domain_keyword": ["tidal", "qobuz"],
         "action": "route",
         "outbound": "PROXY"
-      },  
-      {
-        "domain_keyword": [
-          "apollo",
-          "helium10",
-          "amazon",
-          "myshopline",
-          "shopline",
-          "Sortime",
-          "semrush",
-          "quanmaitong",
-          "sif",
-          "garmin",
-          "wahoo",
-          "qpic",
-          "komoot"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
       },
       {
         "rule_set": ["geoip-cn"],
