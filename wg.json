@@ -38,6 +38,12 @@
         "server": "direct-dns"
       },
       {
+        "rule_set": [
+          "geosite-telegram"
+        ],
+        "server": "global-dns"
+      },
+      {
         "rule_set": ["geosite-geolocation-!cn"],
         "server": "global-dns"
       },
@@ -287,13 +293,21 @@
         "outbound": "LLM"
       },
       {
+        "rule_set": [
+          "geosite-telegram",
+          "geoip-telegram"
+        ],
+        "action": "route",
+        "outbound": "PROXY"
+      },
+      {
         "rule_set": ["geosite-geolocation-!cn"],
         "invert": true,
         "action": "route",
         "outbound": "DIRECT"
       },
       {
-        "domain_keyword": ["tidal", "qobuz"],
+        "domain_keyword": ["tidal", "qobuz", "kik"],
         "action": "route",
         "outbound": "PROXY"
       },
@@ -305,6 +319,20 @@
       }
     ],
     "rule_set": [
+      {
+        "tag": "geosite-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
+        "download_detour": "PROXY"
+      },
+      {
+        "tag": "geoip-telegram",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
+        "download_detour": "PROXY"
+      },
       {
         "tag": "geosite-geolocation-!cn",
         "type": "remote",
