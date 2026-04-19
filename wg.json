@@ -240,7 +240,7 @@
         "action": "direct"
       },
       {
-        "rule_set": ["geosite-category-ads-all"],
+        "rule_set": ["geosite-category-ads-all", "anti-ad"],
         "action": "reject"
       },
       {
@@ -315,6 +315,13 @@
         "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
         "download_detour": "PROXY"
       },
+      {
+        "tag": "anti-ad",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://gh.090227.xyz/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ads.srs",
+        "download_detour": "PROXY"
+      },    
       {
         "tag": "geoip-cn",
         "type": "remote",
