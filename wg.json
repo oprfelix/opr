@@ -42,7 +42,7 @@
         "server": "global-dns"
       },
       {
-      "rule_set": ["geosite-category-ads-all", "anti-ad", "hagezi-pro"],
+      "rule_set": ["geosite-category-ads-all"],
       "action": "reject"
       }
     ],
@@ -244,7 +244,7 @@
         "action": "direct"
       },
       {
-        "rule_set": ["geosite-category-ads-all", "anti-ad", "hagezi-pro"],
+        "rule_set": ["geosite-category-ads-all"],
         "action": "reject"
       },
       {
@@ -319,20 +319,6 @@
         "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
         "download_detour": "PROXY"
       },
-      {
-        "tag": "anti-ad",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://github.com/DustinWin/ruleset_geodata/releases/download/sing-box-ruleset/ads.srs",
-        "download_detour": "PROXY"
-      },   
-      {
-        "tag": "hagezi-pro",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/Phoroc/sing-rules/rule-set/hagezi-pro.srs",
-        "download_detour": "PROXY"
-      },  
       {
         "tag": "geoip-cn",
         "type": "remote",
