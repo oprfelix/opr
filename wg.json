@@ -293,6 +293,16 @@
         "outbound": "LLM"
       },
       {
+      "domain_suffix": [
+        "kik.com",
+        "kik.me",
+        "kikcdn.com",
+        "kikinteractive.com"
+      ],
+      "action": "route",
+      "outbound": "PROXY"
+      },    
+      {
         "rule_set": [
           "geosite-telegram",
           "geoip-telegram"
@@ -307,7 +317,7 @@
         "outbound": "DIRECT"
       },
       {
-        "domain_keyword": ["tidal", "qobuz", "kik"],
+        "domain_keyword": ["tidal", "qobuz"],
         "action": "route",
         "outbound": "PROXY"
       },
