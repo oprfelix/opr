@@ -297,8 +297,7 @@
         "kik.com",
         "kik.me",
         "kikcdn.com",
-        "kikinteractive.com",
-        "mywss.com"
+        "kikinteractive.com"
       ],
       "action": "route",
       "outbound": "PROXY"
