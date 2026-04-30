@@ -373,8 +373,24 @@
       {
         "domain_keyword": [
           "google",
+          "facebook",
+          "youtube",
+          "instagram",
           "twitter",
-          "facebook"
+          "whatsapp",
+          "telegram",
+          "discord",
+          "spotify",
+          "tiktok",
+          "github",
+          "linkedin",
+          "snapchat",
+          "pinterest",
+          "reddit",
+          "dropbox",
+          "twitch",
+          "vimeo",
+          "zoom"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
