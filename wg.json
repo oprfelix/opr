@@ -13,15 +13,9 @@
         "strategy": "prefer_ipv4"
       },
       {
-        "tag": "fallback-dns",
-        "address": "https://doh.pub/dns-query",
-        "address_resolver": "mydns",
-        "detour": "DIRECT",
-        "strategy": "prefer_ipv4"
-      },  
-      {
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
+        "address_resolver": "mydns",
         "detour": "PROXY",
         "strategy": "prefer_ipv4"
       },
@@ -34,41 +28,27 @@
     ],
     "rules": [
       {
-        "outbound": ["PROXY", "DIRECT", "LLM"],
+        "outbound": ["PROXY", "DIRECT"],
         "server": "direct-dns"
-      },
-      {
-        "rule_set": [
-          "geosite-telegram"
-        ],
-        "server": "global-dns"
-      },
-      {
-        "rule_set": ["geosite-geolocation-!cn"],
-        "server": "global-dns"
-      },
-      {
-      "rule_set": ["geosite-category-ads-all"],
-      "action": "reject"
       }
     ],
-    "final": "fallback-dns",
+    "final": "direct-dns",
     "independent_cache": true
-  },   
+  },
   "ntp": {
-      "enabled": true,
-      "server": "time.apple.com",
-      "server_port": 123,
-      "interval": "30m",
-      "detour": "DIRECT"
-    },   
+    "enabled": true,
+    "server": "time.apple.com",
+    "server_port": 123,
+    "interval": "30m",
+    "detour": "DIRECT"
+  },
   "inbounds": [
     {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
       "listen_port": 2080
-    },    
+    },
     {
       "type": "tun",
       "tag": "tun-in",
@@ -81,29 +61,6 @@
       "stack": "system",
       "sniff": true,
       "sniff_override_destination": true
-    }
-  ],
-  "endpoints": [
-    {
-      "type": "wireguard",
-      "tag": "LLM-WG",
-      "address": [
-        "10.0.0.2/32"
-      ],
-      "private_key": "4E8WW05lzodksKH+Y/hn+XM/7tOfyLYR12BXQZbEU1U=",
-      "mtu": 1420,
-      "peers": [
-        {
-          "address": "13.213.44.125",
-          "port": 51820,
-          "public_key": "fPOuDyxijX6mb1lsqbkYyyKowrlUC/bGRvKqTNb7+Us=",
-          "allowed_ips": [
-            "0.0.0.0/0",
-            "::/0"
-          ],
-          "persistent_keepalive_interval": 25
-        }
-      ]
     }
   ],
   "outbounds": [
@@ -124,13 +81,13 @@
     {
       "type": "selector",
       "tag": "LLM",
-      "outbounds": ["LLM-AUTO", "LLM-US-REALITY", "LLM-WG", "LLM-DE-VLESS"],
+      "outbounds": ["LLM-AUTO", "LLM-US-REALITY", "LLM-DE-VLESS"],
       "default": "LLM-AUTO"
     },
     {
       "type": "urltest",
       "tag": "LLM-AUTO",
-      "outbounds": ["LLM-US-REALITY", "LLM-WG", "LLM-DE-VLESS"],
+      "outbounds": ["LLM-US-REALITY", "LLM-DE-VLESS"],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
       "tolerance": 50
@@ -250,119 +207,139 @@
         "action": "direct"
       },
       {
-        "rule_set": ["geosite-category-ads-all"],
-        "action": "reject"
-      },
-      {
-        "rule_set": ["geoip-cn"],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_keyword": [
-          "apollo",
-          "helium10",
-          "amazon",
-          "myshopline",
-          "shopline",
-          "Sortime",
-          "semrush",
-          "quanmaitong",
-          "sif",
-          "garmin",
-          "wahoo",
-          "qpic",
-          "komoot"
+        "domain_suffix": [
+          "google.com",
+          "googleapis.com",
+          "googlevideo.com",
+          "googleusercontent.com",
+          "googlesyndication.com",
+          "googletagmanager.com",
+          "googletagservices.com",
+          "googleadservices.com",
+          "gstatic.com",
+          "ggpht.com",
+          "youtube.com",
+          "youtu.be",
+          "ytimg.com",
+          "gmail.com",
+          "whatsapp.com",
+          "whatsapp.net",
+          "linkedin.com",
+          "licdn.com",
+          "x.com",
+          "twimg.com",
+          "t.co",
+          "twitter.com",
+          "instagram.com",
+          "cdninstagram.com",
+          "threads.net",
+          "yahoo.com",
+          "yahooapis.com",
+          "yimg.com",
+          "facebook.com",
+          "fbcdn.net",
+          "fb.com",
+          "fb.me",
+          "messenger.com",
+          "telegram.org",
+          "t.me",
+          "signal.org",
+          "github.com",
+          "githubusercontent.com",
+          "githubassets.com",
+          "bing.com",
+          "bingapis.com",
+          "msn.com",
+          "duckduckgo.com",
+          "snapchat.com",
+          "snapkit.com",
+          "tiktok.com",
+          "tiktokcdn.com",
+          "tiktokv.com",
+          "musical.ly",
+          "pinterest.com",
+          "pinimg.com",
+          "reddit.com",
+          "redd.it",
+          "redditmedia.com",
+          "reddituploads.com",
+          "redditstatic.com",
+          "twitch.tv",
+          "twitchsvc.net",
+          "jtvnw.net",
+          "twitchapps.com",
+          "dailymotion.com",
+          "dmcdn.net",
+          "vimeo.com",
+          "vimeocdn.com",
+          "discord.com",
+          "discord.gg",
+          "discordapp.com",
+          "discordapp.net",
+          "discordcdn.com",
+          "line.me",
+          "line-scdn.net",
+          "naver.com",
+          "zoom.us",
+          "zoom.com",
+          "zoomgov.com",
+          "wikipedia.org",
+          "wikimedia.org",
+          "wikidata.org",
+          "archive.org",
+          "archive.ph",
+          "dropbox.com",
+          "dropboxapi.com",
+          "dropboxusercontent.com",
+          "live.com",
+          "microsoft.com",
+          "microsoftonline.com",
+          "office.com",
+          "office365.com",
+          "sharepoint.com",
+          "spotify.com",
+          "scdn.co",
+          "spotifycdn.com",
+          "tidal.com",
+          "qobuz.com"
         ],
         "action": "route",
-        "outbound": "DIRECT"
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "ip_cidr": [
+          "91.108.4.0/22",
+          "91.108.8.0/22",
+          "91.108.12.0/22",
+          "91.108.16.0/22",
+          "91.108.20.0/22",
+          "91.108.56.0/22",
+          "91.108.60.0/22",
+          "149.154.160.0/20",
+          "149.154.164.0/22",
+          "149.154.168.0/22",
+          "149.154.172.0/22",
+          "2001:b28:f23d::/48",
+          "2001:b28:f23f::/48",
+          "2001:67c:4e8::/48"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
       },
       {
         "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
           "oaiusercontent.com",
-          "claude.ai",
-          "anthropic.com",
           "x.ai",
           "grok.com",
           "perplexity.ai"
         ],
         "action": "route",
-        "outbound": "LLM"
-      },
-      {
-      "domain_suffix": [
-        "kik.com",
-        "kik.me",
-        "kikcdn.com",
-        "kikinteractive.com"
-      ],
-      "action": "route",
-      "outbound": "PROXY"
-      },    
-      {
-        "rule_set": [
-          "geosite-telegram",
-          "geoip-telegram"
-        ],
-        "action": "route",
-        "outbound": "PROXY"
-      },
-      {
-        "rule_set": ["geosite-geolocation-!cn"],
-        "invert": true,
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_keyword": ["tidal", "qobuz"],
-        "action": "route",
-        "outbound": "PROXY"
-      },
-      {
-        "rule_set": ["geoip-cn"],
-        "invert": true,
-        "action": "route",
-        "outbound": "PROXY"
-      }
-    ],
-    "rule_set": [
-      {
-        "tag": "geosite-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs",
-        "download_detour": "PROXY"
-      },
-      {
-        "tag": "geoip-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs",
-        "download_detour": "PROXY"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
-        "download_detour": "PROXY"
-      },
-      {
-        "tag": "geosite-category-ads-all",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-category-ads-all.srs",
-        "download_detour": "PROXY"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://gh.090227.xyz/https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "PROXY"
+        "outbound": "LLM-AUTO"
       }
     ],
     "final": "DIRECT",
