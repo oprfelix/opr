@@ -213,7 +213,6 @@
       {
         "domain_suffix": [
           "google.com",
-          "google.com.sg",
           "googleapis.com",
           "googlevideo.com",
           "googleusercontent.com",
@@ -367,6 +366,15 @@
           "wimpmusic.com",
           "qobuz.com",
           "qobuz.io"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "domain_keyword": [
+          "google",
+          "twitter",
+          "facebook"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
