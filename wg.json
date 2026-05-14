@@ -15,7 +15,6 @@
       {
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
-        "address_resolver": "mydns",
         "detour": "PROXY",
         "strategy": "prefer_ipv4"
       },
@@ -32,7 +31,7 @@
         "server": "direct-dns"
       },
       {
-        "outbound": ["CDN-AUTO", "CDN-1", "CDN-2", "CDN-3", "LLM-AUTO", "LLM-US-REALITY", "LLM-DE-VLESS"],
+        "outbound": ["CDN-AUTO", "CDN-1", "CDN-2", "CDN-3", "LLM", "LLM-AUTO", "LLM-US-REALITY", "LLM-DE-VLESS"],
         "server": "global-dns"
       }
     ],
@@ -79,8 +78,9 @@
       "tag": "CDN-AUTO",
       "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "3m",
-      "tolerance": 50
+      "interval": "10m",
+      "tolerance": 100,
+      "idle_timeout": "10m"
     },
     {
       "type": "selector",
@@ -93,8 +93,9 @@
       "tag": "LLM-AUTO",
       "outbounds": ["LLM-US-REALITY", "LLM-DE-VLESS"],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "3m",
-      "tolerance": 50
+      "interval": "10m",
+      "tolerance": 100,
+      "idle_timeout": "10m"
     },
     {
       "type": "vless",
@@ -149,7 +150,9 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": { "Host": "ddns.hayoovant.com" }
+        "headers": {
+          "Host": "ddns.hayoovant.com"
+        }
       }
     },
     {
@@ -169,7 +172,9 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": { "Host": "helloworld.todsm.com" }
+        "headers": {
+          "Host": "helloworld.todsm.com"
+        }
       }
     },
     {
@@ -189,7 +194,9 @@
       "transport": {
         "type": "ws",
         "path": "/",
-        "headers": { "Host": "helloworld.fotoman.com" }
+        "headers": {
+          "Host": "helloworld.fotoman.com"
+        }
       }
     },
     {
@@ -209,6 +216,32 @@
       {
         "ip_is_private": true,
         "action": "direct"
+      },
+      {
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
+          "anthropic.ai",
+          "claude.com"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "chatgpt.com",
+          "openai.com",
+          "oaistatic.com",
+          "oaiusercontent.com",
+          "openaiapi-site.azureedge.net",
+          "auth0.openai.com",
+          "x.ai",
+          "grok.com",
+          "grok.x.ai",
+          "perplexity.ai"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
       },
       {
         "domain_suffix": [
@@ -397,7 +430,11 @@
           "dropbox",
           "twitch",
           "vimeo",
-          "zoom"
+          "zoom",
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
@@ -452,26 +489,6 @@
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
-      },
-      {
-        "domain_suffix": [
-          "claude.ai",
-          "anthropic.com",
-          "anthropic.ai",
-          "claude.com",
-          "chatgpt.com",
-          "openai.com",
-          "oaistatic.com",
-          "oaiusercontent.com",
-          "openaiapi-site.azureedge.net",
-          "auth0.openai.com",
-          "x.ai",
-          "grok.com",
-          "grok.x.ai",
-          "perplexity.ai"
-        ],
-        "action": "route",
-        "outbound": "LLM-AUTO"
       }
     ],
     "final": "DIRECT",
