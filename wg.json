@@ -213,6 +213,8 @@
       {
         "domain_suffix": [
           "google.com",
+          "voice.google.com",
+          "googlevoice.com",
           "google.com.sg",
           "googleapis.com",
           "googlevideo.com",
@@ -265,6 +267,9 @@
           "messenger.com",
           "m.me",
           "telegram.org",
+          "telegram.me",
+          "telegram.dog",
+          "telegram-cdn.org",
           "t.me",
           "telegra.ph",
           "tdesktop.com",
@@ -366,7 +371,8 @@
           "tidal.io",
           "wimpmusic.com",
           "qobuz.com",
-          "qobuz.io"
+          "qobuz.io",
+          "telephony.goog"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
@@ -439,7 +445,10 @@
           "149.154.172.0/22",
           "2001:b28:f23d::/48",
           "2001:b28:f23f::/48",
-          "2001:67c:4e8::/48"
+          "2001:67c:4e8::/48",
+          "74.125.39.0/24",
+          "74.125.250.129/32",
+          "2001:4860:4864:2::0/64"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
