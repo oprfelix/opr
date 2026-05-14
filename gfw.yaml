@@ -20,7 +20,7 @@ ntp:
 
 tun:
   enable: true
-  stack: system
+  stack: gvisor
   auto-route: true
   strict-route: true
   dns-hijack:
