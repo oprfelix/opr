@@ -1,136 +1,173 @@
 mixed-port: 2080
+bind-address: 127.0.0.1
 allow-lan: false
 mode: rule
 log-level: warning
-ipv6: true
-
 external-controller: 127.0.0.1:9090
-secret: ""
 external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+secret: ""
+
+ipv6: true
+global-client-fingerprint: chrome
 
 profile:
   store-selected: true
   store-fake-ip: true
 
-ntp:
-  enable: true
-  server: time.apple.com
-  port: 123
-  interval: 30
-
-tun:
-  enable: true
-  stack: gvisor
-  auto-route: true
-  strict-route: true
-  dns-hijack:
-    - any:53
-
 sniffer:
   enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
   override-destination: true
   sniff:
     HTTP:
-      ports:
-        - 80
-        - 8080-8880
+      ports: [80, 8080-8880]
+      override-destination: true
     TLS:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
     QUIC:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+tun:
+  enable: true
+  stack: system
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+
+ntp:
+  enable: true
+  write-to-system: false
+  server: time.apple.com
+  port: 123
+  interval: 30
 
 dns:
   enable: true
   listen: 127.0.0.1:1053
   ipv6: true
-  enhanced-mode: redir-host
-  nameserver:
-    - https://dns.alidns.com/dns-query
-  fallback:
-    - https://8.8.8.8/dns-query
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "time.apple.com"
+  default-nameserver:
+    - 223.5.5.5
   proxy-server-nameserver:
     - 223.5.5.5
-  nameserver-policy:
-    "geosite:geolocation-!cn": https://8.8.8.8/dns-query
+    - https://dns.alidns.com/dns-query
+  nameserver:
+    - "https://dns.alidns.com/dns-query#DIRECT"
+  fallback:
+    - "https://8.8.8.8/dns-query#PROXY"
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    domain:
+      - "+.claude.ai"
+      - "+.anthropic.com"
+      - "+.anthropic.ai"
+      - "+.claude.com"
+      - "+.chatgpt.com"
+      - "+.openai.com"
+      - "+.oaistatic.com"
+      - "+.oaiusercontent.com"
+      - "+.x.ai"
+      - "+.grok.com"
+      - "+.perplexity.ai"
+      - "+.google.com"
+      - "+.googleapis.com"
+      - "+.gstatic.com"
+      - "+.youtube.com"
+      - "+.github.com"
+      - "+.telegram.org"
+      - "+.facebook.com"
+      - "+.twitter.com"
+      - "+.x.com"
+      - "+.discord.com"
 
 proxies:
-  - name: LLM-US-REALITY
+  - name: "LLM-US-REALITY"
     type: vless
     server: 107.173.140.91
     port: 10104
     uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
-    network: tcp
     udp: true
-    tls: true
     flow: xtls-rprx-vision
+    tls: true
     servername: www.paypal.com
     client-fingerprint: chrome
     reality-opts:
       public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
       short-id: ""
+    network: tcp
 
-  - name: LLM-DE-VLESS
+  - name: "LLM-DE-VLESS"
     type: vless
     server: de.todsm.com
     port: 443
     uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-    network: tcp
     udp: true
     tls: true
     servername: de.todsm.com
     client-fingerprint: chrome
+    network: tcp
 
-  - name: CDN-1
+  - name: "CDN-1"
     type: vless
     server: 8.35.211.251
     port: 443
     uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
-    network: ws
     udp: true
     tls: true
     servername: ddns.hayoovant.com
     client-fingerprint: chrome
+    network: ws
     ws-opts:
       path: /
       headers:
         Host: ddns.hayoovant.com
 
-  - name: CDN-2
+  - name: "CDN-2"
     type: vless
     server: 8.35.211.126
     port: 443
     uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
-    network: ws
     udp: true
     tls: true
     servername: helloworld.todsm.com
     client-fingerprint: chrome
+    network: ws
     ws-opts:
       path: /
       headers:
         Host: helloworld.todsm.com
 
-  - name: CDN-3
+  - name: "CDN-3"
     type: vless
     server: 8.35.211.168
     port: 443
     uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
-    network: ws
     udp: true
     tls: true
     servername: helloworld.fotoman.com
     client-fingerprint: chrome
+    network: ws
     ws-opts:
       path: /
       headers:
         Host: helloworld.fotoman.com
 
 proxy-groups:
-  - name: PROXY
+  - name: "PROXY"
     type: select
     proxies:
       - CDN-AUTO
@@ -138,31 +175,37 @@ proxy-groups:
       - CDN-2
       - CDN-3
 
-  - name: CDN-AUTO
+  - name: "CDN-AUTO"
     type: url-test
     proxies:
       - CDN-1
       - CDN-2
       - CDN-3
     url: https://www.gstatic.com/generate_204
-    interval: 180
-    tolerance: 50
+    expected-status: 204
+    interval: 600
+    tolerance: 100
+    lazy: true
+    timeout: 5000
 
-  - name: LLM
+  - name: "LLM"
     type: select
     proxies:
       - LLM-AUTO
       - LLM-US-REALITY
       - LLM-DE-VLESS
 
-  - name: LLM-AUTO
+  - name: "LLM-AUTO"
     type: url-test
     proxies:
       - LLM-US-REALITY
       - LLM-DE-VLESS
     url: https://www.gstatic.com/generate_204
-    interval: 180
-    tolerance: 50
+    expected-status: 204
+    interval: 600
+    tolerance: 100
+    lazy: true
+    timeout: 5000
 
 rules:
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
@@ -170,10 +213,25 @@ rules:
   - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
   - IP-CIDR6,::1/128,DIRECT,no-resolve
   - IP-CIDR6,fc00::/7,DIRECT,no-resolve
   - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+
+  - DOMAIN-SUFFIX,claude.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,anthropic.com,LLM-AUTO
+  - DOMAIN-SUFFIX,anthropic.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,claude.com,LLM-AUTO
+
+  - DOMAIN-SUFFIX,chatgpt.com,CDN-AUTO
+  - DOMAIN-SUFFIX,openai.com,CDN-AUTO
+  - DOMAIN-SUFFIX,oaistatic.com,CDN-AUTO
+  - DOMAIN-SUFFIX,oaiusercontent.com,CDN-AUTO
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,CDN-AUTO
+  - DOMAIN-SUFFIX,auth0.openai.com,CDN-AUTO
+  - DOMAIN-SUFFIX,x.ai,CDN-AUTO
+  - DOMAIN-SUFFIX,grok.com,CDN-AUTO
+  - DOMAIN-SUFFIX,grok.x.ai,CDN-AUTO
+  - DOMAIN-SUFFIX,perplexity.ai,CDN-AUTO
 
   - DOMAIN-SUFFIX,google.com,CDN-AUTO
   - DOMAIN-SUFFIX,voice.google.com,CDN-AUTO
@@ -356,66 +414,55 @@ rules:
   - DOMAIN-KEYWORD,twitch,CDN-AUTO
   - DOMAIN-KEYWORD,vimeo,CDN-AUTO
   - DOMAIN-KEYWORD,zoom,CDN-AUTO
+  - DOMAIN-KEYWORD,openai,CDN-AUTO
+  - DOMAIN-KEYWORD,chatgpt,CDN-AUTO
+  - DOMAIN-KEYWORD,perplexity,CDN-AUTO
+  - DOMAIN-KEYWORD,grok,CDN-AUTO
 
-  - IP-CIDR,142.250.0.0/15,CDN-AUTO,no-resolve
-  - IP-CIDR,172.217.0.0/16,CDN-AUTO,no-resolve
-  - IP-CIDR,173.194.0.0/16,CDN-AUTO,no-resolve
-  - IP-CIDR,216.58.192.0/19,CDN-AUTO,no-resolve
-  - IP-CIDR,216.239.32.0/19,CDN-AUTO,no-resolve
-  - IP-CIDR,74.125.0.0/16,CDN-AUTO,no-resolve
-  - IP-CIDR,64.233.160.0/19,CDN-AUTO,no-resolve
-  - IP-CIDR,66.102.0.0/20,CDN-AUTO,no-resolve
-  - IP-CIDR,66.249.64.0/19,CDN-AUTO,no-resolve
-  - IP-CIDR,72.14.192.0/18,CDN-AUTO,no-resolve
-  - IP-CIDR,157.240.0.0/16,CDN-AUTO,no-resolve
-  - IP-CIDR,179.60.192.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,185.89.216.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,204.15.20.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,31.13.24.0/21,CDN-AUTO,no-resolve
-  - IP-CIDR,31.13.64.0/18,CDN-AUTO,no-resolve
-  - IP-CIDR,104.244.42.0/24,CDN-AUTO,no-resolve
-  - IP-CIDR,192.133.76.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,199.16.156.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,199.59.148.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,66.22.192.0/18,CDN-AUTO,no-resolve
-  - IP-CIDR,66.22.220.0/24,CDN-AUTO,no-resolve
-  - IP-CIDR,140.82.112.0/20,CDN-AUTO,no-resolve
-  - IP-CIDR,143.55.64.0/20,CDN-AUTO,no-resolve
-  - IP-CIDR,185.199.108.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,192.30.252.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,35.186.224.0/19,CDN-AUTO,no-resolve
-  - IP-CIDR,35.186.192.0/21,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.4.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.8.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.12.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.16.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.20.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.56.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,91.108.60.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,149.154.160.0/20,CDN-AUTO,no-resolve
-  - IP-CIDR,149.154.164.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,149.154.168.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR,149.154.172.0/22,CDN-AUTO,no-resolve
-  - IP-CIDR6,2001:b28:f23d::/48,CDN-AUTO,no-resolve
-  - IP-CIDR6,2001:b28:f23f::/48,CDN-AUTO,no-resolve
-  - IP-CIDR6,2001:67c:4e8::/48,CDN-AUTO,no-resolve
-  - IP-CIDR,74.125.39.0/24,CDN-AUTO,no-resolve
-  - IP-CIDR,74.125.250.129/32,CDN-AUTO,no-resolve
-  - IP-CIDR6,2001:4860:4864:2::0/64,CDN-AUTO,no-resolve
-
-  - DOMAIN-SUFFIX,claude.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,anthropic.com,LLM-AUTO
-  - DOMAIN-SUFFIX,anthropic.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,claude.com,LLM-AUTO
-  - DOMAIN-SUFFIX,chatgpt.com,LLM-AUTO
-  - DOMAIN-SUFFIX,openai.com,LLM-AUTO
-  - DOMAIN-SUFFIX,oaistatic.com,LLM-AUTO
-  - DOMAIN-SUFFIX,oaiusercontent.com,LLM-AUTO
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,LLM-AUTO
-  - DOMAIN-SUFFIX,auth0.openai.com,LLM-AUTO
-  - DOMAIN-SUFFIX,x.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,grok.com,LLM-AUTO
-  - DOMAIN-SUFFIX,grok.x.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,perplexity.ai,LLM-AUTO
+  - IP-CIDR,142.250.0.0/15,CDN-AUTO
+  - IP-CIDR,172.217.0.0/16,CDN-AUTO
+  - IP-CIDR,173.194.0.0/16,CDN-AUTO
+  - IP-CIDR,216.58.192.0/19,CDN-AUTO
+  - IP-CIDR,216.239.32.0/19,CDN-AUTO
+  - IP-CIDR,74.125.0.0/16,CDN-AUTO
+  - IP-CIDR,64.233.160.0/19,CDN-AUTO
+  - IP-CIDR,66.102.0.0/20,CDN-AUTO
+  - IP-CIDR,66.249.64.0/19,CDN-AUTO
+  - IP-CIDR,72.14.192.0/18,CDN-AUTO
+  - IP-CIDR,157.240.0.0/16,CDN-AUTO
+  - IP-CIDR,179.60.192.0/22,CDN-AUTO
+  - IP-CIDR,185.89.216.0/22,CDN-AUTO
+  - IP-CIDR,204.15.20.0/22,CDN-AUTO
+  - IP-CIDR,31.13.24.0/21,CDN-AUTO
+  - IP-CIDR,31.13.64.0/18,CDN-AUTO
+  - IP-CIDR,104.244.42.0/24,CDN-AUTO
+  - IP-CIDR,192.133.76.0/22,CDN-AUTO
+  - IP-CIDR,199.16.156.0/22,CDN-AUTO
+  - IP-CIDR,199.59.148.0/22,CDN-AUTO
+  - IP-CIDR,66.22.192.0/18,CDN-AUTO
+  - IP-CIDR,66.22.220.0/24,CDN-AUTO
+  - IP-CIDR,140.82.112.0/20,CDN-AUTO
+  - IP-CIDR,143.55.64.0/20,CDN-AUTO
+  - IP-CIDR,185.199.108.0/22,CDN-AUTO
+  - IP-CIDR,192.30.252.0/22,CDN-AUTO
+  - IP-CIDR,35.186.224.0/19,CDN-AUTO
+  - IP-CIDR,35.186.192.0/21,CDN-AUTO
+  - IP-CIDR,91.108.4.0/22,CDN-AUTO
+  - IP-CIDR,91.108.8.0/22,CDN-AUTO
+  - IP-CIDR,91.108.12.0/22,CDN-AUTO
+  - IP-CIDR,91.108.16.0/22,CDN-AUTO
+  - IP-CIDR,91.108.20.0/22,CDN-AUTO
+  - IP-CIDR,91.108.56.0/22,CDN-AUTO
+  - IP-CIDR,91.108.60.0/22,CDN-AUTO
+  - IP-CIDR,149.154.160.0/20,CDN-AUTO
+  - IP-CIDR,149.154.164.0/22,CDN-AUTO
+  - IP-CIDR,149.154.168.0/22,CDN-AUTO
+  - IP-CIDR,149.154.172.0/22,CDN-AUTO
+  - IP-CIDR6,2001:b28:f23d::/48,CDN-AUTO
+  - IP-CIDR6,2001:b28:f23f::/48,CDN-AUTO
+  - IP-CIDR6,2001:67c:4e8::/48,CDN-AUTO
+  - IP-CIDR,74.125.39.0/24,CDN-AUTO
+  - IP-CIDR,74.125.250.129/32,CDN-AUTO
+  - IP-CIDR6,2001:4860:4864:2::0/64,CDN-AUTO
 
   - MATCH,DIRECT
