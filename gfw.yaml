@@ -1,371 +1,421 @@
-mixed-port: 7890
-allow-lan: true
-bind-address: 0.0.0.0
+mixed-port: 2080
+allow-lan: false
 mode: rule
-log-level: error
-ipv6: false
+log-level: warning
+ipv6: true
+
 external-controller: 127.0.0.1:9090
-secret: a1927b089fc365a3
-unified-delay: true
+secret: ""
+external-ui: ui
 
 profile:
   store-selected: true
   store-fake-ip: true
 
-tcp-concurrent: true
-global-client-fingerprint: chrome
-
-# ================================================================
-# DNS 配置
-# 说明：使用 IP 直连形式避免 DNS 循环依赖（域名形式需要先解析自身）
-# nameserver  → 主 DNS，走直连
-# fallback    → 备用 DNS，非 CN IP 结果触发时使用
-# ================================================================
-dns:
+ntp:
   enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
-  prefer-h3: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 172.19.0.0/16
+  server: time.apple.com
+  port: 123
+  interval: 30
 
-  # fake-ip 白名单：以下域名不使用假 IP，直接返回真实地址
-  fake-ip-filter:
-    - "*.lan"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - localhost.ptlogin2.qq.com
-
-  nameserver:
-    - 1.1.1.1            # Cloudflare
-    - 223.5.5.5          # 阿里云 DNS（IP直连）
-    - 119.29.29.29       # 腾讯云 DNS（IP直连）
-    - 114.114.114.114    # 骨干网 DNS（IP直连）
-
-  fallback:
-    - https://1.0.0.1/dns-query       # Cloudflare 备用
-
-  # fallback 触发条件：结果为 CN IP 或保留地址时不使用 fallback
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4                   # 保留地址
-      - 0.0.0.0/8                     # 保留地址
-
-# ================================================================
-# TUN 模式
-# 说明：接管所有系统流量，dns-hijack 劫持所有 53 端口 DNS 请求
-# stack: gVisor 兼容性好，性能略低于 system；如遇性能问题可改 system
-# ================================================================
 tun:
   enable: true
   stack: system
   auto-route: true
+  strict-route: true
   dns-hijack:
     - any:53
-  mtu: 1500
 
-# ================================================================
-# 代理节点
-# CDN 组节点：Alpha / Delta / Gamma（WebSocket + TLS，走 Cloudflare）
-# LLM 组节点：LLM1 / LLM2 / AWS-SG（VLESS + XTLS-Vision + Reality）
-# 190.93.246.41
-# ================================================================
+sniffer:
+  enable: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+    TLS:
+      ports:
+        - 443
+        - 8443
+    QUIC:
+      ports:
+        - 443
+        - 8443
+
+dns:
+  enable: true
+  listen: 127.0.0.1:1053
+  ipv6: true
+  enhanced-mode: redir-host
+  nameserver:
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://8.8.8.8/dns-query
+  proxy-server-nameserver:
+    - 223.5.5.5
+  nameserver-policy:
+    "geosite:geolocation-!cn": https://8.8.8.8/dns-query
+
 proxies:
+  - name: LLM-US-REALITY
+    type: vless
+    server: 107.173.140.91
+    port: 10104
+    uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
+    network: tcp
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.paypal.com
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
+      short-id: ""
 
-# ---------- CDN 节点 ----------
-- name: Alpha
-  type: vless
-  server: 8.35.211.202
-  port: 443
-  uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
-  network: ws
-  tls: true
-  servername: helloworld.fotoman.com
-  client-fingerprint: chrome
-  ws-opts:
-    path: /
-    headers:
-      Host: helloworld.fotoman.com
+  - name: LLM-DE-VLESS
+    type: vless
+    server: de.todsm.com
+    port: 443
+    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
+    network: tcp
+    udp: true
+    tls: true
+    servername: de.todsm.com
+    client-fingerprint: chrome
 
-- name: Delta
-  type: vless
-  server: 8.35.211.251
-  port: 443
-  uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
-  network: ws
-  tls: true
-  servername: ddns.hayoovant.com
-  client-fingerprint: chrome
-  ws-opts:
-    path: /
-    headers:
-      Host: ddns.hayoovant.com
+  - name: CDN-1
+    type: vless
+    server: 8.35.211.251
+    port: 443
+    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    network: ws
+    udp: true
+    tls: true
+    servername: ddns.hayoovant.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: ddns.hayoovant.com
 
-- name: Gamma
-  type: vless
-  server: 8.35.211.122
-  port: 443
-  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
-  network: ws
-  tls: true
-  servername: helloworld.todsm.com
-  client-fingerprint: chrome
-  ws-opts:
-    path: /
-    headers:
-      Host: helloworld.todsm.com
+  - name: CDN-2
+    type: vless
+    server: 8.35.211.126
+    port: 443
+    uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+    network: ws
+    udp: true
+    tls: true
+    servername: helloworld.todsm.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: helloworld.todsm.com
 
-# ---------- LLM 节点 ----------
-- name: LLM1
-  type: vless
-  server: 107.173.140.91
-  port: 10104
-  uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
-  network: tcp
-  tls: true
-  flow: xtls-rprx-vision
-  servername: www.paypal.com
-  client-fingerprint: chrome
-  reality-opts:
-    public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
+  - name: CDN-3
+    type: vless
+    server: 8.35.211.168
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    network: ws
+    udp: true
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: /
+      headers:
+        Host: helloworld.fotoman.com
 
-- name: LLM2
-  type: vless
-  server: de.todsm.com
-  port: 443
-  uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-  network: tcp
-  tls: true
-  servername: de.todsm.com
-  udp: true
-
-- name: AWS-SG
-  type: vless
-  server: sp.todsm.com
-  port: 443
-  uuid: 20053e1d-2d69-41fa-824e-74e7fc498ab1
-  network: tcp
-  tls: true
-  servername: sp.todsm.com
-  udp: true
-
-# ================================================================
-# 代理组
-# CDN：自动选速最快的 CDN 节点（Alpha/Delta/Gamma）
-# LLM：自动选速最快的 LLM 节点（LLM1/LLM2），用于 AI 服务
-# 说明：interval=600 每10分钟测速一次，tolerance=50 延迟差50ms内不切换
-# ================================================================
 proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - CDN-AUTO
+      - CDN-1
+      - CDN-2
+      - CDN-3
 
-- name: CDN
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - Alpha
-    - Delta
-    - Gamma
+  - name: CDN-AUTO
+    type: url-test
+    proxies:
+      - CDN-1
+      - CDN-2
+      - CDN-3
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
 
-- name: LLM
-  type: url-test
-  url: https://www.google.com/generate_204
-  interval: 600
-  tolerance: 50
-  proxies:
-    - LLM1
-    - LLM2
- #   - AWS-SG
+  - name: LLM
+    type: select
+    proxies:
+      - LLM-AUTO
+      - LLM-US-REALITY
+      - LLM-DE-VLESS
 
-# ================================================================
-# 规则匹配顺序说明：
-# 1. 直连白名单（最高优先级，防止被后面 IP 段误匹配）
-# 2. 直连域名关键词（国内 APP / 电商工具）
-# 3. 直连 IP 段（国内运营商 / 云厂商）
-# 4. 代理域名规则（各 AI 服务 / 工具）
-# 5. 代理 IP 段（各服务自有 IP）
-# 6. GEOSITE / GEOIP 兜底
-# 7. MATCH 默认出口
-# ================================================================
+  - name: LLM-AUTO
+    type: url-test
+    proxies:
+      - LLM-US-REALITY
+      - LLM-DE-VLESS
+    url: https://www.gstatic.com/generate_204
+    interval: 180
+    tolerance: 50
+
 rules:
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
 
-# ----------------------------------------------------------------
-# 直连白名单（优先级最高）
-# 说明：本地可直接访问，无需代理；放最前防止被 Cloudflare IP 段误匹配
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,challenges.cloudflare.com,DIRECT
+  - DOMAIN-SUFFIX,google.com,CDN-AUTO
+  - DOMAIN-SUFFIX,voice.google.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googlevoice.com,CDN-AUTO
+  - DOMAIN-SUFFIX,google.com.sg,CDN-AUTO
+  - DOMAIN-SUFFIX,googleapis.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googlevideo.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googleusercontent.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googlesyndication.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googletagmanager.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googletagservices.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googleadservices.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googleoptimize.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googledrive.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googleplay.com,CDN-AUTO
+  - DOMAIN-SUFFIX,google-analytics.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googlefiber.net,CDN-AUTO
+  - DOMAIN-SUFFIX,gstatic.com,CDN-AUTO
+  - DOMAIN-SUFFIX,ggpht.com,CDN-AUTO
+  - DOMAIN-SUFFIX,gmail.com,CDN-AUTO
+  - DOMAIN-SUFFIX,googlemail.com,CDN-AUTO
+  - DOMAIN-SUFFIX,youtube.com,CDN-AUTO
+  - DOMAIN-SUFFIX,youtu.be,CDN-AUTO
+  - DOMAIN-SUFFIX,ytimg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,yt3.ggpht.com,CDN-AUTO
+  - DOMAIN-SUFFIX,youtubei.googleapis.com,CDN-AUTO
+  - DOMAIN-SUFFIX,youtube-nocookie.com,CDN-AUTO
+  - DOMAIN-SUFFIX,whatsapp.com,CDN-AUTO
+  - DOMAIN-SUFFIX,whatsapp.net,CDN-AUTO
+  - DOMAIN-SUFFIX,wa.me,CDN-AUTO
+  - DOMAIN-SUFFIX,linkedin.com,CDN-AUTO
+  - DOMAIN-SUFFIX,licdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,linkedin-ei.com,CDN-AUTO
+  - DOMAIN-SUFFIX,x.com,CDN-AUTO
+  - DOMAIN-SUFFIX,twitter.com,CDN-AUTO
+  - DOMAIN-SUFFIX,twimg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,t.co,CDN-AUTO
+  - DOMAIN-SUFFIX,abs.twimg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,instagram.com,CDN-AUTO
+  - DOMAIN-SUFFIX,cdninstagram.com,CDN-AUTO
+  - DOMAIN-SUFFIX,instagram-static.com,CDN-AUTO
+  - DOMAIN-SUFFIX,threads.net,CDN-AUTO
+  - DOMAIN-SUFFIX,yahoo.com,CDN-AUTO
+  - DOMAIN-SUFFIX,yahooapis.com,CDN-AUTO
+  - DOMAIN-SUFFIX,yimg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,yahoo.co.jp,CDN-AUTO
+  - DOMAIN-SUFFIX,facebook.com,CDN-AUTO
+  - DOMAIN-SUFFIX,fbcdn.net,CDN-AUTO
+  - DOMAIN-SUFFIX,fb.com,CDN-AUTO
+  - DOMAIN-SUFFIX,fb.me,CDN-AUTO
+  - DOMAIN-SUFFIX,fbsbx.com,CDN-AUTO
+  - DOMAIN-SUFFIX,fbpigeon.com,CDN-AUTO
+  - DOMAIN-SUFFIX,facebook.net,CDN-AUTO
+  - DOMAIN-SUFFIX,messenger.com,CDN-AUTO
+  - DOMAIN-SUFFIX,m.me,CDN-AUTO
+  - DOMAIN-SUFFIX,telegram.org,CDN-AUTO
+  - DOMAIN-SUFFIX,telegram.me,CDN-AUTO
+  - DOMAIN-SUFFIX,telegram.dog,CDN-AUTO
+  - DOMAIN-SUFFIX,telegram-cdn.org,CDN-AUTO
+  - DOMAIN-SUFFIX,t.me,CDN-AUTO
+  - DOMAIN-SUFFIX,telegra.ph,CDN-AUTO
+  - DOMAIN-SUFFIX,tdesktop.com,CDN-AUTO
+  - DOMAIN-SUFFIX,telesco.pe,CDN-AUTO
+  - DOMAIN-SUFFIX,signal.org,CDN-AUTO
+  - DOMAIN-SUFFIX,signal.group,CDN-AUTO
+  - DOMAIN-SUFFIX,github.com,CDN-AUTO
+  - DOMAIN-SUFFIX,githubusercontent.com,CDN-AUTO
+  - DOMAIN-SUFFIX,githubassets.com,CDN-AUTO
+  - DOMAIN-SUFFIX,github.io,CDN-AUTO
+  - DOMAIN-SUFFIX,ghcr.io,CDN-AUTO
+  - DOMAIN-SUFFIX,npmjs.com,CDN-AUTO
+  - DOMAIN-SUFFIX,bing.com,CDN-AUTO
+  - DOMAIN-SUFFIX,bingapis.com,CDN-AUTO
+  - DOMAIN-SUFFIX,msn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,microsoft.com,CDN-AUTO
+  - DOMAIN-SUFFIX,microsoftonline.com,CDN-AUTO
+  - DOMAIN-SUFFIX,microsoftedge.com,CDN-AUTO
+  - DOMAIN-SUFFIX,office.com,CDN-AUTO
+  - DOMAIN-SUFFIX,office365.com,CDN-AUTO
+  - DOMAIN-SUFFIX,sharepoint.com,CDN-AUTO
+  - DOMAIN-SUFFIX,onedrive.com,CDN-AUTO
+  - DOMAIN-SUFFIX,live.com,CDN-AUTO
+  - DOMAIN-SUFFIX,outlook.com,CDN-AUTO
+  - DOMAIN-SUFFIX,hotmail.com,CDN-AUTO
+  - DOMAIN-SUFFIX,azure.com,CDN-AUTO
+  - DOMAIN-SUFFIX,azureedge.net,CDN-AUTO
+  - DOMAIN-SUFFIX,azure-api.net,CDN-AUTO
+  - DOMAIN-SUFFIX,windows.com,CDN-AUTO
+  - DOMAIN-SUFFIX,windowsupdate.com,CDN-AUTO
+  - DOMAIN-SUFFIX,duckduckgo.com,CDN-AUTO
+  - DOMAIN-SUFFIX,duck.com,CDN-AUTO
+  - DOMAIN-SUFFIX,duckduckcdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,snapchat.com,CDN-AUTO
+  - DOMAIN-SUFFIX,snapkit.com,CDN-AUTO
+  - DOMAIN-SUFFIX,snap.com,CDN-AUTO
+  - DOMAIN-SUFFIX,snapcdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,tiktok.com,CDN-AUTO
+  - DOMAIN-SUFFIX,tiktokcdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,tiktokv.com,CDN-AUTO
+  - DOMAIN-SUFFIX,musical.ly,CDN-AUTO
+  - DOMAIN-SUFFIX,byteoversea.com,CDN-AUTO
+  - DOMAIN-SUFFIX,ibytedtos.com,CDN-AUTO
+  - DOMAIN-SUFFIX,isnssdk.com,CDN-AUTO
+  - DOMAIN-SUFFIX,pinterest.com,CDN-AUTO
+  - DOMAIN-SUFFIX,pinimg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,pinterest-media.com,CDN-AUTO
+  - DOMAIN-SUFFIX,reddit.com,CDN-AUTO
+  - DOMAIN-SUFFIX,redd.it,CDN-AUTO
+  - DOMAIN-SUFFIX,redditmedia.com,CDN-AUTO
+  - DOMAIN-SUFFIX,reddituploads.com,CDN-AUTO
+  - DOMAIN-SUFFIX,redditstatic.com,CDN-AUTO
+  - DOMAIN-SUFFIX,redditinc.com,CDN-AUTO
+  - DOMAIN-SUFFIX,twitch.tv,CDN-AUTO
+  - DOMAIN-SUFFIX,twitchsvc.net,CDN-AUTO
+  - DOMAIN-SUFFIX,jtvnw.net,CDN-AUTO
+  - DOMAIN-SUFFIX,twitchapps.com,CDN-AUTO
+  - DOMAIN-SUFFIX,ext-twitch.tv,CDN-AUTO
+  - DOMAIN-SUFFIX,dailymotion.com,CDN-AUTO
+  - DOMAIN-SUFFIX,dmcdn.net,CDN-AUTO
+  - DOMAIN-SUFFIX,dm-event.net,CDN-AUTO
+  - DOMAIN-SUFFIX,vimeo.com,CDN-AUTO
+  - DOMAIN-SUFFIX,vimeocdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,livestream.com,CDN-AUTO
+  - DOMAIN-SUFFIX,discord.com,CDN-AUTO
+  - DOMAIN-SUFFIX,discord.gg,CDN-AUTO
+  - DOMAIN-SUFFIX,discordapp.com,CDN-AUTO
+  - DOMAIN-SUFFIX,discordapp.net,CDN-AUTO
+  - DOMAIN-SUFFIX,discordcdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,discord.media,CDN-AUTO
+  - DOMAIN-SUFFIX,discord.co,CDN-AUTO
+  - DOMAIN-SUFFIX,line.me,CDN-AUTO
+  - DOMAIN-SUFFIX,line-scdn.net,CDN-AUTO
+  - DOMAIN-SUFFIX,line-apps.com,CDN-AUTO
+  - DOMAIN-SUFFIX,line-beta.me,CDN-AUTO
+  - DOMAIN-SUFFIX,lin.ee,CDN-AUTO
+  - DOMAIN-SUFFIX,naver.com,CDN-AUTO
+  - DOMAIN-SUFFIX,zoom.us,CDN-AUTO
+  - DOMAIN-SUFFIX,zoom.com,CDN-AUTO
+  - DOMAIN-SUFFIX,zoomgov.com,CDN-AUTO
+  - DOMAIN-SUFFIX,zmtg.com,CDN-AUTO
+  - DOMAIN-SUFFIX,zoomdev.us,CDN-AUTO
+  - DOMAIN-SUFFIX,wikipedia.org,CDN-AUTO
+  - DOMAIN-SUFFIX,wikimedia.org,CDN-AUTO
+  - DOMAIN-SUFFIX,wikidata.org,CDN-AUTO
+  - DOMAIN-SUFFIX,mediawiki.org,CDN-AUTO
+  - DOMAIN-SUFFIX,archive.org,CDN-AUTO
+  - DOMAIN-SUFFIX,archive.ph,CDN-AUTO
+  - DOMAIN-SUFFIX,dropbox.com,CDN-AUTO
+  - DOMAIN-SUFFIX,dropboxapi.com,CDN-AUTO
+  - DOMAIN-SUFFIX,dropboxusercontent.com,CDN-AUTO
+  - DOMAIN-SUFFIX,dropbox-dns.com,CDN-AUTO
+  - DOMAIN-SUFFIX,spotify.com,CDN-AUTO
+  - DOMAIN-SUFFIX,scdn.co,CDN-AUTO
+  - DOMAIN-SUFFIX,spotifycdn.com,CDN-AUTO
+  - DOMAIN-SUFFIX,spotifycdn.net,CDN-AUTO
+  - DOMAIN-SUFFIX,pscdn.co,CDN-AUTO
+  - DOMAIN-SUFFIX,tidal.com,CDN-AUTO
+  - DOMAIN-SUFFIX,tidal.io,CDN-AUTO
+  - DOMAIN-SUFFIX,wimpmusic.com,CDN-AUTO
+  - DOMAIN-SUFFIX,qobuz.com,CDN-AUTO
+  - DOMAIN-SUFFIX,qobuz.io,CDN-AUTO
+  - DOMAIN-SUFFIX,telephony.goog,CDN-AUTO
 
-# ----------------------------------------------------------------
-# 电商工具
-# 直连：helium10 / shopline / semrush / amazon 等
-# 代理：fiverr / referazon（需要境外访问）
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,helium10,DIRECT
-- DOMAIN-KEYWORD,myshopline,DIRECT
-- DOMAIN-KEYWORD,shopline,DIRECT
-- DOMAIN-KEYWORD,Sortime,DIRECT
-- DOMAIN-KEYWORD,semrush,DIRECT
-- DOMAIN-KEYWORD,quanmaitong,DIRECT
-- DOMAIN-KEYWORD,amazon,DIRECT
-- DOMAIN-KEYWORD,fiverr,AWS-SG
-- DOMAIN-KEYWORD,referazon,AWS-SG
+  - DOMAIN-KEYWORD,google,CDN-AUTO
+  - DOMAIN-KEYWORD,facebook,CDN-AUTO
+  - DOMAIN-KEYWORD,youtube,CDN-AUTO
+  - DOMAIN-KEYWORD,instagram,CDN-AUTO
+  - DOMAIN-KEYWORD,twitter,CDN-AUTO
+  - DOMAIN-KEYWORD,whatsapp,CDN-AUTO
+  - DOMAIN-KEYWORD,telegram,CDN-AUTO
+  - DOMAIN-KEYWORD,discord,CDN-AUTO
+  - DOMAIN-KEYWORD,spotify,CDN-AUTO
+  - DOMAIN-KEYWORD,tiktok,CDN-AUTO
+  - DOMAIN-KEYWORD,github,CDN-AUTO
+  - DOMAIN-KEYWORD,linkedin,CDN-AUTO
+  - DOMAIN-KEYWORD,snapchat,CDN-AUTO
+  - DOMAIN-KEYWORD,pinterest,CDN-AUTO
+  - DOMAIN-KEYWORD,reddit,CDN-AUTO
+  - DOMAIN-KEYWORD,dropbox,CDN-AUTO
+  - DOMAIN-KEYWORD,twitch,CDN-AUTO
+  - DOMAIN-KEYWORD,vimeo,CDN-AUTO
+  - DOMAIN-KEYWORD,zoom,CDN-AUTO
 
-# ----------------------------------------------------------------
-# 中国 APP（直连）
-# 说明：需放在 Cloudflare IP 段之前，防止含 qq/163 等关键词的域名被误匹配
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,weixin,DIRECT
-- DOMAIN-KEYWORD,wechat,DIRECT
-- DOMAIN-KEYWORD,qq,DIRECT
-- DOMAIN-KEYWORD,tmall,DIRECT
-- DOMAIN-KEYWORD,taobao,DIRECT
-- DOMAIN-SUFFIX,jd.com,DIRECT
-- DOMAIN-KEYWORD,douyin,DIRECT
-- DOMAIN-KEYWORD,xiaohongshu,DIRECT
-- DOMAIN-KEYWORD,maskfog,DIRECT
-- DOMAIN-KEYWORD,163,DIRECT
-- DOMAIN-KEYWORD,youku,DIRECT
-- DOMAIN-KEYWORD,iqiyi,DIRECT
-- DOMAIN-KEYWORD,qqmusic,DIRECT
-- DOMAIN-KEYWORD,alipay,DIRECT
-- DOMAIN-KEYWORD,meituan,DIRECT
-- DOMAIN-KEYWORD,bilibili,DIRECT
-- DOMAIN-KEYWORD,pinduoduo,DIRECT
-- DOMAIN-KEYWORD,weibo,DIRECT
+  - IP-CIDR,142.250.0.0/15,CDN-AUTO,no-resolve
+  - IP-CIDR,172.217.0.0/16,CDN-AUTO,no-resolve
+  - IP-CIDR,173.194.0.0/16,CDN-AUTO,no-resolve
+  - IP-CIDR,216.58.192.0/19,CDN-AUTO,no-resolve
+  - IP-CIDR,216.239.32.0/19,CDN-AUTO,no-resolve
+  - IP-CIDR,74.125.0.0/16,CDN-AUTO,no-resolve
+  - IP-CIDR,64.233.160.0/19,CDN-AUTO,no-resolve
+  - IP-CIDR,66.102.0.0/20,CDN-AUTO,no-resolve
+  - IP-CIDR,66.249.64.0/19,CDN-AUTO,no-resolve
+  - IP-CIDR,72.14.192.0/18,CDN-AUTO,no-resolve
+  - IP-CIDR,157.240.0.0/16,CDN-AUTO,no-resolve
+  - IP-CIDR,179.60.192.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,185.89.216.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,204.15.20.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,31.13.24.0/21,CDN-AUTO,no-resolve
+  - IP-CIDR,31.13.64.0/18,CDN-AUTO,no-resolve
+  - IP-CIDR,104.244.42.0/24,CDN-AUTO,no-resolve
+  - IP-CIDR,192.133.76.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,199.16.156.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,199.59.148.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,66.22.192.0/18,CDN-AUTO,no-resolve
+  - IP-CIDR,66.22.220.0/24,CDN-AUTO,no-resolve
+  - IP-CIDR,140.82.112.0/20,CDN-AUTO,no-resolve
+  - IP-CIDR,143.55.64.0/20,CDN-AUTO,no-resolve
+  - IP-CIDR,185.199.108.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,192.30.252.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,35.186.224.0/19,CDN-AUTO,no-resolve
+  - IP-CIDR,35.186.192.0/21,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.4.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.8.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.12.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.16.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.20.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.56.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,91.108.60.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,149.154.160.0/20,CDN-AUTO,no-resolve
+  - IP-CIDR,149.154.164.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,149.154.168.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR,149.154.172.0/22,CDN-AUTO,no-resolve
+  - IP-CIDR6,2001:b28:f23d::/48,CDN-AUTO,no-resolve
+  - IP-CIDR6,2001:b28:f23f::/48,CDN-AUTO,no-resolve
+  - IP-CIDR6,2001:67c:4e8::/48,CDN-AUTO,no-resolve
+  - IP-CIDR,74.125.39.0/24,CDN-AUTO,no-resolve
+  - IP-CIDR,74.125.250.129/32,CDN-AUTO,no-resolve
+  - IP-CIDR6,2001:4860:4864:2::0/64,CDN-AUTO,no-resolve
 
-# ----------------------------------------------------------------
-# 运动 / 骑行工具（直连）
-# ----------------------------------------------------------------
-- DOMAIN-KEYWORD,garmin,DIRECT
-- DOMAIN-KEYWORD,wahoo,DIRECT
-- DOMAIN-KEYWORD,komoot,DIRECT
+  - DOMAIN-SUFFIX,claude.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,anthropic.com,LLM-AUTO
+  - DOMAIN-SUFFIX,anthropic.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,claude.com,LLM-AUTO
+  - DOMAIN-SUFFIX,chatgpt.com,LLM-AUTO
+  - DOMAIN-SUFFIX,openai.com,LLM-AUTO
+  - DOMAIN-SUFFIX,oaistatic.com,LLM-AUTO
+  - DOMAIN-SUFFIX,oaiusercontent.com,LLM-AUTO
+  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,LLM-AUTO
+  - DOMAIN-SUFFIX,auth0.openai.com,LLM-AUTO
+  - DOMAIN-SUFFIX,x.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,grok.com,LLM-AUTO
+  - DOMAIN-SUFFIX,grok.x.ai,LLM-AUTO
+  - DOMAIN-SUFFIX,perplexity.ai,LLM-AUTO
 
-# ----------------------------------------------------------------
-# 国内运营商 IP 段（直连）
-# 说明：手动列出加速匹配，GEOIP,CN 会在底部兜底覆盖其余 CN IP
-# 如需更新请参考：https://github.com/17mon/china_ip_list
-# ----------------------------------------------------------------
-- IP-CIDR,61.128.0.0/10,DIRECT       # 中国电信
-- IP-CIDR,119.96.0.0/11,DIRECT
-- IP-CIDR,171.8.0.0/13,DIRECT
-- IP-CIDR,60.12.0.0/14,DIRECT        # 中国联通
-- IP-CIDR,106.0.0.0/8,DIRECT
-- IP-CIDR,125.32.0.0/11,DIRECT
-- IP-CIDR,111.0.0.0/8,DIRECT         # 中国移动
-- IP-CIDR,117.128.0.0/10,DIRECT
-- IP-CIDR,183.192.0.0/11,DIRECT
-- IP-CIDR,47.52.0.0/16,DIRECT        # 阿里云
-- IP-CIDR,101.200.0.0/16,DIRECT
-- IP-CIDR,43.132.0.0/16,DIRECT       # 腾讯云
-- IP-CIDR,119.28.0.0/16,DIRECT
-- IP-CIDR,114.115.0.0/16,DIRECT      # 华为云
-- IP-CIDR,139.159.0.0/16,DIRECT
-
-# ----------------------------------------------------------------
-# Google Voice / 谷歌电话（AWS-SG）
-# 说明：IP 段放在 Gemini 之前会导致 Gemini 流量走 AWS-SG
-# 已移除 Google 通用 IP 段，域名规则足够覆盖 Voice 主要请求
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,voice.google.com,AWS-SG
-- DOMAIN-SUFFIX,hangouts.google.com,AWS-SG
-- DOMAIN-SUFFIX,talkgadget.google.com,AWS-SG
-- DOMAIN-SUFFIX,phoneservice.google.com,AWS-SG
-- DOMAIN-SUFFIX,mtalk.google.com,AWS-SG
-- DOMAIN-SUFFIX,alt1-mtalk.google.com,AWS-SG
-- DOMAIN-SUFFIX,alt2-mtalk.google.com,AWS-SG
-- DOMAIN-SUFFIX,alt3-mtalk.google.com,AWS-SG
-- DOMAIN-SUFFIX,alt4-mtalk.google.com,AWS-SG
-
-# ----------------------------------------------------------------
-# Google Translate（AWS-SG）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,translate.google.com,AWS-SG
-- DOMAIN-SUFFIX,translate.googleapis.com,AWS-SG
-- DOMAIN-SUFFIX,translate.googleusercontent.com,AWS-SG
-- DOMAIN-SUFFIX,translate.goog,AWS-SG
-
-# ----------------------------------------------------------------
-# Claude / Anthropic（LLM 自动选速）
-# IP 段：Anthropic 自有 IP（ASN399358），精准可靠
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,claude.ai,AWS-SG
-- DOMAIN-SUFFIX,anthropic.com,AWS-SG
-- DOMAIN-SUFFIX,claudeusercontent.com,AWS-SG
-- DOMAIN-SUFFIX,usefathom.com,AWS-SG
-- IP-CIDR,160.79.104.0/21,AWS-SG        # Anthropic 自有 IP 段
-- IP-CIDR6,2607:6bc0::/48,AWS-SG
-
-# ----------------------------------------------------------------
-# OpenAI / ChatGPT（LLM 自动选速）
-# IP 段：Microsoft Azure 专用段，较精准
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,openai.com,AWS-SG
-- DOMAIN-SUFFIX,chatgpt.com,AWS-SG
-- DOMAIN-SUFFIX,oaistatic.com,AWS-SG
-- DOMAIN-SUFFIX,oaiusercontent.com,AWS-SG
-- DOMAIN-SUFFIX,api.openai.com,AWS-SG
-- DOMAIN-SUFFIX,cdn.openai.com,AWS-SG
-- DOMAIN-SUFFIX,auth0.openai.com,AWS-SG
-- IP-CIDR,13.107.238.0/24,AWS-SG        # Azure OpenAI 专用段
-- IP-CIDR,13.107.239.0/24,AWS-SG
-
-# ----------------------------------------------------------------
-# Gemini / Google AI（CDN 自动选速）
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,gemini.google.com,AWS-SG
-- DOMAIN-SUFFIX,aistudio.google.com,AWS-SG
-- DOMAIN-SUFFIX,ai.google.dev,AWS-SG
-
-# ----------------------------------------------------------------
-# Perplexity（AWS-SG）
-# 说明：子域名已被父域名 perplexity.ai 覆盖，无需单独列出
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,perplexity.ai,AWS-SG
-- DOMAIN-KEYWORD,perplexity,AWS-SG
-
-# ----------------------------------------------------------------
-# Grok / xAI（LLM 自动选速）
-# 注意：IP 段为 Cloudflare 通用段，可能误匹配其他网站
-# 如出现非预期流量走代理，可删除两条 IP-CIDR
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,grok.com,AWS-SG
-- DOMAIN-SUFFIX,x.ai,AWS-SG
-- DOMAIN-SUFFIX,xai.com,AWS-SG
-- DOMAIN-SUFFIX,api.x.ai,AWS-SG
-- DOMAIN-SUFFIX,assets.grok.com,AWS-SG
-
-# ----------------------------------------------------------------
-# LinkedIn（AWS-SG）
-# IP 段：LinkedIn 自有段 + Microsoft Azure，较精准
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,linkedin.com,AWS-SG
-- DOMAIN-SUFFIX,licdn.com,AWS-SG
-- DOMAIN-SUFFIX,linkedincdn.com,AWS-SG
-- DOMAIN-SUFFIX,linkedin.cn,AWS-SG
-- DOMAIN-SUFFIX,lnkd.in,AWS-SG
-- DOMAIN-SUFFIX,learningcontainer.com,AWS-SG
-- IP-CIDR,108.174.0.0/20,AWS-SG        # LinkedIn 自有 IP
-- IP-CIDR,185.63.144.0/22,AWS-SG       # LinkedIn 自有 IP
-- IP-CIDR,13.107.42.0/24,AWS-SG        # Microsoft Azure（LinkedIn 专用）
-
-# ----------------------------------------------------------------
-# Apollo.io（AWS-SG）
-# IP 段：Google Cloud，GCP 池较大可能误匹配，如有问题可删除
-# ----------------------------------------------------------------
-- DOMAIN-SUFFIX,apollo.io,AWS-SG
-- DOMAIN-SUFFIX,apolloapi.io,AWS-SG
-- DOMAIN-SUFFIX,apollocdn.io,AWS-SG
-- IP-CIDR,34.102.0.0/16,AWS-SG         # GCP（可能误匹配其他 GCP 用户）
-- IP-CIDR,34.110.0.0/16,AWS-SG         # GCP（可能误匹配其他 GCP 用户）
-
-# ----------------------------------------------------------------
-# 兜底规则
-# GEOSITE,CN → 覆盖国内主流域名（数万条，自动更新）
-# GEOIP,CN   → 覆盖所有中国大陆 IP 段
-# MATCH       → 其余所有流量走 CDN 组
-# ----------------------------------------------------------------
-- GEOSITE,CN,DIRECT
-- GEOIP,CN,DIRECT
-- MATCH,CDN
+  - MATCH,DIRECT
