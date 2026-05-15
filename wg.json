@@ -138,7 +138,9 @@
         "enabled": true,
         "server_name": "hy255.todsm.com",
         "insecure": false
-      }
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
     },
     {
       "type": "hysteria2",
@@ -154,7 +156,9 @@
         "enabled": true,
         "server_name": "hy91.todsm.com",
         "insecure": false
-      }
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
     },
     {
       "type": "vless",
