@@ -1,468 +1,404 @@
 mixed-port: 2080
-bind-address: 127.0.0.1
 allow-lan: false
 mode: rule
 log-level: warning
-external-controller: 127.0.0.1:9090
-external-ui: ui
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
-secret: ""
-
 ipv6: true
+unified-delay: true
+tcp-concurrent: true
 global-client-fingerprint: chrome
-
 profile:
   store-selected: true
   store-fake-ip: true
-
 sniffer:
   enable: true
-  force-dns-mapping: true
   parse-pure-ip: true
   override-destination: true
   sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
     TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - "Mijia Cloud"
-    - "+.push.apple.com"
-
+      ports:
+      - 443
+      - 8443
+    HTTP:
+      ports:
+      - '80'
+      - 8080-8880
+      override-destination: true
 tun:
   enable: true
   stack: system
   auto-route: true
   strict-route: true
-  auto-detect-interface: true
   dns-hijack:
-    - any:53
-    - tcp://any:53
-
-ntp:
-  enable: true
-  write-to-system: false
-  server: time.apple.com
-  port: 123
-  interval: 30
-
+  - any:53
 dns:
   enable: true
   listen: 127.0.0.1:1053
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "time.apple.com"
   default-nameserver:
-    - 223.5.5.5
-  proxy-server-nameserver:
-    - 223.5.5.5
-    - https://dns.alidns.com/dns-query
+  - 223.5.5.5
   nameserver:
-    - "https://dns.alidns.com/dns-query#DIRECT"
+  - https://dns.alidns.com/dns-query
   fallback:
-    - "https://8.8.8.8/dns-query#PROXY"
+  - https://8.8.8.8/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
-    domain:
-      - "+.claude.ai"
-      - "+.anthropic.com"
-      - "+.anthropic.ai"
-      - "+.claude.com"
-      - "+.chatgpt.com"
-      - "+.openai.com"
-      - "+.oaistatic.com"
-      - "+.oaiusercontent.com"
-      - "+.x.ai"
-      - "+.grok.com"
-      - "+.perplexity.ai"
-      - "+.google.com"
-      - "+.googleapis.com"
-      - "+.gstatic.com"
-      - "+.youtube.com"
-      - "+.github.com"
-      - "+.telegram.org"
-      - "+.facebook.com"
-      - "+.twitter.com"
-      - "+.x.com"
-      - "+.discord.com"
-
 proxies:
-  - name: "LLM-US-REALITY"
-    type: vless
-    server: 107.173.140.91
-    port: 10104
-    uuid: 27081bfd-e334-417e-a7da-73a8b52a4c33
-    udp: true
-    flow: xtls-rprx-vision
-    tls: true
-    servername: www.paypal.com
-    client-fingerprint: chrome
-    reality-opts:
-      public-key: 6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg
-      short-id: ""
-    network: tcp
-
-  - name: "LLM-DE-VLESS"
-    type: vless
-    server: de.todsm.com
-    port: 443
-    uuid: 93a32eb7-a2ba-4716-a640-ba8fa7de0350
-    udp: true
-    tls: true
-    servername: de.todsm.com
-    client-fingerprint: chrome
-    network: tcp
-
-  - name: "CDN-1"
-    type: vless
-    server: 8.35.211.251
-    port: 443
-    uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
-    udp: true
-    tls: true
-    servername: ddns.hayoovant.com
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /
-      headers:
-        Host: ddns.hayoovant.com
-
-  - name: "CDN-2"
-    type: vless
-    server: 8.35.211.126
-    port: 443
-    uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
-    udp: true
-    tls: true
-    servername: helloworld.todsm.com
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /
-      headers:
-        Host: helloworld.todsm.com
-
-  - name: "CDN-3"
-    type: vless
-    server: 8.35.211.168
-    port: 443
-    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
-    udp: true
-    tls: true
-    servername: helloworld.fotoman.com
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /
-      headers:
-        Host: helloworld.fotoman.com
-
+- name: LLM-US-HYSTERIA2
+  type: hysteria2
+  server: hy255.todsm.com
+  port: 443
+  password: nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt
+  sni: hy255.todsm.com
+  skip-cert-verify: false
+  udp: true
+  obfs: salamander
+  obfs-password: IkN56lpDU7+BDGjVhMEicvt2S4vRasZG
+- name: LLM-DE-HYSTERIA2
+  type: hysteria2
+  server: hy91.todsm.com
+  port: 443
+  password: LVOEhToM5QvkexX7b7hx/noHmkVBTIc7
+  sni: hy91.todsm.com
+  skip-cert-verify: false
+  udp: true
+  obfs: salamander
+  obfs-password: yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd
+- name: CDN-1
+  type: vless
+  server: 8.35.211.251
+  port: 443
+  uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+  udp: true
+  tls: true
+  servername: ddns.hayoovant.com
+  skip-cert-verify: false
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: "/"
+    headers:
+      Host: ddns.hayoovant.com
+- name: CDN-2
+  type: vless
+  server: 8.35.211.126
+  port: 443
+  uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+  udp: true
+  tls: true
+  servername: helloworld.todsm.com
+  skip-cert-verify: false
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: "/"
+    headers:
+      Host: helloworld.todsm.com
+- name: CDN-3
+  type: vless
+  server: 8.35.211.168
+  port: 443
+  uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+  udp: true
+  tls: true
+  servername: helloworld.fotoman.com
+  skip-cert-verify: false
+  client-fingerprint: chrome
+  network: ws
+  ws-opts:
+    path: "/"
+    headers:
+      Host: helloworld.fotoman.com
 proxy-groups:
-  - name: "PROXY"
-    type: select
-    proxies:
-      - CDN-AUTO
-      - CDN-1
-      - CDN-2
-      - CDN-3
-
-  - name: "CDN-AUTO"
-    type: url-test
-    proxies:
-      - CDN-1
-      - CDN-2
-      - CDN-3
-    url: https://www.gstatic.com/generate_204
-    expected-status: 204
-    interval: 600
-    tolerance: 100
-    lazy: true
-    timeout: 5000
-
-  - name: "LLM"
-    type: select
-    proxies:
-      - LLM-AUTO
-      - LLM-US-REALITY
-      - LLM-DE-VLESS
-
-  - name: "LLM-AUTO"
-    type: url-test
-    proxies:
-      - LLM-US-REALITY
-      - LLM-DE-VLESS
-    url: https://www.gstatic.com/generate_204
-    expected-status: 204
-    interval: 600
-    tolerance: 100
-    lazy: true
-    timeout: 5000
-
+- name: PROXY
+  type: select
+  proxies:
+  - CDN-AUTO
+  - CDN-1
+  - CDN-2
+  - CDN-3
+- name: CDN-AUTO
+  type: url-test
+  proxies:
+  - CDN-1
+  - CDN-2
+  - CDN-3
+  url: https://www.gstatic.com/generate_204
+  interval: 600
+  tolerance: 100
+  lazy: true
+- name: LLM
+  type: select
+  proxies:
+  - LLM-AUTO
+  - LLM-US-HYSTERIA2
+  - LLM-DE-HYSTERIA2
+- name: LLM-AUTO
+  type: url-test
+  proxies:
+  - LLM-US-HYSTERIA2
+  - LLM-DE-HYSTERIA2
+  url: https://www.gstatic.com/generate_204
+  interval: 600
+  tolerance: 100
+  lazy: true
 rules:
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
-  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
-  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
-
-  - DOMAIN-SUFFIX,claude.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,anthropic.com,LLM-AUTO
-  - DOMAIN-SUFFIX,anthropic.ai,LLM-AUTO
-  - DOMAIN-SUFFIX,claude.com,LLM-AUTO
-
-  - DOMAIN-SUFFIX,chatgpt.com,CDN-AUTO
-  - DOMAIN-SUFFIX,openai.com,CDN-AUTO
-  - DOMAIN-SUFFIX,oaistatic.com,CDN-AUTO
-  - DOMAIN-SUFFIX,oaiusercontent.com,CDN-AUTO
-  - DOMAIN-SUFFIX,openaiapi-site.azureedge.net,CDN-AUTO
-  - DOMAIN-SUFFIX,auth0.openai.com,CDN-AUTO
-  - DOMAIN-SUFFIX,x.ai,CDN-AUTO
-  - DOMAIN-SUFFIX,grok.com,CDN-AUTO
-  - DOMAIN-SUFFIX,grok.x.ai,CDN-AUTO
-  - DOMAIN-SUFFIX,perplexity.ai,CDN-AUTO
-
-  - DOMAIN-SUFFIX,google.com,CDN-AUTO
-  - DOMAIN-SUFFIX,voice.google.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googlevoice.com,CDN-AUTO
-  - DOMAIN-SUFFIX,google.com.sg,CDN-AUTO
-  - DOMAIN-SUFFIX,googleapis.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googlevideo.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googleusercontent.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googlesyndication.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googletagmanager.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googletagservices.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googleadservices.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googleoptimize.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googledrive.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googleplay.com,CDN-AUTO
-  - DOMAIN-SUFFIX,google-analytics.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googlefiber.net,CDN-AUTO
-  - DOMAIN-SUFFIX,gstatic.com,CDN-AUTO
-  - DOMAIN-SUFFIX,ggpht.com,CDN-AUTO
-  - DOMAIN-SUFFIX,gmail.com,CDN-AUTO
-  - DOMAIN-SUFFIX,googlemail.com,CDN-AUTO
-  - DOMAIN-SUFFIX,youtube.com,CDN-AUTO
-  - DOMAIN-SUFFIX,youtu.be,CDN-AUTO
-  - DOMAIN-SUFFIX,ytimg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,yt3.ggpht.com,CDN-AUTO
-  - DOMAIN-SUFFIX,youtubei.googleapis.com,CDN-AUTO
-  - DOMAIN-SUFFIX,youtube-nocookie.com,CDN-AUTO
-  - DOMAIN-SUFFIX,whatsapp.com,CDN-AUTO
-  - DOMAIN-SUFFIX,whatsapp.net,CDN-AUTO
-  - DOMAIN-SUFFIX,wa.me,CDN-AUTO
-  - DOMAIN-SUFFIX,linkedin.com,CDN-AUTO
-  - DOMAIN-SUFFIX,licdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,linkedin-ei.com,CDN-AUTO
-  - DOMAIN-SUFFIX,x.com,CDN-AUTO
-  - DOMAIN-SUFFIX,twitter.com,CDN-AUTO
-  - DOMAIN-SUFFIX,twimg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,t.co,CDN-AUTO
-  - DOMAIN-SUFFIX,abs.twimg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,instagram.com,CDN-AUTO
-  - DOMAIN-SUFFIX,cdninstagram.com,CDN-AUTO
-  - DOMAIN-SUFFIX,instagram-static.com,CDN-AUTO
-  - DOMAIN-SUFFIX,threads.net,CDN-AUTO
-  - DOMAIN-SUFFIX,yahoo.com,CDN-AUTO
-  - DOMAIN-SUFFIX,yahooapis.com,CDN-AUTO
-  - DOMAIN-SUFFIX,yimg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,yahoo.co.jp,CDN-AUTO
-  - DOMAIN-SUFFIX,facebook.com,CDN-AUTO
-  - DOMAIN-SUFFIX,fbcdn.net,CDN-AUTO
-  - DOMAIN-SUFFIX,fb.com,CDN-AUTO
-  - DOMAIN-SUFFIX,fb.me,CDN-AUTO
-  - DOMAIN-SUFFIX,fbsbx.com,CDN-AUTO
-  - DOMAIN-SUFFIX,fbpigeon.com,CDN-AUTO
-  - DOMAIN-SUFFIX,facebook.net,CDN-AUTO
-  - DOMAIN-SUFFIX,messenger.com,CDN-AUTO
-  - DOMAIN-SUFFIX,m.me,CDN-AUTO
-  - DOMAIN-SUFFIX,telegram.org,CDN-AUTO
-  - DOMAIN-SUFFIX,telegram.me,CDN-AUTO
-  - DOMAIN-SUFFIX,telegram.dog,CDN-AUTO
-  - DOMAIN-SUFFIX,telegram-cdn.org,CDN-AUTO
-  - DOMAIN-SUFFIX,t.me,CDN-AUTO
-  - DOMAIN-SUFFIX,telegra.ph,CDN-AUTO
-  - DOMAIN-SUFFIX,tdesktop.com,CDN-AUTO
-  - DOMAIN-SUFFIX,telesco.pe,CDN-AUTO
-  - DOMAIN-SUFFIX,signal.org,CDN-AUTO
-  - DOMAIN-SUFFIX,signal.group,CDN-AUTO
-  - DOMAIN-SUFFIX,github.com,CDN-AUTO
-  - DOMAIN-SUFFIX,githubusercontent.com,CDN-AUTO
-  - DOMAIN-SUFFIX,githubassets.com,CDN-AUTO
-  - DOMAIN-SUFFIX,github.io,CDN-AUTO
-  - DOMAIN-SUFFIX,ghcr.io,CDN-AUTO
-  - DOMAIN-SUFFIX,npmjs.com,CDN-AUTO
-  - DOMAIN-SUFFIX,bing.com,CDN-AUTO
-  - DOMAIN-SUFFIX,bingapis.com,CDN-AUTO
-  - DOMAIN-SUFFIX,msn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,microsoft.com,CDN-AUTO
-  - DOMAIN-SUFFIX,microsoftonline.com,CDN-AUTO
-  - DOMAIN-SUFFIX,microsoftedge.com,CDN-AUTO
-  - DOMAIN-SUFFIX,office.com,CDN-AUTO
-  - DOMAIN-SUFFIX,office365.com,CDN-AUTO
-  - DOMAIN-SUFFIX,sharepoint.com,CDN-AUTO
-  - DOMAIN-SUFFIX,onedrive.com,CDN-AUTO
-  - DOMAIN-SUFFIX,live.com,CDN-AUTO
-  - DOMAIN-SUFFIX,outlook.com,CDN-AUTO
-  - DOMAIN-SUFFIX,hotmail.com,CDN-AUTO
-  - DOMAIN-SUFFIX,azure.com,CDN-AUTO
-  - DOMAIN-SUFFIX,azureedge.net,CDN-AUTO
-  - DOMAIN-SUFFIX,azure-api.net,CDN-AUTO
-  - DOMAIN-SUFFIX,windows.com,CDN-AUTO
-  - DOMAIN-SUFFIX,windowsupdate.com,CDN-AUTO
-  - DOMAIN-SUFFIX,duckduckgo.com,CDN-AUTO
-  - DOMAIN-SUFFIX,duck.com,CDN-AUTO
-  - DOMAIN-SUFFIX,duckduckcdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,snapchat.com,CDN-AUTO
-  - DOMAIN-SUFFIX,snapkit.com,CDN-AUTO
-  - DOMAIN-SUFFIX,snap.com,CDN-AUTO
-  - DOMAIN-SUFFIX,snapcdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,tiktok.com,CDN-AUTO
-  - DOMAIN-SUFFIX,tiktokcdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,tiktokv.com,CDN-AUTO
-  - DOMAIN-SUFFIX,musical.ly,CDN-AUTO
-  - DOMAIN-SUFFIX,byteoversea.com,CDN-AUTO
-  - DOMAIN-SUFFIX,ibytedtos.com,CDN-AUTO
-  - DOMAIN-SUFFIX,isnssdk.com,CDN-AUTO
-  - DOMAIN-SUFFIX,pinterest.com,CDN-AUTO
-  - DOMAIN-SUFFIX,pinimg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,pinterest-media.com,CDN-AUTO
-  - DOMAIN-SUFFIX,reddit.com,CDN-AUTO
-  - DOMAIN-SUFFIX,redd.it,CDN-AUTO
-  - DOMAIN-SUFFIX,redditmedia.com,CDN-AUTO
-  - DOMAIN-SUFFIX,reddituploads.com,CDN-AUTO
-  - DOMAIN-SUFFIX,redditstatic.com,CDN-AUTO
-  - DOMAIN-SUFFIX,redditinc.com,CDN-AUTO
-  - DOMAIN-SUFFIX,twitch.tv,CDN-AUTO
-  - DOMAIN-SUFFIX,twitchsvc.net,CDN-AUTO
-  - DOMAIN-SUFFIX,jtvnw.net,CDN-AUTO
-  - DOMAIN-SUFFIX,twitchapps.com,CDN-AUTO
-  - DOMAIN-SUFFIX,ext-twitch.tv,CDN-AUTO
-  - DOMAIN-SUFFIX,dailymotion.com,CDN-AUTO
-  - DOMAIN-SUFFIX,dmcdn.net,CDN-AUTO
-  - DOMAIN-SUFFIX,dm-event.net,CDN-AUTO
-  - DOMAIN-SUFFIX,vimeo.com,CDN-AUTO
-  - DOMAIN-SUFFIX,vimeocdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,livestream.com,CDN-AUTO
-  - DOMAIN-SUFFIX,discord.com,CDN-AUTO
-  - DOMAIN-SUFFIX,discord.gg,CDN-AUTO
-  - DOMAIN-SUFFIX,discordapp.com,CDN-AUTO
-  - DOMAIN-SUFFIX,discordapp.net,CDN-AUTO
-  - DOMAIN-SUFFIX,discordcdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,discord.media,CDN-AUTO
-  - DOMAIN-SUFFIX,discord.co,CDN-AUTO
-  - DOMAIN-SUFFIX,line.me,CDN-AUTO
-  - DOMAIN-SUFFIX,line-scdn.net,CDN-AUTO
-  - DOMAIN-SUFFIX,line-apps.com,CDN-AUTO
-  - DOMAIN-SUFFIX,line-beta.me,CDN-AUTO
-  - DOMAIN-SUFFIX,lin.ee,CDN-AUTO
-  - DOMAIN-SUFFIX,naver.com,CDN-AUTO
-  - DOMAIN-SUFFIX,zoom.us,CDN-AUTO
-  - DOMAIN-SUFFIX,zoom.com,CDN-AUTO
-  - DOMAIN-SUFFIX,zoomgov.com,CDN-AUTO
-  - DOMAIN-SUFFIX,zmtg.com,CDN-AUTO
-  - DOMAIN-SUFFIX,zoomdev.us,CDN-AUTO
-  - DOMAIN-SUFFIX,wikipedia.org,CDN-AUTO
-  - DOMAIN-SUFFIX,wikimedia.org,CDN-AUTO
-  - DOMAIN-SUFFIX,wikidata.org,CDN-AUTO
-  - DOMAIN-SUFFIX,mediawiki.org,CDN-AUTO
-  - DOMAIN-SUFFIX,archive.org,CDN-AUTO
-  - DOMAIN-SUFFIX,archive.ph,CDN-AUTO
-  - DOMAIN-SUFFIX,dropbox.com,CDN-AUTO
-  - DOMAIN-SUFFIX,dropboxapi.com,CDN-AUTO
-  - DOMAIN-SUFFIX,dropboxusercontent.com,CDN-AUTO
-  - DOMAIN-SUFFIX,dropbox-dns.com,CDN-AUTO
-  - DOMAIN-SUFFIX,spotify.com,CDN-AUTO
-  - DOMAIN-SUFFIX,scdn.co,CDN-AUTO
-  - DOMAIN-SUFFIX,spotifycdn.com,CDN-AUTO
-  - DOMAIN-SUFFIX,spotifycdn.net,CDN-AUTO
-  - DOMAIN-SUFFIX,pscdn.co,CDN-AUTO
-  - DOMAIN-SUFFIX,tidal.com,CDN-AUTO
-  - DOMAIN-SUFFIX,tidal.io,CDN-AUTO
-  - DOMAIN-SUFFIX,wimpmusic.com,CDN-AUTO
-  - DOMAIN-SUFFIX,qobuz.com,CDN-AUTO
-  - DOMAIN-SUFFIX,qobuz.io,CDN-AUTO
-  - DOMAIN-SUFFIX,telephony.goog,CDN-AUTO
-
-  - DOMAIN-KEYWORD,google,CDN-AUTO
-  - DOMAIN-KEYWORD,facebook,CDN-AUTO
-  - DOMAIN-KEYWORD,youtube,CDN-AUTO
-  - DOMAIN-KEYWORD,instagram,CDN-AUTO
-  - DOMAIN-KEYWORD,twitter,CDN-AUTO
-  - DOMAIN-KEYWORD,whatsapp,CDN-AUTO
-  - DOMAIN-KEYWORD,telegram,CDN-AUTO
-  - DOMAIN-KEYWORD,discord,CDN-AUTO
-  - DOMAIN-KEYWORD,spotify,CDN-AUTO
-  - DOMAIN-KEYWORD,tiktok,CDN-AUTO
-  - DOMAIN-KEYWORD,github,CDN-AUTO
-  - DOMAIN-KEYWORD,linkedin,CDN-AUTO
-  - DOMAIN-KEYWORD,snapchat,CDN-AUTO
-  - DOMAIN-KEYWORD,pinterest,CDN-AUTO
-  - DOMAIN-KEYWORD,reddit,CDN-AUTO
-  - DOMAIN-KEYWORD,dropbox,CDN-AUTO
-  - DOMAIN-KEYWORD,twitch,CDN-AUTO
-  - DOMAIN-KEYWORD,vimeo,CDN-AUTO
-  - DOMAIN-KEYWORD,zoom,CDN-AUTO
-  - DOMAIN-KEYWORD,openai,CDN-AUTO
-  - DOMAIN-KEYWORD,chatgpt,CDN-AUTO
-  - DOMAIN-KEYWORD,perplexity,CDN-AUTO
-  - DOMAIN-KEYWORD,grok,CDN-AUTO
-
-  - IP-CIDR,142.250.0.0/15,CDN-AUTO
-  - IP-CIDR,172.217.0.0/16,CDN-AUTO
-  - IP-CIDR,173.194.0.0/16,CDN-AUTO
-  - IP-CIDR,216.58.192.0/19,CDN-AUTO
-  - IP-CIDR,216.239.32.0/19,CDN-AUTO
-  - IP-CIDR,74.125.0.0/16,CDN-AUTO
-  - IP-CIDR,64.233.160.0/19,CDN-AUTO
-  - IP-CIDR,66.102.0.0/20,CDN-AUTO
-  - IP-CIDR,66.249.64.0/19,CDN-AUTO
-  - IP-CIDR,72.14.192.0/18,CDN-AUTO
-  - IP-CIDR,157.240.0.0/16,CDN-AUTO
-  - IP-CIDR,179.60.192.0/22,CDN-AUTO
-  - IP-CIDR,185.89.216.0/22,CDN-AUTO
-  - IP-CIDR,204.15.20.0/22,CDN-AUTO
-  - IP-CIDR,31.13.24.0/21,CDN-AUTO
-  - IP-CIDR,31.13.64.0/18,CDN-AUTO
-  - IP-CIDR,104.244.42.0/24,CDN-AUTO
-  - IP-CIDR,192.133.76.0/22,CDN-AUTO
-  - IP-CIDR,199.16.156.0/22,CDN-AUTO
-  - IP-CIDR,199.59.148.0/22,CDN-AUTO
-  - IP-CIDR,66.22.192.0/18,CDN-AUTO
-  - IP-CIDR,66.22.220.0/24,CDN-AUTO
-  - IP-CIDR,140.82.112.0/20,CDN-AUTO
-  - IP-CIDR,143.55.64.0/20,CDN-AUTO
-  - IP-CIDR,185.199.108.0/22,CDN-AUTO
-  - IP-CIDR,192.30.252.0/22,CDN-AUTO
-  - IP-CIDR,35.186.224.0/19,CDN-AUTO
-  - IP-CIDR,35.186.192.0/21,CDN-AUTO
-  - IP-CIDR,91.108.4.0/22,CDN-AUTO
-  - IP-CIDR,91.108.8.0/22,CDN-AUTO
-  - IP-CIDR,91.108.12.0/22,CDN-AUTO
-  - IP-CIDR,91.108.16.0/22,CDN-AUTO
-  - IP-CIDR,91.108.20.0/22,CDN-AUTO
-  - IP-CIDR,91.108.56.0/22,CDN-AUTO
-  - IP-CIDR,91.108.60.0/22,CDN-AUTO
-  - IP-CIDR,149.154.160.0/20,CDN-AUTO
-  - IP-CIDR,149.154.164.0/22,CDN-AUTO
-  - IP-CIDR,149.154.168.0/22,CDN-AUTO
-  - IP-CIDR,149.154.172.0/22,CDN-AUTO
-  - IP-CIDR6,2001:b28:f23d::/48,CDN-AUTO
-  - IP-CIDR6,2001:b28:f23f::/48,CDN-AUTO
-  - IP-CIDR6,2001:67c:4e8::/48,CDN-AUTO
-  - IP-CIDR,74.125.39.0/24,CDN-AUTO
-  - IP-CIDR,74.125.250.129/32,CDN-AUTO
-  - IP-CIDR6,2001:4860:4864:2::0/64,CDN-AUTO
-
-  - MATCH,DIRECT
+- DOMAIN-SUFFIX,local,DIRECT
+- IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+- IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+- IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+- IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+- IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+- IP-CIDR6,::1/128,DIRECT,no-resolve
+- IP-CIDR6,fc00::/7,DIRECT,no-resolve
+- IP-CIDR6,fe80::/10,DIRECT,no-resolve
+- DOMAIN-KEYWORD,openai,LLM-AUTO
+- DOMAIN-KEYWORD,chatgpt,LLM-AUTO
+- DOMAIN-KEYWORD,perplexity,LLM-AUTO
+- DOMAIN-KEYWORD,grok,LLM-AUTO
+- DOMAIN-KEYWORD,claude,LLM-AUTO
+- DOMAIN-KEYWORD,anthropic,LLM-AUTO
+- DOMAIN-KEYWORD,gemini,LLM-AUTO
+- DOMAIN-KEYWORD,copilot,LLM-AUTO
+- DOMAIN-SUFFIX,claude.ai,LLM-AUTO
+- DOMAIN-SUFFIX,anthropic.com,LLM-AUTO
+- DOMAIN-SUFFIX,anthropic.ai,LLM-AUTO
+- DOMAIN-SUFFIX,claude.com,LLM-AUTO
+- DOMAIN-SUFFIX,chatgpt.com,LLM-AUTO
+- DOMAIN-SUFFIX,openai.com,LLM-AUTO
+- DOMAIN-SUFFIX,oaistatic.com,LLM-AUTO
+- DOMAIN-SUFFIX,oaiusercontent.com,LLM-AUTO
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,LLM-AUTO
+- DOMAIN-SUFFIX,auth0.openai.com,LLM-AUTO
+- DOMAIN-SUFFIX,x.ai,LLM-AUTO
+- DOMAIN-SUFFIX,grok.com,LLM-AUTO
+- DOMAIN-SUFFIX,grok.x.ai,LLM-AUTO
+- DOMAIN-SUFFIX,perplexity.ai,LLM-AUTO
+- DOMAIN-SUFFIX,google.com,CDN-AUTO
+- DOMAIN-SUFFIX,voice.google.com,CDN-AUTO
+- DOMAIN-SUFFIX,googlevoice.com,CDN-AUTO
+- DOMAIN-SUFFIX,google.com.sg,CDN-AUTO
+- DOMAIN-SUFFIX,googleapis.com,CDN-AUTO
+- DOMAIN-SUFFIX,googlevideo.com,CDN-AUTO
+- DOMAIN-SUFFIX,googleusercontent.com,CDN-AUTO
+- DOMAIN-SUFFIX,googlesyndication.com,CDN-AUTO
+- DOMAIN-SUFFIX,googletagmanager.com,CDN-AUTO
+- DOMAIN-SUFFIX,googletagservices.com,CDN-AUTO
+- DOMAIN-SUFFIX,googleadservices.com,CDN-AUTO
+- DOMAIN-SUFFIX,googleoptimize.com,CDN-AUTO
+- DOMAIN-SUFFIX,googledrive.com,CDN-AUTO
+- DOMAIN-SUFFIX,googleplay.com,CDN-AUTO
+- DOMAIN-SUFFIX,google-analytics.com,CDN-AUTO
+- DOMAIN-SUFFIX,googlefiber.net,CDN-AUTO
+- DOMAIN-SUFFIX,gstatic.com,CDN-AUTO
+- DOMAIN-SUFFIX,ggpht.com,CDN-AUTO
+- DOMAIN-SUFFIX,gmail.com,CDN-AUTO
+- DOMAIN-SUFFIX,googlemail.com,CDN-AUTO
+- DOMAIN-SUFFIX,youtube.com,CDN-AUTO
+- DOMAIN-SUFFIX,youtu.be,CDN-AUTO
+- DOMAIN-SUFFIX,ytimg.com,CDN-AUTO
+- DOMAIN-SUFFIX,yt3.ggpht.com,CDN-AUTO
+- DOMAIN-SUFFIX,youtubei.googleapis.com,CDN-AUTO
+- DOMAIN-SUFFIX,youtube-nocookie.com,CDN-AUTO
+- DOMAIN-SUFFIX,whatsapp.com,CDN-AUTO
+- DOMAIN-SUFFIX,whatsapp.net,CDN-AUTO
+- DOMAIN-SUFFIX,wa.me,CDN-AUTO
+- DOMAIN-SUFFIX,linkedin.com,CDN-AUTO
+- DOMAIN-SUFFIX,licdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,linkedin-ei.com,CDN-AUTO
+- DOMAIN-SUFFIX,x.com,CDN-AUTO
+- DOMAIN-SUFFIX,twitter.com,CDN-AUTO
+- DOMAIN-SUFFIX,twimg.com,CDN-AUTO
+- DOMAIN-SUFFIX,t.co,CDN-AUTO
+- DOMAIN-SUFFIX,abs.twimg.com,CDN-AUTO
+- DOMAIN-SUFFIX,instagram.com,CDN-AUTO
+- DOMAIN-SUFFIX,cdninstagram.com,CDN-AUTO
+- DOMAIN-SUFFIX,instagram-static.com,CDN-AUTO
+- DOMAIN-SUFFIX,threads.net,CDN-AUTO
+- DOMAIN-SUFFIX,yahoo.com,CDN-AUTO
+- DOMAIN-SUFFIX,yahooapis.com,CDN-AUTO
+- DOMAIN-SUFFIX,yimg.com,CDN-AUTO
+- DOMAIN-SUFFIX,yahoo.co.jp,CDN-AUTO
+- DOMAIN-SUFFIX,facebook.com,CDN-AUTO
+- DOMAIN-SUFFIX,fbcdn.net,CDN-AUTO
+- DOMAIN-SUFFIX,fb.com,CDN-AUTO
+- DOMAIN-SUFFIX,fb.me,CDN-AUTO
+- DOMAIN-SUFFIX,fbsbx.com,CDN-AUTO
+- DOMAIN-SUFFIX,fbpigeon.com,CDN-AUTO
+- DOMAIN-SUFFIX,facebook.net,CDN-AUTO
+- DOMAIN-SUFFIX,messenger.com,CDN-AUTO
+- DOMAIN-SUFFIX,m.me,CDN-AUTO
+- DOMAIN-SUFFIX,telegram.org,CDN-AUTO
+- DOMAIN-SUFFIX,telegram.me,CDN-AUTO
+- DOMAIN-SUFFIX,telegram.dog,CDN-AUTO
+- DOMAIN-SUFFIX,telegram-cdn.org,CDN-AUTO
+- DOMAIN-SUFFIX,t.me,CDN-AUTO
+- DOMAIN-SUFFIX,telegra.ph,CDN-AUTO
+- DOMAIN-SUFFIX,tdesktop.com,CDN-AUTO
+- DOMAIN-SUFFIX,telesco.pe,CDN-AUTO
+- DOMAIN-SUFFIX,signal.org,CDN-AUTO
+- DOMAIN-SUFFIX,signal.group,CDN-AUTO
+- DOMAIN-SUFFIX,github.com,CDN-AUTO
+- DOMAIN-SUFFIX,githubusercontent.com,CDN-AUTO
+- DOMAIN-SUFFIX,githubassets.com,CDN-AUTO
+- DOMAIN-SUFFIX,github.io,CDN-AUTO
+- DOMAIN-SUFFIX,ghcr.io,CDN-AUTO
+- DOMAIN-SUFFIX,npmjs.com,CDN-AUTO
+- DOMAIN-SUFFIX,bing.com,CDN-AUTO
+- DOMAIN-SUFFIX,bingapis.com,CDN-AUTO
+- DOMAIN-SUFFIX,msn.com,CDN-AUTO
+- DOMAIN-SUFFIX,microsoft.com,CDN-AUTO
+- DOMAIN-SUFFIX,microsoftonline.com,CDN-AUTO
+- DOMAIN-SUFFIX,microsoftedge.com,CDN-AUTO
+- DOMAIN-SUFFIX,office.com,CDN-AUTO
+- DOMAIN-SUFFIX,office365.com,CDN-AUTO
+- DOMAIN-SUFFIX,sharepoint.com,CDN-AUTO
+- DOMAIN-SUFFIX,onedrive.com,CDN-AUTO
+- DOMAIN-SUFFIX,live.com,CDN-AUTO
+- DOMAIN-SUFFIX,outlook.com,CDN-AUTO
+- DOMAIN-SUFFIX,hotmail.com,CDN-AUTO
+- DOMAIN-SUFFIX,azure.com,CDN-AUTO
+- DOMAIN-SUFFIX,azureedge.net,CDN-AUTO
+- DOMAIN-SUFFIX,azure-api.net,CDN-AUTO
+- DOMAIN-SUFFIX,windows.com,CDN-AUTO
+- DOMAIN-SUFFIX,windowsupdate.com,CDN-AUTO
+- DOMAIN-SUFFIX,duckduckgo.com,CDN-AUTO
+- DOMAIN-SUFFIX,duck.com,CDN-AUTO
+- DOMAIN-SUFFIX,duckduckcdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,snapchat.com,CDN-AUTO
+- DOMAIN-SUFFIX,snapkit.com,CDN-AUTO
+- DOMAIN-SUFFIX,snap.com,CDN-AUTO
+- DOMAIN-SUFFIX,snapcdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,tiktok.com,CDN-AUTO
+- DOMAIN-SUFFIX,tiktokcdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,tiktokv.com,CDN-AUTO
+- DOMAIN-SUFFIX,musical.ly,CDN-AUTO
+- DOMAIN-SUFFIX,byteoversea.com,CDN-AUTO
+- DOMAIN-SUFFIX,ibytedtos.com,CDN-AUTO
+- DOMAIN-SUFFIX,isnssdk.com,CDN-AUTO
+- DOMAIN-SUFFIX,pinterest.com,CDN-AUTO
+- DOMAIN-SUFFIX,pinimg.com,CDN-AUTO
+- DOMAIN-SUFFIX,pinterest-media.com,CDN-AUTO
+- DOMAIN-SUFFIX,reddit.com,CDN-AUTO
+- DOMAIN-SUFFIX,redd.it,CDN-AUTO
+- DOMAIN-SUFFIX,redditmedia.com,CDN-AUTO
+- DOMAIN-SUFFIX,reddituploads.com,CDN-AUTO
+- DOMAIN-SUFFIX,redditstatic.com,CDN-AUTO
+- DOMAIN-SUFFIX,redditinc.com,CDN-AUTO
+- DOMAIN-SUFFIX,twitch.tv,CDN-AUTO
+- DOMAIN-SUFFIX,twitchsvc.net,CDN-AUTO
+- DOMAIN-SUFFIX,jtvnw.net,CDN-AUTO
+- DOMAIN-SUFFIX,twitchapps.com,CDN-AUTO
+- DOMAIN-SUFFIX,ext-twitch.tv,CDN-AUTO
+- DOMAIN-SUFFIX,dailymotion.com,CDN-AUTO
+- DOMAIN-SUFFIX,dmcdn.net,CDN-AUTO
+- DOMAIN-SUFFIX,dm-event.net,CDN-AUTO
+- DOMAIN-SUFFIX,vimeo.com,CDN-AUTO
+- DOMAIN-SUFFIX,vimeocdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,livestream.com,CDN-AUTO
+- DOMAIN-SUFFIX,discord.com,CDN-AUTO
+- DOMAIN-SUFFIX,discord.gg,CDN-AUTO
+- DOMAIN-SUFFIX,discordapp.com,CDN-AUTO
+- DOMAIN-SUFFIX,discordapp.net,CDN-AUTO
+- DOMAIN-SUFFIX,discordcdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,discord.media,CDN-AUTO
+- DOMAIN-SUFFIX,discord.co,CDN-AUTO
+- DOMAIN-SUFFIX,line.me,CDN-AUTO
+- DOMAIN-SUFFIX,line-scdn.net,CDN-AUTO
+- DOMAIN-SUFFIX,line-apps.com,CDN-AUTO
+- DOMAIN-SUFFIX,line-beta.me,CDN-AUTO
+- DOMAIN-SUFFIX,lin.ee,CDN-AUTO
+- DOMAIN-SUFFIX,naver.com,CDN-AUTO
+- DOMAIN-SUFFIX,zoom.us,CDN-AUTO
+- DOMAIN-SUFFIX,zoom.com,CDN-AUTO
+- DOMAIN-SUFFIX,zoomgov.com,CDN-AUTO
+- DOMAIN-SUFFIX,zmtg.com,CDN-AUTO
+- DOMAIN-SUFFIX,zoomdev.us,CDN-AUTO
+- DOMAIN-SUFFIX,wikipedia.org,CDN-AUTO
+- DOMAIN-SUFFIX,wikimedia.org,CDN-AUTO
+- DOMAIN-SUFFIX,wikidata.org,CDN-AUTO
+- DOMAIN-SUFFIX,mediawiki.org,CDN-AUTO
+- DOMAIN-SUFFIX,archive.org,CDN-AUTO
+- DOMAIN-SUFFIX,archive.ph,CDN-AUTO
+- DOMAIN-SUFFIX,dropbox.com,CDN-AUTO
+- DOMAIN-SUFFIX,dropboxapi.com,CDN-AUTO
+- DOMAIN-SUFFIX,dropboxusercontent.com,CDN-AUTO
+- DOMAIN-SUFFIX,dropbox-dns.com,CDN-AUTO
+- DOMAIN-SUFFIX,spotify.com,CDN-AUTO
+- DOMAIN-SUFFIX,scdn.co,CDN-AUTO
+- DOMAIN-SUFFIX,spotifycdn.com,CDN-AUTO
+- DOMAIN-SUFFIX,spotifycdn.net,CDN-AUTO
+- DOMAIN-SUFFIX,pscdn.co,CDN-AUTO
+- DOMAIN-SUFFIX,tidal.com,CDN-AUTO
+- DOMAIN-SUFFIX,tidal.io,CDN-AUTO
+- DOMAIN-SUFFIX,wimpmusic.com,CDN-AUTO
+- DOMAIN-SUFFIX,qobuz.com,CDN-AUTO
+- DOMAIN-SUFFIX,qobuz.io,CDN-AUTO
+- DOMAIN-SUFFIX,telephony.goog,CDN-AUTO
+- DOMAIN-KEYWORD,google,CDN-AUTO
+- DOMAIN-KEYWORD,facebook,CDN-AUTO
+- DOMAIN-KEYWORD,youtube,CDN-AUTO
+- DOMAIN-KEYWORD,instagram,CDN-AUTO
+- DOMAIN-KEYWORD,twitter,CDN-AUTO
+- DOMAIN-KEYWORD,whatsapp,CDN-AUTO
+- DOMAIN-KEYWORD,telegram,CDN-AUTO
+- DOMAIN-KEYWORD,discord,CDN-AUTO
+- DOMAIN-KEYWORD,spotify,CDN-AUTO
+- DOMAIN-KEYWORD,tiktok,CDN-AUTO
+- DOMAIN-KEYWORD,github,CDN-AUTO
+- DOMAIN-KEYWORD,linkedin,CDN-AUTO
+- DOMAIN-KEYWORD,snapchat,CDN-AUTO
+- DOMAIN-KEYWORD,pinterest,CDN-AUTO
+- DOMAIN-KEYWORD,reddit,CDN-AUTO
+- DOMAIN-KEYWORD,dropbox,CDN-AUTO
+- DOMAIN-KEYWORD,twitch,CDN-AUTO
+- DOMAIN-KEYWORD,vimeo,CDN-AUTO
+- DOMAIN-KEYWORD,zoom,CDN-AUTO
+- IP-CIDR,142.250.0.0/15,CDN-AUTO,no-resolve
+- IP-CIDR,172.217.0.0/16,CDN-AUTO,no-resolve
+- IP-CIDR,173.194.0.0/16,CDN-AUTO,no-resolve
+- IP-CIDR,216.58.192.0/19,CDN-AUTO,no-resolve
+- IP-CIDR,216.239.32.0/19,CDN-AUTO,no-resolve
+- IP-CIDR,74.125.0.0/16,CDN-AUTO,no-resolve
+- IP-CIDR,64.233.160.0/19,CDN-AUTO,no-resolve
+- IP-CIDR,66.102.0.0/20,CDN-AUTO,no-resolve
+- IP-CIDR,66.249.64.0/19,CDN-AUTO,no-resolve
+- IP-CIDR,72.14.192.0/18,CDN-AUTO,no-resolve
+- IP-CIDR,157.240.0.0/16,CDN-AUTO,no-resolve
+- IP-CIDR,179.60.192.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,185.89.216.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,204.15.20.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,31.13.24.0/21,CDN-AUTO,no-resolve
+- IP-CIDR,31.13.64.0/18,CDN-AUTO,no-resolve
+- IP-CIDR,104.244.42.0/24,CDN-AUTO,no-resolve
+- IP-CIDR,192.133.76.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,199.16.156.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,199.59.148.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,66.22.192.0/18,CDN-AUTO,no-resolve
+- IP-CIDR,66.22.220.0/24,CDN-AUTO,no-resolve
+- IP-CIDR,140.82.112.0/20,CDN-AUTO,no-resolve
+- IP-CIDR,143.55.64.0/20,CDN-AUTO,no-resolve
+- IP-CIDR,185.199.108.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,192.30.252.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,35.186.224.0/19,CDN-AUTO,no-resolve
+- IP-CIDR,35.186.192.0/21,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.4.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.8.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.12.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.16.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.20.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.56.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,91.108.60.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,149.154.160.0/20,CDN-AUTO,no-resolve
+- IP-CIDR,149.154.164.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,149.154.168.0/22,CDN-AUTO,no-resolve
+- IP-CIDR,149.154.172.0/22,CDN-AUTO,no-resolve
+- IP-CIDR6,2001:b28:f23d::/48,CDN-AUTO,no-resolve
+- IP-CIDR6,2001:b28:f23f::/48,CDN-AUTO,no-resolve
+- IP-CIDR6,2001:67c:4e8::/48,CDN-AUTO,no-resolve
+- IP-CIDR,74.125.39.0/24,CDN-AUTO,no-resolve
+- IP-CIDR,74.125.250.129/32,CDN-AUTO,no-resolve
+- IP-CIDR6,2001:4860:4864:2::0/64,CDN-AUTO,no-resolve
+- MATCH,DIRECT
