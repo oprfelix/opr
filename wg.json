@@ -27,11 +27,22 @@
     ],
     "rules": [
       {
-        "outbound": ["DIRECT"],
+        "outbound": [
+          "DIRECT"
+        ],
         "server": "direct-dns"
       },
       {
-        "outbound": ["CDN-AUTO", "CDN-1", "CDN-2", "CDN-3", "LLM", "LLM-AUTO", "LLM-US-REALITY", "LLM-DE-VLESS"],
+        "outbound": [
+          "CDN-AUTO",
+          "CDN-1",
+          "CDN-2",
+          "CDN-3",
+          "LLM",
+          "LLM-AUTO",
+          "LLM-US-HYSTERIA2",
+          "LLM-DE-HYSTERIA2"
+        ],
         "server": "global-dns"
       }
     ],
@@ -70,13 +81,22 @@
     {
       "type": "selector",
       "tag": "PROXY",
-      "outbounds": ["CDN-AUTO", "CDN-1", "CDN-2", "CDN-3"],
+      "outbounds": [
+        "CDN-AUTO",
+        "CDN-1",
+        "CDN-2",
+        "CDN-3"
+      ],
       "default": "CDN-AUTO"
     },
     {
       "type": "urltest",
       "tag": "CDN-AUTO",
-      "outbounds": ["CDN-1", "CDN-2", "CDN-3"],
+      "outbounds": [
+        "CDN-1",
+        "CDN-2",
+        "CDN-3"
+      ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
@@ -85,52 +105,55 @@
     {
       "type": "selector",
       "tag": "LLM",
-      "outbounds": ["LLM-AUTO", "LLM-US-REALITY", "LLM-DE-VLESS"],
+      "outbounds": [
+        "LLM-AUTO",
+        "LLM-US-HYSTERIA2",
+        "LLM-DE-HYSTERIA2"
+      ],
       "default": "LLM-AUTO"
     },
     {
       "type": "urltest",
       "tag": "LLM-AUTO",
-      "outbounds": ["LLM-US-REALITY", "LLM-DE-VLESS"],
+      "outbounds": [
+        "LLM-US-HYSTERIA2",
+        "LLM-DE-HYSTERIA2"
+      ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "10m"
     },
     {
-      "type": "vless",
-      "tag": "LLM-US-REALITY",
-      "server": "107.173.140.91",
-      "server_port": 10104,
-      "uuid": "27081bfd-e334-417e-a7da-73a8b52a4c33",
-      "flow": "xtls-rprx-vision",
+      "type": "hysteria2",
+      "tag": "LLM-US-HYSTERIA2",
+      "server": "hy255.todsm.com",
+      "server_port": 443,
+      "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
+      "obfs": {
+        "type": "salamander",
+        "password": "IkN56lpDU7+BDGjVhMEicvt2S4vRasZG"
+      },
       "tls": {
         "enabled": true,
-        "server_name": "www.paypal.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "6GLIsKLNnbbn1_S5OsoUySEGVdGuXl7TRl-laYr1gXg",
-          "short_id": ""
-        }
+        "server_name": "hy255.todsm.com",
+        "insecure": false
       }
     },
     {
-      "type": "vless",
-      "tag": "LLM-DE-VLESS",
-      "server": "de.todsm.com",
+      "type": "hysteria2",
+      "tag": "LLM-DE-HYSTERIA2",
+      "server": "hy91.todsm.com",
       "server_port": 443,
-      "uuid": "93a32eb7-a2ba-4716-a640-ba8fa7de0350",
+      "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
+      "obfs": {
+        "type": "salamander",
+        "password": "yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd"
+      },
       "tls": {
         "enabled": true,
-        "server_name": "de.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
+        "server_name": "hy91.todsm.com",
+        "insecure": false
       }
     },
     {
@@ -218,6 +241,20 @@
         "action": "direct"
       },
       {
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "claude",
+          "anthropic",
+          "gemini",
+          "copilot"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
         "domain_suffix": [
           "claude.ai",
           "anthropic.com",
@@ -241,7 +278,7 @@
           "perplexity.ai"
         ],
         "action": "route",
-        "outbound": "CDN-AUTO"
+        "outbound": "LLM-AUTO"
       },
       {
         "domain_suffix": [
@@ -430,11 +467,7 @@
           "dropbox",
           "twitch",
           "vimeo",
-          "zoom",
-          "openai",
-          "chatgpt",
-          "perplexity",
-          "grok"
+          "zoom"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
