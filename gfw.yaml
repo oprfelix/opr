@@ -56,6 +56,8 @@ proxies:
   udp: true
   obfs: salamander
   obfs-password: IkN56lpDU7+BDGjVhMEicvt2S4vRasZG
+  up: 30 Mbps
+  down: 200 Mbps
 - name: LLM-DE-HYSTERIA2
   type: hysteria2
   server: hy91.todsm.com
@@ -66,6 +68,8 @@ proxies:
   udp: true
   obfs: salamander
   obfs-password: yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd
+  up: 30 Mbps
+  down: 200 Mbps
 - name: CDN-1
   type: vless
   server: 8.35.211.251
