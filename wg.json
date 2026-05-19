@@ -480,7 +480,8 @@
           "dropbox",
           "twitch",
           "vimeo",
-          "zoom"
+          "zoom",
+          "openwrt"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
