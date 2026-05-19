@@ -539,6 +539,6 @@
         "outbound": "CDN-AUTO"
       }
     ],
-    "final": "CDN-AUTO"
+    "final": "DIRECT"
   }
 }
