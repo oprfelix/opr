@@ -29,11 +29,12 @@
     "rules": [
       {
         "domain_suffix": ["todsm.com"],
-        "server": "direct-dns"
+        "server": "direct-dns",
+        "strategy": "prefer_ipv4"
       }
     ],
     "final": "global-dns",
-    "strategy": "prefer_ipv4"
+    "strategy": "ipv4_only"
   },
   "ntp": {
     "enabled": true,
