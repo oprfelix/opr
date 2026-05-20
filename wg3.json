@@ -1,0 +1,319 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "direct-dns",
+        "address": "https://dns.alidns.com/dns-query",
+        "address_resolver": "mydns",
+        "detour": "DIRECT"
+      },
+      {
+        "tag": "global-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "address_resolver": "mydns",
+        "detour": "CDN-AUTO"
+      },
+      {
+        "tag": "mydns",
+        "address": "223.5.5.5",
+        "detour": "DIRECT"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          "todsm.com"
+        ],
+        "server": "direct-dns"
+      },
+      {
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "claude",
+          "anthropic",
+          "gemini",
+          "copilot"
+        ],
+        "server": "global-dns"
+      },
+      {
+        "rule_set": "proxy-domains",
+        "server": "global-dns"
+      }
+    ],
+    "final": "direct-dns",
+    "strategy": "ipv4_only"
+  },
+  "ntp": {
+    "enabled": true,
+    "server": "time.apple.com",
+    "server_port": 123,
+    "interval": "30m",
+    "detour": "DIRECT"
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "sniff": true,
+      "sniff_override_destination": true
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "urltest",
+      "tag": "CDN-AUTO",
+      "outbounds": [
+        "CDN-1",
+        "CDN-2",
+        "CDN-3"
+      ],
+      "url": "https://cp.cloudflare.com/generate_204",
+      "interval": "10m",
+      "tolerance": 100,
+      "idle_timeout": "10m"
+    },
+    {
+      "type": "urltest",
+      "tag": "LLM-AUTO",
+      "outbounds": [
+        "LLM-US-HYSTERIA2",
+        "LLM-DE-HYSTERIA2"
+      ],
+      "url": "https://cp.cloudflare.com/generate_204",
+      "interval": "10m",
+      "tolerance": 100,
+      "idle_timeout": "10m"
+    },
+    {
+      "type": "hysteria2",
+      "tag": "LLM-US-HYSTERIA2",
+      "server": "hy255.todsm.com",
+      "server_port": 443,
+      "domain_resolver": "mydns",
+      "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
+      "obfs": {
+        "type": "salamander",
+        "password": "IkN56lpDU7+BDGjVhMEicvt2S4vRasZG"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "hy255.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
+    },
+    {
+      "type": "hysteria2",
+      "tag": "LLM-DE-HYSTERIA2",
+      "server": "hy91.todsm.com",
+      "server_port": 443,
+      "domain_resolver": "mydns",
+      "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
+      "obfs": {
+        "type": "salamander",
+        "password": "yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd"
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "hy91.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-1",
+      "server": "8.35.211.251",
+      "server_port": 443,
+      "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
+      "domain_resolver": "mydns",
+      "tls": {
+        "enabled": true,
+        "server_name": "ddns.hayoovant.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ddns.hayoovant.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-2",
+      "server": "8.35.211.126",
+      "server_port": 443,
+      "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
+      "domain_resolver": "mydns",
+      "tls": {
+        "enabled": true,
+        "server_name": "helloworld.todsm.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "helloworld.todsm.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-3",
+      "server": "8.35.211.168",
+      "server_port": 443,
+      "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
+      "domain_resolver": "mydns",
+      "tls": {
+        "enabled": true,
+        "server_name": "helloworld.fotoman.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "helloworld.fotoman.com"
+        }
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "DIRECT"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "default_domain_resolver": "direct-dns",
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "network": "udp",
+        "port": 443,
+        "action": "reject"
+      },
+      {
+        "ip_is_private": true,
+        "action": "direct"
+      },
+      {
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "claude",
+          "anthropic",
+          "gemini",
+          "copilot"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
+          "anthropic.ai",
+          "claude.com",
+          "chatgpt.com",
+          "openai.com",
+          "oaistatic.com",
+          "oaiusercontent.com",
+          "openaiapi-site.azureedge.net",
+          "auth0.openai.com",
+          "x.ai",
+          "grok.com",
+          "grok.x.ai",
+          "perplexity.ai"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
+        "rule_set": "proxy-domains",
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "proxy-domains",
+        "type": "inline",
+        "data": {
+          "rules": [
+            {
+              "domain_keyword": [
+                "google",
+                "facebook",
+                "youtube",
+                "instagram",
+                "twitter",
+                "whatsapp",
+                "telegram",
+                "discord",
+                "spotify",
+                "tiktok",
+                "github",
+                "linkedin",
+                "snapchat",
+                "pinterest",
+                "reddit",
+                "dropbox",
+                "twitch",
+                "vimeo",
+                "zoom",
+                "openwrt"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "final": "DIRECT"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "store_dns": true
+    }
+  }
+}
