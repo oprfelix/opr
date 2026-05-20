@@ -18,9 +18,9 @@
         "detour": "CDN-AUTO"
       },
       {
+        "type": "udp",
         "tag": "mydns",
-        "address": "223.5.5.5",
-        "detour": "DIRECT"
+        "address": "223.5.5.5"
       }
     ],
     "rules": [
@@ -110,7 +110,7 @@
       "tag": "LLM-US-HYSTERIA2",
       "server": "hy255.todsm.com",
       "server_port": 443,
-      "domain_resolver": "mydns",
+      "address_resolver": "mydns",
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
       "obfs": {
         "type": "salamander",
@@ -129,7 +129,7 @@
       "tag": "LLM-DE-HYSTERIA2",
       "server": "hy91.todsm.com",
       "server_port": 443,
-      "domain_resolver": "mydns",
+      "address_resolver": "mydns",
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
       "obfs": {
         "type": "salamander",
@@ -149,7 +149,7 @@
       "server": "8.35.211.251",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
-      "domain_resolver": "mydns",
+      "address_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "ddns.hayoovant.com",
@@ -172,7 +172,7 @@
       "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
-      "domain_resolver": "mydns",
+      "address_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.todsm.com",
@@ -195,7 +195,7 @@
       "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
-      "domain_resolver": "mydns",
+      "address_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.fotoman.com",
