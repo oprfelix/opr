@@ -15,10 +15,10 @@
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "8.8.8.8",
+        "server": "dns.google",
         "path": "/dns-query",
         "domain_resolver": "mydns",
-        "detour": "PROXY"
+        "detour": "CDN-AUTO"
       },
       {
         "type": "udp",
@@ -28,12 +28,33 @@
     ],
     "rules": [
       {
-        "domain_suffix": ["todsm.com"],
-        "server": "direct-dns",
-        "strategy": "prefer_ipv4"
+        "domain_suffix": [
+          "todsm.com"
+        ],
+        "server": "direct-dns"
+      },
+      {
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "claude",
+          "anthropic",
+          "gemini",
+          "copilot"
+        ],
+        "server": "global-dns"
+      },
+      {
+        "geosite": [
+          "geolocation-!cn",
+          "gfw"
+        ],
+        "server": "global-dns"
       }
     ],
-    "final": "global-dns",
+    "final": "direct-dns",
     "strategy": "ipv4_only"
   },
   "ntp": {
@@ -75,17 +96,6 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "PROXY",
-      "outbounds": [
-        "CDN-AUTO",
-        "CDN-1",
-        "CDN-2",
-        "CDN-3"
-      ],
-      "default": "CDN-AUTO"
-    },
-    {
       "type": "urltest",
       "tag": "CDN-AUTO",
       "outbounds": [
@@ -97,16 +107,6 @@
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "10m"
-    },
-    {
-      "type": "selector",
-      "tag": "LLM",
-      "outbounds": [
-        "LLM-AUTO",
-        "LLM-US-HYSTERIA2",
-        "LLM-DE-HYSTERIA2"
-      ],
-      "default": "LLM-AUTO"
     },
     {
       "type": "urltest",
@@ -125,7 +125,7 @@
       "tag": "LLM-US-HYSTERIA2",
       "server": "hy255.todsm.com",
       "server_port": 443,
-      "domain_resolver": "global-dns",
+      "domain_resolver": "mydns",
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
       "obfs": {
         "type": "salamander",
@@ -144,7 +144,7 @@
       "tag": "LLM-DE-HYSTERIA2",
       "server": "hy91.todsm.com",
       "server_port": 443,
-      "domain_resolver": "global-dns",
+      "domain_resolver": "mydns",
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
       "obfs": {
         "type": "salamander",
@@ -164,7 +164,7 @@
       "server": "8.35.211.251",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
-      "domain_resolver": "global-dns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "ddns.hayoovant.com",
@@ -187,7 +187,7 @@
       "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
-      "domain_resolver": "global-dns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.todsm.com",
@@ -210,7 +210,7 @@
       "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
-      "domain_resolver": "global-dns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.fotoman.com",
@@ -234,7 +234,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
-    "default_domain_resolver": "global-dns",
+    "default_domain_resolver": "direct-dns",
     "rules": [
       {
         "action": "sniff"
@@ -353,7 +353,7 @@
           "fb.com",
           "fb.me",
           "fbsbx.com",
-          "fbpigeon.com",
+          "fpigeon.com",
           "facebook.net",
           "messenger.com",
           "m.me",
@@ -490,6 +490,21 @@
           "vimeo",
           "zoom",
           "openwrt"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "geosite": [
+          "geolocation-!cn",
+          "gfw"
+        ],
+        "geoip": [
+          "google",
+          "facebook",
+          "telegram",
+          "twitter",
+          "netflix"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
