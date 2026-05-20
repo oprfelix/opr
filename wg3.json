@@ -6,21 +6,26 @@
   "dns": {
     "servers": [
       {
+        "type": "https",
         "tag": "direct-dns",
-        "address": "https://dns.alidns.com/dns-query",
-        "address_resolver": "mydns",
-        "detour": "DIRECT"
+        "server": "dns.alidns.com",
+        "server_port": 443,
+        "path": "/dns-query",
+        "domain_resolver": "mydns"
       },
       {
+        "type": "https",
         "tag": "global-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "address_resolver": "mydns",
+        "server": "8.8.8.8",
+        "server_port": 443,
+        "path": "/dns-query",
         "detour": "CDN-AUTO"
       },
       {
         "type": "udp",
         "tag": "mydns",
-        "address": "223.5.5.5"
+        "server": "223.5.5.5",
+        "server_port": 53
       }
     ],
     "rules": [
@@ -74,9 +79,7 @@
       ],
       "auto_route": true,
       "strict_route": true,
-      "stack": "system",
-      "sniff": true,
-      "sniff_override_destination": true
+      "stack": "system"
     }
   ],
   "outbounds": [
@@ -110,7 +113,7 @@
       "tag": "LLM-US-HYSTERIA2",
       "server": "hy255.todsm.com",
       "server_port": 443,
-      "address_resolver": "mydns",
+      "domain_resolver": "mydns",
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
       "obfs": {
         "type": "salamander",
@@ -129,7 +132,7 @@
       "tag": "LLM-DE-HYSTERIA2",
       "server": "hy91.todsm.com",
       "server_port": 443,
-      "address_resolver": "mydns",
+      "domain_resolver": "mydns",
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
       "obfs": {
         "type": "salamander",
@@ -149,7 +152,7 @@
       "server": "8.35.211.251",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
-      "address_resolver": "mydns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "ddns.hayoovant.com",
@@ -172,7 +175,7 @@
       "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
-      "address_resolver": "mydns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.todsm.com",
@@ -195,7 +198,7 @@
       "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
-      "address_resolver": "mydns",
+      "domain_resolver": "mydns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.fotoman.com",
@@ -225,6 +228,10 @@
         "action": "sniff"
       },
       {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
         "network": "udp",
         "port": 443,
         "action": "reject"
@@ -232,6 +239,21 @@
       {
         "ip_is_private": true,
         "action": "direct"
+      },
+      {
+        "ip_cidr": [
+          "223.5.5.5/32",
+          "8.8.8.8/32"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
+          "dns.alidns.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
       },
       {
         "domain_keyword": [
@@ -277,34 +299,32 @@
       {
         "tag": "proxy-domains",
         "type": "inline",
-        "data": {
-          "rules": [
-            {
-              "domain_keyword": [
-                "google",
-                "facebook",
-                "youtube",
-                "instagram",
-                "twitter",
-                "whatsapp",
-                "telegram",
-                "discord",
-                "spotify",
-                "tiktok",
-                "github",
-                "linkedin",
-                "snapchat",
-                "pinterest",
-                "reddit",
-                "dropbox",
-                "twitch",
-                "vimeo",
-                "zoom",
-                "openwrt"
-              ]
-            }
-          ]
-        }
+        "rules": [
+          {
+            "domain_keyword": [
+              "google",
+              "facebook",
+              "youtube",
+              "instagram",
+              "twitter",
+              "whatsapp",
+              "telegram",
+              "discord",
+              "spotify",
+              "tiktok",
+              "github",
+              "linkedin",
+              "snapchat",
+              "pinterest",
+              "reddit",
+              "dropbox",
+              "twitch",
+              "vimeo",
+              "zoom",
+              "openwrt"
+            ]
+          }
+        ]
       }
     ],
     "final": "DIRECT"
@@ -312,8 +332,7 @@
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db",
-      "store_dns": true
+      "path": "cache.db"
     }
   }
 }
