@@ -35,6 +35,10 @@
         "server": "direct-dns"
       },
       {
+        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
+        "server": "direct-dns"
+      },
+      {
         "domain_keyword": [
           "openai",
           "chatgpt",
@@ -231,6 +235,10 @@
       {
         "protocol": "dns",
         "action": "hijack-dns"
+      },
+      {
+        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
+        "action": "direct"
       },
       {
         "ip_is_private": true,
