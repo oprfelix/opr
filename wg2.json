@@ -49,6 +49,14 @@
         "server": "global-dns"
       },
       {
+        "domain_suffix": [
+          "ytimg.com",
+          "ggpht.com",
+          "googlevideo.com"
+        ],
+        "server": "global-dns"
+      },
+      {
         "rule_set": "proxy-domains",
         "server": "global-dns"
       }
@@ -288,6 +296,15 @@
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "ytimg.com",
+          "ggpht.com",
+          "googlevideo.com"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
       },
       {
         "rule_set": "proxy-domains",
