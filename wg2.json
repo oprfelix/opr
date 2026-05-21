@@ -103,7 +103,7 @@
         "CDN-2",
         "CDN-3"
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "10m"
@@ -115,7 +115,7 @@
         "LLM-US-HYSTERIA2",
         "LLM-DE-HYSTERIA2"
       ],
-      "url": "https://cp.cloudflare.com/generate_204",
+      "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "10m"
