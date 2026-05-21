@@ -71,7 +71,7 @@
       }
     ],
     "final": "direct-dns",
-    "strategy": "ipv4_only"
+    "strategy": "prefer_ipv4"
   },
   "ntp": {
     "enabled": true,
