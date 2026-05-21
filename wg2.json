@@ -244,14 +244,14 @@
         "action": "hijack-dns"
       },
       {
-        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
         "network": "udp",
         "port": 443,
         "action": "reject"
+      },
+      {
+        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
+        "action": "route",
+        "outbound": "DIRECT"
       },
       {
         "ip_is_private": true,
