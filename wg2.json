@@ -65,8 +65,7 @@
         "server": "global-dns"
       }
     ],
-    "final": "direct-dns",
-    "strategy": "prefer_ipv4"
+    "final": "direct-dns"
   },
   "ntp": {
     "enabled": true,
