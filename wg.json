@@ -34,9 +34,7 @@
         "domain_suffix": [
           "todsm.com",
           "hayoovant.com",
-          "fotoman.com",
-          "jsdelivr.net",
-          "gstatic.com"
+          "fotoman.com"
         ],
         "server": "direct-dns"
       },
