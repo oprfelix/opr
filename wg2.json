@@ -249,11 +249,6 @@
         "outbound": "DIRECT"
       },
       {
-        "network": "udp",
-        "port": 443,
-        "action": "reject"
-      },
-      {
         "ip_is_private": true,
         "action": "direct"
       },
