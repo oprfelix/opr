@@ -26,6 +26,12 @@
     "rules": [
       {
         "domain_suffix": [
+          "voice.google.com"
+        ],
+        "server": "global-dns"
+      },
+      {
+        "domain_suffix": [
           "todsm.com",
           "hayoovant.com",
           "fotoman.com",
@@ -317,6 +323,34 @@
           "149.154.168.0/22",
           "149.154.172.0/22",
           "185.76.151.0/24"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "voice.google.com"
+        ],
+        "domain_keyword": [
+          "lens.l.google.com"
+        ],
+        "ip_cidr": [
+          "74.125.39.0/24",
+          "108.177.16.0/24"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_keyword": [
+          "google",
+          "recaptcha"
+        ],
+        "domain_suffix": [
+          "gstatic.com",
+          "googleusercontent.com",
+          "googleapis.com",
+          "googletagmanager.com"
         ],
         "action": "route",
         "outbound": "CDN-AUTO"
