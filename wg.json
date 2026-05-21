@@ -85,7 +85,9 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2080
+      "listen_port": 2080,
+      "sniff": true,
+      "sniff_override_destination": true
     },
     {
       "type": "tun",
@@ -236,6 +238,14 @@
   ],
   "route": {
     "rules": [
+      { 
+        "action": "sniff" 
+      },
+      { 
+        "network": "udp", 
+        "port": 443, 
+        "action": "reject" 
+      },
       {
         "protocol": "dns",
         "action": "hijack-dns"
@@ -252,9 +262,7 @@
         "domain_suffix": [
           "todsm.com",
           "hayoovant.com",
-          "fotoman.com",
-          "jsdelivr.net",
-          "gstatic.com"
+          "fotoman.com"
         ],
         "action": "direct"
       },
