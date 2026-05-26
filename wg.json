@@ -680,6 +680,7 @@
           "gstatic.com",
           "googleusercontent.com",
           "googleapis.com",
+          "browserleaks.com",
           "googletagmanager.com"
         ],
         "action": "route",
