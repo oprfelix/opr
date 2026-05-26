@@ -423,6 +423,7 @@
               "twitch",
               "vimeo",
               "zoom",
+              "browserleaks",
               "openwrt"
             ]
           }
