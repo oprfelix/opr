@@ -424,6 +424,8 @@
               "vimeo",
               "zoom",
               "browserleaks",
+              "docker",
+              "colima",
               "openwrt"
             ]
           }
