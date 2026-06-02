@@ -278,8 +278,6 @@
           "chatgpt",
           "perplexity",
           "grok",
-          "claude",
-          "anthropic",
           "gemini",
           "copilot"
         ],
@@ -287,11 +285,15 @@
         "outbound": "LLM-AUTO"
       },
       {
+        "domain_keyword": [
+          "claude",
+          "anthropic"
+        ],
+        "action": "route",
+        "outbound": "LLM-DE-HYSTERIA2"
+      },
+      {
         "domain_suffix": [
-          "claude.ai",
-          "anthropic.com",
-          "anthropic.ai",
-          "claude.com",
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
@@ -305,6 +307,16 @@
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
+          "anthropic.ai",
+          "claude.com"
+        ],
+        "action": "route",
+        "outbound": "LLM-DE-HYSTERIA2"
       },
       {
         "domain_suffix": [
