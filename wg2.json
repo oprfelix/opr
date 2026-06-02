@@ -395,6 +395,18 @@
         "rule_set": "proxy-domains",
         "action": "route",
         "outbound": "CDN-AUTO"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "invert": true,
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "invert": true,
+        "action": "route",
+        "outbound": "CDN-AUTO"
       }
     ],
     "rule_set": [
@@ -430,6 +442,20 @@
             ]
           }
         ]
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "download_detour": "CDN-AUTO"
+      },
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "CDN-AUTO"
       }
     ],
     "final": "DIRECT"
