@@ -22,15 +22,6 @@
     ],
     "rules": [
       {
-        "domain_suffix": [
-          "voice.google.com",
-          "ytimg.com",
-          "ggpht.com",
-          "googlevideo.com"
-        ],
-        "server": "global-dns"
-      },
-      {
         "domain_keyword": [
           "openai",
           "chatgpt",
@@ -42,13 +33,9 @@
           "copilot"
         ],
         "server": "global-dns"
-      },
-      {
-        "rule_set": "proxy-domains",
-        "server": "global-dns"
       }
     ],
-    "final": "direct-dns",
+    "final": "global-dns",
     "strategy": "prefer_ipv4"
   },
   "ntp": {
@@ -233,12 +220,13 @@
     },
     {
       "type": "direct",
-      "tag": "DIRECT"
+      "tag": "DIRECT",
+      "domain_resolver": "direct-dns"
     }
   ],
   "route": {
     "auto_detect_interface": true,
-    "default_domain_resolver": "direct-dns",
+    "default_domain_resolver": "global-dns",
     "rules": [
       {
         "action": "sniff"
@@ -251,18 +239,6 @@
         "network": "udp",
         "port": 443,
         "action": "reject"
-      },
-      {
-        "domain_keyword": [
-          "tencent",
-          "weixin",
-          "wechat",
-          "qpic",
-          "qq",
-          "qlogo"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
       },
       {
         "ip_is_private": true,
@@ -321,15 +297,6 @@
         ],
         "action": "route",
         "outbound": "LLM-ETH-HYSTERIA2"
-      },
-      {
-        "domain_suffix": [
-          "ytimg.com",
-          "ggpht.com",
-          "googlevideo.com"
-        ],
-        "action": "route",
-        "outbound": "CDN-AUTO"
       },
       {
         "domain_keyword": [
@@ -392,71 +359,17 @@
         "outbound": "LLM-AUTO"
       },
       {
-        "domain_keyword": [
-          "google",
-          "recaptcha"
-        ],
-        "domain_suffix": [
-          "gstatic.com",
-          "googleusercontent.com",
-          "googleapis.com",
-          "googletagmanager.com"
-        ],
-        "action": "route",
-        "outbound": "CDN-AUTO"
-      },
-      {
-        "rule_set": "proxy-domains",
-        "action": "route",
-        "outbound": "CDN-AUTO"
-      },
-      {
         "rule_set": "geosite-cn",
-        "invert": true,
         "action": "route",
-        "outbound": "CDN-AUTO"
+        "outbound": "DIRECT"
       },
       {
         "rule_set": "geoip-cn",
-        "invert": true,
         "action": "route",
-        "outbound": "CDN-AUTO"
+        "outbound": "DIRECT"
       }
     ],
     "rule_set": [
-      {
-        "tag": "proxy-domains",
-        "type": "inline",
-        "rules": [
-          {
-            "domain_keyword": [
-              "google",
-              "facebook",
-              "youtube",
-              "instagram",
-              "twitter",
-              "whatsapp",
-              "telegram",
-              "discord",
-              "spotify",
-              "tiktok",
-              "github",
-              "linkedin",
-              "snapchat",
-              "pinterest",
-              "reddit",
-              "dropbox",
-              "twitch",
-              "vimeo",
-              "zoom",
-              "browserleaks",
-              "docker",
-              "colima",
-              "openwrt"
-            ]
-          }
-        ]
-      },
       {
         "tag": "geosite-cn",
         "type": "remote",
@@ -472,7 +385,7 @@
         "download_detour": "CDN-AUTO"
       }
     ],
-    "final": "DIRECT"
+    "final": "CDN-AUTO"
   },
   "experimental": {
     "cache_file": {
