@@ -46,10 +46,10 @@
         "domain_keyword": [
           "openai",
           "chatgpt",
-          "perplexity",
-          "grok",
           "claude",
           "anthropic",
+          "perplexity",
+          "grok",
           "gemini",
           "copilot"
         ],
@@ -98,6 +98,7 @@
       "auto_route": true,
       "strict_route": true,
       "stack": "system",
+      "mtu": 1500,
       "sniff": true,
       "sniff_override_destination": true
     }
@@ -133,7 +134,8 @@
       "tag": "LLM-AUTO",
       "outbounds": [
         "LLM-US-HYSTERIA2",
-        "LLM-DE-HYSTERIA2"
+        "LLM-DE-HYSTERIA2",
+        "LLM-ETH-HYSTERIA2"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -171,6 +173,24 @@
       "tls": {
         "enabled": true,
         "server_name": "hy91.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
+    },
+    {
+      "type": "hysteria2",
+      "tag": "LLM-ETH-HYSTERIA2",
+      "server": "eth.todsm.com",
+      "server_port": 443,
+      "password": "HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON",
+      "obfs": {
+        "type": "salamander",
+        "password": "0dRexOATy4t9J1ckKOLpPy9HrNoU5FmN"
+      },
+     "tls": {
+        "enabled": true,
+        "server_name": "eth.todsm.com",
         "insecure": false
       },
       "up_mbps": 30,
@@ -571,8 +591,6 @@
           "chatgpt",
           "perplexity",
           "grok",
-          "claude",
-          "anthropic",
           "gemini",
           "copilot"
         ],
@@ -580,11 +598,15 @@
         "outbound": "LLM-AUTO"
       },
       {
+        "domain_keyword": [
+          "claude",
+          "anthropic"
+        ],
+        "action": "route",
+        "outbound": "LLM-ETH-HYSTERIA2"
+      },
+      {
         "domain_suffix": [
-          "claude.ai",
-          "anthropic.com",
-          "anthropic.ai",
-          "claude.com",
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
@@ -598,6 +620,16 @@
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
+          "anthropic.ai",
+          "claude.com"
+        ],
+        "action": "route",
+        "outbound": "LLM-ETH-HYSTERIA2"
       },
       {
         "domain_keyword": [
