@@ -6,38 +6,27 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
+        "type": "udp",
         "tag": "direct-dns",
-        "server": "dns.alidns.com",
-        "server_port": 443,
-        "path": "/dns-query",
-        "domain_resolver": "mydns"
-      },
-      {
-        "type": "https",
-        "tag": "global-dns",
-        "server": "8.8.8.8",
-        "server_port": 443,
-        "path": "/dns-query",
-        "detour": "CDN-AUTO"
+        "server": "223.5.5.5",
+        "server_port": 53
       },
       {
         "type": "udp",
-        "tag": "mydns",
-        "server": "223.5.5.5",
+        "tag": "global-dns",
+        "server": "1.1.1.1",
         "server_port": 53
       }
     ],
     "rules": [
       {
         "domain_suffix": [
-          "voice.google.com"
+          "voice.google.com",
+          "ytimg.com",
+          "ggpht.com",
+          "googlevideo.com"
         ],
         "server": "global-dns"
-      },
-      {
-        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
-        "server": "direct-dns"
       },
       {
         "domain_keyword": [
@@ -49,14 +38,6 @@
           "anthropic",
           "gemini",
           "copilot"
-        ],
-        "server": "global-dns"
-      },
-      {
-        "domain_suffix": [
-          "ytimg.com",
-          "ggpht.com",
-          "googlevideo.com"
         ],
         "server": "global-dns"
       },
@@ -127,7 +108,7 @@
       "tag": "LLM-US-HYSTERIA2",
       "server": "hy255.todsm.com",
       "server_port": 443,
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
       "obfs": {
         "type": "salamander",
@@ -146,7 +127,7 @@
       "tag": "LLM-DE-HYSTERIA2",
       "server": "hy91.todsm.com",
       "server_port": 443,
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
       "obfs": {
         "type": "salamander",
@@ -165,13 +146,13 @@
       "tag": "LLM-ETH-HYSTERIA2",
       "server": "eth.todsm.com",
       "server_port": 443,
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "password": "HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON",
       "obfs": {
         "type": "salamander",
         "password": "0dRexOATy4t9J1ckKOLpPy9HrNoU5FmN"
       },
-     "tls": {
+      "tls": {
         "enabled": true,
         "server_name": "eth.todsm.com",
         "insecure": false
@@ -185,7 +166,7 @@
       "server": "8.35.211.251",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "tls": {
         "enabled": true,
         "server_name": "ddns.hayoovant.com",
@@ -208,7 +189,7 @@
       "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.todsm.com",
@@ -231,7 +212,7 @@
       "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
-      "domain_resolver": "mydns",
+      "domain_resolver": "direct-dns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.fotoman.com",
@@ -270,7 +251,14 @@
         "action": "reject"
       },
       {
-        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
+        "domain_keyword": [
+          "tencent",
+          "weixin",
+          "wechat",
+          "qpic",
+          "qq",
+          "qlogo"
+        ],
         "action": "route",
         "outbound": "DIRECT"
       },
@@ -282,13 +270,6 @@
         "ip_cidr": [
           "223.5.5.5/32",
           "8.8.8.8/32"
-        ],
-        "action": "route",
-        "outbound": "DIRECT"
-      },
-      {
-        "domain_suffix": [
-          "dns.alidns.com"
         ],
         "action": "route",
         "outbound": "DIRECT"
@@ -398,9 +379,7 @@
       },
       {
         "domain_suffix": [
-          "voice.google.com"
-        ],
-        "domain_keyword": [
+          "voice.google.com",
           "lens.l.google.com"
         ],
         "ip_cidr": [
