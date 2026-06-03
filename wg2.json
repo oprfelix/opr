@@ -33,6 +33,11 @@
           "copilot"
         ],
         "server": "global-dns"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "action": "route",
+        "server": "direct-dns"
       }
     ],
     "final": "global-dns",
