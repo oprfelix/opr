@@ -12,10 +12,12 @@
         "server_port": 53
       },
       {
-        "type": "udp",
+        "type": "https",
         "tag": "global-dns",
-        "server": "1.1.1.1",
-        "server_port": 53
+        "server": "dns.google",
+        "server_port": 443,
+        "path": "/dns-query",
+        "detour": "CDN-AUTO"
       }
     ],
     "rules": [
