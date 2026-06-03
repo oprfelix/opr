@@ -22,19 +22,6 @@
     ],
     "rules": [
       {
-        "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "perplexity",
-          "grok",
-          "claude",
-          "anthropic",
-          "gemini",
-          "copilot"
-        ],
-        "server": "global-dns"
-      },
-      {
         "rule_set": "geosite-cn",
         "action": "route",
         "server": "direct-dns"
