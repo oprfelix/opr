@@ -88,7 +88,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
-      "idle_timeout": "10m"
+      "idle_timeout": "30m"
     },
     {
       "type": "urltest",
@@ -101,7 +101,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
-      "idle_timeout": "10m"
+      "idle_timeout": "30m"
     },
     {
       "type": "hysteria2",
