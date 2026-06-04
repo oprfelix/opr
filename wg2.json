@@ -17,7 +17,7 @@
         "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "LLM-AUTO"
+        "detour": "LLM-US-HYSTERIA2"
       }
     ],
     "rules": [
@@ -32,7 +32,7 @@
   },
   "ntp": {
     "enabled": true,
-    "server": "time.apple.com",
+    "server": "ntp.aliyun.com",
     "server_port": 123,
     "interval": "30m",
     "detour": "DIRECT"
@@ -82,7 +82,7 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
-      "idle_timeout": "10m"
+      "idle_timeout": "30m"
     },
     {
       "type": "hysteria2",
@@ -228,11 +228,6 @@
         "action": "hijack-dns"
       },
       {
-        "network": "udp",
-        "port": 443,
-        "action": "reject"
-      },
-      {
         "ip_is_private": true,
         "action": "direct"
       },
@@ -245,16 +240,14 @@
         "outbound": "DIRECT"
       },
       {
-        "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "perplexity",
-          "grok",
-          "gemini",
-          "copilot"
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com",
+          "anthropic.ai",
+          "claude.com"
         ],
         "action": "route",
-        "outbound": "LLM-AUTO"
+        "outbound": "LLM-ETH-HYSTERIA2"
       },
       {
         "domain_keyword": [
@@ -281,14 +274,16 @@
         "outbound": "LLM-AUTO"
       },
       {
-        "domain_suffix": [
-          "claude.ai",
-          "anthropic.com",
-          "anthropic.ai",
-          "claude.com"
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "gemini",
+          "copilot"
         ],
         "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
+        "outbound": "LLM-AUTO"
       },
       {
         "domain_keyword": [
