@@ -25,52 +25,21 @@
     ],
     "rules": [
       {
-        "domain_suffix": [
-          "voice.google.com"
-        ],
-        "server": "global-dns"
-      },
-      {
-        "domain_suffix": [
-          "todsm.com",
-          "hayoovant.com",
-          "fotoman.com"
-        ],
-        "server": "direct-dns"
-      },
-      {
-        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
-        "server": "direct-dns"
-      },
-      {
-        "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "claude",
-          "anthropic",
-          "perplexity",
-          "grok",
-          "gemini",
-          "copilot"
-        ],
-        "server": "global-dns"
-      },
-      {
-        "domain_keyword": [
-          "youtube",
-          "ytimg",
-          "ggpht",
-          "googlevideo"
-        ],
-        "server": "global-dns"
+      "domain_suffix": [
+        "todsm.com",
+        "hayoovant.com",
+        "fotoman.com",
+        "speedtest.net",
+        "time.apple.com"
+      ],
+      "server": "direct-dns"
       },
       {
         "rule_set": "geosite-cn",
-        "invert": true,
-        "server": "global-dns"
+        "server": "direct-dns"
       }
     ],
-    "final": "direct-dns",
+    "final": "global-dns",
     "strategy": "prefer_ipv4"
   },
   "ntp": {
@@ -188,7 +157,7 @@
         "type": "salamander",
         "password": "0dRexOATy4t9J1ckKOLpPy9HrNoU5FmN"
       },
-     "tls": {
+      "tls": {
         "enabled": true,
         "server_name": "eth.todsm.com",
         "insecure": false
@@ -557,33 +526,29 @@
   ],
   "route": {
     "rules": [
-      { 
-        "action": "sniff" 
+      {
+        "action": "sniff"
       },
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
-      { 
-        "network": "udp", 
-        "port": 443, 
-        "action": "reject" 
-      },
       {
-        "domain_keyword": ["tencent", "weixin", "wechat", "qpic", "qlogo"],
-        "action": "direct"
+        "network": "udp",
+        "port": 443,
+        "action": "reject"
       },
       {
         "ip_is_private": true,
         "action": "direct"
       },
       {
-        "domain_suffix": [
-          "todsm.com",
-          "hayoovant.com",
-          "fotoman.com"
+        "ip_cidr": [
+          "223.5.5.5/32",
+          "8.8.8.8/32"
         ],
-        "action": "direct"
+        "action": "route",
+        "outbound": "DIRECT"
       },
       {
         "domain_keyword": [
@@ -630,16 +595,6 @@
         ],
         "action": "route",
         "outbound": "LLM-ETH-HYSTERIA2"
-      },
-      {
-        "domain_keyword": [
-          "youtube",
-          "ytimg",
-          "ggpht",
-          "googlevideo"
-        ],
-        "action": "route",
-        "outbound": "CDN-AUTO"
       },
       {
         "domain_keyword": [
@@ -691,9 +646,7 @@
       },
       {
         "domain_suffix": [
-          "voice.google.com"
-        ],
-        "domain_keyword": [
+          "voice.google.com",
           "lens.l.google.com"
         ],
         "ip_cidr": [
@@ -704,31 +657,14 @@
         "outbound": "LLM-AUTO"
       },
       {
-        "domain_keyword": [
-          "google",
-          "recaptcha"
-        ],
-        "domain_suffix": [
-          "gstatic.com",
-          "googleusercontent.com",
-          "googleapis.com",
-          "browserleaks.com",
-          "googletagmanager.com"
-        ],
-        "action": "route",
-        "outbound": "CDN-AUTO"
-      },
-      {
         "rule_set": "geosite-cn",
-        "invert": true,
         "action": "route",
-        "outbound": "CDN-AUTO"
+        "outbound": "DIRECT"
       },
       {
         "rule_set": "geoip-cn",
-        "invert": true,
         "action": "route",
-        "outbound": "CDN-AUTO"
+        "outbound": "DIRECT"
       }
     ],
     "rule_set": [
@@ -737,17 +673,17 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "CDN-AUTO"
+        "download_detour": "LLM-AUTO"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "CDN-AUTO"
+        "download_detour": "LLM-AUTO"
       }
     ],
-    "final": "DIRECT",
+    "final": "CDN-AUTO",
     "auto_detect_interface": true
   },
   "experimental": {
