@@ -15,7 +15,7 @@
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
         "address_resolver": "mydns",
-        "detour": "CDN-AUTO"
+        "detour": "LLM-US-HYSTERIA2"
       },
       {
         "tag": "mydns",
@@ -81,17 +81,11 @@
         "CDN-2",
         "CDN-3",
         "CDN-4",
-        "CDN-5",
         "CDN-6",
         "CDN-7",
-        "CDN-8",
-        "CDN-9",
         "CDN-10",
-        "CDN-11",
         "CDN-12",
-        "CDN-13",
-        "CDN-14",
-        "CDN-15"
+        "CDN-13"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -256,30 +250,6 @@
       }
     },
     {
-      "tag": "CDN-5",
-      "type": "vless",
-      "server": "www.speedtest.net",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiaUlydmllcXZyZ3doSiIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
       "tag": "CDN-6",
       "type": "vless",
       "server": "188.114.97.0",
@@ -328,54 +298,6 @@
       }
     },
     {
-      "tag": "CDN-8",
-      "type": "vless",
-      "server": "2a06:98c1:3121::",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiNnFwSTN5enhSY0xwNiIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-9",
-      "type": "vless",
-      "server": "2a06:98c1:3120::",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiV1BsUmJiWUNiIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
       "tag": "CDN-10",
       "type": "trojan",
       "server": "pps.todsm.com",
@@ -392,30 +314,6 @@
       "transport": {
         "type": "ws",
         "path": "/eyJqdW5rIjoiT2JGVklzNTEzaFdaWURRIiwicHJvdG9jb2wiOiJ0ciIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-11",
-      "type": "trojan",
-      "server": "www.speedtest.net",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiZWlQbURvVXNyVUxRIiwicHJvdG9jb2wiOiJ0ciIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
         "headers": {
           "Host": "pps.todsm.com"
         },
@@ -472,54 +370,6 @@
       }
     },
     {
-      "tag": "CDN-14",
-      "type": "trojan",
-      "server": "2a06:98c1:3121::",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiSjdlUm1Hbkl6RlROZjQiLCJwcm90b2NvbCI6InRyIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-15",
-      "type": "trojan",
-      "server": "2a06:98c1:3120::",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiTG9RWXVvRUp3VSIsInByb3RvY29sIjoidHIiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
       "type": "direct",
       "tag": "DIRECT"
     }
@@ -534,11 +384,6 @@
         "action": "hijack-dns"
       },
       {
-        "network": "udp",
-        "port": 443,
-        "action": "reject"
-      },
-      {
         "ip_is_private": true,
         "action": "direct"
       },
@@ -549,26 +394,6 @@
         ],
         "action": "route",
         "outbound": "DIRECT"
-      },
-      {
-        "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "perplexity",
-          "grok",
-          "gemini",
-          "copilot"
-        ],
-        "action": "route",
-        "outbound": "LLM-AUTO"
-      },
-      {
-        "domain_keyword": [
-          "claude",
-          "anthropic"
-        ],
-        "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
       },
       {
         "domain_suffix": [
@@ -592,6 +417,26 @@
           "anthropic.com",
           "anthropic.ai",
           "claude.com"
+        ],
+        "action": "route",
+        "outbound": "LLM-ETH-HYSTERIA2"
+      },
+      {
+        "domain_keyword": [
+          "openai",
+          "chatgpt",
+          "perplexity",
+          "grok",
+          "gemini",
+          "copilot"
+        ],
+        "action": "route",
+        "outbound": "LLM-AUTO"
+      },
+      {
+        "domain_keyword": [
+          "claude",
+          "anthropic"
         ],
         "action": "route",
         "outbound": "LLM-ETH-HYSTERIA2"
@@ -673,14 +518,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "LLM-AUTO"
+        "download_detour": "CDN-AUTO"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "LLM-AUTO"
+        "download_detour": "CDN-AUTO"
       }
     ],
     "final": "CDN-AUTO",
