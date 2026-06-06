@@ -241,6 +241,24 @@
       },
       {
         "domain_suffix": [
+          "sorftime.com",
+          "mywss.com",
+          "apollo.io"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_keyword": [
+          "sorftime",
+          "mywss",
+          "apollo"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
           "claude.ai",
           "anthropic.com",
           "anthropic.ai",
