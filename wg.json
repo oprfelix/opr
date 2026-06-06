@@ -395,6 +395,24 @@
       },
       {
         "domain_suffix": [
+          "mywss.com",
+          "apollo.io",
+          "sorftime.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_keyword": [
+          "mywss",
+          "apollo",
+          "sorftime"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
+        "domain_suffix": [
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
