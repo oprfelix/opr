@@ -17,7 +17,7 @@
         "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "CDN-AUTO"
+        "detour": "LLM-AUTO"
       }
     ],
     "rules": [
