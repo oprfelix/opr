@@ -413,6 +413,23 @@
       },
       {
         "domain_suffix": [
+          "itiger.com",
+          "futunn.com",
+          "futuhk.com"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "domain_keyword": [
+          "itiger",
+          "futunn"
+        ],
+        "action": "route",
+        "outbound": "CDN-AUTO"
+      },
+      {
+        "domain_suffix": [
           "chatgpt.com",
           "openai.com",
           "oaistatic.com",
