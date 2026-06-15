@@ -242,6 +242,8 @@
       {
         "domain_suffix": [
           "sorftime.com",
+          "morelogin.com",
+          "sif.com",
           "mywss.com",
           "apollo.io"
         ],
@@ -251,8 +253,10 @@
       {
         "domain_keyword": [
           "sorftime",
+          "morelogin",
           "mywss",
           "apollo",
+          "sif",
           "todesk"
         ],
         "action": "route",
