@@ -17,7 +17,7 @@
         "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "LLM-AUTO"
+        "detour": "CDN-AUTO"
       }
     ],
     "rules": [
@@ -287,7 +287,7 @@
           "claude.com"
         ],
         "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
+        "outbound": "LLM-AUTO"
       },
       {
         "domain_keyword": [
@@ -295,7 +295,7 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
+        "outbound": "LLM-AUTO"
       },
       {
         "domain_suffix": [
