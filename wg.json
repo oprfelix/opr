@@ -13,9 +13,9 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://8.8.8.8/dns-query",
+        "address": "https://cloudflare-dns.com/dns-query",
         "address_resolver": "mydns",
-        "detour": "LLM-US-HYSTERIA2"
+        "detour": "CDN-AUTO"
       },
       {
         "tag": "mydns",
