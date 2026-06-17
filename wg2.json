@@ -14,7 +14,7 @@
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "cloudflare-dns.com",
+        "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
         "detour": "CDN-AUTO"
