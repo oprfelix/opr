@@ -13,7 +13,7 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://cloudflare-dns.com/dns-query",
+        "address": "https://dns.google/dns-query",
         "address_resolver": "mydns",
         "detour": "CDN-AUTO"
       },
