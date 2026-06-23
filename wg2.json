@@ -326,6 +326,17 @@
         "outbound": "LLM-AUTO"
       },
       {
+        "domain_suffix": [
+          "claid.ai",
+          "pixelcut.ai",
+          "pixelcut.app",
+          "pebblely.com",
+          "flair.ai"
+        ],
+        "action": "route",
+        "outbound": "LLM-US-HYSTERIA2"
+      },
+      {
         "domain_keyword": [
           "telegram"
         ],
