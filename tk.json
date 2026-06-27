@@ -8,7 +8,13 @@
       {
         "tag": "google-doh",
         "address": "https://dns.google/dns-query",
+        "address_resolver": "bootstrap",
         "detour": "PROXY"
+      },
+      {
+        "tag": "bootstrap",
+        "address": "8.8.8.8",
+        "detour": "DIRECT"
       }
     ],
     "rules": [
@@ -81,7 +87,8 @@
       },
       {
         "ip_cidr": [
-          "98.159.110.71/32"
+          "98.159.110.71/32",
+          "8.8.8.8/32"
         ],
         "action": "route",
         "outbound": "DIRECT"
