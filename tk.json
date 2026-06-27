@@ -1,6 +1,6 @@
 {
   "log": {
-    "level": "warn",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
@@ -31,7 +31,7 @@
     "server": "time.apple.com",
     "server_port": 123,
     "interval": "30m",
-    "detour": "PROXY"
+    "detour": "DIRECT"
   },
   "inbounds": [
     {
@@ -50,8 +50,12 @@
       ],
       "auto_route": true,
       "strict_route": true,
+      "route_exclude_address": [
+        "98.159.110.71/32",
+        "223.5.5.5/32"
+      ],
       "stack": "system",
-      "mtu": 1500,
+      "mtu": 1400,
       "sniff": true,
       "sniff_override_destination": true
     }
@@ -60,7 +64,7 @@
     {
       "type": "hysteria2",
       "tag": "PROXY",
-      "server": "tk.todsm.com",
+      "server": "98.159.110.71",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
       "tls": {
@@ -88,7 +92,7 @@
       {
         "ip_cidr": [
           "98.159.110.71/32",
-          "8.8.8.8/32"
+          "223.5.5.5/32"
         ],
         "action": "route",
         "outbound": "DIRECT"
