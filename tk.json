@@ -8,12 +8,12 @@
       {
         "tag": "google-doh",
         "address": "https://dns.google/dns-query",
-        "address_resolver": "bootstrap",
+        "address_resolver": "mydns",
         "detour": "PROXY"
       },
       {
-        "tag": "bootstrap",
-        "address": "8.8.8.8",
+        "tag": "mydns",
+        "address": "223.5.5.5",
         "detour": "DIRECT"
       }
     ],
@@ -60,7 +60,7 @@
     {
       "type": "hysteria2",
       "tag": "PROXY",
-      "server": "98.159.110.71",
+      "server": "tk.todsm.com",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
       "tls": {
