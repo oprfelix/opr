@@ -3,29 +3,19 @@
     "level": "info",
     "timestamp": true
   },
+
   "dns": {
     "servers": [
       {
         "tag": "google-doh",
-        "address": "https://dns.google/dns-query",
-        "address_resolver": "mydns",
+        "address": "https://8.8.4.4/dns-query",
         "detour": "PROXY"
-      },
-      {
-        "tag": "mydns",
-        "address": "223.5.5.5",
-        "detour": "DIRECT"
-      }
-    ],
-    "rules": [
-      {
-        "protocol": "dns",
-        "server": "google-doh"
       }
     ],
     "final": "google-doh",
     "strategy": "prefer_ipv4"
   },
+
   "ntp": {
     "enabled": true,
     "server": "time.apple.com",
@@ -33,6 +23,7 @@
     "interval": "30m",
     "detour": "DIRECT"
   },
+
   "inbounds": [
     {
       "type": "mixed",
@@ -45,21 +36,16 @@
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": [
-        "172.19.0.1/30"
-      ],
+      "address": ["172.19.0.1/30"],
       "auto_route": true,
       "strict_route": true,
-      "route_exclude_address": [
-        "98.159.110.71/32",
-        "223.5.5.5/32"
-      ],
       "stack": "system",
       "mtu": 1400,
       "sniff": true,
       "sniff_override_destination": true
     }
   ],
+
   "outbounds": [
     {
       "type": "hysteria2",
@@ -80,27 +66,28 @@
       "tag": "DIRECT"
     }
   ],
+
   "route": {
+    "auto_detect_interface": true,
+    "final": "PROXY",
+
     "rules": [
       {
         "action": "sniff"
       },
+
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
+
       {
-        "ip_cidr": [
-          "98.159.110.71/32",
-          "223.5.5.5/32"
-        ],
-        "action": "route",
+        "ip_cidr": ["98.159.110.71/32"],
         "outbound": "DIRECT"
       }
-    ],
-    "final": "PROXY",
-    "auto_detect_interface": true
+    ]
   },
+
   "experimental": {
     "cache_file": {
       "enabled": true,
