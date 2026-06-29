@@ -10,7 +10,7 @@
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "dns.google",
+        "server": "cloudflare-dns.com",
         "server_port": 443,
         "path": "/dns-query",
         "detour": "DNS-PROXY"
