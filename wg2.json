@@ -13,7 +13,7 @@
         "server": "dns.google",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "CDN-AUTO"
+        "detour": "DNS-PROXY"
       }
     ],
     "rules": [
@@ -205,6 +205,20 @@
           "Host": "helloworld.fotoman.com"
         }
       }
+    },
+    {
+      "type": "hysteria2",
+      "tag": "DNS-PROXY",
+      "server": "98.159.110.71",
+      "server_port": 8443,
+      "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
+      "tls": {
+        "enabled": true,
+        "server_name": "tk.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
     },
     {
       "type": "direct",
