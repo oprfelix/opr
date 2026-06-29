@@ -77,9 +77,9 @@
       "type": "urltest",
       "tag": "LLM-AUTO",
       "outbounds": [
-        "LLM-US-HYSTERIA2",
-        "LLM-DE-HYSTERIA2",
-        "LLM-ETH-HYSTERIA2"
+        "LLM-US",
+        "LLM-DE",
+        "LLM-ETH"
       ],
       "url": "https://cp.cloudflare.com/generate_204",
       "interval": "10m",
@@ -89,7 +89,7 @@
 
     {
       "type": "hysteria2",
-      "tag": "LLM-US-HYSTERIA2",
+      "tag": "LLM-US",
       "server": "hy255.todsm.com",
       "server_port": 443,
       "domain_resolver": "global-dns",
@@ -109,7 +109,7 @@
 
     {
       "type": "hysteria2",
-      "tag": "LLM-DE-HYSTERIA2",
+      "tag": "LLM-DE",
       "server": "hy91.todsm.com",
       "server_port": 443,
       "domain_resolver": "global-dns",
@@ -129,7 +129,7 @@
 
     {
       "type": "hysteria2",
-      "tag": "LLM-ETH-HYSTERIA2",
+      "tag": "LLM-ETH",
       "server": "eth.todsm.com",
       "server_port": 443,
       "domain_resolver": "global-dns",
@@ -274,7 +274,7 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "LLM-US-HYSTERIA2"
+        "outbound": "DNS-PROXY"
       },
 
       {
