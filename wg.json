@@ -25,12 +25,12 @@
     ],
     "rules": [
       {
-      "domain_suffix": [
-        "todsm.com",
-        "hayoovant.com",
-        "fotoman.com"
-      ],
-      "server": "direct-dns"
+        "domain_suffix": [
+          "todsm.com",
+          "hayoovant.com",
+          "fotoman.com"
+        ],
+        "server": "direct-dns"
       },
       {
         "rule_set": "geosite-cn",
@@ -77,13 +77,7 @@
       "outbounds": [
         "CDN-1",
         "CDN-2",
-        "CDN-3",
-        "CDN-4",
-        "CDN-6",
-        "CDN-7",
-        "CDN-10",
-        "CDN-12",
-        "CDN-13"
+        "CDN-3"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -221,150 +215,6 @@
         "headers": {
           "Host": "helloworld.fotoman.com"
         }
-      }
-    },
-    {
-      "tag": "CDN-4",
-      "type": "vless",
-      "server": "pps.todsm.com",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiN0pBbW01dms2MTVZOHRSIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-6",
-      "type": "vless",
-      "server": "188.114.97.0",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiVVNUWmdWOUQ1MkEiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-7",
-      "type": "vless",
-      "server": "188.114.96.0",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoibVFjREVpQ0E2IiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-10",
-      "type": "trojan",
-      "server": "pps.todsm.com",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiT2JGVklzNTEzaFdaWURRIiwicHJvdG9jb2wiOiJ0ciIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-12",
-      "type": "trojan",
-      "server": "188.114.97.0",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiNUpzbGJRdGF5OCIsInByb3RvY29sIjoidHIiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
-      }
-    },
-    {
-      "tag": "CDN-13",
-      "type": "trojan",
-      "server": "188.114.96.0",
-      "server_port": 443,
-      "password": "!(qX4",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiekl4VXpCYXAiLCJwcm90b2NvbCI6InRyIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
       }
     },
     {
