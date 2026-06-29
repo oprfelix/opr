@@ -259,7 +259,7 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "LLM-ETH"
+        "outbound": "DNS-PROXY"
       },
       {
         "domain_suffix": [
