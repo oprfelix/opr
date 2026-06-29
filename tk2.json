@@ -1,0 +1,83 @@
+{
+  "log": {
+    "level": "warn",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "https",
+        "tag": "global-dns",
+        "server": "dns.google",
+        "server_port": 443,
+        "path": "/dns-query",
+        "detour": "PROXY"
+      }
+    ],
+    "final": "global-dns",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080
+    },
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "tun0",
+      "address": [
+        "172.19.0.1/30"
+      ],
+      "auto_route": true,
+      "strict_route": true,
+      "stack": "system",
+      "mtu": 1500
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "hysteria2",
+      "tag": "PROXY",
+      "server": "98.159.110.71",
+      "server_port": 8443,
+      "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
+      "tls": {
+        "enabled": true,
+        "server_name": "tk.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "default_domain_resolver": "global-dns",
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      }
+    ],
+    "final": "PROXY"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "secret": "",
+      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
+      "external_ui_download_detour": "PROXY"
+    }
+  }
+}
