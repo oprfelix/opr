@@ -33,8 +33,11 @@
       ],
       "auto_route": true,
       "strict_route": true,
+      "route_exclude_address": [
+        "98.159.110.71/32"
+      ],
       "stack": "system",
-      "mtu": 1500
+      "mtu": 1400
     }
   ],
   "outbounds": [
@@ -51,6 +54,10 @@
       },
       "up_mbps": 30,
       "down_mbps": 200
+    },
+    {
+      "type": "direct",
+      "tag": "DIRECT"
     }
   ],
   "route": {
@@ -63,6 +70,13 @@
       {
         "protocol": "dns",
         "action": "hijack-dns"
+      },
+      {
+        "ip_cidr": [
+          "98.159.110.71/32"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
       }
     ],
     "final": "PROXY"
