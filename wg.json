@@ -77,8 +77,7 @@
       "outbounds": [
         "CDN-1",
         "CDN-2",
-        "CDN-3",
-        "CDN-4"
+        "CDN-3"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -216,30 +215,6 @@
         "headers": {
           "Host": "helloworld.fotoman.com"
         }
-      }
-    },
-    {
-      "tag": "CDN-4",
-      "type": "vless",
-      "server": "8.35.211.202",
-      "server_port": 443,
-      "uuid": "5a03cb5d-1ed7-4f06-8b60-dd943479add6",
-      "tls": {
-        "enabled": true,
-        "server_name": "pps.todsm.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/eyJqdW5rIjoiN0pBbW01dms2MTVZOHRSIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
-        "headers": {
-          "Host": "pps.todsm.com"
-        },
-        "early_data_header_name": "Sec-WebSocket-Protocol",
-        "max_early_data": 2560
       }
     }
   ],
