@@ -77,9 +77,9 @@
       "type": "urltest",
       "tag": "LLM-AUTO",
       "outbounds": [
-        "LLM-US-HYSTERIA2",
-        "LLM-DE-HYSTERIA2",
-        "LLM-ETH-HYSTERIA2"
+        "LLM-US",
+        "LLM-DE",
+        "LLM-ETH"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -88,7 +88,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "LLM-US-HYSTERIA2",
+      "tag": "LLM-US",
       "server": "hy255.todsm.com",
       "server_port": 443,
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
@@ -106,7 +106,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "LLM-DE-HYSTERIA2",
+      "tag": "LLM-DE",
       "server": "hy91.todsm.com",
       "server_port": 443,
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
@@ -124,7 +124,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "LLM-ETH-HYSTERIA2",
+      "tag": "LLM-ETH",
       "server": "eth.todsm.com",
       "server_port": 443,
       "password": "HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON",
@@ -266,19 +266,25 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
+        "outbound": "LLM-ETH"
       },
       {
         "domain_suffix": [
           "voice.google.com",
-          "lens.l.google.com"
+          "telephony.goog",
+          "lens.l.google.com",
+          "stun.l.google.com",
+          "stun1.l.google.com",
+          "stun2.l.google.com",
+          "stun3.l.google.com",
+          "stun4.l.google.com"
         ],
-        "ip_cidr": [
-          "74.125.39.0/24",
-          "108.177.16.0/24"
+        "domain_keyword": [
+          "voice-pa",
+          "people-pa"
         ],
         "action": "route",
-        "outbound": "LLM-ETH-HYSTERIA2"
+        "outbound": "DNS-PROXY"
       },
       {
         "rule_set": "geosite-cn",
