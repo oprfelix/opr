@@ -2,10 +2,12 @@
   "dns": {
     "servers": [
       {
-        "type": "udp",
+        "type": "https",
         "tag": "direct-dns",
         "server": "223.5.5.5",
-        "server_port": 53
+        "server_port": 443,
+        "path": "/dns-query",
+        "detour": "DIRECT"
       },
       {
         "type": "https",
@@ -26,13 +28,15 @@
     "final": "global-dns",
     "strategy": "prefer_ipv4"
   },
+
   "ntp": {
     "enabled": true,
-    "server": "ntp.aliyun.com",
+    "server": "time.apple.com",
     "server_port": 123,
     "interval": "30m",
     "detour": "DIRECT"
   },
+
   "inbounds": [
     {
       "type": "mixed",
@@ -53,6 +57,7 @@
       "mtu": 1500
     }
   ],
+
   "outbounds": [
     {
       "type": "urltest",
@@ -62,11 +67,12 @@
         "CDN-2",
         "CDN-3"
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://cp.cloudflare.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "30m"
     },
+
     {
       "type": "urltest",
       "tag": "LLM-AUTO",
@@ -75,17 +81,18 @@
         "LLM-DE-HYSTERIA2",
         "LLM-ETH-HYSTERIA2"
       ],
-      "url": "https://www.gstatic.com/generate_204",
+      "url": "https://cp.cloudflare.com/generate_204",
       "interval": "10m",
       "tolerance": 100,
       "idle_timeout": "30m"
     },
+
     {
       "type": "hysteria2",
       "tag": "LLM-US-HYSTERIA2",
       "server": "hy255.todsm.com",
       "server_port": 443,
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "password": "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt",
       "obfs": {
         "type": "salamander",
@@ -99,12 +106,13 @@
       "up_mbps": 30,
       "down_mbps": 200
     },
+
     {
       "type": "hysteria2",
       "tag": "LLM-DE-HYSTERIA2",
       "server": "hy91.todsm.com",
       "server_port": 443,
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
       "obfs": {
         "type": "salamander",
@@ -118,12 +126,13 @@
       "up_mbps": 30,
       "down_mbps": 200
     },
+
     {
       "type": "hysteria2",
       "tag": "LLM-ETH-HYSTERIA2",
       "server": "eth.todsm.com",
       "server_port": 443,
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "password": "HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON",
       "obfs": {
         "type": "salamander",
@@ -137,13 +146,14 @@
       "up_mbps": 30,
       "down_mbps": 200
     },
+
     {
       "type": "vless",
       "tag": "CDN-1",
       "server": "8.35.211.251",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "tls": {
         "enabled": true,
         "server_name": "ddns.hayoovant.com",
@@ -160,13 +170,14 @@
         }
       }
     },
+
     {
       "type": "vless",
       "tag": "CDN-2",
       "server": "8.35.211.126",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.todsm.com",
@@ -183,13 +194,14 @@
         }
       }
     },
+
     {
       "type": "vless",
       "tag": "CDN-3",
       "server": "8.35.211.168",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
-      "domain_resolver": "direct-dns",
+      "domain_resolver": "global-dns",
       "tls": {
         "enabled": true,
         "server_name": "helloworld.fotoman.com",
@@ -206,6 +218,7 @@
         }
       }
     },
+
     {
       "type": "hysteria2",
       "tag": "DNS-PROXY",
@@ -220,27 +233,33 @@
       "up_mbps": 30,
       "down_mbps": 200
     },
+
     {
       "type": "direct",
       "tag": "DIRECT",
       "domain_resolver": "direct-dns"
     }
   ],
+
   "route": {
     "auto_detect_interface": true,
     "default_domain_resolver": "global-dns",
+
     "rules": [
       {
         "action": "sniff"
       },
+
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
+
       {
         "ip_is_private": true,
         "action": "direct"
       },
+
       {
         "ip_cidr": [
           "223.5.5.5/32"
@@ -248,6 +267,7 @@
         "action": "route",
         "outbound": "DIRECT"
       },
+
       {
         "domain_keyword": [
           "sorftime",
@@ -260,6 +280,7 @@
         "action": "route",
         "outbound": "DIRECT"
       },
+
       {
         "domain_keyword": [
           "claude",
@@ -268,6 +289,7 @@
         "action": "route",
         "outbound": "LLM-US-HYSTERIA2"
       },
+
       {
         "domain_keyword": [
           "openai",
@@ -283,29 +305,46 @@
         "action": "route",
         "outbound": "LLM-AUTO"
       },
+
       {
         "domain_suffix": [
           "voice.google.com",
-          "lens.l.google.com"
+          "telephony.goog",
+          "lens.l.google.com",
+          "stun.l.google.com",
+          "stun1.l.google.com",
+          "stun2.l.google.com",
+          "stun3.l.google.com",
+          "stun4.l.google.com"
+        ],
+        "domain_keyword": [
+          "voice-pa",
+          "people-pa"
         ],
         "ip_cidr": [
-          "74.125.39.0/24",
-          "108.177.16.0/24"
+          "74.125.0.0/16",
+          "108.177.0.0/16",
+          "142.250.0.0/15",
+          "172.217.0.0/16",
+          "209.85.128.0/17"
         ],
         "action": "route",
-        "outbound": "LLM-AUTO"
+        "outbound": "DNS-PROXY"
       },
+
       {
         "rule_set": "geosite-cn",
         "action": "route",
         "outbound": "DIRECT"
       },
+
       {
         "rule_set": "geoip-cn",
         "action": "route",
         "outbound": "DIRECT"
       }
     ],
+
     "rule_set": [
       {
         "tag": "geosite-cn",
@@ -322,8 +361,10 @@
         "download_detour": "CDN-AUTO"
       }
     ],
+
     "final": "CDN-AUTO"
   },
+
   "experimental": {
     "cache_file": {
       "enabled": true,
