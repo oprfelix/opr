@@ -287,6 +287,18 @@
         "outbound": "DNS-PROXY"
       },
       {
+        "domain_suffix": [
+          "apollo.io",
+          "sorftime.com",
+          "sif.com",
+          "mywss.com",
+          "sellersprite.com",
+          "lingxing.com"
+        ],
+        "action": "route",
+        "outbound": "DIRECT"
+      },
+      {
         "rule_set": "geosite-cn",
         "action": "route",
         "outbound": "DIRECT"
