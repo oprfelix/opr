@@ -12,8 +12,8 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://8.8.8.8/dns-query",
-        "detour": "CDN-AUTO"
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "DNS-PROXY"
       }
     ],
     "rules": [
@@ -207,6 +207,20 @@
       }
     },
     {
+      "type": "hysteria2",
+      "tag": "DNS-PROXY",
+      "server": "98.159.110.71",
+      "server_port": 8443,
+      "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
+      "tls": {
+        "enabled": true,
+        "server_name": "tk.todsm.com",
+        "insecure": false
+      },
+      "up_mbps": 30,
+      "down_mbps": 200
+    },
+    {
       "type": "direct",
       "tag": "DIRECT"
     }
@@ -226,8 +240,7 @@
       },
       {
         "ip_cidr": [
-          "223.5.5.5/32",
-          "8.8.8.8/32"
+          "223.5.5.5/32"
         ],
         "action": "route",
         "outbound": "DIRECT"
