@@ -255,7 +255,8 @@
           "perplexity",
           "grok",
           "gemini",
-          "copilot"
+          "copilot",
+          "linkedin"
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
