@@ -260,7 +260,10 @@
         "domain_suffix": [
           "claude.ai",
           "claude.app",
-          "anthropic.com"
+          "anthropic.com",
+          "cloudflare.com",
+          "cloudflare-dns.com",
+          "one.one.one.one"
         ],
         "action": "route",
         "outbound": "claude-node"
