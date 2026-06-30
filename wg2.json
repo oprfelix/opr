@@ -225,7 +225,7 @@
 
     {
       "type": "hysteria2",
-      "tag": "DNS-PROXY",
+      "tag": "ANT",
       "server": "98.159.110.71",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
@@ -278,7 +278,7 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "DNS-PROXY"
+        "outbound": "ANT"
       },
 
       {
@@ -315,7 +315,7 @@
           "people-pa"
         ],
         "action": "route",
-        "outbound": "DNS-PROXY"
+        "outbound": "ANT"
       },
 
       {
