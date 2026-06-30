@@ -254,6 +254,9 @@
           "deepmind.google",
           "aistudio.google.com",
           "vertexai.google",
+          "translate.googleapis.com",
+          "translation.googleapis.com",
+          "translate-pa.googleapis.com",
           "licdn.com",
           "linkedin.com"
         ],
