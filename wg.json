@@ -313,14 +313,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "CDN-AUTO"
+        "download_detour": "claude-node"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "CDN-AUTO"
+        "download_detour": "claude-node"
       }
     ],
     "final": "CDN-AUTO",
@@ -336,7 +336,7 @@
       "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/gh-pages.zip",
-      "external_ui_download_detour": "CDN-AUTO"
+      "external_ui_download_detour": "claude-node"
     }
   }
 }
