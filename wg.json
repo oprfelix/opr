@@ -259,6 +259,7 @@
       {
         "domain_suffix": [
           "claude.ai",
+          "claude.app",
           "anthropic.com"
         ],
         "action": "route",
