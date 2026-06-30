@@ -60,7 +60,8 @@
       "outbounds": [
         "CDN-1",
         "CDN-2",
-        "CDN-3"
+        "CDN-3",
+        "CDN-4"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -72,7 +73,6 @@
       "tag": "LLM-AUTO",
       "outbounds": [
         "LLM-US",
-        "LLM-DE",
         "LLM-ETH"
       ],
       "url": "https://www.gstatic.com/generate_204",
@@ -100,7 +100,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "LLM-DE",
+      "tag": "CDN-4",
       "server": "hy91.todsm.com",
       "server_port": 443,
       "password": "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7",
