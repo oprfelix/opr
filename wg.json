@@ -12,8 +12,10 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://1.1.1.1/dns-query",
-        "detour": "DNS-PROXY"
+        "address": "https://dns.todsm.com/dns-query",
+        "address_resolver": "direct-dns",
+        "address_strategy": "prefer_ipv4",
+        "detour": "DIRECT"
       }
     ],
     "rules": [
