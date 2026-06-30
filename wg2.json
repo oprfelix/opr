@@ -287,17 +287,21 @@
 
       {
         "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "oaistatic",
-          "oaiusercontent",
-          "azureedge",
-          "perplexity",
-          "grok",
-          "gemini",
-          "copilot",
-          "licdn",
-          "linkedin"
+          "openai.com",
+          "chatgpt.com",
+          "perplexity.ai",
+          "oaistatic.com",
+          "oaiusercontent.com",
+          "grok.com",
+          "grokipedia.com",
+          "x.ai",
+          "gemini.google.com",
+          "gstatic.com",
+          "deepmind.google",
+          "aistudio.google.com",
+          "vertexai.google",
+          "licdn.com",
+          "linkedin.com"
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
