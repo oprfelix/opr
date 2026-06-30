@@ -202,7 +202,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "ANT",
+      "tag": "claude-node",
       "server": "98.159.110.71",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
@@ -262,7 +262,7 @@
           "anthropic"
         ],
         "action": "route",
-        "outbound": "ANT"
+        "outbound": "claude-node"
       },
       {
         "domain_suffix": [
@@ -280,7 +280,7 @@
           "people-pa"
         ],
         "action": "route",
-        "outbound": "ANT"
+        "outbound": "claude-node"
       },
       {
         "domain_suffix": [
