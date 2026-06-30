@@ -273,9 +273,9 @@
       },
 
       {
-        "domain_keyword": [
-          "claude",
-          "anthropic"
+        "domain_suffix": [
+          "claude.ai",
+          "anthropic.com"
         ],
         "action": "route",
         "outbound": "claude-node"
