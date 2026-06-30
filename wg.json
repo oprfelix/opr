@@ -240,18 +240,20 @@
         "outbound": "DIRECT"
       },
       {
-        "domain_keyword": [
-          "openai",
-          "chatgpt",
-          "perplexity",
-          "oaistatic",
-          "oaiusercontent",
-          "perplexity",
-          "grok",
-          "gemini",
-          "copilot",
-          "licdn",
-          "linkedin"
+        "domain_suffix": [
+          "openai.com",
+          "chatgpt.com",
+          "perplexity.ai",
+          "oaistatic.com",
+          "oaiusercontent.com",
+          "grok.com",
+          "x.ai",
+          "gemini.google.com",
+          "deepmind.google",
+          "aistudio.google.com",
+          "vertexai.google",
+          "licdn.com",
+          "linkedin.com"
         ],
         "action": "route",
         "outbound": "LLM-AUTO"
