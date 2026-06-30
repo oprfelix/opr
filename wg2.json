@@ -58,7 +58,7 @@
       "auto_route": true,
       "strict_route": true,
       "stack": "system",
-      "mtu": 1500
+      "mtu": 1420
     }
   ],
 
