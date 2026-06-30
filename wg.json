@@ -250,6 +250,7 @@
           "grok",
           "gemini",
           "copilot",
+          "licdn",
           "linkedin"
         ],
         "action": "route",
