@@ -12,10 +12,14 @@
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "1.1.1.1",
+        "server": "13.214.200.6",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "DNS-PROXY"
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.todsm.com"
+        },
+        "detour": "DIRECT"
       }
     ],
     "rules": [
