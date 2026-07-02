@@ -299,6 +299,11 @@
         "domain_keyword": [
           "openai.com",
           "chatgpt.com",
+          "oaistatsig.com",
+          "workos.com",
+          "workoscdn.com",
+          "imgix.net",
+          "sentry.io",
           "perplexity.ai",
           "oaistatic.com",
           "oaiusercontent.com",
