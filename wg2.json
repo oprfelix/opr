@@ -328,7 +328,8 @@
         ],
         "domain_keyword": [
           "voice-pa",
-          "people-pa"
+          "people-pa",
+          "datadoghq"
         ],
         "action": "route",
         "outbound": "claude-node"
