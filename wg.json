@@ -61,7 +61,11 @@
         "CDN-1",
         "CDN-2",
         "CDN-3",
-        "CDN-4"
+        "CDN-4",
+        "CDN-5",
+        "CDN-6",
+        "CDN-7",
+        "CDN-8"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "10m",
@@ -137,7 +141,7 @@
     {
       "type": "vless",
       "tag": "CDN-1",
-      "server": "8.35.211.251",
+      "server": "8.35.211.107",
       "server_port": 443,
       "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
       "tls": {
@@ -159,7 +163,7 @@
     {
       "type": "vless",
       "tag": "CDN-2",
-      "server": "8.35.211.126",
+      "server": "8.39.125.148",
       "server_port": 443,
       "uuid": "5f2616c7-a69c-4a56-94b0-2aa4a25f878f",
       "tls": {
@@ -181,7 +185,7 @@
     {
       "type": "vless",
       "tag": "CDN-3",
-      "server": "8.35.211.168",
+      "server": "5.10.215.126",
       "server_port": 443,
       "uuid": "351e3c90-7f9f-4f40-bccc-bee0bb0ca951",
       "tls": {
@@ -197,6 +201,94 @@
         "path": "/",
         "headers": {
           "Host": "helloworld.fotoman.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-5",
+      "server": "8.34.70.57",
+      "server_port": 443,
+      "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
+      "tls": {
+        "enabled": true,
+        "server_name": "ddns.hayoovant.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ddns.hayoovant.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-6",
+      "server": "45.192.223.47",
+      "server_port": 443,
+      "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
+      "tls": {
+        "enabled": true,
+        "server_name": "ddns.hayoovant.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ddns.hayoovant.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-7",
+      "server": "103.31.79.164",
+      "server_port": 443,
+      "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
+      "tls": {
+        "enabled": true,
+        "server_name": "ddns.hayoovant.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ddns.hayoovant.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "CDN-8",
+      "server": "8.6.112.3",
+      "server_port": 443,
+      "uuid": "723f6692-87a0-4a59-848d-8112b4e0db5b",
+      "tls": {
+        "enabled": true,
+        "server_name": "ddns.hayoovant.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ddns.hayoovant.com"
         }
       }
     },
