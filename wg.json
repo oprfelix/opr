@@ -240,7 +240,7 @@
         "outbound": "DIRECT"
       },
       {
-      "domain_suffix": ["doubleclick.net", "baidu.com"],
+      "domain_suffix": ["doubleclick.net", "baidu.com", "360.cn", "360safe.com"],
       "action": "route",
       "outbound": "REJECT"
       },
