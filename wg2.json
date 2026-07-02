@@ -271,7 +271,13 @@
         "action": "route",
         "outbound": "DIRECT"
       },
-
+      
+      {
+        "domain_suffix": ["doubleclick.net", "baidu.com"],
+        "action": "route",
+        "outbound": "REJECT"
+      },
+      
       {
         "domain_suffix": [
           "claude.ai",
