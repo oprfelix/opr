@@ -329,6 +329,7 @@
         "domain_keyword": [
           "voice-pa",
           "people-pa",
+          "intercom",
           "datadoghq"
         ],
         "action": "route",
