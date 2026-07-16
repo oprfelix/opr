@@ -40,7 +40,7 @@
       "auto_route": true,
       "strict_route": true,
       "stack": "gvisor",
-      "mtu": 1400,
+      "mtu": 1420,
       "sniff": true,
       "sniff_override_destination": true
     }
