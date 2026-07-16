@@ -36,7 +36,7 @@
       "route_exclude_address": [
         "98.159.110.71/32"
       ],
-      "stack": "system",
+      "stack": "gvisor",
       "mtu": 1400
     }
   ],
