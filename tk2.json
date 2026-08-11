@@ -8,9 +8,13 @@
       {
         "type": "https",
         "tag": "google-dns",
-        "server": "8.8.8.8",
+        "server": "13.214.200.6",
         "server_port": 443,
         "path": "/dns-query",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.todsm.com"
+        },
         "detour": "PROXY"
       }
     ],
@@ -36,8 +40,8 @@
       "route_exclude_address": [
         "98.159.110.71/32"
       ],
-      "stack": "gvisor",
-      "mtu": 1420
+      "stack": "system",
+      "mtu": 1400
     }
   ],
   "outbounds": [
