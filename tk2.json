@@ -6,19 +6,14 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
-        "tag": "google-dns",
-        "server": "13.214.200.6",
-        "server_port": 443,
-        "path": "/dns-query",
-        "tls": {
-          "enabled": true,
-          "server_name": "dns.todsm.com"
-        },
+        "type": "udp",
+        "tag": "wg-dns",
+        "server": "98.159.110.198",
+        "server_port": 53,
         "detour": "PROXY"
       }
     ],
-    "final": "google-dns",
+    "final": "wg-dns",
     "strategy": "prefer_ipv4"
   },
   "inbounds": [
@@ -38,10 +33,12 @@
       "auto_route": true,
       "strict_route": true,
       "route_exclude_address": [
-        "98.159.110.71/32"
+        "98.159.110.71/32",
+        "98.159.110.198/32",
+        "10.66.66.0/24"
       ],
       "stack": "system",
-      "mtu": 1400
+      "mtu": 1280
     }
   ],
   "outbounds": [
@@ -66,7 +63,7 @@
   ],
   "route": {
     "auto_detect_interface": true,
-    "default_domain_resolver": "google-dns",
+    "default_domain_resolver": "wg-dns",
     "rules": [
       {
         "action": "sniff"
