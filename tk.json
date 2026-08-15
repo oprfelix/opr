@@ -7,12 +7,12 @@
   "dns": {
     "servers": [
       {
-        "tag": "google-doh",
-        "address": "https://13.214.200.6/dns-query",
+        "tag": "wg-dns",
+        "address": "udp://98.159.110.71:53",
         "detour": "PROXY"
       }
     ],
-    "final": "google-doh",
+    "final": "wg-dns",
     "strategy": "prefer_ipv4"
   },
 
