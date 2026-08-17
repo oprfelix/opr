@@ -12,8 +12,8 @@
       },
       {
         "tag": "global-dns",
-        "address": "udp://98.159.110.71:53",
-        "detour": "US-CORE"
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "CDN-AUTO"
       }
     ],
     "rules": [
