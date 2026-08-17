@@ -11,11 +11,15 @@
       },
       {
         "type": "https",
-        "tag": "global-dns",
-        "server": "8.8.8.8",
+        "tag": "global",
+        "server": "1.1.1.1",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "CDN-AUTO"
+        "tls": {
+         "enabled": true,
+         "server_name": "cloudflare-dns.com"
+      },
+        "detour": "US-CORE"
       }
     ],
     "rules": [
