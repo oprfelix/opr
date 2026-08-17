@@ -10,11 +10,16 @@
         "detour": "DIRECT"
       },
       {
-        "type": "udp",
+        "type": "https",
         "tag": "global-dns",
-        "server": "98.159.110.71",
-        "server_port": 53,
-        "detour": "US-CORE"
+        "server": "95.40.31.69",
+        "server_port": 443,
+        "path": "/v1",
+        "tls": {
+          "enabled": true,
+          "server_name": "api.vtuns.com"
+        },
+        "detour": "DIRECT"
       }
     ],
     "rules": [
