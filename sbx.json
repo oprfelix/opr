@@ -18,6 +18,10 @@
     ],
     "rules": [
       {
+        "domain_suffix": ["todsm.com"],
+        "server": "direct-dns"
+      },
+      {
         "rule_set": "geosite-cn",
         "server": "direct-dns"
       }
@@ -27,7 +31,7 @@
   },
   "ntp": {
     "enabled": true,
-    "server": "time.apple.com",
+    "server": "ntp.aliyun.com",
     "server_port": 123,
     "interval": "30m",
     "detour": "DIRECT"
@@ -99,9 +103,7 @@
         "enabled": true,
         "server_name": "hy255.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "hysteria2",
@@ -117,9 +119,7 @@
         "enabled": true,
         "server_name": "hy91.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "hysteria2",
@@ -135,9 +135,7 @@
         "enabled": true,
         "server_name": "eth.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "vless",
@@ -303,9 +301,7 @@
         "enabled": true,
         "server_name": "tk.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "direct",
@@ -333,9 +329,8 @@
         "outbound": "DIRECT"
       },
       {
-      "domain_suffix": ["doubleclick.net", "baidu.com", "360.cn", "360safe.com"],
-      "action": "reject",
-      "outbound": "REJECT"
+        "domain_suffix": ["doubleclick.net", "baidu.com", "360.cn", "360safe.com"],
+        "action": "reject"
       },
       {
         "domain_suffix": [
@@ -429,14 +424,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "US-CORE"
+        "download_detour": "CDN-AUTO"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "US-CORE"
+        "download_detour": "CDN-AUTO"
       }
     ],
     "final": "CDN-AUTO",
@@ -452,7 +447,7 @@
       "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/gh-pages.zip",
-      "external_ui_download_detour": "US-CORE"
+      "external_ui_download_detour": "CDN-AUTO"
     }
   }
 }
