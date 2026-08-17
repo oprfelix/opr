@@ -12,14 +12,10 @@
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "95.40.31.69",
+        "server": "8.8.8.8",
         "server_port": 443,
-        "path": "/v1",
-        "tls": {
-          "enabled": true,
-          "server_name": "api.vtuns.com"
-        },
-        "detour": "DIRECT"
+        "path": "/dns-query",
+        "detour": "CDN-AUTO"
       }
     ],
     "rules": [
