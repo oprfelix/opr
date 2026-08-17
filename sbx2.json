@@ -11,7 +11,7 @@
       },
       {
         "type": "https",
-        "tag": "global",
+        "tag": "global-dns",
         "server": "1.1.1.1",
         "server_port": 443,
         "path": "/dns-query",
