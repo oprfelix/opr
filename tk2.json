@@ -6,11 +6,10 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
+        "type": "udp",
         "tag": "wg-dns",
-        "server": "8.8.8.8",
-        "server_port": 443,
-        "path": "/dns-query",
+        "server": "98.159.110.71",
+        "server_port": 53,
         "detour": "PROXY"
       }
     ],
