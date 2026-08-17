@@ -10,16 +10,11 @@
         "detour": "DIRECT"
       },
       {
-        "type": "https",
+        "type": "udp",
         "tag": "global-dns",
-        "server": "13.214.200.6",
-        "server_port": 443,
-        "path": "/dns-query",
-        "tls": {
-          "enabled": true,
-          "server_name": "dns.todsm.com"
-        },
-        "detour": "DIRECT"
+        "server": "98.159.110.71",
+        "server_port": 53,
+        "detour": "US-CORE"
       }
     ],
     "rules": [
@@ -325,7 +320,7 @@
 
     {
       "type": "hysteria2",
-      "tag": "claude-node",
+      "tag": "US-CORE",
       "server": "98.159.110.71",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
@@ -361,7 +356,8 @@
 
       {
         "ip_is_private": true,
-        "action": "direct"
+        "action": "direct",
+        "outbound": "DIRECT"
       },
 
       {
@@ -374,8 +370,7 @@
       
       {
         "domain_suffix": ["doubleclick.net", "baidu.com", "360.cn", "360safe.com"],
-        "action": "route",
-        "outbound": "REJECT"
+        "action": "reject"
       },
       
       {
@@ -389,14 +384,7 @@
           "browser-intake-us5-datadoghq.com",
           "cloudflare.com",
           "cloudflare-dns.com",
-          "one.one.one.one"
-        ],
-        "action": "route",
-        "outbound": "claude-node"
-      },
-
-      {
-        "domain_keyword": [
+          "one.one.one.one",
           "openai.com",
           "chatgpt.com",
           "oaistatsig.com",
@@ -423,7 +411,7 @@
           "linkedin.com"
         ],
         "action": "route",
-        "outbound": "LLM-AUTO"
+        "outbound": "US-CORE"
       },
 
       {
@@ -445,7 +433,7 @@
           "datadoghq"
         ],
         "action": "route",
-        "outbound": "claude-node"
+        "outbound": "US-CORE"
       },
 
       {
@@ -482,14 +470,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "claude-node"
+        "download_detour": "US-CORE"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "claude-node"
+        "download_detour": "US-CORE"
       }
     ],
 
@@ -506,7 +494,7 @@
       "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
-      "external_ui_download_detour": "claude-node"
+      "external_ui_download_detour": "US-CORE"
     }
   }
 }
