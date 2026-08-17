@@ -3,19 +3,38 @@
     "level": "info",
     "timestamp": true
   },
-
   "dns": {
     "servers": [
       {
         "tag": "wg-dns",
         "address": "https://1.1.1.1/dns-query",
         "detour": "PROXY"
+      },
+      {
+        "tag": "backup-dns",
+        "address": "https://8.8.8.8/dns-query",
+        "detour": "PROXY"
+      },
+      {
+        "tag": "fake",
+        "address": "fakeip"
       }
     ],
+    "rules": [
+      {
+        "query_type": ["A", "AAAA"],
+        "server": "fake"
+      }
+    ],
+    "fakeip": {
+      "enabled": true,
+      "inet4_range": "198.18.0.0/15",
+      "inet6_range": "fc00::/18"
+    },
     "final": "wg-dns",
-    "strategy": "prefer_ipv4"
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
   },
-
   "ntp": {
     "enabled": true,
     "server": "time.apple.com",
@@ -23,29 +42,26 @@
     "interval": "30m",
     "detour": "DIRECT"
   },
-
   "inbounds": [
     {
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 2080,
-      "sniff": true,
-      "sniff_override_destination": true
+      "listen_port": 2080
     },
     {
       "type": "tun",
       "tag": "tun-in",
-      "address": ["172.19.0.1/30", "fdfe:dcba:9876::1/126"],
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
       "auto_route": true,
       "strict_route": true,
       "stack": "gvisor",
-      "mtu": 1420,
-      "sniff": true,
-      "sniff_override_destination": true
+      "mtu": 1420
     }
   ],
-
   "outbounds": [
     {
       "type": "hysteria2",
@@ -57,41 +73,42 @@
         "enabled": true,
         "server_name": "tk.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "direct",
       "tag": "DIRECT"
     }
   ],
-
   "route": {
     "auto_detect_interface": true,
-    "final": "PROXY",
-
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff",
+        "timeout": "300ms"
       },
-
       {
         "protocol": "dns",
         "action": "hijack-dns"
       },
-
       {
-        "ip_cidr": ["98.159.110.71/32"],
+        "ip_is_private": true,
+        "outbound": "DIRECT"
+      },
+      {
+        "ip_cidr": [
+          "98.159.110.71/32"
+        ],
         "outbound": "DIRECT"
       }
-    ]
+    ],
+    "final": "PROXY"
   },
-
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db"
+      "path": "cache.db",
+      "store_fakeip": true
     }
   }
 }
