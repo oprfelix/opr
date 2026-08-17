@@ -8,7 +8,7 @@
     "servers": [
       {
         "tag": "wg-dns",
-        "address": "udp://98.159.110.71:53",
+        "address": "https://1.1.1.1/dns-query",
         "detour": "PROXY"
       }
     ],
