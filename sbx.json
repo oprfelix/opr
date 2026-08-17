@@ -12,10 +12,8 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://dns.todsm.com/dns-query",
-        "address_resolver": "direct-dns",
-        "address_strategy": "prefer_ipv4",
-        "detour": "DIRECT"
+        "address": "udp://98.159.110.71:53",
+        "detour": "US-CORE"
       }
     ],
     "rules": [
@@ -297,7 +295,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "claude-node",
+      "tag": "US-CORE",
       "server": "98.159.110.71",
       "server_port": 8443,
       "password": "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8",
@@ -336,7 +334,7 @@
       },
       {
       "domain_suffix": ["doubleclick.net", "baidu.com", "360.cn", "360safe.com"],
-      "action": "route",
+      "action": "reject",
       "outbound": "REJECT"
       },
       {
@@ -383,7 +381,7 @@
           "one.one.one.one"
         ],
         "action": "route",
-        "outbound": "claude-node"
+        "outbound": "US-CORE"
       },
       {
         "domain_suffix": [
@@ -404,7 +402,7 @@
           "datadoghq"
         ],
         "action": "route",
-        "outbound": "claude-node"
+        "outbound": "US-CORE"
       },
       {
         "domain_suffix": [
@@ -437,14 +435,14 @@
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
-        "download_detour": "claude-node"
+        "download_detour": "US-CORE"
       },
       {
         "tag": "geoip-cn",
         "type": "remote",
         "format": "binary",
         "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "claude-node"
+        "download_detour": "US-CORE"
       }
     ],
     "final": "CDN-AUTO",
@@ -460,7 +458,7 @@
       "external_ui": "ui",
       "secret": "",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/archive/gh-pages.zip",
-      "external_ui_download_detour": "claude-node"
+      "external_ui_download_detour": "US-CORE"
     }
   }
 }
