@@ -1,242 +1,357 @@
-mixed-port: 2080
-allow-lan: false
-bind-address: 127.0.0.1
+# =========================================================
+# Clash Meta (mihomo) 配置
+# 由 sing-box 1.13.x 配置等价翻译
+# 结构：DNS 分流 / TUN / Hysteria2 + VLESS-WS / urltest 分组 / 规则路由
+# =========================================================
+
+mixed-port: 2080          # 对应 sing-box mixed-in (127.0.0.1:2080)
+allow-lan: false          # 只监听本机
 mode: rule
-log-level: warning
-ipv6: false
-tcp-concurrent: true
+log-level: info
+ipv6: true
 unified-delay: true
+tcp-concurrent: true
+find-process-mode: strict
+
+# ---- Clash API（对应 experimental.clash_api）----
+external-controller: 127.0.0.1:9090
+external-ui: ui
+external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+secret: ""
 
 profile:
   store-selected: true
-  store-fake-ip: true
+  store-fake-ip: true     # 对应 cache_file
 
-geodata-mode: true
-geox-url:
-  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
-  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb
-  asn: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/GeoLite2-ASN.mmdb
-
+# ---- NTP（对应 sing-box ntp，interval 单位为分钟）----
 ntp:
   enable: true
-  write-to-system: false
   server: time.apple.com
   port: 123
   interval: 30
 
+# ---- GeoData（mihomo 不支持 .srs，改用 MetaCubeX 的 dat/mmdb）----
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 72
+geox-url:
+  geosite: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/geosite.dat"
+  geoip: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/geoip.dat"
+  mmdb: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/release/country.mmdb"
+
+# ---- TUN（对应 tun-in）----
 tun:
   enable: true
-  stack: system
+  stack: gvisor
+  device: tun0
+  mtu: 1420
   auto-route: true
   strict-route: true
   auto-detect-interface: true
   dns-hijack:
-    - any:53
-    - tcp://any:53
-  mtu: 1500
+    - any:53            # 对应 hijack-dns
 
+# ---- 流量嗅探（对应 route.rules 里的 sniff action）----
 sniffer:
   enable: true
   sniff:
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
     TLS:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
     QUIC:
-      ports:
-        - 443
-        - 8443
+      ports: [443, 8443]
 
+# ---- DNS 分流 ----
+# sing-box 逻辑：geosite-cn → 阿里 DoH 直连；其余 → Cloudflare DoH 走 US-CORE
 dns:
   enable: true
-  ipv6: false
+  listen: 0.0.0.0:1053
+  ipv6: false                      # 对应 strategy: prefer_ipv4（如需 AAAA 可改 true）
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  default-nameserver:
-    - 223.5.5.5
-  nameserver:
-    - https://dns.todsm.com/dns-query
-    - https://dns.google/dns-query
-  proxy-server-nameserver:
-    - https://223.5.5.5/dns-query
-  nameserver-policy:
-    geosite:cn:
-      - https://223.5.5.5/dns-query
   fake-ip-filter:
-    - +.lan
-    - +.local
-    - time.apple.com
+    - "*.lan"
+    - "*.local"
+    - "time.apple.com"
+    - "+.ntp.org"
+    - "+.pool.ntp.org"
+  default-nameserver:              # 用于解析 DoH 域名本身
+    - 223.5.5.5
+  proxy-server-nameserver:         # 用于解析代理节点域名（hy255.todsm.com 等）
+    - https://223.5.5.5/dns-query
+  nameserver-policy:               # 国内域名 → 阿里 DoH 直连
+    "geosite:cn": https://223.5.5.5/dns-query
+  nameserver:                      # 默认（境外）→ Cloudflare DoH 经 US-CORE 出站
+    - "https://cloudflare-dns.com/dns-query#US-CORE"
 
+# =========================================================
+# 节点
+# =========================================================
 proxies:
+  # ---- Hysteria2 ----
   - name: LLM-US
     type: hysteria2
     server: hy255.todsm.com
     port: 443
-    password: nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt
-    up: 30 Mbps
-    down: 200 Mbps
+    password: "nw/hFaPIWIHhpf55sJZcOOWQGbUgYSpt"
     obfs: salamander
-    obfs-password: IkN56lpDU7+BDGjVhMEicvt2S4vRasZG
+    obfs-password: "IkN56lpDU7+BDGjVhMEicvt2S4vRasZG"
     sni: hy255.todsm.com
     skip-cert-verify: false
-    udp: true
-
-  - name: LLM-DE
-    type: hysteria2
-    server: hy91.todsm.com
-    port: 443
-    password: LVOEhToM5QvkexX7b7hx/noHmkVBTIc7
-    up: 30 Mbps
-    down: 200 Mbps
-    obfs: salamander
-    obfs-password: yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd
-    sni: hy91.todsm.com
-    skip-cert-verify: false
-    udp: true
+    up: 30
+    down: 200
 
   - name: LLM-ETH
     type: hysteria2
     server: eth.todsm.com
     port: 443
-    password: HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON
-    up: 30 Mbps
-    down: 200 Mbps
+    password: "HPzKAhFXV5XgEmRSTM33DRuTHeFcB5ON"
     obfs: salamander
-    obfs-password: 0dRexOATy4t9J1ckKOLpPy9HrNoU5FmN
+    obfs-password: "0dRexOATy4t9J1ckKOLpPy9HrNoU5FmN"
     sni: eth.todsm.com
     skip-cert-verify: false
-    udp: true
+    up: 30
+    down: 200
 
+  - name: CDN-4
+    type: hysteria2
+    server: hy91.todsm.com
+    port: 443
+    password: "LVOEhToM5QvkexX7b7hx/noHmkVBTIc7"
+    obfs: salamander
+    obfs-password: "yz43KKFyFbeEeR0Affyy7LbBsvdzqDRd"
+    sni: hy91.todsm.com
+    skip-cert-verify: false
+    up: 30
+    down: 200
+
+  - name: US-CORE
+    type: hysteria2
+    server: 98.159.110.71
+    port: 8443
+    password: "vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8"
+    sni: tk.todsm.com
+    skip-cert-verify: false
+    up: 30
+    down: 200
+
+  # ---- VLESS + WS + TLS ----
   - name: CDN-1
     type: vless
-    server: 8.35.211.251
+    server: 8.35.211.107
     port: 443
     uuid: 723f6692-87a0-4a59-848d-8112b4e0db5b
+    udp: true
     network: ws
     tls: true
-    udp: true
     servername: ddns.hayoovant.com
     client-fingerprint: chrome
     ws-opts:
-      path: /
+      path: "/"
       headers:
         Host: ddns.hayoovant.com
 
   - name: CDN-2
     type: vless
-    server: 8.35.211.126
+    server: 8.39.125.148
     port: 443
     uuid: 5f2616c7-a69c-4a56-94b0-2aa4a25f878f
+    udp: true
     network: ws
     tls: true
-    udp: true
     servername: helloworld.todsm.com
     client-fingerprint: chrome
     ws-opts:
-      path: /
+      path: "/"
       headers:
         Host: helloworld.todsm.com
 
   - name: CDN-3
     type: vless
-    server: 8.35.211.168
+    server: 5.10.215.126
     port: 443
     uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    udp: true
     network: ws
     tls: true
-    udp: true
     servername: helloworld.fotoman.com
     client-fingerprint: chrome
     ws-opts:
-      path: /
+      path: "/"
       headers:
         Host: helloworld.fotoman.com
 
-  - name: claude-node
-    type: hysteria2
-    server: 98.159.110.71
-    port: 8443
-    password: vN7ZlpW6E1ZRcHYbMcnpbH2YOsRwZXe8
-    up: 30 Mbps
-    down: 200 Mbps
-    sni: tk.todsm.com
-    skip-cert-verify: false
+  - name: CDN-5
+    type: vless
+    server: 8.34.70.57
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
     udp: true
+    network: ws
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/"
+      headers:
+        Host: helloworld.fotoman.com
 
+  - name: CDN-6
+    type: vless
+    server: 45.192.223.47
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    udp: true
+    network: ws
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/"
+      headers:
+        Host: helloworld.fotoman.com
+
+  - name: CDN-7
+    type: vless
+    server: 103.31.79.164
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    udp: true
+    network: ws
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/"
+      headers:
+        Host: helloworld.fotoman.com
+
+  - name: CDN-8
+    type: vless
+    server: 8.6.112.3
+    port: 443
+    uuid: 351e3c90-7f9f-4f40-bccc-bee0bb0ca951
+    udp: true
+    network: ws
+    tls: true
+    servername: helloworld.fotoman.com
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/"
+      headers:
+        Host: helloworld.fotoman.com
+
+# =========================================================
+# 分组（对应 urltest 出站；interval 单位为秒）
+# =========================================================
 proxy-groups:
   - name: CDN-AUTO
     type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 100
     proxies:
       - CDN-1
       - CDN-2
       - CDN-3
-    url: https://www.gstatic.com/generate_204
-    interval: 600
-    tolerance: 100
-    lazy: true
+      - CDN-4
+      - CDN-5
+      - CDN-6
+      - CDN-7
+      - CDN-8
 
+  # 注意：原 sing-box 配置中 LLM-AUTO 未被任何路由规则引用
+  # （LLM 域名实际走 US-CORE）。此处保留分组以便手动切换使用。
   - name: LLM-AUTO
     type: url-test
-    proxies:
-      - LLM-US
-      - LLM-DE
-      - LLM-ETH
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 600
     tolerance: 100
-    lazy: true
+    proxies:
+      - LLM-US
+      - LLM-ETH
 
+# =========================================================
+# 路由规则（顺序与 sing-box 保持一致）
+# =========================================================
 rules:
-  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
-  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
-  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
-  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
-  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
-  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  # 私有地址直连
+  - GEOIP,private,DIRECT,no-resolve
+
+  # 阿里 DNS 直连
   - IP-CIDR,223.5.5.5/32,DIRECT,no-resolve
 
-  - DOMAIN-KEYWORD,openai,LLM-AUTO
-  - DOMAIN-KEYWORD,chatgpt,LLM-AUTO
-  - DOMAIN-KEYWORD,perplexity,LLM-AUTO
-  - DOMAIN-KEYWORD,oaistatic,LLM-AUTO
-  - DOMAIN-KEYWORD,oaiusercontent,LLM-AUTO
-  - DOMAIN-KEYWORD,grok,LLM-AUTO
-  - DOMAIN-KEYWORD,gemini,LLM-AUTO
-  - DOMAIN-KEYWORD,copilot,LLM-AUTO
-  - DOMAIN-KEYWORD,licdn,LLM-AUTO
-  - DOMAIN-KEYWORD,linkedin,LLM-AUTO
+  # 拦截
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-SUFFIX,baidu.com,REJECT
+  - DOMAIN-SUFFIX,360.cn,REJECT
+  - DOMAIN-SUFFIX,360safe.com,REJECT
 
-  - DOMAIN-KEYWORD,claude,claude-node
-  - DOMAIN-KEYWORD,anthropic,claude-node
+  # ---- AI / LLM 及相关站点 → US-CORE ----
+  - DOMAIN-SUFFIX,claude.ai,US-CORE
+  - DOMAIN-SUFFIX,claude.com,US-CORE
+  - DOMAIN-SUFFIX,claude.app,US-CORE
+  - DOMAIN-SUFFIX,anthropic.com,US-CORE
+  - DOMAIN-SUFFIX,claudeusercontent.com,US-CORE
+  - DOMAIN-SUFFIX,claudemcpcontent.com,US-CORE
+  - DOMAIN-SUFFIX,browser-intake-us5-datadoghq.com,US-CORE
+  - DOMAIN-SUFFIX,cloudflare.com,US-CORE
+  - DOMAIN-SUFFIX,cloudflare-dns.com,US-CORE
+  - DOMAIN-SUFFIX,one.one.one.one,US-CORE
+  - DOMAIN-SUFFIX,openai.com,US-CORE
+  - DOMAIN-SUFFIX,chatgpt.com,US-CORE
+  - DOMAIN-SUFFIX,oaistatsig.com,US-CORE
+  - DOMAIN-SUFFIX,workos.com,US-CORE
+  - DOMAIN-SUFFIX,workoscdn.com,US-CORE
+  - DOMAIN-SUFFIX,imgix.net,US-CORE
+  - DOMAIN-SUFFIX,sentry.io,US-CORE
+  - DOMAIN-SUFFIX,perplexity.ai,US-CORE
+  - DOMAIN-SUFFIX,oaistatic.com,US-CORE
+  - DOMAIN-SUFFIX,oaiusercontent.com,US-CORE
+  - DOMAIN-SUFFIX,grok.com,US-CORE
+  - DOMAIN-SUFFIX,grokipedia.com,US-CORE
+  - DOMAIN-SUFFIX,x.ai,US-CORE
+  - DOMAIN-SUFFIX,gemini.google.com,US-CORE
+  - DOMAIN-SUFFIX,gstatic.com,US-CORE
+  - DOMAIN-SUFFIX,deepmind.google,US-CORE
+  - DOMAIN-SUFFIX,aistudio.google.com,US-CORE
+  - DOMAIN-SUFFIX,vertexai.google,US-CORE
+  - DOMAIN-SUFFIX,translate.google.com,US-CORE
+  - DOMAIN-SUFFIX,translate.googleapis.com,US-CORE
+  - DOMAIN-SUFFIX,translation.googleapis.com,US-CORE
+  - DOMAIN-SUFFIX,translate-pa.googleapis.com,US-CORE
+  - DOMAIN-SUFFIX,licdn.com,US-CORE
+  - DOMAIN-SUFFIX,linkedin.com,US-CORE
 
-  - DOMAIN-SUFFIX,voice.google.com,claude-node
-  - DOMAIN-SUFFIX,telephony.goog,claude-node
-  - DOMAIN-SUFFIX,lens.l.google.com,claude-node
-  - DOMAIN-SUFFIX,stun.l.google.com,claude-node
-  - DOMAIN-SUFFIX,stun1.l.google.com,claude-node
-  - DOMAIN-SUFFIX,stun2.l.google.com,claude-node
-  - DOMAIN-SUFFIX,stun3.l.google.com,claude-node
-  - DOMAIN-SUFFIX,stun4.l.google.com,claude-node
-  - DOMAIN-KEYWORD,voice-pa,claude-node
-  - DOMAIN-KEYWORD,people-pa,claude-node
+  # ---- Google Voice / STUN / 支付统计等 → US-CORE ----
+  - DOMAIN-SUFFIX,voice.google.com,US-CORE
+  - DOMAIN-SUFFIX,telephony.goog,US-CORE
+  - DOMAIN-SUFFIX,lens.l.google.com,US-CORE
+  - DOMAIN-SUFFIX,stun.l.google.com,US-CORE
+  - DOMAIN-SUFFIX,stun1.l.google.com,US-CORE
+  - DOMAIN-SUFFIX,stun2.l.google.com,US-CORE
+  - DOMAIN-SUFFIX,stun3.l.google.com,US-CORE
+  - DOMAIN-SUFFIX,stun4.l.google.com,US-CORE
+  - DOMAIN-KEYWORD,voice-pa,US-CORE
+  - DOMAIN-KEYWORD,people-pa,US-CORE
+  - DOMAIN-KEYWORD,stripe,US-CORE
+  - DOMAIN-KEYWORD,intercom,US-CORE
+  - DOMAIN-KEYWORD,datadoghq,US-CORE
 
+  # ---- 跨境电商工具 → 直连 ----
   - DOMAIN-SUFFIX,apollo.io,DIRECT
   - DOMAIN-SUFFIX,sorftime.com,DIRECT
   - DOMAIN-SUFFIX,sif.com,DIRECT
   - DOMAIN-SUFFIX,mywss.com,DIRECT
   - DOMAIN-SUFFIX,sellersprite.com,DIRECT
-  - DOMAIN-SUFFIX,morelogin.com,DIRECT
   - DOMAIN-SUFFIX,todesk.com,DIRECT
+  - DOMAIN-SUFFIX,morelogin.com,DIRECT
   - DOMAIN-SUFFIX,lingxing.com,DIRECT
 
+  # ---- 国内域名 / IP → 直连 ----
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
+
+  # ---- 兜底 ----
   - MATCH,CDN-AUTO
