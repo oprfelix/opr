@@ -12,14 +12,39 @@
         "server_port": 443,
         "path": "/dns-query",
         "tls": {
-         "enabled": true,
-         "server_name": "cloudflare-dns.com"
-      },
+          "enabled": true,
+          "server_name": "cloudflare-dns.com"
+        },
         "detour": "PROXY"
+      },
+      {
+        "type": "https",
+        "tag": "backup-dns",
+        "server": "8.8.8.8",
+        "server_port": 443,
+        "path": "/dns-query",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.google"
+        },
+        "detour": "PROXY"
+      },
+      {
+        "type": "fakeip",
+        "tag": "fake",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "query_type": ["A", "AAAA"],
+        "server": "fake"
       }
     ],
     "final": "wg-dns",
-    "strategy": "prefer_ipv4"
+    "strategy": "prefer_ipv4",
+    "independent_cache": true
   },
   "inbounds": [
     {
@@ -33,7 +58,8 @@
       "tag": "tun-in",
       "interface_name": "tun0",
       "address": [
-        "172.19.0.1/30"
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
       ],
       "auto_route": true,
       "strict_route": true,
@@ -52,9 +78,7 @@
         "enabled": true,
         "server_name": "tk.todsm.com",
         "insecure": false
-      },
-      "up_mbps": 30,
-      "down_mbps": 200
+      }
     },
     {
       "type": "direct",
@@ -66,11 +90,16 @@
     "default_domain_resolver": "wg-dns",
     "rules": [
       {
-        "action": "sniff"
+        "action": "sniff",
+        "timeout": "300ms"
       },
       {
         "protocol": "dns",
         "action": "hijack-dns"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "DIRECT"
       },
       {
         "ip_cidr": [
@@ -85,7 +114,8 @@
   "experimental": {
     "cache_file": {
       "enabled": true,
-      "path": "cache.db"
+      "path": "cache.db",
+      "store_fakeip": true
     }
   }
 }
