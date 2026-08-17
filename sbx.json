@@ -362,13 +362,7 @@
           "translation.googleapis.com",
           "translate-pa.googleapis.com",
           "licdn.com",
-          "linkedin.com"
-        ],
-        "action": "route",
-        "outbound": "LLM-AUTO"
-      },
-      {
-        "domain_suffix": [
+          "linkedin.com",
           "claude.ai",
           "claude.com",
           "claude.app",
