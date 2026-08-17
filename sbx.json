@@ -13,7 +13,7 @@
       {
         "tag": "global-dns",
         "address": "https://8.8.8.8/dns-query",
-        "detour": "CDN-AUTO"
+        "detour": "US-CORE"
       }
     ],
     "rules": [
