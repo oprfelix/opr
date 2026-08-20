@@ -5,21 +5,23 @@
         "type": "https",
         "tag": "direct-dns",
         "server": "223.5.5.5",
-        "server_port": 443,
         "path": "/dns-query",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.alidns.com"
+        },
         "detour": "DIRECT"
       },
       {
         "type": "https",
         "tag": "global-dns",
-        "server": "1.1.1.1",
-        "server_port": 443,
+        "server": "149.30.232.205",
         "path": "/dns-query",
         "tls": {
           "enabled": true,
-          "server_name": "cloudflare-dns.com"
+          "server_name": "vtuns.com"
         },
-        "detour": "US-CORE"
+        "detour": "DIRECT"
       }
     ],
     "rules": [
