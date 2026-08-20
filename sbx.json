@@ -13,6 +13,7 @@
       {
         "tag": "global-dns",
         "address": "https://vtuns.com/dns-query",
+        "address_resolver": "direct-dns",
         "detour": "DIRECT"
       }
     ],
