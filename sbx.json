@@ -12,8 +12,8 @@
       },
       {
         "tag": "global-dns",
-        "address": "https://1.1.1.1/dns-query",
-        "detour": "US-CORE"
+        "address": "https://vtuns.com/dns-query",
+        "detour": "DIRECT"
       }
     ],
     "rules": [
